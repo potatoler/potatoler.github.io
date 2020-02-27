@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>P1525 关押罪犯 | potatoler</title>
+<title>T20.2.4.3 沙漠绿化 | potatoler</title>
 <link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1582794158536">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
@@ -79,19 +79,15 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    P1525 关押罪犯
+                    T20.2.4.3 沙漠绿化
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
-                        · 2020-01-24 ·
+                        · 2020-02-04 ·
                     </time>
                     
-                        <a href="https://potatoler.github.io/tag/O_j126PJo/" class="post-tags">
-                            # 数据结构
-                        </a>
-                    
-                        <a href="https://potatoler.github.io/tag/97Z_GGsdxE/" class="post-tags">
-                            # 并查集
+                        <a href="https://potatoler.github.io/tag/LTV2ElzxZ/" class="post-tags">
+                            # 图论
                         </a>
                     
                         <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="post-tags">
@@ -100,12 +96,80 @@
                     
                 </div>
                 <div class="post-content">
-                    <p><a href="https://www.luogu.com.cn/problem/P1525">题目</a>大意：给定N个罪犯和M对敌对关系，每对敌对关系格式为“犯人A-犯人B-敌对程度”，要求将所有的罪犯关到两座监狱里，每对互相敌对的罪犯都一定会发生冲突，冲突程度为敌对程度，问怎样分才能使冲突程度总和最小？</p>
-<p>我们可以维护两个集合表示两座监狱，用并查集当然是很方便的，重点在于如何分配个监狱的罪犯。</p>
-<p>既然处于同一座监狱且互相敌对的两名罪犯一定会发生冲突，那么我们不妨将一名罪犯与其敌人的另一名敌人放在一座监狱，因为敌对关系并不具有传递性，也就是说，敌人的敌人就是朋友。</p>
-<p>但是这样的方法并不能保证所有的罪犯都和睦相处，假设A有一个敌人B，B只有两个敌人A和C，而C又只有两个敌人B和A，那么无论怎样分配，都至少有一对罪犯会发生冲突。为了使总冲突最小，我们需要权衡利弊，在尽量避免冲突发生的同时控制不得不发生的冲突程度最小。</p>
-<p>所以我们可以先将所有敌对关系按照敌对程度从大到小排序，接下来每次处理一对敌对关系：如果两位罪犯已经在同一座监狱（不得不发生冲突）则将其敌对程度作为其冲突程度累加到答案中；如果不在同一组，则按上面所述的“敌人的敌人就是朋友”的方法分组处理。</p>
-<p>最后剩下无法处理的敌对关系，就是不得不发生的冲突中程度最小的。</p>
+                    <h3 id="题目"><a href="https://www.luogu.com.cn/problem/U104562">题目</a>描述：</h3>
+<p>定义沙漠是满足如下性质的图: 没有重边和自环，且图中任意一条边至多属于一个简单环。 给定一片沙漠，从中删去任意多条边，使得删去边之后的图是一个森林，求有多少种方法，答案对 998244353 取模。</p>
+<h3 id="这里必须吐槽一下">这里必须吐槽一下...</h3>
+<p>题目描述很硬核：沙漠里有很多的仙人掌，把仙人掌修剪成树，就绿化了沙漠（笑）</p>
+<p>看到这里就已经懵了？没关系，你只是不知道「仙人掌图」，<a href="https://blog.csdn.net/CreationAugust/article/details/48007069">不妨认识一下？</a></p>
+<h3 id="思路">思路：</h3>
+<p>树中不能有环，所以要将「沙漠」删边变成「森林」，就是将每一个环至少删掉一条边，而不在环中的边则删不删都可以（森林中的树不要求连通）</p>
+<p>重点在于环的查找：我们可以DFS记录边的深度，一旦从较深DFS到较浅，就说明找到了一个环</p>
+<p>DFS的过程中我们有以下几种情况需要处理：</p>
+<ol>
+<li>DFS到了自己的父亲——continue；</li>
+<li>DFS到比自己浅的点——找到了一个环，环中的边数即为两点深度差+1；</li>
+<li>DFS到比自己深的店——访问到了已经统计过的环，不用管；</li>
+<li>DFS到未标记深度的点——一个新的点，将此点的深度标记为父亲的深度+1，并从此点开始DFS；</li>
+</ol>
+<p>值得注意的一点在于情况4的处理，当我们遇到一个新的点并标记他的深度之后，我们需要从此点开始DFS，因为题目中并没有规定「沙漠」是一个连通的图（只有一株仙人掌的沙漠还叫沙漠？）</p>
+<h3 id="代码">代码：</h3>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;vector&gt;
+#define ll long long
+using namespace std;
+const int maxn=300010;
+const ll mod=998244353;
+int vis[maxn];
+vector&lt;int&gt;map[maxn];
+int n,m;
+int ans,num;
+ll qp(ll a,ll b){
+    ll res=1;
+    while(b&gt;0){
+        if(b%2)
+            res=(res*a)%mod;
+        a=(a*a)%mod;
+        b/=2;
+    }
+    return res;
+}
+void dfs(int u,int fa){
+    vis[u]=vis[fa]+1;
+    for(int i=0;i&lt;map[u].size();i++){
+        int v=map[u][i];
+        if(fa==v) continue;
+        if(vis[v]==0)
+            dfs(v,u);
+        else if(vis[u]&gt;vis[v]){
+            int temp=vis[u]-vis[v]+1;
+            num+=temp;
+            ans=(ans%mod*(qp(2,temp)-1)%mod)%mod;
+        }
+    }
+}
+int main(){
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    memset(vis,0,sizeof(vis));
+    for(int i=1;i&lt;=n;i++) map[i].clear();
+    ans=1,num=0;
+    for(int i=1;i&lt;=m;i++){
+        int x,y;
+        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
+        map[x].push_back(y);
+        map[y].push_back(x);
+    }
+    for(int i=1;i&lt;=n;i++){
+        if(!vis[i])
+            dfs(i,0);
+    }
+    ans=(ans%mod*(qp(2,m-num))%mod)%mod;
+    cout&lt;&lt;ans&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
 
                 </div>
             </article>
@@ -114,8 +178,8 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://potatoler.github.io/post/uva1607-gates/" class="post-title gt-a-link">
-                    UVA1607 Gates
+                <a href="https://potatoler.github.io/post/t20241-xiao-z-da-ji-mu/" class="post-title gt-a-link">
+                    T20.2.4.1 小Z搭积木
                 </a>
             </div>
         

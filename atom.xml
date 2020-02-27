@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.github.io</id>
     <title>potatoler</title>
-    <updated>2020-02-27T08:53:10.738Z</updated>
+    <updated>2020-02-27T09:02:41.895Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.github.io"/>
     <link rel="self" href="https://potatoler.github.io/atom.xml"/>
@@ -29,7 +29,21 @@
         <updated>2020-02-08T01:38:00.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[P5543 The Great Revegetation]]></title>
+        <title type="html"><![CDATA[T20.2.4.3 沙漠绿化]]></title>
+        <id>https://potatoler.github.io/post/t20243-sha-mo-lu-hua/</id>
+        <link href="https://potatoler.github.io/post/t20243-sha-mo-lu-hua/">
+        </link>
+        <updated>2020-02-04T08:57:23.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[T20.2.4.1 小Z搭积木]]></title>
+        <id>https://potatoler.github.io/post/t20241-xiao-z-da-ji-mu/</id>
+        <link href="https://potatoler.github.io/post/t20241-xiao-z-da-ji-mu/">
+        </link>
+        <updated>2020-02-04T08:54:11.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[T20.2.4.3 The Great Revegetation]]></title>
         <id>https://potatoler.github.io/post/p5543-the-great-revegetation/</id>
         <link href="https://potatoler.github.io/post/p5543-the-great-revegetation/">
         </link>
@@ -50,6 +64,13 @@
         <updated>2020-01-24T08:32:52.000Z</updated>
     </entry>
     <entry>
+        <title type="html"><![CDATA[UVA1607 Gates]]></title>
+        <id>https://potatoler.github.io/post/uva1607-gates/</id>
+        <link href="https://potatoler.github.io/post/uva1607-gates/">
+        </link>
+        <updated>2020-01-23T08:59:22.000Z</updated>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[P3486 可爱的质数]]></title>
         <id>https://potatoler.github.io/post/p3486-ke-ai-de-zhi-shu/</id>
         <link href="https://potatoler.github.io/post/p3486-ke-ai-de-zhi-shu/">
@@ -62,12 +83,5 @@
         <link href="https://potatoler.github.io/post/p1044-zhan/">
         </link>
         <updated>2020-01-01T02:25:00.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[P1088 火星人]]></title>
-        <id>https://potatoler.github.io/post/p1088-huo-xing-ren/</id>
-        <link href="https://potatoler.github.io/post/p1088-huo-xing-ren/">
-        </link>
-        <updated>2019-11-29T11:09:00.000Z</updated>
     </entry>
 </feed>
