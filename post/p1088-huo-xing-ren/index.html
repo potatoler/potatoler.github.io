@@ -1,0 +1,161 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P1088 火星人 | potatoler</title>
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1582793403738">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            potatoler
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    P1088 火星人
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2019-11-29 ·
+                    </time>
+                    
+                        <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="post-tags">
+                            # 题解
+                        </a>
+                    
+                        <a href="https://potatoler.github.io/tag/tAKXl568eh/" class="post-tags">
+                            # 奇妙函数
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h3 id="10行代码切luogu-p1088">10行代码切<a href="https://www.luogu.com.cn/problem/P1088">Luogu P1088</a>？</h3>
+<p><em>注意：</em></p>
+<p><em>以下内容对非C党不友好，阅读与否请根据个人心理承受能力自行判断</em></p>
+<p>看到这个题，改变手指的顺序...第几大...这不就是全排列题吗！什么？你不知道什么是全排列？没关系，看一下<a href="https://www.luogu.com.cn/problem/P1706">P1706</a>就懂了...</p>
+<p>C++有一个特别神奇的库叫做<algorithm>,算法，名字就说明其中注定是有一些神奇的函数。其中有一个很快能解决此题的函数：</p>
+<h2 id="next_permutation"><a href="http://www.cplusplus.com/reference/algorithm/next_permutation/?kw=next_permutation">next_permutation</a></h2>
+<p>这个函数每运行一次就可以排列出下一个全排列的序列，和<code>sort()</code>用法类似，具体信息戳上面函数名...</p>
+<pre><code>int tot=n;//所有全排列的数量
+for(int i=0;i&lt;tot;i++){
+	next_permutation(a,a+n);
+}
+</code></pre>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>A</mi><mi>n</mi><mi>n</mi></msubsup><mo>=</mo><mi>n</mi><mo>!</mo></mrow><annotation encoding="application/x-tex">A^{n}_{n}=n!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.93033em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mclose">!</span></span></span></span></p>
+<p>也就是tot的取值；</p>
+<pre><code class="language-c++">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int a[10005],n,m;
+int main()
+{	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+	for(int i=0;i&lt;n;i++) scanf(&quot;%d&quot;,&amp;a[i]);
+	while(m--) next_permutation(a,a+n); 
+	for(int i=0;i&lt;n-1;i++) printf(&quot;%d &quot;,a[i]);
+	printf(&quot;%d&quot;,a[n-1]);
+	return 0;} 
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">It's a Lolicon-Hentai</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>

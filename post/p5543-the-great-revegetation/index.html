@@ -1,0 +1,211 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+<meta name="description" content=""/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P5543 The Great Revegetation | potatoler</title>
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1582793403738">
+<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<!-- DEMO JS -->
+<script src="media/scripts/index.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <div class="navbar-brand">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            potatoler
+        </div>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+                <div class="nav-item">
+                    
+                        <a href="/" class="menu gt-a-link">
+                            首页
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/tags" class="menu gt-a-link">
+                            标签
+                        </a>
+                    
+                </div>
+            
+                <div class="nav-item">
+                    
+                        <a href="/archives" class="menu gt-a-link">
+                            归档
+                        </a>
+                    
+                </div>
+            
+        </div>
+    </div>
+</nav>
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    P5543 The Great Revegetation
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2020-02-04 ·
+                    </time>
+                    
+                        <a href="https://potatoler.github.io/tag/O_j126PJo/" class="post-tags">
+                            # 数据结构
+                        </a>
+                    
+                        <a href="https://potatoler.github.io/tag/97Z_GGsdxE/" class="post-tags">
+                            # 并查集
+                        </a>
+                    
+                        <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="post-tags">
+                            # 题解
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h3 id="题目"><a href="https://www.luogu.com.cn/problem/P5543">题目</a>描述：</h3>
+<p>一场漫长的干旱使农场主约翰的N牧场没有草, 然而, 随着雨季的到来, 是时候“重新种植”了。在农夫约翰的小屋里, 他有两个桶, 分别有一种草籽。他想在他的每一个牧场种草, 在每一个牧场中只能种一种草。 作为一名奶农, 农场主约翰想确保他能满足他的M头奶牛的特殊饮食需求。他每头奶牛都有两个自己最喜欢的牧场。一些奶牛只吃一种草, 因此约翰希望确保在这些奶牛最喜欢的两个牧场里种植同一种的草; 剩下的奶牛则吃不同种类的草。对于那些奶牛，约翰当然想确保它们最喜欢的两块牧场里有不同的草。 请帮助农场主约翰确定他在他的N块牧场上有多少种种植草的不同方式。</p>
+<h3 id="思路">思路：</h3>
+<p>与关押罪犯有很多相似之处，实用并查集补集的思路，将两个牧场种相同草的关系当作「友好」，将两个牧场种不同草的关系当作「敌对」，但值得注意的一点是并非所有的牧场一定为任意一只奶牛所喜爱，所以我们还需要额外的一个并查集来维护被提到的牧场的连通性。</p>
+<p>如果产生冲突，那么最终方案数必定为0；若没有冲突，就在第三个并查集中判断连通块，连通块数为为cnt，则<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>n</mi><mi>s</mi><mo>=</mo><msup><mn>2</mn><mrow><mi>c</mi><mi>n</mi><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">ans=2^{cnt}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7935559999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span></span></span></span></span>;</p>
+<h3 id="代码">代码：</h3>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cstring&gt;
+#include&lt;cmath&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int n,m,a,b,ans;
+char op;
+int fa[100005],gr[200005];
+int find(int x){
+    if(fa[x]==x) return x;
+    else return fa[x]=find(fa[x]);
+}
+int com(int x){
+    if(gr[x]==x) return x;
+    else return gr[x]=com(gr[x]);
+}
+int main(){
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    ans=n;
+    for(int i=1;i&lt;=n;i++){
+        gr[i]=i;
+        gr[i+n]=i+n;
+        fa[i]=i;
+    }
+    for(int i=1;i&lt;=m;i++){
+        cin&gt;&gt;op&gt;&gt;a&gt;&gt;b;
+        // op=getchar();
+        // getchar();
+        // scanf(&quot;%d%d&quot;,&amp;a,&amp;b);
+      //乖乖用cin（笑）
+        if(op=='S'){
+            gr[com(a)]=com(b);
+            gr[com(a+n)]=com(b+n);
+        }
+        else{
+            if(com(a)==com(b)){
+                ans=0;
+                break;
+            }
+            gr[com(a+n)]=com(b);
+            gr[com(a)]=com(b+n);
+        }
+        if(find(a)!=find(b)){
+            fa[find(a)]=find(b);
+            ans--;
+        }
+    }
+    if(ans==0){
+        printf(&quot;%d&quot;,ans);
+        return 0;
+    }
+    printf(&quot;1&quot;);
+    for(int i=1;i&lt;=ans;i++) printf(&quot;0&quot;);
+    return 0;
+}
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://potatoler.github.io/post/p1005-ju-zhen-qu-shu-you-xi/" class="post-title gt-a-link">
+                    P1005 矩阵取数游戏
+                </a>
+            </div>
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first">It's a Lolicon-Hentai</div>
+    <div class="social-container">
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+    </div>
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+    hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+</div>
+</body>
+</html>
