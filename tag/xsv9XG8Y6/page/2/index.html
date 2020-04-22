@@ -3,7 +3,7 @@
     <meta charset="utf-8"/>
 <meta name="description" content=""/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>P1525 关押罪犯 | potatoler</title>
+<title>题解 | potatoler</title>
 <link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1587522493396">
 <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
@@ -30,11 +30,11 @@
 
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 </head>
 <body>
 <div class="main gt-bg-theme-color-first">
-    <nav class="navbar navbar-expand-lg">
+    <div class="main-content">
+        <nav class="navbar navbar-expand-lg">
     <div class="navbar-brand">
         <img class="user-avatar" src="/images/avatar.png" alt="头像">
         <div class="site-name gt-c-content-color-first">
@@ -75,52 +75,51 @@
         </div>
     </div>
 </nav>
-    <div class="post-container">
-        <div class="post-detail gt-bg-theme-color-second">
-            <article class="gt-post-content">
-                <h2 class="post-title">
-                    P1525 关押罪犯
-                </h2>
-                <div class="post-info">
-                    <time class="post-time gt-c-content-color-first">
-                        · 2020-01-24 ·
-                    </time>
-                    
-                        <a href="https://potatoler.github.io/tag/O_j126PJo/" class="post-tags">
-                            # 数据结构
-                        </a>
-                    
-                        <a href="https://potatoler.github.io/tag/97Z_GGsdxE/" class="post-tags">
-                            # 并查集
-                        </a>
-                    
-                        <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="post-tags">
-                            # 题解
-                        </a>
-                    
-                </div>
-                <div class="post-content">
-                    <p><a href="https://www.luogu.com.cn/problem/P1525">题目</a>大意：给定N个罪犯和M对敌对关系，每对敌对关系格式为“犯人A-犯人B-敌对程度”，要求将所有的罪犯关到两座监狱里，每对互相敌对的罪犯都一定会发生冲突，冲突程度为敌对程度，问怎样分才能使冲突程度总和最小？</p>
-<p>我们可以维护两个集合表示两座监狱，用并查集当然是很方便的，重点在于如何分配个监狱的罪犯。</p>
-<p>既然处于同一座监狱且互相敌对的两名罪犯一定会发生冲突，那么我们不妨将一名罪犯与其敌人的另一名敌人放在一座监狱，因为敌对关系并不具有传递性，也就是说，敌人的敌人就是朋友。</p>
-<p>但是这样的方法并不能保证所有的罪犯都和睦相处，假设A有一个敌人B，B只有两个敌人A和C，而C又只有两个敌人B和A，那么无论怎样分配，都至少有一对罪犯会发生冲突。为了使总冲突最小，我们需要权衡利弊，在尽量避免冲突发生的同时控制不得不发生的冲突程度最小。</p>
-<p>所以我们可以先将所有敌对关系按照敌对程度从大到小排序，接下来每次处理一对敌对关系：如果两位罪犯已经在同一座监狱（不得不发生冲突）则将其敌对程度作为其冲突程度累加到答案中；如果不在同一组，则按上面所述的“敌人的敌人就是朋友”的方法分组处理。</p>
-<p>最后剩下无法处理的敌对关系，就是不得不发生的冲突中程度最小的。</p>
-
-                </div>
-            </article>
+        <div class="current-tag-container">
+            <h2 class="title gt-c-content-color-first">
+                #题解
+            </h2>
         </div>
-
+        <div class="post-list-container">
+    <div class="post-inner">
         
-            <div class="next-post">
-                <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://potatoler.github.io/post/uva1607-gates/" class="post-title gt-a-link">
-                    UVA1607 Gates
-                </a>
+            <div class="post gt-bg-theme-color-second">
+                <div class="post-left">
+                    <div>
+                        
+                        <a href="https://potatoler.github.io/post/p1088-huo-xing-ren/">
+                            <span class="post-title gt-c-content-color-first">P1088 火星人</span>
+                        </a>
+                    </div>
+                    <div class="gt-post-content post-abstract gt-c-content-color-second">
+                        
+                    </div>
+                    <div class="post-info">
+                        <time class="post-time gt-c-content-color-first">
+                            发布于 · 2019-11-29 ·
+                        </time>
+                        
+                            <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="post-tag">
+                                # 题解
+                            </a>
+                        
+                            <a href="https://potatoler.github.io/tag/tAKXl568eh/" class="post-tag">
+                                # 奇妙函数
+                            </a>
+                        
+                    </div>
+                </div>
+                
             </div>
         
-
-        
+    </div>
+</div>
+        <div class="pagination-container">
+    
+        <a href="https://potatoler.github.io/tag/xsv9XG8Y6" class="prev-page gt-a-link">上一页</a>
+    
+    
+</div>
 
         <div class="site-footer gt-c-content-color-first">
     <div class="slogan gt-c-content-color-first">It's a Lolicon-Hentai</div>
@@ -145,7 +144,6 @@
 <script>
     hljs.initHighlightingOnLoad()
 </script>
-
 
     </div>
 </div>
