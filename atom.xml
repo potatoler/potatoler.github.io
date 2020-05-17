@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.github.io</id>
     <title>potatoler</title>
-    <updated>2020-04-22T02:28:18.326Z</updated>
+    <updated>2020-05-17T14:52:38.447Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.github.io"/>
     <link rel="self" href="https://potatoler.github.io/atom.xml"/>
@@ -10,6 +10,33 @@
     <logo>https://potatoler.github.io/images/avatar.png</logo>
     <icon>https://potatoler.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[UVA11806 Cheerleaders 题解]]></title>
+        <id>https://potatoler.github.io/post/uva11806-cheerleaders-ti-jie/</id>
+        <link href="https://potatoler.github.io/post/uva11806-cheerleaders-ti-jie/">
+        </link>
+        <updated>2020-05-17T14:49:09.000Z</updated>
+        <summary type="html"><![CDATA[<h4 id="题目"><a href="https://www.luogu.com.cn/problem/UVA11806">题目</a>大意:</h4>
+<p>有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：</p>
+<ol>
+<li>四个边都至少有一个人</li>
+<li>一个格子最多放一个人</li>
+<li>每个人都要放进去</li>
+</ol>
+<p>求有多少种合法的放法——答案对 1e6+7 取模</p>
+<p>注：四个角上的人可以看做同时在一行和一列</p>
+]]></summary>
+        <content type="html"><![CDATA[<h4 id="题目"><a href="https://www.luogu.com.cn/problem/UVA11806">题目</a>大意:</h4>
+<p>有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：</p>
+<ol>
+<li>四个边都至少有一个人</li>
+<li>一个格子最多放一个人</li>
+<li>每个人都要放进去</li>
+</ol>
+<p>求有多少种合法的放法——答案对 1e6+7 取模</p>
+<p>注：四个角上的人可以看做同时在一行和一列</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[T20.4.19.B 水杯]]></title>
         <id>https://potatoler.github.io/post/xin-guan-wang-luo-sai-shui-bei/</id>
@@ -80,12 +107,5 @@
         <link href="https://potatoler.github.io/post/p5543-the-great-revegetation/">
         </link>
         <updated>2020-02-04T08:41:32.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[P1005 矩阵取数游戏]]></title>
-        <id>https://potatoler.github.io/post/p1005-ju-zhen-qu-shu-you-xi/</id>
-        <link href="https://potatoler.github.io/post/p1005-ju-zhen-qu-shu-you-xi/">
-        </link>
-        <updated>2020-01-25T04:30:00.000Z</updated>
     </entry>
 </feed>
