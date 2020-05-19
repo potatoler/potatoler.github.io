@@ -1,97 +1,103 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>UVA1607 Gates | potatoler</title>
+<meta name="description" content="It&#39;s a Lolicon-Hentai">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589900793511">
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589904571941">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
 
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
 
-    <meta name="description" content="题意不难理解：描述一个电路结构，电路中若干个输入点都输入x，求此电路的等效电路，并使输入的x数量尽量少
-对于一组电路，在输入x的值确定时，输出的值可能与x无关，也可能与x有关，而因为输入输出只可能是0或1，一组电路可能有以下输出情况：
-
-永..." />
-    <meta name="keywords" content="二分,题解" />
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://potatoler.github.io">
-        <img src="https://potatoler.github.io/images/avatar.png?v=1589900793511" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.github.io">
+        <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1589904571941" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.github.io">
         <h1 class="site-title">potatoler</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             归档
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      It's a Lolicon-Hentai
-    </div>
-    <div class="site-footer">
-      potatoler’s space 2020 | <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">UVA1607 Gates</h2>
-            <div class="post-date">2020-01-23</div>
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">UVA1607 Gates</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-01-23</span>
             
-            <div class="post-content" v-pre>
-              <p><a href="https://www.luogu.com.cn/problem/UVA1607">题意</a>不难理解：描述一个电路结构，电路中若干个输入点都输入x，求此电路的等效电路，并使输入的x数量尽量少</p>
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.github.io/tag/CJfrVrsBK/">
+                    二分
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.github.io/tag/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p><a href="https://www.luogu.com.cn/problem/UVA1607">题意</a>不难理解：描述一个电路结构，电路中若干个输入点都输入x，求此电路的等效电路，并使输入的x数量尽量少</p>
 <p>对于一组电路，在输入x的值确定时，输出的值可能与x无关，也可能与x有关，而因为输入输出只可能是0或1，一组电路可能有以下输出情况：</p>
 <ol>
 <li>永远输出0，与x的值无关</li>
@@ -159,43 +165,45 @@ int main(){
 }
 </code></pre>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://potatoler.github.io/tag/CJfrVrsBK/" class="tag">
-                    二分
-                  </a>
-                
-                  <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="tag">
-                    题解
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://potatoler.github.io/post/p3486-ke-ai-de-zhi-shu/">
-                  <h3 class="post-title">
-                    P3486 可爱的质数
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
           </div>
-
         </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.github.io/post/p3486-ke-ai-de-zhi-shu/">
+              <h3 class="post-title">
+                下一篇：P3486 可爱的质数
+              </h3>
+            </a>
+          </div>
+          
       </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">It's a Lolicon-Hentai</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
     </div>
+    <script type="application/javascript">
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script type="application/javascript">
-
-AOS.init();
+hljs.initHighlightingOnLoad()
 
 var app = new Vue({
   el: '#app',
@@ -205,8 +213,6 @@ var app = new Vue({
 })
 
 </script>
-
-
 
 
 

@@ -1,95 +1,103 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>T20.2.4.1 小Z搭积木 | potatoler</title>
+<meta name="description" content="It&#39;s a Lolicon-Hentai">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589900793511">
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589904571941">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
 
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
 
-    <meta name="description" content="题目描述:
-小 Z 喜欢搭积木。小 Z 一共有 n 块积木，并且积木只能竖着一块一块的摞，可以摞多列。小 Z 的积木都是智能积木，第 i 块积木有一个情绪值 Xi。当摞在该积木上面积木总数超过 Xi 时，i 号积木就会不高兴。小 Z 情商这..." />
-    <meta name="keywords" content="贪心,题解" />
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://potatoler.github.io">
-        <img src="https://potatoler.github.io/images/avatar.png?v=1589900793511" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.github.io">
+        <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1589904571941" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.github.io">
         <h1 class="site-title">potatoler</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             归档
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      It's a Lolicon-Hentai
-    </div>
-    <div class="site-footer">
-      potatoler’s space 2020 | <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">T20.2.4.1 小Z搭积木</h2>
-            <div class="post-date">2020-02-04</div>
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">T20.2.4.1 小Z搭积木</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-02-04</span>
             
-            <div class="post-content" v-pre>
-              <h3 id="题目"><a href="https://www.luogu.com.cn/problem/U104560">题目</a>描述:</h3>
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.github.io/tag/x0JHrwlfb/">
+                    贪心
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.github.io/tag/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h3 id="题目"><a href="https://www.luogu.com.cn/problem/U104560">题目</a>描述:</h3>
 <p>小 Z 喜欢搭积木。小 Z 一共有 n 块积木，并且积木只能竖着一块一块的摞，可以摞多列。小 Z 的积木都是智能积木，第 i 块积木有一个情绪值 Xi。当摞在该积木上面积木总数超过 Xi 时，i 号积木就会不高兴。小 Z 情商这么高，肯定不希望有积木不高兴。但是他又希望每块积木都被用上，并且摞的积木列的总数最少。</p>
 <h3 id="思路">思路:</h3>
 <p>非常明显的贪心：对于一块积木而言，它所在的位置越低，它上面的积木就越多，所以自然是要让情绪值大的积木在下面。将所有的积木从小到大排序，从上往下加积木，如果有一块积木不开心了就再开一列。</p>
@@ -117,43 +125,45 @@ int main(){
 }  
 </code></pre>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://potatoler.github.io/tag/x0JHrwlfb/" class="tag">
-                    贪心
-                  </a>
-                
-                  <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="tag">
-                    题解
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://potatoler.github.io/post/p5543-the-great-revegetation/">
-                  <h3 class="post-title">
-                    T20.2.4.3 The Great Revegetation
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
           </div>
-
         </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.github.io/post/p5543-the-great-revegetation/">
+              <h3 class="post-title">
+                下一篇：T20.2.4.3 The Great Revegetation
+              </h3>
+            </a>
+          </div>
+          
       </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">It's a Lolicon-Hentai</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
     </div>
+    <script type="application/javascript">
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script type="application/javascript">
-
-AOS.init();
+hljs.initHighlightingOnLoad()
 
 var app = new Vue({
   el: '#app',
@@ -163,8 +173,6 @@ var app = new Vue({
 })
 
 </script>
-
-
 
 
 

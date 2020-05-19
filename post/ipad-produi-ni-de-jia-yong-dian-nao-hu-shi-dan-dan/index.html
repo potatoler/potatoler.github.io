@@ -1,97 +1,106 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>iPad Pro：对你的家用电脑虎视眈眈 | potatoler</title>
+<meta name="description" content="It&#39;s a Lolicon-Hentai">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589900793511">
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589904571941">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
 
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
 
-    <meta name="description" content="在 2015年 9月发布会上，Apple 发布了一款带「Pro」后缀的 iPad，12.9 吋的屏幕尺寸和新配件 Apple Pencil 的加入在当时给我带来了极大的震撼。时间来到 2020年 3月18日，Apple悄无声息地在官网上架第..." />
-    <meta name="keywords" content="数码,感" />
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://potatoler.github.io">
-        <img src="https://potatoler.github.io/images/avatar.png?v=1589900793511" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.github.io">
+        <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1589904571941" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.github.io">
         <h1 class="site-title">potatoler</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             首页
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             标签
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             归档
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      It's a Lolicon-Hentai
-    </div>
-    <div class="site-footer">
-      potatoler’s space 2020 | <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">iPad Pro：对你的家用电脑虎视眈眈</h2>
-            <div class="post-date">2020-03-19</div>
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://potatoler.github.io/post-images/ipad-produi-ni-de-jia-yong-dian-nao-hu-shi-dan-dan.jpg')">
+            </div>
+          
+          <h2 class="post-title">iPad Pro：对你的家用电脑虎视眈眈</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-03-19</span>
             
-              <div class="feature-container" style="background-image: url('https://potatoler.github.io/post-images/ipad-produi-ni-de-jia-yong-dian-nao-hu-shi-dan-dan.jpg')">
-              </div>
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.github.io/tag/4StD8nVpK/">
+                    数码
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.github.io/tag/P5eoSxau7/">
+                    感
+                    
+                  </a>
+                
+              </span>
             
-            <div class="post-content" v-pre>
-              <p>在 2015年 9月发布会上，Apple 发布了一款带「Pro」后缀的 iPad，12.9 吋的屏幕尺寸和新配件 Apple Pencil 的加入在当时给我带来了极大的震撼。时间来到 2020年 3月18日，Apple悄无声息地在官网上架第四代 iPad Pro，引起轩然大波。和它的三个前辈一样，「iPad Pro 是否真正成为了可以代替电脑的生产力工具」成了时下最热门的话题之一。</p>
+          </div>
+          <div class="post-content">
+            <p>在 2015年 9月发布会上，Apple 发布了一款带「Pro」后缀的 iPad，12.9 吋的屏幕尺寸和新配件 Apple Pencil 的加入在当时给我带来了极大的震撼。时间来到 2020年 3月18日，Apple悄无声息地在官网上架第四代 iPad Pro，引起轩然大波。和它的三个前辈一样，「iPad Pro 是否真正成为了可以代替电脑的生产力工具」成了时下最热门的话题之一。</p>
 <p>​	回到这个问题：iPad Pro 是否成为了可以代替电脑的生产力工具？</p>
 <h3 id="它不能也不想">它不能，也不想</h3>
 <p>​	直到目前为止，iPad Pro 都不足以作为生产力工具代替大部分人的电脑，但其实从一开始，Apple 就没有让它成为代替电脑的产品。</p>
@@ -114,43 +123,45 @@
 <p>​	而如果抛开这些温暖的人文话题来讲：iPad 或许会像当年的 iPod touch 一样成为10后进入 Apple 生态的开门产品——换句话来说：iPad 之后，你的下一款 Apple 产品，可能就是 Mac 了。</p>
 <p>（本文为原创，未经允许不得转载）</p>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://potatoler.github.io/tag/4StD8nVpK/" class="tag">
-                    数码
-                  </a>
-                
-                  <a href="https://potatoler.github.io/tag/P5eoSxau7/" class="tag">
-                    感
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://potatoler.github.io/post/xin-guan-bing-du-de-zi-wo-xiu-yang-ru-he-tong-zhi-quan-ren-lei/">
-                  <h3 class="post-title">
-                    新冠病毒的自我修养：如何统治全人类
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
           </div>
-
         </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.github.io/post/xin-guan-bing-du-de-zi-wo-xiu-yang-ru-he-tong-zhi-quan-ren-lei/">
+              <h3 class="post-title">
+                下一篇：新冠病毒的自我修养：如何统治全人类
+              </h3>
+            </a>
+          </div>
+          
       </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">It's a Lolicon-Hentai</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
     </div>
+    <script type="application/javascript">
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script type="application/javascript">
-
-AOS.init();
+hljs.initHighlightingOnLoad()
 
 var app = new Vue({
   el: '#app',
@@ -160,8 +171,6 @@ var app = new Vue({
 })
 
 </script>
-
-
 
 
 
