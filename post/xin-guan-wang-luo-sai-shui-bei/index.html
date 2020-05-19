@@ -1,103 +1,98 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>T20.4.19.B 水杯 | potatoler</title>
-<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589900201891">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589900793511">
 <link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="T20.4.19.B 水杯 | potatoler - Atom Feed" href="https://potatoler.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
 
     <meta name="description" content="题目传送门
 既然是水杯套水杯，大小各不同，那么对于从里层往外层的水杯，它们的大小就形成了一个上升序列（按照题目的描述应该是不下降序列，但是数据范围中说明了水杯大小各不相同，所以其实是一个上升序列）。但是介于水杯的嵌套有两种方式：塞进里面和套..." />
     <meta name="keywords" content="二分,DP,题解" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://potatoler.github.io">
-  <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1589900201891" alt="">
-  </a>
-  <h1 class="site-title">
-    potatoler
-  </h1>
-  <p class="site-description">
-    It's a Lolicon-Hentai
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://potatoler.github.io">
+        <img src="https://potatoler.github.io/images/avatar.png?v=1589900793511" class="site-logo">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      It's a Lolicon-Hentai
+    </div>
+    <div class="site-footer">
+      potatoler’s space 2020 | <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              T20.4.19.B 水杯
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-04-22
-              </span>
-              <span>
-                6 min read
-              </span>
-              
-                <a href="https://potatoler.github.io/tag/CJfrVrsBK/" class="post-tag">
-                  # 二分
-                </a>
-              
-                <a href="https://potatoler.github.io/tag/k8Bgcetq3/" class="post-tag">
-                  # DP
-                </a>
-              
-                <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="post-tag">
-                  # 题解
-                </a>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">T20.4.19.B 水杯</h2>
+            <div class="post-date">2020-04-22</div>
             
-              <img class="post-feature-image" src="https://tva3.sinaimg.cn/large/0087r0ffly1ge2c2gsbb0j30sj0lvn6w.jpg" alt="">
+              <div class="feature-container" style="background-image: url('https://tva3.sinaimg.cn/large/0087r0ffly1ge2c2gsbb0j30sj0lvn6w.jpg')">
+              </div>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <p><a href="https://www.luogu.com.cn/problem/U114570">题目传送门</a></p>
+            <div class="post-content" v-pre>
+              <p><a href="https://www.luogu.com.cn/problem/U114570">题目传送门</a></p>
 <p>既然是水杯套水杯，大小各不同，那么对于从里层往外层的水杯，它们的大小就形成了一个上升序列（按照题目的描述应该是不下降序列，但是数据范围中说明了水杯大小各不相同，所以其实是一个上升序列）。但是介于水杯的嵌套有两种方式：塞进里面和套在外面——也就是说对于这个上升序列，新的数既可能放在队头又可能放在队尾，因此这不是一道单纯的 LIS 问题。但是如果我们可以通过某种<s>东洋魔术</s>方法将这两种扩展序列的方式变为同一种，就可以将这个题变成一道 LIS 问题。</p>
 <p>虽然既有从前插入的数又有从后插入的数，但是我们可以发现这两种操作的特性：</p>
 <ol>
@@ -173,76 +168,61 @@ int main(){
 }
 </code></pre>
 
-              </div>
-              <div class="toc-container">
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://potatoler.github.io/tag/CJfrVrsBK/" class="tag">
+                    二分
+                  </a>
+                
+                  <a href="https://potatoler.github.io/tag/k8Bgcetq3/" class="tag">
+                    DP
+                  </a>
+                
+                  <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="tag">
+                    题解
+                  </a>
                 
               </div>
-            </div>
-          </article>
-        </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://potatoler.github.io/post/ipad-produi-ni-de-jia-yong-dian-nao-hu-shi-dan-dan/">
+                  <h3 class="post-title">
+                    iPad Pro：对你的家用电脑虎视眈眈
+                  </h3>
+                </a>
+              </div>
+            
 
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://potatoler.github.io/post/ipad-produi-ni-de-jia-yong-dian-nao-hu-shi-dan-dan/">
-              <h3 class="post-title">
-                iPad Pro：对你的家用电脑虎视眈眈
-              </h3>
-            </a>
+            
+
           </div>
-        
 
-        
-
-        <div class="site-footer">
-  potatoler’s space 2020
-  <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+        </div>
       </div>
     </div>
 
-    <script>
-      hljs.initHighlightingOnLoad()
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+AOS.init();
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
+</script>
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
 
-    </script>
+
+
+
+
   </body>
 </html>
