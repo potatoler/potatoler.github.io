@@ -1,102 +1,99 @@
 <html>
-<head>
-    <meta charset="utf-8"/>
-<meta name="description" content=""/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>UVA1607 Gates | potatoler</title>
-<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589897274301">
-<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589900201891">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-
-<!-- DEMO JS -->
-<script src="media/scripts/index.js"></script>
+<link rel="alternate" type="application/atom+xml" title="UVA1607 Gates | potatoler - Atom Feed" href="https://potatoler.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
+    <meta name="description" content="题意不难理解：描述一个电路结构，电路中若干个输入点都输入x，求此电路的等效电路，并使输入的x数量尽量少
+对于一组电路，在输入x的值确定时，输出的值可能与x无关，也可能与x有关，而因为输入输出只可能是0或1，一组电路可能有以下输出情况：
+
+永..." />
+    <meta name="keywords" content="二分,题解" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-</head>
-<body>
-<div class="main gt-bg-theme-color-first">
-    <nav class="navbar navbar-expand-lg">
-    <div class="navbar-brand">
-        <img class="user-avatar" src="/images/avatar.png" alt="头像">
-        <div class="site-name gt-c-content-color-first">
-            potatoler
-        </div>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav mr-auto" style="text-align: center">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://potatoler.github.io">
+  <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1589900201891" alt="">
+  </a>
+  <h1 class="site-title">
+    potatoler
+  </h1>
+  <p class="site-description">
+    It's a Lolicon-Hentai
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              UVA1607 Gates
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-01-23
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="https://potatoler.github.io/tag/CJfrVrsBK/" class="post-tag">
+                  # 二分
+                </a>
+              
+                <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="post-tag">
+                  # 题解
+                </a>
+              
+            </div>
             
-                <div class="nav-item">
-                    
-                        <a href="/" class="menu gt-a-link">
-                            首页
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/tags" class="menu gt-a-link">
-                            标签
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/archives" class="menu gt-a-link">
-                            归档
-                        </a>
-                    
-                </div>
-            
-        </div>
-    </div>
-</nav>
-    <div class="post-container">
-        <div class="post-detail gt-bg-theme-color-second">
-            <article class="gt-post-content">
-                <h2 class="post-title">
-                    UVA1607 Gates
-                </h2>
-                <div class="post-info">
-                    <time class="post-time gt-c-content-color-first">
-                        · 2020-01-23 ·
-                    </time>
-                    
-                        <a href="https://potatoler.github.io/tag/CJfrVrsBK/" class="post-tags">
-                            # 二分
-                        </a>
-                    
-                        <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="post-tags">
-                            # 题解
-                        </a>
-                    
-                </div>
-                <div class="post-content">
-                    <p><a href="https://www.luogu.com.cn/problem/UVA1607">题意</a>不难理解：描述一个电路结构，电路中若干个输入点都输入x，求此电路的等效电路，并使输入的x数量尽量少</p>
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><a href="https://www.luogu.com.cn/problem/UVA1607">题意</a>不难理解：描述一个电路结构，电路中若干个输入点都输入x，求此电路的等效电路，并使输入的x数量尽量少</p>
 <p>对于一组电路，在输入x的值确定时，输出的值可能与x无关，也可能与x有关，而因为输入输出只可能是0或1，一组电路可能有以下输出情况：</p>
 <ol>
 <li>永远输出0，与x的值无关</li>
@@ -164,47 +161,76 @@ int main(){
 }
 </code></pre>
 
-                </div>
-            </article>
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
         </div>
 
         
-            <div class="next-post">
-                <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://potatoler.github.io/post/p3486-ke-ai-de-zhi-shu/" class="post-title gt-a-link">
-                    P3486 可爱的质数
-                </a>
-            </div>
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://potatoler.github.io/post/p3486-ke-ai-de-zhi-shu/">
+              <h3 class="post-title">
+                P3486 可爱的质数
+              </h3>
+            </a>
+          </div>
         
 
         
 
-        <div class="site-footer gt-c-content-color-first">
-    <div class="slogan gt-c-content-color-first">It's a Lolicon-Hentai</div>
-    <div class="social-container">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-    </div>
-    potatoler’s blog 2020 | <a href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
+        <div class="site-footer">
+  potatoler’s space 2020
+  <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
 </div>
 
-<script>
-    hljs.initHighlightingOnLoad()
-</script>
-
-
+      </div>
     </div>
-</div>
-</body>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
 </html>

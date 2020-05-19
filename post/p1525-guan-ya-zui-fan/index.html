@@ -1,153 +1,177 @@
 <html>
-<head>
-    <meta charset="utf-8"/>
-<meta name="description" content=""/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>P1525 关押罪犯 | potatoler</title>
-<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589897274301">
-<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589900201891">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-
-<!-- DEMO JS -->
-<script src="media/scripts/index.js"></script>
+<link rel="alternate" type="application/atom+xml" title="P1525 关押罪犯 | potatoler - Atom Feed" href="https://potatoler.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
+    <meta name="description" content="题目大意：给定N个罪犯和M对敌对关系，每对敌对关系格式为“犯人A-犯人B-敌对程度”，要求将所有的罪犯关到两座监狱里，每对互相敌对的罪犯都一定会发生冲突，冲突程度为敌对程度，问怎样分才能使冲突程度总和最小？
+我们可以维护两个集合表示两座监狱..." />
+    <meta name="keywords" content="数据结构,并查集,题解" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-</head>
-<body>
-<div class="main gt-bg-theme-color-first">
-    <nav class="navbar navbar-expand-lg">
-    <div class="navbar-brand">
-        <img class="user-avatar" src="/images/avatar.png" alt="头像">
-        <div class="site-name gt-c-content-color-first">
-            potatoler
-        </div>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav mr-auto" style="text-align: center">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://potatoler.github.io">
+  <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1589900201891" alt="">
+  </a>
+  <h1 class="site-title">
+    potatoler
+  </h1>
+  <p class="site-description">
+    It's a Lolicon-Hentai
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              P1525 关押罪犯
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-01-24
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+                <a href="https://potatoler.github.io/tag/O_j126PJo/" class="post-tag">
+                  # 数据结构
+                </a>
+              
+                <a href="https://potatoler.github.io/tag/97Z_GGsdxE/" class="post-tag">
+                  # 并查集
+                </a>
+              
+                <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="post-tag">
+                  # 题解
+                </a>
+              
+            </div>
             
-                <div class="nav-item">
-                    
-                        <a href="/" class="menu gt-a-link">
-                            首页
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/tags" class="menu gt-a-link">
-                            标签
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/archives" class="menu gt-a-link">
-                            归档
-                        </a>
-                    
-                </div>
-            
-        </div>
-    </div>
-</nav>
-    <div class="post-container">
-        <div class="post-detail gt-bg-theme-color-second">
-            <article class="gt-post-content">
-                <h2 class="post-title">
-                    P1525 关押罪犯
-                </h2>
-                <div class="post-info">
-                    <time class="post-time gt-c-content-color-first">
-                        · 2020-01-24 ·
-                    </time>
-                    
-                        <a href="https://potatoler.github.io/tag/O_j126PJo/" class="post-tags">
-                            # 数据结构
-                        </a>
-                    
-                        <a href="https://potatoler.github.io/tag/97Z_GGsdxE/" class="post-tags">
-                            # 并查集
-                        </a>
-                    
-                        <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="post-tags">
-                            # 题解
-                        </a>
-                    
-                </div>
-                <div class="post-content">
-                    <p><a href="https://www.luogu.com.cn/problem/P1525">题目</a>大意：给定N个罪犯和M对敌对关系，每对敌对关系格式为“犯人A-犯人B-敌对程度”，要求将所有的罪犯关到两座监狱里，每对互相敌对的罪犯都一定会发生冲突，冲突程度为敌对程度，问怎样分才能使冲突程度总和最小？</p>
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p><a href="https://www.luogu.com.cn/problem/P1525">题目</a>大意：给定N个罪犯和M对敌对关系，每对敌对关系格式为“犯人A-犯人B-敌对程度”，要求将所有的罪犯关到两座监狱里，每对互相敌对的罪犯都一定会发生冲突，冲突程度为敌对程度，问怎样分才能使冲突程度总和最小？</p>
 <p>我们可以维护两个集合表示两座监狱，用并查集当然是很方便的，重点在于如何分配个监狱的罪犯。</p>
 <p>既然处于同一座监狱且互相敌对的两名罪犯一定会发生冲突，那么我们不妨将一名罪犯与其敌人的另一名敌人放在一座监狱，因为敌对关系并不具有传递性，也就是说，敌人的敌人就是朋友。</p>
 <p>但是这样的方法并不能保证所有的罪犯都和睦相处，假设A有一个敌人B，B只有两个敌人A和C，而C又只有两个敌人B和A，那么无论怎样分配，都至少有一对罪犯会发生冲突。为了使总冲突最小，我们需要权衡利弊，在尽量避免冲突发生的同时控制不得不发生的冲突程度最小。</p>
 <p>所以我们可以先将所有敌对关系按照敌对程度从大到小排序，接下来每次处理一对敌对关系：如果两位罪犯已经在同一座监狱（不得不发生冲突）则将其敌对程度作为其冲突程度累加到答案中；如果不在同一组，则按上面所述的“敌人的敌人就是朋友”的方法分组处理。</p>
 <p>最后剩下无法处理的敌对关系，就是不得不发生的冲突中程度最小的。</p>
 
-                </div>
-            </article>
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
         </div>
 
         
-            <div class="next-post">
-                <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://potatoler.github.io/post/uva1607-gates/" class="post-title gt-a-link">
-                    UVA1607 Gates
-                </a>
-            </div>
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://potatoler.github.io/post/uva1607-gates/">
+              <h3 class="post-title">
+                UVA1607 Gates
+              </h3>
+            </a>
+          </div>
         
 
         
 
-        <div class="site-footer gt-c-content-color-first">
-    <div class="slogan gt-c-content-color-first">It's a Lolicon-Hentai</div>
-    <div class="social-container">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-    </div>
-    potatoler’s blog 2020 | <a href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
+        <div class="site-footer">
+  potatoler’s space 2020
+  <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
 </div>
 
-<script>
-    hljs.initHighlightingOnLoad()
-</script>
-
-
+      </div>
     </div>
-</div>
-</body>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
 </html>

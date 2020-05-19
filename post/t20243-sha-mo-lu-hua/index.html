@@ -1,102 +1,99 @@
 <html>
-<head>
-    <meta charset="utf-8"/>
-<meta name="description" content=""/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>T20.2.4.3 沙漠绿化 | potatoler</title>
-<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589897274301">
-<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589900201891">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dockerfile.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-
-<!-- DEMO JS -->
-<script src="media/scripts/index.js"></script>
+<link rel="alternate" type="application/atom+xml" title="T20.2.4.3 沙漠绿化 | potatoler - Atom Feed" href="https://potatoler.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
+    <meta name="description" content="题目描述：
+定义沙漠是满足如下性质的图: 没有重边和自环，且图中任意一条边至多属于一个简单环。 给定一片沙漠，从中删去任意多条边，使得删去边之后的图是一个森林，求有多少种方法，答案对 998244353 取模。
+这里必须吐槽一下...
+题目..." />
+    <meta name="keywords" content="图论,题解" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-</head>
-<body>
-<div class="main gt-bg-theme-color-first">
-    <nav class="navbar navbar-expand-lg">
-    <div class="navbar-brand">
-        <img class="user-avatar" src="/images/avatar.png" alt="头像">
-        <div class="site-name gt-c-content-color-first">
-            potatoler
-        </div>
-    </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="navbar-nav mr-auto" style="text-align: center">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://potatoler.github.io">
+  <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1589900201891" alt="">
+  </a>
+  <h1 class="site-title">
+    potatoler
+  </h1>
+  <p class="site-description">
+    It's a Lolicon-Hentai
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              T20.2.4.3 沙漠绿化
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-02-04
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://potatoler.github.io/tag/LTV2ElzxZ/" class="post-tag">
+                  # 图论
+                </a>
+              
+                <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="post-tag">
+                  # 题解
+                </a>
+              
+            </div>
             
-                <div class="nav-item">
-                    
-                        <a href="/" class="menu gt-a-link">
-                            首页
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/tags" class="menu gt-a-link">
-                            标签
-                        </a>
-                    
-                </div>
-            
-                <div class="nav-item">
-                    
-                        <a href="/archives" class="menu gt-a-link">
-                            归档
-                        </a>
-                    
-                </div>
-            
-        </div>
-    </div>
-</nav>
-    <div class="post-container">
-        <div class="post-detail gt-bg-theme-color-second">
-            <article class="gt-post-content">
-                <h2 class="post-title">
-                    T20.2.4.3 沙漠绿化
-                </h2>
-                <div class="post-info">
-                    <time class="post-time gt-c-content-color-first">
-                        · 2020-02-04 ·
-                    </time>
-                    
-                        <a href="https://potatoler.github.io/tag/LTV2ElzxZ/" class="post-tags">
-                            # 图论
-                        </a>
-                    
-                        <a href="https://potatoler.github.io/tag/xsv9XG8Y6/" class="post-tags">
-                            # 题解
-                        </a>
-                    
-                </div>
-                <div class="post-content">
-                    <h3 id="题目"><a href="https://www.luogu.com.cn/problem/U104562">题目</a>描述：</h3>
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h3 id="题目"><a href="https://www.luogu.com.cn/problem/U104562">题目</a>描述：</h3>
 <p>定义沙漠是满足如下性质的图: 没有重边和自环，且图中任意一条边至多属于一个简单环。 给定一片沙漠，从中删去任意多条边，使得删去边之后的图是一个森林，求有多少种方法，答案对 998244353 取模。</p>
 <h3 id="这里必须吐槽一下">这里必须吐槽一下...</h3>
 <p>题目描述很硬核：沙漠里有很多的仙人掌，把仙人掌修剪成树，就绿化了沙漠（笑）</p>
@@ -171,47 +168,90 @@ int main(){
 }
 </code></pre>
 
-                </div>
-            </article>
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#%E8%BF%99%E9%87%8C%E5%BF%85%E9%A1%BB%E5%90%90%E6%A7%BD%E4%B8%80%E4%B8%8B">这里必须吐槽一下...</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路：</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81">代码：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
         </div>
 
         
-            <div class="next-post">
-                <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://potatoler.github.io/post/t20241-xiao-z-da-ji-mu/" class="post-title gt-a-link">
-                    T20.2.4.1 小Z搭积木
-                </a>
-            </div>
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://potatoler.github.io/post/t20241-xiao-z-da-ji-mu/">
+              <h3 class="post-title">
+                T20.2.4.1 小Z搭积木
+              </h3>
+            </a>
+          </div>
         
 
         
 
-        <div class="site-footer gt-c-content-color-first">
-    <div class="slogan gt-c-content-color-first">It's a Lolicon-Hentai</div>
-    <div class="social-container">
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-    </div>
-    potatoler’s blog 2020 | <a href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
+        <div class="site-footer">
+  potatoler’s space 2020
+  <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
 </div>
 
-<script>
-    hljs.initHighlightingOnLoad()
-</script>
-
-
+      </div>
     </div>
-</div>
-</body>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
 </html>
