@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.github.io</id>
     <title>potatoler</title>
-    <updated>2020-05-20T15:03:41.311Z</updated>
+    <updated>2020-05-20T15:18:43.542Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.github.io"/>
     <link rel="self" href="https://potatoler.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://potatoler.github.io/images/avatar.png</logo>
     <icon>https://potatoler.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[P2158 仪仗队 题解]]></title>
+        <id>https://potatoler.github.io/post/p2158-yi-zhang-dui-ti-jie/</id>
+        <link href="https://potatoler.github.io/post/p2158-yi-zhang-dui-ti-jie/">
+        </link>
+        <updated>2020-05-20T15:14:14.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[素数筛法]]></title>
         <id>https://potatoler.github.io/post/su-shu-shai-fa/</id>
@@ -84,12 +91,5 @@
         <link href="https://potatoler.github.io/post/t20243-sha-mo-lu-hua/">
         </link>
         <updated>2020-02-04T08:57:23.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[T20.2.4.1 小Z搭积木]]></title>
-        <id>https://potatoler.github.io/post/t20241-xiao-z-da-ji-mu/</id>
-        <link href="https://potatoler.github.io/post/t20241-xiao-z-da-ji-mu/">
-        </link>
-        <updated>2020-02-04T08:54:11.000Z</updated>
     </entry>
 </feed>
