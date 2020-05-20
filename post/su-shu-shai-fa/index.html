@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>素数筛法 | potatoler</title>
+<meta name="description" content="It&#39;s a Lolicon-Hentai">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1589986978380">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.github.io">
+        <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1589986978380" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.github.io">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">素数筛法</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-05-20</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.github.io/tag/GJHM-MLBzb/">
+                    数学
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>素数是一类很奇妙的数字，不仅本身具有“只有1和本身两个因数”的性质，而且在很多著名的函数和算法中都有它的参与。所以从给定的一堆数中快速筛选出素数是一个很常见的需求——各种各样的素数筛法应运而生。</p>
+<!-- more -->
+<h3 id="朴素筛法">朴素筛法</h3>
+<p>法如其名，就是一种利用素数基本性质的筛法：对于每一个数，枚举1到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msqrt><mi>n</mi></msqrt></mrow><annotation encoding="application/x-tex">\sqrt n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23972em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="padding-left:0.833em;">n</span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span></span> 的数判断是可以被n整除——其实就是对每一个数进行了一次素数判断，显然不怎么高效。</p>
+<h3 id="eratosthenes-筛法埃氏筛">Eratosthenes 筛法（埃氏筛）</h3>
+<p>Eratosthenes 筛法即埃氏筛，运用了“以小标大”的思想：对于一个素数 x，它的倍数 ax 一定是一个合数。所以对于一个素数，我们就需要把它在给定范围内的倍数全标记为合数——当枚举到一个已经被标记为合数的数时就可以直接跳过，避免冗余的判断，运行一次 Eratosthenes 筛法，没有被标记的数就是素数了。</p>
+<p>另外，我们可以发现 2 和 3 都会将 6 标记为合数——事实上任何小于 x<sup>2</sup> 的 x 的倍数，都会被比 x 更小的素数标记，所以为了减少重复标记，可以从 x<sup>2</sup> 开始标记。</p>
+<pre><code class="language-cpp">bool isPrime[maxn];
+int  primeNumber[maxn],primeCount;
+void primeEratosthenes(int n){
+    primeCount=0;
+    for(int i=1;i&lt;=n;i++) isPrime[i]=true;//As 2 is a prime number
+    isPrime[0]=isPrime[1]=false;
+    for(int i=2;i&lt;=n;i++){
+        if(isPrime[i]){
+            primeCount++;
+            primeNumber[primeCount]=i;//If current number is a prime then put into the prime colletion
+            for(int j=i*i;j&lt;=n;j*=i) isPrime[j]=false;//And mark its multiple as &quot;non-prime&quot; (starts from i*i)
+        }
+    }
+    return;
+}
+</code></pre>
+<p>Eratosthenes 筛法的时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(nloglogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，效率很高接近线性，但是即使是在优化后还是会有重复标记——一个简单的例子：12 既被 2 标记又被 3 标记。</p>
+<h3 id="线性筛法欧拉筛">线性筛法（欧拉筛）</h3>
+<p>上面的 Eratosthenes 筛法固然很优秀——事实上它因为代码少，思想简单，而且时间复杂度足够优秀，成为 OI 中最常用的素数筛法——但是仍存在重复标记的情况。还有一种更加高效的筛法——线性筛法。</p>
+<p>先来总结一下 Eratosthenes 筛法出现重复的经验：它通过单纯标记倍数的方法标记合数，但是 12 既是 2 的倍数 又是 3 的倍数，虽然通过从 x<sup>2</sup> 开始标记的方法避免了 6 被重复标记，但是其他 2 和 3 的公倍数，即所有 6 的倍数都会被 2 和 3 标记。</p>
+<p>出现重复标记，究其原因是没有对每一个合数进行不重不漏的分类来确定它应该被哪个素数标记：在上面的例子中，12 被分解为 2 x 6，也被分解为 3 x 4。线性筛法使用最小素因子来去确定一个合数应该被哪个素数标记——对于 12，在线性筛法中被分解为 2 x 2 x 3，最小素因子是 2，那么就没 3 啥事了。使用一个数组<code>minimizedPrimeFactor[]</code> 来记录一个数的最小素因子：</p>
+<ul>
+<li>若有<code>minimizedPrimeFactor[x]==x</code>则 x 是一个素数，把它保存下来。</li>
+<li>扫描每一个不大于<code>minimizedPrimeFactor[x]</code>的素数 y，并令<code>minimizedPrimeFactor[x*y]=y</code>——由于 x 中没有比<code>minimizedPrimeFactor[x]</code>更小的素因子，且 y 是更小的素数，所以 x*y 的最小素因子一定是 y。</li>
+</ul>
+<p>其线性的时间复杂度很容易证明：每一个合数只会被它的最小素因子筛一次，所以时间复杂度显然为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</p>
+<pre><code class="language-cpp">int minimizedPrimeFactor[MaxN],primeNumber[MaxN],primeCount;
+void Eular(int n){
+    memset(minimizedPrimeFactor,0,sizeof(minimizedPrimeFactor));
+    primeCount = 0;
+    for(int i = 2; i &lt;= n; i++){
+        if(minimizedPrimeFactor[i] == 0){
+            minimizedPrimeFactor[i] = i;//The minimized prime factor of a prime number is itself
+            primeNumber[++primeCount] = i;
+        }
+        for(int j = 1; j &lt;= primeCount; j++){
+            if(primeNumber[j] &gt; minimizedPrimeFactor[i] || primeNumber[j] &gt; n/i) break;//j should be a prime, and be smaller than the minimized prime factor of i; i*j should be in the range
+            minimizedPrimeFactor[i * primeNumber[j]] = primeNumber[j];
+        }
+    }
+    return;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.github.io/post/uva11806-cheerleaders-ti-jie/">
+              <h3 class="post-title">
+                下一篇：UVA11806 Cheerleaders 题解
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">It's a Lolicon-Hentai</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/mr-dw-52" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
