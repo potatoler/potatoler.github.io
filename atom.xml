@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.github.io</id>
     <title>potatoler</title>
-    <updated>2020-05-21T16:52:44.662Z</updated>
+    <updated>2020-05-21T16:53:46.543Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.github.io"/>
     <link rel="self" href="https://potatoler.github.io/atom.xml"/>
@@ -83,7 +83,7 @@
         <updated>2020-02-27T09:04:00.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[简单说说《narcissu》]]></title>
+        <title type="html"><![CDATA[聊聊《narcissu》]]></title>
         <id>https://potatoler.github.io/post/jian-dan-shuo-shuo-lesslessnarcissugreatergreater/</id>
         <link href="https://potatoler.github.io/post/jian-dan-shuo-shuo-lesslessnarcissugreatergreater/">
         </link>
