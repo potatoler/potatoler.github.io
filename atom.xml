@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.github.io</id>
     <title>potatoler</title>
-    <updated>2020-05-21T17:25:15.227Z</updated>
+    <updated>2020-05-21T17:31:45.143Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.github.io"/>
     <link rel="self" href="https://potatoler.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://potatoler.github.io/images/avatar.png</logo>
     <icon>https://potatoler.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[妄言录]]></title>
+        <id>https://potatoler.github.io/post/wang-yan-lu/</id>
+        <link href="https://potatoler.github.io/post/wang-yan-lu/">
+        </link>
+        <updated>2020-05-21T17:23:25.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[初级鸽巢原理 与 中国剩余定理初见]]></title>
         <id>https://potatoler.github.io/post/chu-ji-ge-chao-yuan-li-yu-zhong-guo-sheng-yu-ding-li-chu-jian/</id>
@@ -92,12 +99,5 @@
 ]]></summary>
         <content type="html"><![CDATA[<p>「到那个时候，你会怎么做？」</p>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2020 OI冬令营游记]]></title>
-        <id>https://potatoler.github.io/post/2020-oi-dong-ling-ying-you-ji/</id>
-        <link href="https://potatoler.github.io/post/2020-oi-dong-ling-ying-you-ji/">
-        </link>
-        <updated>2020-02-08T01:38:00.000Z</updated>
     </entry>
 </feed>
