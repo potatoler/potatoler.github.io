@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.github.io</id>
     <title>potatoler</title>
-    <updated>2020-05-20T15:27:13.032Z</updated>
+    <updated>2020-05-21T16:33:24.971Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.github.io"/>
     <link rel="self" href="https://potatoler.github.io/atom.xml"/>
@@ -10,6 +10,17 @@
     <logo>https://potatoler.github.io/images/avatar.png</logo>
     <icon>https://potatoler.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[初级鸽巢原理 与 中国剩余定理初见]]></title>
+        <id>https://potatoler.github.io/post/chu-ji-ge-chao-yuan-li-yu-zhong-guo-sheng-yu-ding-li-chu-jian/</id>
+        <link href="https://potatoler.github.io/post/chu-ji-ge-chao-yuan-li-yu-zhong-guo-sheng-yu-ding-li-chu-jian/">
+        </link>
+        <updated>2020-05-21T14:35:27.000Z</updated>
+        <summary type="html"><![CDATA[<p>谨以此篇博客，纪念时隔一学期的又一次数学课罚站 QwQ</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>谨以此篇博客，纪念时隔一学期的又一次数学课罚站 QwQ</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[P2158 仪仗队]]></title>
         <id>https://potatoler.github.io/post/p2158-yi-zhang-dui-ti-jie/</id>
@@ -88,12 +99,5 @@
         <link href="https://potatoler.github.io/post/2020-oi-dong-ling-ying-you-ji/">
         </link>
         <updated>2020-02-08T01:38:00.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[T20.2.4.3 沙漠绿化]]></title>
-        <id>https://potatoler.github.io/post/t20243-sha-mo-lu-hua/</id>
-        <link href="https://potatoler.github.io/post/t20243-sha-mo-lu-hua/">
-        </link>
-        <updated>2020-02-04T08:57:23.000Z</updated>
     </entry>
 </feed>
