@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>P5819 音游大计算 | potatoler</title>
+<meta name="description" content="破ᴾᵒ T𝙰T Oler">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1591198053075">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.github.io">
+        <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1591198053075" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.github.io">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://potatoler.github.io/post/妄言录" class="menu purple-link">
+            妄言录
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">P5819 音游大计算</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-05-31</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.github.io/tag/O_j126PJo/">
+                    数据结构
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.github.io/tag/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>所以啊，为什么刚读完题就感到手疼了呢？QwQ</p>
+<!-- more -->
+<h3 id="题目"><a href="https://www.luogu.com.cn/problem/P5819">题目</a>简述</h3>
+<p>题目比较复杂——没有玩过音游的小伙伴们建议从上面的链接前往原题</p>
+<p>下落式音游。给出判定的时间规则，每个 Key 的位置范围和到达判定线的时间，每次 Click 的位置和时间，统计 miss，good，perfect 和 maxcombo。</p>
+<h3 id="思路">思路：</h3>
+<h4 id="数据结构的使用">数据结构的使用</h4>
+<p>Key 的位置是一个范围，在判定线上投影为一段区间，Click 的位置是一个点，在判定线上投影为一个点——处理每一次的 Click，对 Key 进行判定，其实就是在一条线段上以一个单点为入口对区间进行判定——于是我们可以用线段数来维护 Click 和 Key 的信息。</p>
+<p>一般来讲线段树可以看作是一种二维数据结构，两个维度分别是「位置」和「层级」：在访问某一个位置的时候我们从「位置」出发，在「层级」上推进，最终找到我们要访问的数据在线段树中的具体位置。<img src="https://i.loli.net/2020/05/31/pxiobkyMrNTjKLO.jpg" alt="IMG_0756.jpg" loading="lazy"></p>
+<p>但是在本题中，判定线上的同一位置可能会出现多个 Key，这些 Key 在「位置」和「层级」维度记录的数据都是相同的，但是它们出现的时间是不同的——换句话说，二维的线段树已经满足不了我们统计数据的需要，我们应该在二位线段树的基础上增加一个「时间」维度。<img src="https://i.loli.net/2020/05/31/MwtkUWTK619JbI4.jpg" alt="IMG_0757.jpg" loading="lazy"></p>
+<p>从上面的线段树分析中我们可以看出：线段树的几个维度并不是平行关系，其从主到次的顺序分别是：「位置」「层级」「时间」</p>
+<h4 id="数据处理">数据处理</h4>
+<p>位置和时间都是最多五位的小数，为了计算方便，我们将所有数据乘 10<sup>5</sup>，用整数表示位置和时间，为了防止产生精度误差可以用「四舍五入」的方式加上 0.5。将数据离散化并且将 Key 和 Click 按照时间排序方便线段树时间维度的构造以及答案的统计。</p>
+<h4 id="将-key-放入线段树">将 Key 放入线段树</h4>
+<p>方法与二维线段树几乎相同。</p>
+<p>在原来的线段树中当查找到线段树最底层时，也就意味着第二个维度也走完了，我们只需要将数据直接存入线段树的数组，而现在我们要在每一个位置都再扩展出一维：可以使用链表储存 Key 的编号，挂在线段树数组的每一个元素中。由于刚才已经将 Key 按照时间排过序，每一条链上的编号所指向的 Key 也是时间从前往后的——这样就成功构建出了我们所希望的三维线段树。</p>
+<p>值得注意的一点是：原本的二维线段树对数组大小要求就已经很高了，再扩展一维会有更大的空间开销——再加上我们对位置进行了离散化处理，所以要把数组开大些。</p>
+<h4 id="对于-click-和-key-的判定">对于 Click 和 Key 的判定</h4>
+<p>对于每一次 Click，我们需要求出它在那个具体的时间。事实上我们需要求出再有效打击时间范围内最前面的一个 Key，即对于时间为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>l</mi><mi>i</mi><mi>c</mi><mi>k</mi><mi>T</mi><mi>i</mi><mi>m</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">clickTime</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span></span></span></span>，位置为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mi>o</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">pos</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span></span></span></span> 的 Click，我们要求 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi><mi>u</mi><mi>d</mi><mi>g</mi><mi>e</mi><mi>T</mi><mi>i</mi><mi>m</mi><msub><mi>e</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">judgeTime_{min}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mord mathdefault">u</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 满足 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub><mo>≤</mo><mi>p</mi><mi>o</mi><mi>s</mi><mo>≤</mo><msub><mi>b</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i ≤ pos ≤ b_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7859700000000001em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>l</mi><mi>i</mi><mi>c</mi><mi>k</mi><mi>T</mi><mi>i</mi><mi>m</mi><mi>e</mi><mo>−</mo><mn>0.6</mn><mi>s</mi><mo>&lt;</mo><mi>j</mi><mi>u</mi><mi>d</mi><mi>g</mi><mi>e</mi><mi>T</mi><mi>i</mi><mi>m</mi><mi>e</mi><mo>&lt;</mo><mi>c</mi><mi>l</mi><mi>i</mi><mi>c</mi><mi>k</mi><mi>T</mi><mi>i</mi><mi>m</mi><mi>e</mi><mo>+</mo><mn>1</mn><mi>s</mi></mrow><annotation encoding="application/x-tex">clickTime-0.6s &lt; judgeTime &lt; clickTime + 1s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68354em;vertical-align:-0.0391em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">6</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mord mathdefault">u</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord mathdefault">s</span></span></span></span>。然后对于我们求出的每一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi><mi>u</mi><mi>d</mi><mi>g</mi><mi>e</mi><mi>T</mi><mi>i</mi><mi>m</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">judgeTime</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mord mathdefault">u</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault">i</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span></span></span></span> 判对可以判定的 Key 按照规则进行处理。</p>
+<p>值得注意的一点是，判定过的 Key 我们要从线段树中删除——操作很简单但这是一个很重要的步骤。</p>
+<h4 id="答案的统计">答案的统计</h4>
+<p>最后按照判定时间对 Key 进行排序（以便计算maxCombo），扫一遍 Key 顺便就可以统计判定结果了</p>
+<h3 id="code">Code</h3>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cstring&gt;
+#include&lt;cmath&gt;
+#include&lt;algorithm&gt;
+#include&lt;climits&gt;
+#define thisKey ky[nodeSerial[headNode[x]]]
+using namespace std;
+const int MaxN = 120000, Inf = INT_MAX;
+int n, m, elemCount;
+int missKey, goodTap, perfectClick, maxCombo, curCombo;
+struct Key{int t, a, b, judgeTime, ifJudged;} ky[MaxN];
+struct Click{int t, pos;} click[MaxN];
+int nodeCount, headNode[MaxN &lt;&lt; 4], lastNode[MaxN &lt;&lt; 4], nextNode[MaxN &lt;&lt; 10], nodeSerial[MaxN &lt;&lt; 10];
+bool cmpKey(Key x, Key y){return x.t &lt; y.t;}
+bool cmpClick(Click x, Click y){return x.t &lt; y.t;}
+bool cmpJudge(Key x, Key y){return x.judgeTime &lt; y.judgeTime || (x.judgeTime == y.judgeTime &amp;&amp; x.ifJudged &lt; y.ifJudged);}
+int posData[MaxN &lt;&lt; 3];
+inline int getPos(int x){return lower_bound(posData+1, posData+elemCount+1, x) - posData;}
+inline void AddNode(int x,  int ser){
+	//the x-th position on the segment tree with ser-th key
+	//it's worth noticed that for position x there may be more than one key with different serial
+	nodeCount++;
+	if(!headNode[x]) headNode[x] = lastNode[x] = nodeCount;
+	else nextNode[lastNode[x]] = nodeCount, lastNode[x] = nodeCount;
+	nodeSerial[nodeCount] = ser;
+}
+inline void Build(int l, int r, int reqL, int reqR, int x, int ser){
+	//in the traditional segment tree we can simply give a[i]'s value to the tree but here we need to used the AddNote function
+	if(l &gt;= reqL &amp;&amp; r &lt;= reqR){AddNode(x, ser); return;}
+	int mid = (l + r) / 2;
+	if(reqL &lt;= mid) Build(l, mid, reqL, reqR, x*2, ser);
+	if(reqR &gt; mid) Build(mid+1, r, reqL, reqR, x*2+1, ser);
+}
+//obviously the big number in the functions below comes from the 0.6 and 1 in game rule: after dispersing these numbers also get bigger
+inline void Refresh(int x, int t){
+	//keys that have been clicked should be deleted
+	while(headNode[x]){
+		if(thisKey.t + 60000 &lt;= t){
+			if(!thisKey.ifJudged){
+				thisKey.judgeTime = thisKey.t + 60000;
+				thisKey.ifJudged = 1;
+			}
+			headNode[x] = nextNode[headNode[x]];
+		}
+		else if(thisKey.ifJudged) headNode[x] = nextNode[headNode[x]];
+		else break;
+	}
+}
+inline int JudgeTimeCal(int x, int t){
+	if(thisKey.t - t &gt;= 100000) return Inf;
+	else return thisKey.t;
+}
+inline int GetJudgeTime(int l, int r, int pos, int x, int t){
+	//delete judged keys before EVERY SINGLE TIME of JUDGE!
+	Refresh(x, t);
+	if(l == r) return JudgeTimeCal(x, t);
+	int mid = (l + r) / 2;
+	if(pos &lt;= mid) return min(JudgeTimeCal(x, t), GetJudgeTime(l, mid, pos, x*2, t));
+	else return min(JudgeTimeCal(x, t), GetJudgeTime(mid+1, r, pos, x*2+1, t));
+}
+inline void Judge(int l, int r, int pos, int x, int t, int jt){
+	while(thisKey.t == t){
+		if(!thisKey.ifJudged){
+			thisKey.judgeTime = jt;
+			if(abs(thisKey.t - jt) &lt; 20000) thisKey.ifJudged = 3;
+			else if(abs(thisKey.t - jt) &lt; 60000) thisKey.ifJudged = 2;
+			else thisKey.ifJudged = 1;
+		}
+		headNode[x] = nextNode[headNode[x]];
+	}
+	if(l == r) return;
+	int mid = (l + r) / 2;
+	if(pos &lt;= mid) Judge(l, mid, pos, x*2, t, jt);
+	else Judge(mid+1, r, pos, x*2+1, t, jt);
+}
+int main(){
+	//intput and have keys dispersed
+	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+	for(int i=1;i&lt;=n;i++){
+		double t, a, b;
+		scanf(&quot;%lf%lf%lf&quot;,&amp;t,&amp;a,&amp;b);
+		ky[i].t = t*1e5+0.5, ky[i].a = a*1e5+0.5, ky[i].b = b*1e5+0.5;
+		posData[++elemCount] = ky[i].a, posData[++elemCount] = ky[i].b;
+	}
+	for(int i=1;i&lt;=m;i++){
+		double t, p;
+		scanf(&quot;%lf%lf&quot;,&amp;t,&amp;p);
+		click[i].t = t*1e5+0.5, click[i].pos = p*1e5+0.5;
+		posData[++elemCount] = click[i].pos;
+	}
+	ky[0].t = Inf;
+	sort(ky+1, ky+1+n, cmpKey);
+	sort(click+1, click+1+m, cmpClick);
+	sort(posData+1, posData+1+elemCount);
+	elemCount = unique(posData+1, posData+elemCount+1) - posData - 1;
+	//add keys to the segment tree
+	for(int i=1;i&lt;=n;i++)
+		Build(1, elemCount, getPos(ky[i].a), getPos(ky[i].b), 1, i);
+	//judge
+	for(int i=1;i&lt;=m;i++){
+		int clickPos = getPos(click[i].pos);
+		int t = GetJudgeTime(1, elemCount, clickPos, 1, click[i].t);
+		if(t != Inf) Judge(1, elemCount, clickPos, 1, t, click[i].t);
+	}
+	for(int i=1;i&lt;=n;i++)
+		if(!ky[i].ifJudged){
+			ky[i].ifJudged = 1;
+			ky[i].judgeTime = ky[i].t + 60000;
+		}
+	sort(ky+1, ky+1+n, cmpJudge);
+	for(int i=1;i&lt;=n;i++){
+		if(ky[i].ifJudged == 1) missKey++, maxCombo = max(maxCombo, curCombo), curCombo = 0;
+		else if(ky[i].ifJudged == 2) curCombo++, goodTap++;
+		else if(ky[i].ifJudged == 3) curCombo++, perfectClick++;
+	}
+	maxCombo = max(maxCombo, curCombo);
+	printf(&quot;%d %d %d %d&quot;, perfectClick, goodTap, missKey, maxCombo);
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.github.io/post/p4316-lu-dou-wa-de-gui-su/">
+              <h3 class="post-title">
+                下一篇：P4316 绿豆蛙的归宿
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/potatoler" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/potatoler525" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/mr-dw-52" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
