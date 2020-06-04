@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.github.io</id>
     <title>potatoler</title>
-    <updated>2020-06-03T15:27:40.693Z</updated>
+    <updated>2020-06-04T06:00:05.993Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.github.io"/>
     <link rel="self" href="https://potatoler.github.io/atom.xml"/>
@@ -10,6 +10,20 @@
     <logo>https://potatoler.github.io/images/avatar.png</logo>
     <icon>https://potatoler.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[树学杂谈1：树的直径]]></title>
+        <id>https://potatoler.github.io/post/shu-xue-za-tan-1shu-de-zhi-jing/</id>
+        <link href="https://potatoler.github.io/post/shu-xue-za-tan-1shu-de-zhi-jing/">
+        </link>
+        <updated>2020-06-04T05:57:26.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[树学杂谈1：树的直径]]></title>
+        <id>https://potatoler.github.io/post/树学杂谈1-树的直径/</id>
+        <link href="https://potatoler.github.io/post/树学杂谈1-树的直径/">
+        </link>
+        <updated>2020-06-04T05:57:26.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[P5819 音游大计算]]></title>
         <id>https://potatoler.github.io/post/P5819_音游大计算/</id>
@@ -88,28 +102,6 @@
         <summary type="html"><![CDATA[<p>封面图画的好像一卷纸啊😂</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>封面图画的好像一卷纸啊😂</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[iPad Pro：对你的家用电脑虎视眈眈]]></title>
-        <id>https://potatoler.github.io/post/ipad-produi-ni-de-jia-yong-dian-nao-hu-shi-dan-dan/</id>
-        <link href="https://potatoler.github.io/post/ipad-produi-ni-de-jia-yong-dian-nao-hu-shi-dan-dan/">
-        </link>
-        <updated>2020-03-19T04:04:34.000Z</updated>
-        <summary type="html"><![CDATA[<p>史上最智能的泡面盖</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>史上最智能的泡面盖</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[新冠病毒的自我修养：如何统治全人类]]></title>
-        <id>https://potatoler.github.io/post/xin-guan-bing-du-de-zi-wo-xiu-yang-ru-he-tong-zhi-quan-ren-lei/</id>
-        <link href="https://potatoler.github.io/post/xin-guan-bing-du-de-zi-wo-xiu-yang-ru-he-tong-zhi-quan-ren-lei/">
-        </link>
-        <updated>2020-03-05T11:11:52.000Z</updated>
-        <summary type="html"><![CDATA[<h3 id="alonewe-have-no-future">ALONE，WE HAVE NO FUTURE.</h3>
-]]></summary>
-        <content type="html"><![CDATA[<h3 id="alonewe-have-no-future">ALONE，WE HAVE NO FUTURE.</h3>
 ]]></content>
     </entry>
 </feed>
