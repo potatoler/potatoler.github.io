@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.github.io</id>
     <title>potatoler</title>
-    <updated>2020-06-14T23:41:24.029Z</updated>
+    <updated>2020-06-14T23:48:36.861Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.github.io"/>
     <link rel="self" href="https://potatoler.github.io/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, potatoler</rights>
     <entry>
         <title type="html"><![CDATA[树学杂谈2: 树链剖分]]></title>
-        <id>https://potatoler.github.io/post/shu-xue-za-tan-2-shu-lian-pou-fen/</id>
-        <link href="https://potatoler.github.io/post/shu-xue-za-tan-2-shu-lian-pou-fen/">
+        <id>https://potatoler.github.io/post/树学杂谈2-树链剖分/</id>
+        <link href="https://potatoler.github.io/post/树学杂谈2-树链剖分/">
         </link>
         <updated>2020-06-14T23:37:08.000Z</updated>
     </entry>
