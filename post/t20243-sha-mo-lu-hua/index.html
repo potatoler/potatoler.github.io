@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1594466505461">
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1594814294448">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://potatoler.github.io">
-        <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1594466505461" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1594814294448" alt="" width="32px" height="32px">
       </a>
       <a href="https://potatoler.github.io">
         <h1 class="site-title">potatoler</h1>
@@ -103,11 +103,11 @@
             
           </div>
           <div class="post-content">
-            <h3 id="题目"><a href="https://www.luogu.com.cn/problem/U104562">题目</a>描述：</h3>
+            <p>沙漠里有很多的仙人掌，把仙人掌修剪成树，就绿化了沙漠（笑）</p>
+<!-- more -->
+<p>看到这里就已经懵了？<a href="https://blog.csdn.net/CreationAugust/article/details/48007069">不妨认识一下仙人掌</a></p>
+<h3 id="题目"><a href="https://www.luogu.com.cn/problem/U104562">题目</a>描述：</h3>
 <p>定义沙漠是满足如下性质的图: 没有重边和自环，且图中任意一条边至多属于一个简单环。 给定一片沙漠，从中删去任意多条边，使得删去边之后的图是一个森林，求有多少种方法，答案对 998244353 取模。</p>
-<h3 id="这里必须吐槽一下">这里必须吐槽一下...</h3>
-<p>题目描述很硬核：沙漠里有很多的仙人掌，把仙人掌修剪成树，就绿化了沙漠（笑）</p>
-<p>看到这里就已经懵了？没关系，你只是不知道「仙人掌图」，<a href="https://blog.csdn.net/CreationAugust/article/details/48007069">不妨认识一下？</a></p>
 <h3 id="思路">思路：</h3>
 <p>树中不能有环，所以要将「沙漠」删边变成「森林」，就是将每一个环至少删掉一条边，而不在环中的边则删不删都可以（森林中的树不要求连通）</p>
 <p>重点在于环的查找：我们可以DFS记录边的深度，一旦从较深DFS到较浅，就说明找到了一个环</p>
