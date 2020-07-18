@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.github.io</id>
     <title>potatoler</title>
-    <updated>2020-07-18T07:32:33.056Z</updated>
+    <updated>2020-07-18T08:46:47.398Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.github.io"/>
     <link rel="self" href="https://potatoler.github.io/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, potatoler</rights>
     <entry>
         <title type="html"><![CDATA[NatsuRound 1 题解]]></title>
-        <id>https://potatoler.github.io/post/natsuround-1-ti-jie/</id>
-        <link href="https://potatoler.github.io/post/natsuround-1-ti-jie/">
+        <id>https://potatoler.github.io/post/natsuround1-solution/</id>
+        <link href="https://potatoler.github.io/post/natsuround1-solution/">
         </link>
         <updated>2020-07-18T07:30:35.000Z</updated>
         <summary type="html"><![CDATA[<p>2020暑假培训的第一场考试，以写错 freopen 爆零告终</p>
