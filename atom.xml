@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.github.io</id>
     <title>potatoler</title>
-    <updated>2020-07-15T12:29:45.837Z</updated>
+    <updated>2020-07-18T07:32:33.056Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.github.io"/>
     <link rel="self" href="https://potatoler.github.io/atom.xml"/>
@@ -10,6 +10,17 @@
     <logo>https://potatoler.github.io/images/avatar.png</logo>
     <icon>https://potatoler.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[NatsuRound 1 题解]]></title>
+        <id>https://potatoler.github.io/post/natsuround-1-ti-jie/</id>
+        <link href="https://potatoler.github.io/post/natsuround-1-ti-jie/">
+        </link>
+        <updated>2020-07-18T07:30:35.000Z</updated>
+        <summary type="html"><![CDATA[<p>2020暑假培训的第一场考试，以写错 freopen 爆零告终</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>2020暑假培训的第一场考试，以写错 freopen 爆零告终</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[QQ空间与轻博客]]></title>
         <id>https://potatoler.github.io/post/Qzone-lightblog/</id>
@@ -96,12 +107,5 @@
 ]]></summary>
         <content type="html"><![CDATA[<p>素数是一类很奇妙的数字，不仅本身具有“只有1和本身两个因数”的性质，而且在很多著名的函数和算法中都有它的参与。所以从给定的一堆数中快速筛选出素数是一个很常见的需求——各种各样的素数筛法应运而生。</p>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[UVA11806 Cheerleaders]]></title>
-        <id>https://potatoler.github.io/post/uva11806-cheerleaders-ti-jie/</id>
-        <link href="https://potatoler.github.io/post/uva11806-cheerleaders-ti-jie/">
-        </link>
-        <updated>2020-05-17T14:49:09.000Z</updated>
     </entry>
 </feed>
