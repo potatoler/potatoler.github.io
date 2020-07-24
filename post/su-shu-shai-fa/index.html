@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1595057608034">
+<link rel="shortcut icon" href="https://potatoler.github.io/favicon.ico?v=1595549829499">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://potatoler.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://potatoler.github.io">
-        <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1595057608034" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://potatoler.github.io/images/avatar.png?v=1595549829499" alt="" width="32px" height="32px">
       </a>
       <a href="https://potatoler.github.io">
         <h1 class="site-title">potatoler</h1>
@@ -157,6 +157,28 @@ void Eular(int n){
         }
     }
     return;
+}
+</code></pre>
+<p>2020.7.24 更新：补档线性筛预处理欧拉函数的代码</p>
+<pre><code class="language-cpp">int phi[MaxN], prime[MaxN];
+bool notPrime[MaxN];
+
+inline void Eular(int n){
+	phi[1] = 1;
+	for(int i=2;i&lt;=n;i++){
+		if(!notPrime[i]){
+			prime[++prime[0]] = i;
+			phi[i] = i-1;
+		}
+		for(int j=1; j &lt;= prime[0] &amp;&amp; i*prime[j] &lt;= n; j++){
+			notPrime[i*prime[j]] = true;
+			if(i % prime[j] == 0){
+				phi[i*prime[j]] = phi[i] * prime[j];
+				break;
+			}
+			else phi[i*prime[j]] = phi[i] * phi[prime[j]];
+		}
+	}
 }
 </code></pre>
 
