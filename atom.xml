@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.vercel.app</id>
     <title>potatoler</title>
-    <updated>2020-07-28T00:29:10.706Z</updated>
+    <updated>2020-07-28T01:52:46.058Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.vercel.app"/>
     <link rel="self" href="https://potatoler.vercel.app/atom.xml"/>
