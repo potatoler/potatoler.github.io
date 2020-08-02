@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1596245484999">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1596382344041">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://potatoler.ren">
-        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1596245484999" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1596382344041" alt="" width="32px" height="32px">
       </a>
       <a href="https://potatoler.ren">
         <h1 class="site-title">potatoler</h1>
@@ -241,6 +241,21 @@ axy 巨佬说他已经用了好几十次了，太强了！</p>
 <p>虽然在这篇游记中对搭建 OJ 的事情没有具体说很多，但是大家想必也能认识到 OJ 的搭建并不是一帆风顺的 (不妨看看 zjx 的<a href="https://blog.zhaojinxi.top/2020/07/30/SYZOJ-bu-shu-mo-gai-ji-lu">SYZOJ 部署&amp;魔改记录</a>)。这件事可以追溯到几天前天，我在本地虚拟机上部署 OJ 数据库的时候出现了一个奇怪的数据库权限问题 (zjx 也是因为这个问题没能在他的本地直装 OJ 而使用了 docker)。一个多小时之后，在 Google 的帮助下，我总算是解决了这个问题 —— 但是紧随其后的是更多的问题！看着满屏的错误信息我的内心极度崩溃，就去睡觉了。<br>
 第二天我重装了<s>前一天被搞坏的</s> OJ，只不过为了比较国内镜像站的下载速度，我用阿里云的镜像站替换了前一天晚上使用的清华Tuna。结果这次的部署非常流畅，除了昨天遇到的数据库权限问题以外其他问题都没有出现！只不过当时 zjx 刚好在他那里装完了 docker 的 OJ，Tuna 的事情就被我们草草带过了。<br>
 为了更方便的二次开发，zjx 打算再试着直装一遍 OJ，结果中间也几乎没有遇到什么问题，只用了一个多小时就部署完成了，当然这次也是用的阿里云的更新源。如果一开始没有用 Tuna 站，这本来是在开始的开始就完成的事，结果被我们绕了一个大圈子最终放弃了 Tuna —— 不得不说，真的是被 THU Tuna 坑惨了。</p>
+<h2 id="day-19">Day 19</h2>
+<h3 id="回到了下面的机房">回到了下面的机房</h3>
+<p>在九楼自习的时光算是告一段落了，今天晚上我们总算是回到了八楼的机房。九楼的桌子高度对我来说十分别扭，笔记本放上去之后打字时间长了肩膀会很累，所以过去的几天里我基本都是把笔记本放在腿上蜷缩着写题的 —— 终于又可以在八楼正常坐着写题啦，对于我来讲是一个极好的消息。</p>
+<h3 id="原来不是虚拟机的锅">原来不是虚拟机的锅</h3>
+<p>虽然 OJ 本身已经基本搭建完成，进入了二次开发阶段，但是其最核心的功能 —— 测评却还是无法正常使用。据 zjx 所说，这可能是因为虚拟机本身是 CPU 虚拟化所致（由于在外地，我们的 OJ 暂时还在虚拟机上运行），于是我们先把测评的事情放在了一边。今天晚上当我们试图添加对 testlib 的支持时，我让 zjx 进一个文件夹修改里面的东西，zjx 硬是找不到那个文件夹才意识到他没有安装 sandbox。</p>
+<p>这么说来，zjx 在安装 OJ 的时候我其实也在旁边，仔细回想他好像是说过「那就先搞搞别的吧」这样的话 —— 当时 sandbox 半天下载不下来先部署了 OJ 其他的部分，最后我们都忘了 sandbox 的事情。不过事情还并没有告一段落，虽然安装 sandbox 之后可以进行标准的评测，但是使用 testlib 的 Special Judge 还是跑不起来。</p>
+<h2 id="day20">Day20</h2>
+<h3 id="potatoler-的休息日-第三弹">potatoler 的休息日 - 第三弹</h3>
+<p>我想这就是培训期间最后的一次休息了吧。由于<s>在暑假举行的在线的</s> NOI 冬令营，一期的巨佬们就没有休息一上午的机会啦。被前台打来的电话吵醒，说是教练让 zjx 给她打个电话。叫醒 zjx，结果发现已经九点了，看来是 zjx 忘记开闹钟了。毕竟也已经不早了，我就顺势也起了床。毕竟「上午」也不剩太多时间了，于是我也没有做太多事，看着书不知不觉就到中午了（话说去隔壁拜访 axy 的时候看到他竟然还写了一些作业！？）</p>
+<h3 id="冬令营第二课堂">冬令营第二课堂</h3>
+<p>下午去二中听了冬令营的第二课堂 —— 据说是相对第一课堂比较简单，<s>比较适合我这种菜听</s>，但是总觉的时间和课程内容的安排不是很合理：一开始讲的是极其基础的快速排序和归并排序，但是及其冗长；后来硬是一个小时讲完了 CDQ 分治，整体二分和点分治，但是讲的不是非常仔细，还好明天二中还要把几个分治内容再讲一遍。</p>
+<p>话说中间休息八分钟还正好有八分钟的 CCF 广告？<s>在参加冬令营的选手面前强行洗白是不是有点没意思</s></p>
+<h3 id="使用-windows-的各位务必检查一下自己的电源模式">使用 Windows 的各位务必检查一下自己的电源模式</h3>
+<p>昨天说到使用 testlib 的 Special Judge 没能跑起来，今天晚上我们开始着手解决这个问题，发现错误信息显示的是编译的时候超时了。由于最终要作为评测机的我们机房的电脑只有 2G 的内存，zjx 在搭建虚拟机之初就只分配了 2G 内存两个 CPU 核心。超时错误让我们一度怀疑辛辛苦苦搭建<s>并魔改</s>的 OJ 是否真的可以跑起来，直到 zjx 怀疑是不是系统设定的电源模式限制了 CPU 频率。</p>
+<p>为了使电量消耗的不那么快，zjx 一直使用的是「更长的续航」模式，当切换到「更佳的性能」之后，任务管理器中显示的 CPU 主频也一下子达到了三个多 GHz（和机房的电脑差不多），现在 Special Judge 可以跑了！所以读到这里的各位，如果你觉得电脑运行缓慢，不妨检查一下使用的电源模式 —— 如果不是对电池续航有刚需的朋友，切换到高性能模式会让你的电脑快不少哦！对于终日插着电源或是使用台式机的朋友，在 powershell 中使用 <code>powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61</code> 是更不错的选择哦！</p>
 
           </div>
         </div>
