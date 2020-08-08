@@ -5,14 +5,14 @@
     
 <meta charset="utf-8" >
 
-<title>2020暑假 欢乐培训（持续更新中） | potatoler</title>
+<title>2020暑假 欢乐培训（完结撒花！） | potatoler</title>
 <meta name="description" content="破ᴾᵒ T𝙰T Oler">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1596891139825">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1596895109343">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://potatoler.ren">
-        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1596891139825" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1596895109343" alt="" width="32px" height="32px">
       </a>
       <a href="https://potatoler.ren">
         <h1 class="site-title">potatoler</h1>
@@ -80,7 +80,7 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">2020暑假 欢乐培训（持续更新中）</h2>
+          <h2 class="post-title">2020暑假 欢乐培训（完结撒花！）</h2>
           <div class="post-info post-detail-info">
             <span><i class="icon-calendar-outline"></i> 2020-07-28</span>
             
@@ -291,6 +291,20 @@ axy 巨佬说他已经用了好几十次了，太强了！</p>
 <p>然而今天前辈来了以后发现我们根本不会后缀数组和后缀自动机，一脸吃惊地说他没准备知识点只准备了题。事实是老师在转告他的时候曲解了我们的意思，传了「DP，后缀数组，后缀自动机，你找几道题讲讲」这样的话。</p>
 <h3 id="大杂烩考试">大杂烩考试？</h3>
 <p>明天就是培训的最后一天了，考试当然是必不可少的一项活动。当问老师考什么的时候，老师只是说「三道题，总结这一段时间的内容」。我不禁有些害怕 —— 究竟会是怎样的大杂烩综合题啊 —— 不过也只有到了明天上午才知道了。</p>
+<h2 id="day26">Day26</h2>
+<h3 id="首尾呼应">首尾呼应</h3>
+<p>以为上午的考试会出什么神仙综合题，没想到竟然是三道 DP —— 甚至比第一场所谓的「DP 专题考试」还要 DP。</p>
+<blockquote>
+<p>只要蕴藏着想成为真物的意志，伪物就要比真物还要来的真实</p>
+</blockquote>
+<p>T1 乍看是一道蛮神奇的题，事实上很水 —— 建出反图来就是常规的图上 DP 类型。T2 做法略奇怪，但是题目背景疯狂暗示你写一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^{2})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 的算法，三个数虽然不好确定，但是我们可以枚举左右两边的数，再算出第三个数开桶记下来就可以了。值得注意的是因为数可能是负的不能做下标，所以要把所有的数平移成正的。T3 数据范围及其吓人，开二维数组连图都存不了，所以问题肯定需要转化 —— 因为是起终点确定的网格图，所以无论是走路还是使用跳板，走的总路程都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>n</mi></mrow><annotation encoding="application/x-tex">2n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathdefault">n</span></span></span></span>，最小化走路行程其实就是最大化跳板行程。将每个跳板拆成起点和终点，并将所有的点以 y 为第一关键字，以 x 为第二关键字排序，设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">f_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是最后一个使用第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 号跳板的最大跳板路程，转移很简单：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mi>i</mi></msub><mo>=</mo><mi>m</mi><mi>a</mi><mi>x</mi><mo>(</mo><msub><mi>f</mi><mi>j</mi></msub><mo>+</mo><mi>d</mi><mi>i</mi><msub><mi>s</mi><mi>i</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">f_{i}=max(f_{j}+dis_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mi>i</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">dis</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span></span></span></span> 表示的是某个跳板从起点到终点的路程，在输入数据的时候可以顺便求出来，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 显然是一个类似前缀和的东西，我们可以将它存到数据结构里，快速查询 —— 由于线段树实在是不好调于是我写了树状数组。</p>
+<h3 id="流水的月赛">流水的月赛</h3>
+<p>下午打了洛谷八月月赛1，不过只写了前面两道较为水的题，本来之后就不太想打了结果五点时老师突然说打扫一下机房就可以走了 —— 真是瞌睡给了个枕头，月赛就这样流水了，<s>我好菜啊</s>！</p>
+<h2 id="续day26">续·Day26</h2>
+<h3 id="归程">归程</h3>
+<p>再平凡不过的标题，当然也是一道题目的名字 —— 但是我总觉得这个词有着一种说不出的韵味，于是便拿它来做最后的一个小标题了。当你看到这段内容的时候，potatoler 已经回到太原，回到他的房间了。事实上，你现在所看到的内容，就是 potatoler 在归乡列车上写的。</p>
+<p>「二十多天过得还真是快啊！」中午在酒店房间收拾行李的时候，potatoler 不禁这样感叹。回顾一下这二十多天，与其说是培训，更像是<s>大家一起的培训</s>一场长时间的聚会，从开始认识巨佬们 ID 后的面孔，到后来的逐渐熟悉，甚至交换了即时讯息地址，生命中有了更多的熟人和朋友。培训期间的一节节课程，一场场考试，一次次交流，都使我们一起进步。有帮别人调一下午代码的经历，也有让巨佬给自己讲题的请求；有考试满分的光荣，也有 freopen 写错的窘迫；有尝试 AC 自动机时的绞尽脑汁，也有修改校内 OJ 前端时的次次崩溃……</p>
+<p>这次培训很充实，也很开心，真心地期待下次培训，以及与二中巨佬们的再次相会！完结撒花！</p>
 
           </div>
         </div>

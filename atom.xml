@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.ren</id>
     <title>potatoler</title>
-    <updated>2020-08-08T12:52:31.233Z</updated>
+    <updated>2020-08-08T13:59:10.537Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.ren"/>
     <link rel="self" href="https://potatoler.ren/atom.xml"/>
@@ -40,7 +40,7 @@
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[2020暑假 欢乐培训（持续更新中）]]></title>
+        <title type="html"><![CDATA[2020暑假 欢乐培训（完结撒花！）]]></title>
         <id>https://potatoler.ren/post/2020natsuyasumi/</id>
         <link href="https://potatoler.ren/post/2020natsuyasumi/">
         </link>
