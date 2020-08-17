@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>P1525 关押罪犯 | potatoler</title>
+<title>字符串 | potatoler</title>
 <meta name="description" content="破ᴾᵒ T𝙰T Oler">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -78,60 +78,62 @@
 
 
       <div class="content-container">
-        <div class="post-detail">
-          
-          <h2 class="post-title">P1525 关押罪犯</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2020-01-24</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://potatoler.ren/tag/O_j126PJo/">
-                    数据结构
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://potatoler.ren/tag/97Z_GGsdxE/">
-                    并查集
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://potatoler.ren/tag/xsv9XG8Y6/">
-                    题解
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <p><a href="https://www.luogu.com.cn/problem/P1525">题目</a>大意：给定N个罪犯和M对敌对关系，每对敌对关系格式为“犯人A-犯人B-敌对程度”，要求将所有的罪犯关到两座监狱里，每对互相敌对的罪犯都一定会发生冲突，冲突程度为敌对程度，问怎样分才能使冲突程度总和最小？</p>
-<p>我们可以维护两个集合表示两座监狱，用并查集当然是很方便的，重点在于如何分配个监狱的罪犯。</p>
-<p>既然处于同一座监狱且互相敌对的两名罪犯一定会发生冲突，那么我们不妨将一名罪犯与其敌人的另一名敌人放在一座监狱，因为敌对关系并不具有传递性，也就是说，敌人的敌人就是朋友。</p>
-<p>但是这样的方法并不能保证所有的罪犯都和睦相处，假设A有一个敌人B，B只有两个敌人A和C，而C又只有两个敌人B和A，那么无论怎样分配，都至少有一对罪犯会发生冲突。为了使总冲突最小，我们需要权衡利弊，在尽量避免冲突发生的同时控制不得不发生的冲突程度最小。</p>
-<p>所以我们可以先将所有敌对关系按照敌对程度从大到小排序，接下来每次处理一对敌对关系：如果两位罪犯已经在同一座监狱（不得不发生冲突）则将其敌对程度作为其冲突程度累加到答案中；如果不在同一组，则按上面所述的“敌人的敌人就是朋友”的方法分组处理。</p>
-<p>最后剩下无法处理的敌对关系，就是不得不发生的冲突中程度最小的。</p>
 
-          </div>
+        <div class="current-tag-container">
+          <h2 class="title">
+            <i class="icon icon-pricetags-outline"></i> 字符串
+          </h2> 
         </div>
 
         
-          <div class="next-post">
-            <a class="purple-link" href="https://potatoler.ren/post/uva1607-gates/">
-              <h3 class="post-title">
-                下一篇：UVA1607 Gates
-              </h3>
-            </a>
-          </div>
-          
+<section class="post-item">
+    <div class="content">
+      <a href="https://potatoler.ren/post/loj-6500-operation/">
+        <h2 class="post-title">LOJ 6500 操作</h2>
+      </a>
+      <div class="post-abstract">
+        
       </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-08-18</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://potatoler.ren/tag/Z-lt_QUXz/">
+                字符串
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://potatoler.ren/tag/DqxPvsFJsn/">
+                差分
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://potatoler.ren/tag/_50oaD36oO/">
+                哈希
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
 
-      
+
+<div class="pagination-container">
+  
+  
+</div>
+
+
+      </div>
 
       <div class="site-footer">
   <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
