@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.ren</id>
     <title>potatoler</title>
-    <updated>2020-09-12T08:49:17.786Z</updated>
+    <updated>2020-09-20T02:29:22.778Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.ren"/>
     <link rel="self" href="https://potatoler.ren/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://potatoler.ren/images/avatar.png</logo>
     <icon>https://potatoler.ren/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[P6835 线形生物]]></title>
+        <id>https://potatoler.ren/post/p6835-linearity-creature/</id>
+        <link href="https://potatoler.ren/post/p6835-linearity-creature/">
+        </link>
+        <updated>2020-09-20T02:25:44.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[LOJ 6500 操作]]></title>
         <id>https://potatoler.ren/post/loj-6500-operation/</id>
@@ -92,12 +99,5 @@
         <link href="https://potatoler.ren/post/树学杂谈2-树链剖分/">
         </link>
         <updated>2020-06-14T23:37:08.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[树学杂谈1：树的直径]]></title>
-        <id>https://potatoler.ren/post/树学杂谈1-树的直径/</id>
-        <link href="https://potatoler.ren/post/树学杂谈1-树的直径/">
-        </link>
-        <updated>2020-06-04T05:57:26.000Z</updated>
     </entry>
 </feed>

@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>P3486 可爱的质数 | potatoler</title>
+<title>期望 | potatoler</title>
 <meta name="description" content="破ᴾᵒ T𝙰T Oler">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -87,91 +87,55 @@
 
 
       <div class="content-container">
-        <div class="post-detail">
-          
-          <h2 class="post-title">P3486 可爱的质数</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2020-01-23</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://potatoler.ren/tag/GJHM-MLBzb/">
-                    数学
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://potatoler.ren/tag/xsv9XG8Y6/">
-                    题解
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <p><a href="https://www.luogu.com.cn/problem/P3846">题面</a>非常明显，需要用BSGS算法，即 <s>必应搜索谷歌搜索</s> 大步小步算法，其实就是板子题，开个map，写个快速幂就OK了</p>
-<p>值得注意的是，如果B是P的倍数，那么N必须也是P的倍数，否则无解，需要特判一下</p>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;algorithm&gt;
-#include &lt;map&gt;
-#include &lt;cmath&gt;
-#define int long long
-using namespace std;
-int p,b,n;
-map &lt;int,int&gt; mp;
-int qpow(int a,int x,int p){
-    int s=1;
-    while (x){
-        if (x&amp;1)s=s*a%p;
-        a=a*a%p;
-        x&gt;&gt;=1;
-    }
-    return s;
-}  
-signed main(){
-    cin&gt;&gt;p&gt;&gt;b&gt;&gt;n;
-    if (b%p==0 &amp;&amp; n%p!=0){//特判
-        cout&lt;&lt;&quot;no solution&quot;&lt;&lt;endl;
-        return 0;
-    }
-    int m=ceil(sqrt(p)),now=n%p;
-    for (int i=1;i&lt;=m;i++){
-        now=now*b%p;
-        if (!mp[now])mp[now]=i;
-    }                  
-    now=qpow(b,m,p);
-    int tmp=now;
-    for (int i=1;i&lt;=m;i++){
-        if (mp[now]){
-            cout&lt;&lt;((i*m-mp[now])%p+p)%p&lt;&lt;endl;
-            return 0;
-        }
-        now=now*tmp%p;
-    }
-    cout&lt;&lt;&quot;no solution&quot;&lt;&lt;endl;
-    return 0;
-}
-</code></pre>
 
-          </div>
+        <div class="current-tag-container">
+          <h2 class="title">
+            <i class="icon icon-pricetags-outline"></i> 期望
+          </h2> 
         </div>
 
         
-          <div class="next-post">
-            <a class="purple-link" href="https://potatoler.ren/post/p1044-zhan/">
-              <h3 class="post-title">
-                下一篇：P1044 栈
-              </h3>
-            </a>
-          </div>
-          
+<section class="post-item">
+    <div class="content">
+      <a href="https://potatoler.ren/post/p6835-linearity-creature/">
+        <h2 class="post-title">P6835 线形生物</h2>
+      </a>
+      <div class="post-abstract">
+        
       </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-09-20</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://potatoler.ren/tag/zp7QHfDGi/">
+                期望
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://potatoler.ren/tag/xsv9XG8Y6/">
+                题解
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
 
-      
+
+<div class="pagination-container">
+  
+  
+</div>
+
+
+      </div>
 
       <div class="site-footer">
   <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
