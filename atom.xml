@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.ren</id>
     <title>potatoler</title>
-    <updated>2020-09-27T01:34:01.002Z</updated>
+    <updated>2020-09-27T09:43:20.831Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.ren"/>
     <link rel="self" href="https://potatoler.ren/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://potatoler.ren/images/avatar.png</logo>
     <icon>https://potatoler.ren/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[豌豆射手]]></title>
+        <id>https://potatoler.ren/post/pea-shooter/</id>
+        <link href="https://potatoler.ren/post/pea-shooter/">
+        </link>
+        <updated>2020-09-27T09:41:32.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[P6835 线形生物]]></title>
         <id>https://potatoler.ren/post/p6835-linearity-creature/</id>
@@ -92,12 +99,5 @@
 ]]></summary>
         <content type="html"><![CDATA[<p>终于，我注销了 QQ 空间。</p>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[树学杂谈2: 树链剖分]]></title>
-        <id>https://potatoler.ren/post/树学杂谈2-树链剖分/</id>
-        <link href="https://potatoler.ren/post/树学杂谈2-树链剖分/">
-        </link>
-        <updated>2020-06-14T23:37:08.000Z</updated>
     </entry>
 </feed>

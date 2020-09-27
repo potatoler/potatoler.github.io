@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>豌豆射手 | potatoler</title>
+<meta name="description" content="破ᴾᵒ T𝙰T Oler">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1601199794703">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.ren">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1601199794703" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.ren">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="https://potatoler.ren" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/post/mistakes" class="menu purple-link">
+            OI 坑
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">豌豆射手</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-09-27</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.ren/tag/k8Bgcetq3/">
+                    DP
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/tag/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h3 id="题目简述">题目简述</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span> 个格子排成一行，现在要在格子里放 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个点。对于第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个点有一个值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>r</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">r_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，使这个点左右两边 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>r</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">r_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 的范围内都不能放点（这个点所在的格子也算在内）。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>≤</mo><mn>40</mn><mo separator="true">,</mo><mtext> </mtext><mi>d</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup><mo separator="true">,</mo><mtext> </mtext><mn>1</mn><mo>≤</mo><msub><mi>r</mi><mi>i</mi></msub><mo>≤</mo><mn>40</mn><mo separator="true">,</mo><mtext> </mtext><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><msub><mi>r</mi><mi>i</mi></msub><mo>≤</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">n≤40,\ d≤10^{5},\ 1≤r_{i}≤40,\ \sum_{i=1}^{n}r_{i}≤d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace"> </span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace"> </span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7859700000000001em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.104002em;vertical-align:-0.29971000000000003em;"></span><span class="mord">4</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace"> </span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.804292em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span></p>
+<h3 id="思路">思路</h3>
+<p>考虑一个不是很难想的暴力：暴搜从左往右点的顺序，顺序确定以后可以先把点排布得尽量紧密，然后将空出来的位置插到点的中间。由于点之间有距离的限制，所以对于现在已经确定的这个排列可以很简单地求出将点排布得尽量紧密之后所占的格子数就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>e</mi><mi>n</mi><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mi>max</mi><mo>⁡</mo><mo>(</mo><msub><mi>r</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>r</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">len=\sum_{i=1}^{n-1}\max(r_{i},r_{i+1})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.253718em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。剩下的格子插到点中间的方案数可以用组合数求出：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>C</mi><mrow><mi>d</mi><mo>−</mo><mi>l</mi><mi>e</mi><mi>n</mi><mo>+</mo><mi>n</mi></mrow><mi>n</mi></msubsup></mrow><annotation encoding="application/x-tex">C_{d-len+n}^{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.024769em;vertical-align:-0.34143899999999994em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-2.4168920000000003em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.34143899999999994em;"><span></span></span></span></span></span></span></span></span></span>。</p>
+<p>不难发现，当排列顺序相同时答案是唯一确定的，而排列顺序不同时 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>e</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">len</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span></span></span></span> 的值会发生改变，答案变得不同了。着眼于点排布的结构，可以设出设这样的状态：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j,k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 表示放了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个点，它们分成了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 块，所占的位置共有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 格的方案数。</p>
+<p>其中每一个「块」是指一些连续的点构成的一个整体，指定块中点与点之间不能再放点，而块外可以放点 —— 你可以将一个「块」理解为是一段确定了点的放置顺序和位置的格子 —— 但无论怎样理解，重点在于**「块」内的点间不能再插入新的点**。</p>
+<p>将点按照 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>r</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">r_{i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 从小到大排序，这样在新插入一个点的时候状态中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的变化量只与新插入点的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 值有关 —— 事实上由于状态中没有记录每个块内的点排布，所以我们也无从枚举块边缘的点来计算对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的贡献。而<strong>每个点在插入时所属于的块以及所处的位置都是不确定的</strong>，所以排序不会对答案产生影响。当插入第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 个点时，有以下几种情况：</p>
+<ul>
+<li>
+<p>这个点不依附于任何一个块，自成一块。这时候有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathsize="1.2em"><msub><mi>f</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>f</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi></mrow></msub></mstyle></mrow><annotation encoding="application/x-tex">\large f_{i+1,j+1,k+1}=f_{i+1,j+1,k+1}+f_{i,j,k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.16888em;vertical-align:-0.335552em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31296em;"><span style="top:-2.65em;margin-left:-0.10764em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2796266666666667em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel sizing reset-size6 size7">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.16888em;vertical-align:-0.335552em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31296em;"><span style="top:-2.65em;margin-left:-0.10764em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2796266666666667em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin sizing reset-size6 size7">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.16888em;vertical-align:-0.335552em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31296em;"><span style="top:-2.65em;margin-left:-0.10764em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2796266666666667em;"><span></span></span></span></span></span></span></span></span></span></p>
+</li>
+<li>
+<p>这个点加入已有的一个块。现在有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 个块，而每个块只有左右两边可以插点，所以有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathsize="1.2em"><msub><mi>f</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo>+</mo><msub><mi>r</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></msub><mo>=</mo><msub><mi>f</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi><mo>+</mo><msub><mi>r</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub></mrow></msub><mo>+</mo><mn>2</mn><mi>j</mi><mo separator="true">⋅</mo><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi></mrow></msub></mstyle></mrow><annotation encoding="application/x-tex">\large f_{i+1,j,k+r_{i+1}}=f_{i+1,j,k+r_{i+1}}+2j·f_{i,j,k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.183198em;vertical-align:-0.3498699999999999em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31296em;"><span style="top:-2.65em;margin-left:-0.10764em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.4501600000000003em;margin-left:-0.02778em;margin-right:0.0625em;"><span class="pstrut" style="height:2.6em;"></span><span class="sizing reset-size4 size2 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2123374999999999em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29155833333333325em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel sizing reset-size6 size7">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.183198em;vertical-align:-0.3498699999999999em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31296em;"><span style="top:-2.65em;margin-left:-0.10764em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.4501600000000003em;margin-left:-0.02778em;margin-right:0.0625em;"><span class="pstrut" style="height:2.6em;"></span><span class="sizing reset-size4 size2 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2123374999999999em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29155833333333325em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin sizing reset-size6 size7">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.16888em;vertical-align:-0.335552em;"></span><span class="mord sizing reset-size6 size7">2</span><span class="mord mathdefault sizing reset-size6 size7" style="margin-right:0.05724em;">j</span><span class="mpunct sizing reset-size6 size7">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31296em;"><span style="top:-2.65em;margin-left:-0.10764em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2796266666666667em;"><span></span></span></span></span></span></span></span></span></span></p>
+</li>
+<li>
+<p>这个点链接了已有的两个块。现在有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 个块，块的位置是不确定的，所以任意一个块都可能是新插入的块旁边的块，新的点插入后块的数量减少了一个，于是有：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathsize="1.2em"><msub><mi>f</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo>+</mo><mn>2</mn><msub><mi>r</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>f</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>k</mi><mo>+</mo><mn>2</mn><msub><mi>r</mi><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><mi>j</mi><mo separator="true">⋅</mo><mo>(</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo separator="true">⋅</mo><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi></mrow></msub></mstyle></mrow><annotation encoding="application/x-tex">\large f_{i+1,j-1,k+2r_{i+1}-1}=f_{i+1,j-1,k+2r_{i+1}-1}+j·(j-1)·f_{i,j,k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.183198em;vertical-align:-0.3498699999999999em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31296em;"><span style="top:-2.65em;margin-left:-0.10764em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">+</span><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.4501600000000003em;margin-left:-0.02778em;margin-right:0.0625em;"><span class="pstrut" style="height:2.6em;"></span><span class="sizing reset-size4 size2 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2123374999999999em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29155833333333325em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel sizing reset-size6 size7">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.183198em;vertical-align:-0.3498699999999999em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31296em;"><span style="top:-2.65em;margin-left:-0.10764em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">+</span><span class="mord mtight">2</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.4501600000000003em;margin-left:-0.02778em;margin-right:0.0625em;"><span class="pstrut" style="height:2.6em;"></span><span class="sizing reset-size4 size2 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2123374999999999em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29155833333333325em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin sizing reset-size6 size7">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.3em;"></span><span class="mord mathdefault sizing reset-size6 size7" style="margin-right:0.05724em;">j</span><span class="mpunct sizing reset-size6 size7">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mopen sizing reset-size6 size7">(</span><span class="mord mathdefault sizing reset-size6 size7" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin sizing reset-size6 size7">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.235552em;vertical-align:-0.335552em;"></span><span class="mord sizing reset-size6 size7">1</span><span class="mclose sizing reset-size6 size7">)</span><span class="mpunct sizing reset-size6 size7">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31296em;"><span style="top:-2.65em;margin-left:-0.10764em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2796266666666667em;"><span></span></span></span></span></span></span></span></span></span></p>
+</li>
+</ul>
+<p>插入的所有点并成一个块，答案是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathsize="1.2em"><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>min</mi><mo>⁡</mo><mo>(</mo><mi>d</mi><mo separator="true">,</mo><mn>1600</mn><mo>)</mo></mrow></msubsup><msubsup><mi>C</mi><mrow><mi>d</mi><mo>−</mo><mi>i</mi><mo>+</mo><mi>n</mi></mrow><mi>n</mi></msubsup><mo separator="true">⋅</mo><msub><mi>f</mi><mrow><mi>n</mi><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mi>i</mi></mrow></msub></mstyle></mrow><annotation encoding="application/x-tex">\large\sum_{i=0}^{\min(d,1600)}C_{d-i+n}^{n}·f_{n,1,i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5962159999999999em;vertical-align:-0.3786160000000001em;"></span><span class="mop sizing reset-size6 size7"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0146666666666666em;"><span style="top:-2.5026566666666663em;margin-left:0em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.314666666666666em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mop mtight">min</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">d</span><span class="mpunct mtight">,</span><span class="mord mtight">1</span><span class="mord mtight">6</span><span class="mord mtight">0</span><span class="mord mtight">0</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29734333333333335em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.65004em;"><span style="top:-2.5400399999999994em;margin-left:-0.07153em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">d</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">i</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight">n</span></span></span></span><span style="top:-3.163em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3155133333333334em;"><span></span></span></span></span></span></span><span class="mpunct sizing reset-size6 size7">⋅</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord sizing reset-size6 size7"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28968000000000005em;"><span style="top:-2.65em;margin-left:-0.10764em;margin-right:0.04166666666666667em;"><span class="pstrut" style="height:2.8em;"></span><span class="sizing reset-size7 size4 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mpunct mtight">,</span><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2796266666666667em;"><span></span></span></span></span></span></span></span></span></span></p>
+<h3 id="code">Code</h3>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;climits&gt;
+#include&lt;algorithm&gt;
+#define int long long
+using namespace std;
+const int MaxN = 42, MaxD = 100005, Mod = 1000000007;
+int n, d, ans, r[MaxN], fac[MaxD], inv[MaxD], f[MaxN][MaxN][MaxN*MaxN];
+
+inline int Read(){
+	int num = 0, op = 1;
+	char ch = getchar();
+	while(!isdigit(ch)){
+		if(ch == '-') op = -1;
+		ch = getchar();
+	}
+	while(isdigit(ch)){
+		num = num * 10 + ch - '0';
+		ch = getchar();
+	}
+	return num * op;
+}
+
+inline int QuickPower(int a, int b){
+	int ans = 1;
+	while(b){
+		if(b&amp;1) ans = ans * a % Mod;
+		a = a * a % Mod;
+		b &gt;&gt;= 1;
+	}
+	return ans;
+}
+
+inline void Init(){
+	fac[0] = 1;
+	for(int i=1; i&lt;MaxD; i++)
+		fac[i] = fac[i-1] * i % Mod;
+	inv[MaxD-1] = QuickPower(fac[MaxD-1], Mod-2);
+	for(int i=MaxD-2; i&gt;=0; i--)
+		inv[i] = inv[i+1] * (i+1) % Mod;
+	return;
+}
+
+inline int C(int n, int m){
+	return fac[n] * inv[m] % Mod * inv[n-m] % Mod;
+}
+
+signed main(){
+	Init();
+	n = Read(), d = Read();
+	for(int i=1; i&lt;=n; i++)
+		r[i] = Read();
+	sort(r+1, r+1+n);
+	f[0][0][0] = 1;
+	for(int i=0; i&lt;=n; i++){
+		for(int j=0; j&lt;=i; j++){
+			for(int k=0; k&lt;MaxN*MaxN; k++){
+				f[i+1][j+1][k+1] = (f[i+1][j+1][k+1] + f[i][j][k]) % Mod;
+				if(j&gt;0) f[i+1][j][k+r[i+1]] = (f[i+1][j][k+r[i+1]] + 2 * j * f[i][j][k]) % Mod;
+				if(j&gt;1) f[i+1][j-1][k+2*r[i+1]-1] = (f[i+1][j-1][k+2*r[i+1]-1] + j * (j-1) * f[i][j][k]) % Mod;
+			}
+		}
+	}
+	for(int i=0; i&lt;=min(d, MaxN*MaxN); i++)
+		ans = (ans + C(d-i+n,n) * f[n][1][i] % Mod) % Mod;
+	printf(&quot;%lld&quot;, ans);
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.ren/post/p6835-linearity-creature/">
+              <h3 class="post-title">
+                下一篇：P6835 线形生物
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/potatoler" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/potatoler525" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/mr-dw-52" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.ren/atom.xml" target="_blank">RSS</a>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
