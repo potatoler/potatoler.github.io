@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Luogu U114570 水杯 | potatoler</title>
+<meta name="description" content="破ᴾᵒ T𝙰T Oler">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1601351021823">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.ren">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1601351021823" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.ren">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="https://potatoler.ren" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/post/mistakes" class="menu purple-link">
+            OI 坑
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://tva3.sinaimg.cn/large/0087r0ffly1ge2c2gsbb0j30sj0lvn6w.jpg')">
+            </div>
+          
+          <h2 class="post-title">Luogu U114570 水杯</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-04-22</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.ren/tag/CJfrVrsBK/">
+                    二分
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/tag/k8Bgcetq3/">
+                    DP
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/tag/x0JHrwlfb/">
+                    贪心
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/tag/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>封面图画的好像一卷纸啊😂</p>
+<!-- more -->
+<p><a href="https://www.luogu.com.cn/problem/U114570">题目传送门</a></p>
+<p>既然是水杯套水杯，大小各不同，那么对于从里层往外层的水杯，它们的大小就形成了一个上升序列（按照题目的描述应该是不下降序列，但是数据范围中说明了水杯大小各不相同，所以其实是一个上升序列）。但是介于水杯的嵌套有两种方式：塞进里面和套在外面——也就是说对于这个上升序列，新的数既可能放在队头又可能放在队尾，因此这不是一道单纯的 LIS 问题。但是如果我们可以通过某种<s>东洋魔术</s>方法将这两种扩展序列的方式变为同一种，就可以将这个题变成一道 LIS 问题。</p>
+<p>虽然既有从前插入的数又有从后插入的数，但是我们可以发现这两种操作的特性：</p>
+<ol>
+<li>从前插入与从后插入互不影响：从前插入需要保证最小，而从后插入的则应该是最大值——也就是说无论后面插入了什么数，对于前面的数插入时的大小判定都没有影响，反之亦然。</li>
+<li>对于最开始的数，无论是接下来从前面插入的数还是从后面插入的数，在原序列中的位置都在这个数的后面。</li>
+</ol>
+<p>第一个特性说明两种插入可以看作是整个问题的两个子问题，而第二个特性说明两个子问题又有联系，也许可以一口气解决。</p>
+<p>为了描述方便我们姑且把答案序列中最先插入的那个数叫做「初始数」。在最终求得的单调上升序列中：从初始数往后一直到序列末尾构成了原序列中以初始数开头的上升子序列（注意这个上升子序列不一定是最长的）；从初始数往前一只到序列开头构成了原序列中以初始数开头的下降子序列（同样这个下降子序列也不一定是最长的）。所以我们的答案序列可以看作是选原序列中的一个数，找到以它开头的一个上升子序列和一个下降子序列，并把下降子序列沿开头对折到上升子序列的前面构成的。由于两个子序列都以同一个数开头且单调性不同，不会有重复的数出现。</p>
+<p>对于一个原始序列 <code>3 2 4 1</code>，可以做如下变换：<img src="https://tva2.sinaimg.cn/large/0087r0ffly1ge2arg11t8j31kw0iu7bv.jpg" alt="IMG_8CF0E34DE494-1" loading="lazy">其中3就是我们选出的开头，也就是初始数。</p>
+<p>于是这个题就转化成了「最大化上升子序列与下降子序列的长度之和」我们可以将原序列复制，并反向插入原序列之前，这样就可以将原序列中要求的下降子序列变成新插入部分的上升子序列，整个问题也就转化成了 LIS 问题——求出来的最长上升子序列就是答案序列。对于刚才的例子，处理过的原序列是 <code>1 4 2 3 3 2 4 1</code>，最长上升子序列是 <code>1 2 3 4</code>。</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int maxn=100005;
+int a[maxn*2],n,f[maxn*2];
+int main(){
+	scanf(&quot;%d&quot;,&amp;n);
+	for(int i=1;i&lt;=n;i++)
+		scanf(&quot;%d&quot;,&amp;a[n+i]);
+	for(int i=1;i&lt;=n;i++)
+		a[n+1-i]=a[n+i],f[n+1-i]=f[n+i]=1;
+	f[0]=0;
+	int ans=0;
+	for(int i=1;i&lt;=n*2;i++){
+		for(int j=1;j&lt;=i;j++)
+			if(a[j]&lt;a[i]) f[i]=max(f[i],f[j]+1);
+		ans=max(ans,f[i]);
+	}
+	printf(&quot;%d&quot;,ans);
+	return 0;
+}
+</code></pre>
+<p>提交这段传统的 LIS 代码，你可以发现最后的三个 TLE。因为这段代码复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，对于本题的数据范围来讲效率过低。我们需要一种 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 的 LIS 算法。</p>
+<p>这里提供的算法是基于暴力贪心的二分算法，具体实现是：</p>
+<ol>
+<li>定义 <code>f[i]</code> 为长度为 i 的上升子序列的最末元素（用数组下标表示长度适合二分），如果有多个长度为 i 的上升子序列则记录最小的最末元素。</li>
+<li>定义答案为 len，枚举序列 a 中的每个元素，若有 <code>a[i]&gt;f[len]</code>则<code>f[++len]=a[i]</code>。</li>
+<li>否则，从 <code>f[1]</code> 到 <code>f[len-1]</code> 中找到一个 j，满足 <code>f[j-1]&lt;a[i]&lt;f[j]</code> ,则根据 f 的定义，我们需要更新长度为 j 的上升子序列的最末元素，即 <code>d[j]=a[i]</code>。</li>
+</ol>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int maxn=100005;
+int a[maxn*2],n,f[maxn*2];
+int main(){
+	scanf(&quot;%d&quot;,&amp;n);
+	if(n==0){
+		printf(&quot;0&quot;);
+		return 0;
+	}
+	int len=1;
+	for(int i=1;i&lt;=n;i++){
+		scanf(&quot;%d&quot;,&amp;a[n+i]);
+		a[n+1-i]=a[n+i];
+	}
+	f[1]=a[1];
+	for(int i=2;i&lt;=n*2;i++){
+		if(a[i]&gt;f[len]) f[++len]=a[i];
+		else{
+			int pos=lower_bound(f+1,f+len+1,a[i])-f;
+			f[pos]=a[i];
+		}
+	}
+	printf(&quot;%d\n&quot;,len);
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.ren/post/iPad-Pro-对你的家用电脑虎视眈眈/">
+              <h3 class="post-title">
+                下一篇：iPad Pro：对你的家用电脑虎视眈眈
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/potatoler" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/potatoler525" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/mr-dw-52" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.ren/atom.xml" target="_blank">RSS</a>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

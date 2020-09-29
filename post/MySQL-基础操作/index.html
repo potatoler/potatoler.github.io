@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>MySQL 数据库基础操作 | potatoler</title>
+<meta name="description" content="破ᴾᵒ T𝙰T Oler">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1601351021823">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.ren">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1601351021823" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.ren">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="https://potatoler.ren" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/post/mistakes" class="menu purple-link">
+            OI 坑
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">MySQL 数据库基础操作</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-08-03</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.ren/tag/jAujgi819/">
+                    技术
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>培训期间的意外收获</p>
+<!-- more -->
+<h3 id="前言">前言</h3>
+<p>我最近在和 zjx 一起搭建校内 OJ，而且趁着这个机会学了不少有趣的东西。因为搭建校内 OJ 这个企划是在培训期间的一个休息日才定下来的，所以不同于日程表上安排好的每天要讲的内容，这些知识算是我在培训期间的意外收获吧。</p>
+<p>当然由于我本人也只是在应用层面简单学习了 mySQL，所以本篇博客也仅限于 mySQL 的基础操作，不深入探究其内部的实现。如果您是详细了解 mySQL 的巨佬，请出门右转 CSDN，那里也许有适合您的内容；如果您只是想了解一些奇技淫巧或是正巧也在搭建 OJ，那请继续往下阅读。</p>
+<h3 id="数据库是什么mysql又是什么">数据库是什么？MySQL又是什么？</h3>
+<p>即使是使用范围再小，再简单的 OJ，也要储存不少数据：每个用户的ID、密码、权限，亦或是题目的评级，编号，又或是评测队列中的信息。像「图书馆」的概念一样：当我们提到图书馆，我们提到的并不仅仅是「一座建筑」，更是「一个地方」，它包括图书馆的建筑本身，里面的的书，图书管理员等等事物；而当我们提到「数据库」，也不仅是指一个储存数据的大容器，它还包括日志，数据库管理软件等等内容。mySQL 是一个数据库管理系统，你可以把它理解为承担图书馆运行的组织。</p>
+<h3 id="如何安装-mysql">如何安装 MySQL？</h3>
+<p>在 macOS 和 Linux 平台上，你可以用包管理器轻松地安装标准的 MySQL；如果你使用的是 Windows 系统，你可以访问 <a href="https://dev.mysql.com/downloads/mysql/">MySQL官方下载地址</a>下载最新版本的 MySQL。以下内容以 Linux 为准。</p>
+<p>安装之后，依次运行以下的几条命令：</p>
+<pre><code>mysqladmin --version // 检查版本，可以用来验证MyQSL的安装
+chown mysql:mysql -R /var/lib/mysql // 授予权限
+mysqld --initialize // 初始化 
+systemctl start mysqld // 启动
+systemctl status mysqld // 查看运行状态
+</code></pre>
+<h3 id="开始使用-mysql">开始使用 MySQL</h3>
+<p>MySQL 安装成功后，默认的 root 用户密码为空，而且登录时也不需要额外的密码，但是你可以使用这条命令创建 root 用户的密码：</p>
+<pre><code>mysqladmin -u root password &quot;new_password&quot;;
+</code></pre>
+<p>并使用这条命令连接到MySQL服务器：</p>
+<pre><code>mysql -u root -p [your password]
+</code></pre>
+<p>如果在 root 权限下，你可以简单地通过 <code>mysql</code> 来进入，否则会收到这样的错误提示：</p>
+<pre><code>ERROR 1045 (28000): Access denied for user '[user]' (using password: YES/NO)
+</code></pre>
+<h3 id="sql语言">SQL语言</h3>
+<p>SQL 语言是管理数据库的语言，主要分为三大类：</p>
+<ul>
+<li>DDL 语句：数据定义语言：包含 <code>create</code> <code>drop</code> <code>alter</code> 等，用来对数据库，表等数据对象进行定义。</li>
+<li>DML 语句：数据操作语言：包含 <code>insert</code> <code>update</code> <code>delete</code> <code>select</code>, 用来访问数据并对其进行修改。</li>
+<li>DCL 语句：数据控制语言：用来控制数据库，表，字段，用户的访问权限和安全级别的授予。</li>
+</ul>
+<p>在 OJ 搭建的过程中我们主要使用 DDL 和 DML，所以以下讲解这两种。值得注意的是，每一条语句结束时都要加分号，这一点在后面不再强调。</p>
+<h3 id="数据定义语句">数据定义语句</h3>
+<h4 id="创建数据库">创建数据库</h4>
+<p>使用 <code>create database [database_name]</code> 来创建一个数据库，使用 <code>drop database [database_name]</code> 来删除一个数据库，并使用 <code>show databases</code> 浏览所有数据库。有趣的地方在于：前两条语句使用了 database 的单数形式 (因为每次创建或删除一个数据库)，而后一条语句使用了附书形式 (一般你会有不只一个数据库)。</p>
+<pre><code class="language-mysql">mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql&gt; create database class;
+Query OK, 1 row affected (0.01 sec)
+
+mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| class              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+</code></pre>
+<p>在上面的实例中，我创建了一个叫做 class 的数据库。</p>
+<h4 id="进入数据库">进入数据库</h4>
+<p>使用 <code>use [databasename]</code> 选定一个数据库，并使用使用 <code>show tables</code> 浏览选定数据库中的表。我们创建的 class 数据库是一个空的库，所以看起来像这样：</p>
+<pre><code class="language-mysql">mysql&gt; use class;
+Database changed
+mysql&gt; show tables;
+Empty set (0.00 sec)
+</code></pre>
+<h4 id="创建表">创建表</h4>
+<p>与创建数据库是所使用的语法不同，在创建表时我们要提前指定好表中每一列的列名及这一列的类型，如：</p>
+<pre><code class="language-mysql">mysql&gt; create table teachers(
+    -&gt; name char(10),
+    -&gt; gender char(10),
+    -&gt; age int,
+    -&gt; subject char(20)
+    -&gt; );
+</code></pre>
+<p>每一个列都是「列名 空格 类型」的格式，且除了最后一个列后面<strong>不能加逗号</strong>以外，其他每一列定义结束以后要打逗号。MySQL 支持的数据类型如下：</p>
+<pre><code class="language-mysql">  	 1. 数值类型
+        1. integer      java int
+        2. smallint     32767~65535
+        3. decimal,dec(m,d) 和doublt范围相同 
+        4. float
+        5. real  不知道
+        6. double
+        7. money
+    2. 字符类型
+        1. char         0~255 之间的字符
+        2. varcahr      0~65535的字符  
+        3. text         65535
+        4. longtext     ~~~~~~
+        5. VARBINARY(M) 可以存储多少M的字节.
+    3. 日期和时间
+        1. date         yyyy-mm-dd
+        2. datetime     yyyy-mm-dd hh:MM:ss
+        3. timestamp    时间戳
+        4. time         hh:MM:ss
+        5. year         yyyy
+</code></pre>
+<p>使用 <code>drop table [table_name]</code> 来删除一个表，使用 <code>show create table [table_name]</code> 来显示出创建某个表的语法：</p>
+<pre><code class="language-mysql">mysql&gt; show create table teachers;
++----------+---------------------------------------------------------+
+| Table    | Create Table																						 |
++----------+---------------------------------------------------------+
+| teachers | CREATE TABLE `teachers` (
+    `name` char(10) DEFAULT NULL,
+    `gender` char(10) DEFAULT NULL,
+    `age` int DEFAULT NULL,
+		`subject` char(20) DEFAULT NULL
+  ) ENGINE=InnoDB DEFAULT CHARET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++----------+---------------------------------------------------------+
+1 row in set (0.00 sec)
+</code></pre>
+<p>你可以使用 <code>desc [tablename]</code> 来检视表的结构：</p>
+<pre><code class="language-mysql">mysql&gt; desc teachers;
++---------+----------+------+-----+---------+-------+
+| Field   | Type     | Null | Key | Default | Extra |
++---------+----------+------+-----+---------+-------+
+| name    | char(10) | YES  |     | NULL    |       |
+| gender  | char(10) | YES  |     | NULL    |       |
+| age     | int      | YES  |     | NULL    |       |
+| subject | char(20) | YES  |     | NULL    |       |
++---------+----------+------+-----+---------+-------+
+4 rows in set (0.06 sec)
+</code></pre>
+<h4 id="表的修改">表的修改</h4>
+<p>表的修改使用 <code>alter</code> 关键字，后接不同内容实现不同的修改。使用 <code>alter table [tablename] modify [columnname] [columntype]</code> 修改列的类型，并使用 <code>alter table [tablename] drop [columnname]</code> 删除一列。例如我想把 <code>teachers</code> 中的 <code>name</code> 列改成 <code>varchar</code> 类型，并删除 <code>gender</code> 这一列：</p>
+<pre><code class="language-mysql">mysql&gt; alter table teachers modify name varchar(20);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql&gt; alter table teachers drop gender;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql&gt; desc teachers;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| name    | varchar(20) | YES  |     | NULL    |       |
+| age     | int         | YES  |     | NULL    |       |
+| subject | char(20)    | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+</code></pre>
+<p>使用 <code>alter table [tablename] rename [newtablename]</code> 给表改名，使用 <code>alter table [tablename] change [columnname] [newcolumnname] [newcolumntype]</code> 更改列的名称和类型。例如我想把 <code>teachers</code> 表改名叫做 <code>Teachers</code>，并把 <code>age</code> 一列改成 <code>birthday</code>：</p>
+<pre><code class="language-mysql">mysql&gt; alter table teachers rename Teachers;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; alter table Teachers change age birthday date;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql&gt; desc Teachers;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| name     | varchar(20) | YES  |     | NULL    |       |
+| birthday | date        | YES  |     | NULL    |       |
+| subject  | char(20)    | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+</code></pre>
+<p>注意区分 <code>change</code> 和 <code>modify</code> 的使用：前者不仅可以修改列的类型还可以更改列的名称，所以需要写新旧两个列名；而后者只能修改列的类型。</p>
+<p>使用 <code>alter table [tablename] add column [columnname] [columntype]</code> 添加一列。</p>
+<h3 id="数据操作语句">数据操作语句</h3>
+<h4 id="insert">insert</h4>
+<p>使用 insert 可以一次性在表中插入多条内容，其格式如下：</p>
+<pre><code class="language-mysql">insert into [tablename] ([columnname1], [columname2]) values ([value1.1], [value1.2]), ([value2.1], [value2.2]);
+</code></pre>
+<p>例如在 <code>Classmates</code> 中添加三个同学的信息：</p>
+<pre><code class="language-mysql">mysql&gt; insert into Classmates(name, age, gender) values('rsq', 16, 'male');
+Query OK, 1 row affected (0.01 sec)
+
+mysql&gt; insert into Classmates(name, age, gender) values('axy', 16, 'male'),('hhy', 16, 'male');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+</code></pre>
+<p>当然也可以插入不完全的信息：</p>
+<pre><code class="language-mysql">mysql&gt; insert into Classmates(name) values('zjx');
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; select * from Classmates;
++------+------+--------+
+| name | age  | gender |
++------+------+--------+
+| rsq  |   16 | male   |
+| axy  |   16 | male   |
+| hhy  |   16 | male   |
+| zjx  | NULL | NULL   |
++------+------+--------+
+4 rows in set (0.00 sec)
+</code></pre>
+<p>只插入了 zjx 的姓名，其他两列都为默认值（空）。这里的 <code>select</code> 可以用来检阅表，之后会讲到。</p>
+<h4 id="update">update</h4>
+<p>update 可以按列修改表中的信息，其格式如下：</p>
+<pre><code class="language-mysql">update [tablename] set [columnname1] = [value1], [columnname2] = [value2];
+</code></pre>
+<p>我想为 zjx 添加年龄信息，使用 update：</p>
+<pre><code class="language-mysql">mysql&gt; update Classmates set age = 12;
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql&gt; select * from Classmates;
++------+------+--------+
+| name | age  | gender |
++------+------+--------+
+| rsq  |   12 | male   |
+| axy  |   12 | male   |
+| hhy  |   12 | male   |
+| zjx  |   12 | NULL   |
++------+------+--------+
+4 rows in set (0.00 sec)
+</code></pre>
+<p>我们看到所有同学的年龄都变成了 12。相信聪敏的你已经发现了蹊跷：上面说过 update 是按照列修改表中信息的，所以每次修改就是一列，而在上面的语法中我们有没有对 update 的内容加以限定。</p>
+<p>使用 <code>where</code> 来对操作指定范围，这个语法的使用使得整条命令看起来就像一句定语从句。值得注意的是，与主流的编程语言不同，MySQL 的语法中赋值号和逻辑等于号都是 <code>=</code>。</p>
+<pre><code class="language-mysql">mysql&gt; update Classmates set age = 16 where name != 'zjx';
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql&gt; select * from Classmates;
++------+------+--------+
+| name | age  | gender |
++------+------+--------+
+| rsq  |   16 | male   |
+| axy  |   16 | male   |
+| hhy  |   16 | male   |
+| zjx  |   12 | NULL   |
++------+------+--------+
+4 rows in set (0.00 sec)
+</code></pre>
+<p>当然，<code>where</code> 对操作的限定效力范围是整条语句，也就是说在一次修改多列信息的时候，所有列的修改都受到 <code>where</code> 约束。</p>
+<h4 id="delete">delete</h4>
+<p>与 update 不同，delete 删除满足条件的行的每一列，如果不加以约束，会将所有的行（即整个表）的信息删除！delete 语法格式如下：</p>
+<pre><code class="language-mysql">mysql&gt; delete from Classmates where name = 'axy';
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; select * from Classmates;
++------+------+--------+
+| name | age  | gender |
++------+------+--------+
+| rsq  |   16 | male   |
+| hhy  |   16 | male   |
+| zjx  |   12 | NULL   |
++------+------+--------+
+3 rows in set (0.00 sec)
+</code></pre>
+<h4 id="select">select</h4>
+<p>select 可以用来查询表中的信息，注意区分 select 和 desc，前者查询表中信息，后者查询表的结构。</p>
+<pre><code class="language-mysql">select [columnname1], [columnname2] from [tablename];
+</code></pre>
+<p>上面这句命令是检阅表中指定列的语法格式，如果要查询整个表，将列名的位置使用 <code>*</code> 代替。</p>
+<ul>
+<li>使用 distinct 修饰查询不重复的信息</li>
+</ul>
+<pre><code class="language-mysql">mysql&gt; select distinct age from Classmates;
++------+
+| age  |
++------+
+|   16 |
+|   12 |
++------+
+2 rows in set (0.00 sec)
+</code></pre>
+<ul>
+<li>使用 where 约束查询符合条件的信息</li>
+</ul>
+<pre><code class="language-mysql">mysql&gt; select * from Classmates where name = 'rsq';
++------+------+--------+
+| name | age  | gender |
++------+------+--------+
+| rsq  |   16 | male   |
++------+------+--------+
+1 row in set (0.01 sec)
+</code></pre>
+<ul>
+<li>使用 order by 按序显示查询的信息，desc 表示降序，asc 表示升序。</li>
+</ul>
+<pre><code class="language-mysql">mysql&gt; select * from Classmates order by age asc, name asc;
++------+------+--------+
+| name | age  | gender |
++------+------+--------+
+| zjx  |   12 | NULL   |
+| hhy  |   16 | male   |
+| rsq  |   16 | male   |
++------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql&gt; select * from Classmates order by name asc, age asc;
++------+------+--------+
+| name | age  | gender |
++------+------+--------+
+| hhy  |   16 | male   |
+| rsq  |   16 | male   |
+| zjx  |   12 | NULL   |
++------+------+--------+
+3 rows in set (0.00 sec)
+</code></pre>
+<p>order by 可以按照多个关键字排序，其中越靠前的关键字优先级越高。</p>
+<h3 id="后话">后话</h3>
+<p>事实上 DCL 语句即数据控制语句也是 MySQL 中非常重要的一种语句类型，但是介于在 OJ 搭建过程中较少用到，这里就不再讲解了，<s>其实是因为我也不太会</s>。感兴趣的同学可以去网上查阅相关资料。我本人也会继续学习 MySQL，在这里开个「MySQL数据库进阶操作」坑吧，总有一天我会回来填坑的 QwQ</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.ren/post/Luogu-P2599-取石子游戏/">
+              <h3 class="post-title">
+                下一篇：Luogu P2599 取石子游戏
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/potatoler" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/potatoler525" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/mr-dw-52" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.ren/atom.xml" target="_blank">RSS</a>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

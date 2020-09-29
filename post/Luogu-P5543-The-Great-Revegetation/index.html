@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Luogu P5543 The Great Revegetation | potatoler</title>
+<meta name="description" content="破ᴾᵒ T𝙰T Oler">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1601351021823">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.ren">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1601351021823" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.ren">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="https://potatoler.ren" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/post/mistakes" class="menu purple-link">
+            OI 坑
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Luogu P5543 The Great Revegetation</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-02-04</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.ren/tag/O_j126PJo/">
+                    数据结构
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/tag/97Z_GGsdxE/">
+                    并查集
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/tag/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h3 id="题目"><a href="https://www.luogu.com.cn/problem/P5543">题目</a>描述：</h3>
+<p>一场漫长的干旱使农场主约翰的N牧场没有草, 然而, 随着雨季的到来, 是时候“重新种植”了。在农夫约翰的小屋里, 他有两个桶, 分别有一种草籽。他想在他的每一个牧场种草, 在每一个牧场中只能种一种草。 作为一名奶农, 农场主约翰想确保他能满足他的M头奶牛的特殊饮食需求。他每头奶牛都有两个自己最喜欢的牧场。一些奶牛只吃一种草, 因此约翰希望确保在这些奶牛最喜欢的两个牧场里种植同一种的草; 剩下的奶牛则吃不同种类的草。对于那些奶牛，约翰当然想确保它们最喜欢的两块牧场里有不同的草。 请帮助农场主约翰确定他在他的N块牧场上有多少种种植草的不同方式。</p>
+<h3 id="思路">思路：</h3>
+<p>与关押罪犯有很多相似之处，实用并查集补集的思路，将两个牧场种相同草的关系当作「友好」，将两个牧场种不同草的关系当作「敌对」，但值得注意的一点是并非所有的牧场一定为任意一只奶牛所喜爱，所以我们还需要额外的一个并查集来维护被提到的牧场的连通性。</p>
+<p>如果产生冲突，那么最终方案数必定为0；若没有冲突，就在第三个并查集中判断连通块，连通块数为为cnt，则<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>n</mi><mi>s</mi><mo>=</mo><msup><mn>2</mn><mrow><mi>c</mi><mi>n</mi><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">ans=2^{cnt}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">n</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7935559999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span></span></span></span></span>;</p>
+<h3 id="代码">代码：</h3>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cstring&gt;
+#include&lt;cmath&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int n,m,a,b,ans;
+char op;
+int fa[100005],gr[200005];
+int find(int x){
+    if(fa[x]==x) return x;
+    else return fa[x]=find(fa[x]);
+}
+int com(int x){
+    if(gr[x]==x) return x;
+    else return gr[x]=com(gr[x]);
+}
+int main(){
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    ans=n;
+    for(int i=1;i&lt;=n;i++){
+        gr[i]=i;
+        gr[i+n]=i+n;
+        fa[i]=i;
+    }
+    for(int i=1;i&lt;=m;i++){
+        cin&gt;&gt;op&gt;&gt;a&gt;&gt;b;
+        // op=getchar();
+        // getchar();
+        // scanf(&quot;%d%d&quot;,&amp;a,&amp;b);
+      //乖乖用cin（笑）
+        if(op=='S'){
+            gr[com(a)]=com(b);
+            gr[com(a+n)]=com(b+n);
+        }
+        else{
+            if(com(a)==com(b)){
+                ans=0;
+                break;
+            }
+            gr[com(a+n)]=com(b);
+            gr[com(a)]=com(b+n);
+        }
+        if(find(a)!=find(b)){
+            fa[find(a)]=find(b);
+            ans--;
+        }
+    }
+    if(ans==0){
+        printf(&quot;%d&quot;,ans);
+        return 0;
+    }
+    printf(&quot;1&quot;);
+    for(int i=1;i&lt;=ans;i++) printf(&quot;0&quot;);
+    return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.ren/post/Luogu-P1005-矩阵取数游戏/">
+              <h3 class="post-title">
+                下一篇：Luogu P1005 矩阵取数游戏
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/potatoler" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+        <a href="https://twitter.com/potatoler525" target="_blank">
+          <i class="fab fa-twitter"></i>
+        </a>
+      
+    
+      
+    
+      
+        <a href="https://www.zhihu.com/people/mr-dw-52" target="_blank">
+          <i class="fab fa-zhihu"></i>
+        </a>
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.ren/atom.xml" target="_blank">RSS</a>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
