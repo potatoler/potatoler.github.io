@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Luogu U104562 沙漠绿化 | potatoler</title>
+<meta name="description" content="破ᴾᵒ T𝙰T Oler">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1601637963074">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.ren">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1601637963074" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.ren">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="https://potatoler.ren" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/post/mistakes" class="menu purple-link">
+            OI 坑
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Luogu U104562 沙漠绿化</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-02-04</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.ren/nsq9Z0h3j/">
+                    仙人掌
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/LTV2ElzxZ/">
+                    图论
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>沙漠里有很多的仙人掌，把仙人掌修剪成树，就绿化了沙漠（笑）</p>
+<!-- more -->
+<p>看到这里就已经懵了？<a href="https://blog.csdn.net/CreationAugust/article/details/48007069">不妨认识一下仙人掌</a></p>
+<h3 id="题目"><a href="https://www.luogu.com.cn/problem/U104562">题目</a>描述：</h3>
+<p>定义沙漠是满足如下性质的图: 没有重边和自环，且图中任意一条边至多属于一个简单环。 给定一片沙漠，从中删去任意多条边，使得删去边之后的图是一个森林，求有多少种方法，答案对 998244353 取模。</p>
+<h3 id="思路">思路：</h3>
+<p>树中不能有环，所以要将「沙漠」删边变成「森林」，就是将每一个环至少删掉一条边，而不在环中的边则删不删都可以（森林中的树不要求连通）</p>
+<p>重点在于环的查找：我们可以DFS记录边的深度，一旦从较深DFS到较浅，就说明找到了一个环</p>
+<p>DFS的过程中我们有以下几种情况需要处理：</p>
+<ol>
+<li>DFS到了自己的父亲——continue；</li>
+<li>DFS到比自己浅的点——找到了一个环，环中的边数即为两点深度差+1；</li>
+<li>DFS到比自己深的店——访问到了已经统计过的环，不用管；</li>
+<li>DFS到未标记深度的点——一个新的点，将此点的深度标记为父亲的深度+1，并从此点开始DFS；</li>
+</ol>
+<p>值得注意的一点在于情况4的处理，当我们遇到一个新的点并标记他的深度之后，我们需要从此点开始DFS，因为题目中并没有规定「沙漠」是一个连通的图（只有一株仙人掌的沙漠还叫沙漠？）</p>
+<h3 id="代码">代码：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;vector&gt;
+#define ll long long
+using namespace std;
+const int maxn=300010;
+const ll mod=998244353;
+int vis[maxn];
+vector&lt;int&gt;map[maxn];
+int n,m;
+int ans,num;
+ll qp(ll a,ll b){
+    ll res=1;
+    while(b&gt;0){
+        if(b%2)
+            res=(res*a)%mod;
+        a=(a*a)%mod;
+        b/=2;
+    }
+    return res;
+}
+void dfs(int u,int fa){
+    vis[u]=vis[fa]+1;
+    for(int i=0;i&lt;map[u].size();i++){
+        int v=map[u][i];
+        if(fa==v) continue;
+        if(vis[v]==0)
+            dfs(v,u);
+        else if(vis[u]&gt;vis[v]){
+            int temp=vis[u]-vis[v]+1;
+            num+=temp;
+            ans=(ans%mod*(qp(2,temp)-1)%mod)%mod;
+        }
+    }
+}
+int main(){
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    memset(vis,0,sizeof(vis));
+    for(int i=1;i&lt;=n;i++) map[i].clear();
+    ans=1,num=0;
+    for(int i=1;i&lt;=m;i++){
+        int x,y;
+        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
+        map[x].push_back(y);
+        map[y].push_back(x);
+    }
+    for(int i=1;i&lt;=n;i++){
+        if(!vis[i])
+            dfs(i,0);
+    }
+    ans=(ans%mod*(qp(2,m-num))%mod)%mod;
+    cout&lt;&lt;ans&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.ren/Luogu-U104560-小Z搭积木/">
+              <h3 class="post-title">
+                下一篇：Luogu U104560 小Z搭积木
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/potatoler" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.ren/atom.xml" target="_blank">RSS</a>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
