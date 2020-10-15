@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>CF930C Teodor is not a liar! | potatoler</title>
+<meta name="description" content="破ᴾᵒ T𝙰T Oler">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1602772577174">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.ren">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1602772577174" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.ren">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="https://potatoler.ren" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/OI-TAT" class="menu purple-link">
+            OI TAT
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">CF930C Teodor is not a liar!</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-10-15</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.ren/DqxPvsFJsn/">
+                    差分
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/k8Bgcetq3/">
+                    DP
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>看了十分钟才看懂题 QwQ</p>
+<!-- more -->
+<h3 id="题目"><a href="https://www.luogu.com.cn/problem/CF930C">题目</a>简述</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 条线段，断点都是正整数且都属于区间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>1</mn><mo separator="true">,</mo><mi>m</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">[1,m]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">]</span></span></span></span>，Teodor 发现没有一个正整数点在所有的线段上。Sasha 可以向 Teodor 询问若干个整点（但 Sasha 不知道有多少条线段），对于每次询问的点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>，Teodor 会回答 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>n</mi><msub><mi>t</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">cnt_{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 表示 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 在多少条线段上。求一个最大的集合 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 满足询问 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∀</mi><mi>x</mi><mo>∈</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">∀x∈S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord">∀</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>n</mi><msub><mi>t</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">cnt_x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 后仍然不能保证没有一个整点满足在所有线段上。只需要输出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> 的大小。</p>
+<h3 id="思路">思路</h3>
+<p>题目中的集合是询问了任意集合内的整点都不能保证这个条件，我们可以反着想 —— 怎样判断「没有一个正整数点在所有的线段上」。</p>
+<p>考虑这个问题，可以发现当存在一组整点 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>&lt;</mo><mi>y</mi><mo>&lt;</mo><mi>z</mi></mrow><annotation encoding="application/x-tex">x&lt;y&lt;z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span></span></span></span> 满足 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>n</mi><msub><mi>t</mi><mi>y</mi></msub><mo>&lt;</mo><mi>c</mi><mi>n</mi><msub><mi>t</mi><mi>x</mi></msub></mrow><annotation encoding="application/x-tex">cnt_y&lt;cnt_x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>n</mi><msub><mi>t</mi><mi>y</mi></msub><mo>&lt;</mo><mi>c</mi><mi>n</mi><msub><mi>t</mi><mi>z</mi></msub></mrow><annotation encoding="application/x-tex">cnt_y&lt;cnt_z</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">n</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 的时候就可以确定没有一个正整数点在所有的线段上：因为线段是连续的，所以当满足条件时只有可能是中间的点的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>n</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">cnt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span></span></span></span> 比两边的点大，否则一定有一条线段，覆盖了左边的点和中间的点儿没有右边的点，可以考虑三条线段 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>l</mi><mn>1</mn></msub><mo>[</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo separator="true">,</mo><mtext> </mtext><msub><mi>l</mi><mn>2</mn></msub><mo>[</mo><mi>x</mi><mo separator="true">,</mo><mi>z</mi><mo>]</mo><mo separator="true">,</mo><mtext> </mtext><msub><mi>l</mi><mn>3</mn></msub><mo>(</mo><mi>y</mi><mo separator="true">,</mo><mi>z</mi><mo>]</mo></mrow><annotation encoding="application/x-tex">l_1[x,y),\ l_2[x,z],\ l_3(y,z]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.01968em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.01968em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace"> </span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.01968em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mclose">]</span></span></span></span>。</p>
+<p>将每个整点的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>n</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">cnt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span></span></span></span> 值作为这个位置的值，那么找到两个峰的时候就可以判断不满足条件。那么我们就是要求不能找到两个峰的最大位置集合大小，也就是最长单峰序列长度，只需要正反求两次最长上升子序列即可。其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>n</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">cnt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">n</span><span class="mord mathdefault">t</span></span></span></span> 可以差分预处理。</p>
+<h3 id="code">Code</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;climits&gt;
+#include&lt;algorithm&gt;
+#include&lt;utility&gt;
+#include&lt;map&gt;
+#include&lt;vector&gt;
+#define int long long
+using namespace std;
+const int MaxN = 100005;
+int n, m, a[MaxN], f[MaxN], g[MaxN], ans;
+vector&lt;int&gt; number;
+
+inline int Read(){
+	int num = 0, op = 1;
+	char ch = getchar();
+	while(!isdigit(ch)){
+		if(ch == '-') op = -1;
+		ch = getchar();
+	}
+	while(isdigit(ch)){
+		num = num * 10 + ch - '0';
+		ch = getchar();
+	}
+	return num * op;
+}
+
+signed main(){
+	n = Read(), m = Read();
+	for(int i=1; i&lt;=n; i++){
+		int l = Read(), r = Read();
+		a[l]++, a[r+1]--;
+	}
+	for(int i=1; i&lt;=m; i++)
+		a[i] += a[i-1];
+	number.clear();
+	number.push_back(a[1]);
+	f[1] = 1;
+	for(int i=2; i&lt;=m; i++){
+		if(a[i] &gt;= number.back()){
+			number.push_back(a[i]);
+			f[i] = number.size();
+		}
+		else{
+			int pos = upper_bound(number.begin(), number.end(), a[i]) - number.begin();
+			number[pos] = a[i];
+			f[i] = pos + 1;
+		}
+	}
+	number.clear();
+	number.push_back(a[m]);
+	g[m] = 1;
+	for(int i = m-1; i&gt;=1; i--){
+		if(a[i] &gt;= number.back()){
+			number.push_back(a[i]);
+			g[i] = number.size();
+		}
+		else{
+			int pos = upper_bound(number.begin(), number.end(), a[i]) - number.begin();
+			number[pos] = a[i];
+			g[i] = pos + 1;
+		}
+	}
+	for(int i=1; i&lt;=m; i++)
+		ans = max(ans, f[i]+g[i]-1);
+	printf(&quot;%lld&quot;, ans);
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.ren/CF213C-Relay-Race/">
+              <h3 class="post-title">
+                下一篇：CF213C Relay Race
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/potatoler" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.ren/atom.xml" target="_blank">RSS</a>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

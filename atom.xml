@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.ren</id>
     <title>potatoler</title>
-    <updated>2020-10-15T11:24:30.698Z</updated>
+    <updated>2020-10-15T14:36:24.649Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.ren"/>
     <link rel="self" href="https://potatoler.ren/atom.xml"/>
@@ -10,6 +10,24 @@
     <logo>https://potatoler.ren/images/avatar.png</logo>
     <icon>https://potatoler.ren/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[CF930C Teodor is not a liar!]]></title>
+        <id>https://potatoler.ren/CF930C-Teodor-is-not-a-Liar/</id>
+        <link href="https://potatoler.ren/CF930C-Teodor-is-not-a-Liar/">
+        </link>
+        <updated>2020-10-15T14:34:19.000Z</updated>
+        <summary type="html"><![CDATA[<p>看了十分钟才看懂题 QwQ</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>看了十分钟才看懂题 QwQ</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[CF213C Relay Race]]></title>
+        <id>https://potatoler.ren/CF213C-Relay-Race/</id>
+        <link href="https://potatoler.ren/CF213C-Relay-Race/">
+        </link>
+        <updated>2020-10-15T13:27:59.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[BZOJ 2044 三维导弹拦截]]></title>
         <id>https://potatoler.ren/BZOJ-2044-三维导弹拦截/</id>
@@ -73,23 +91,5 @@
 ]]></summary>
         <content type="html"><![CDATA[<p>培训期间的意外收获</p>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Luogu P2599 取石子游戏]]></title>
-        <id>https://potatoler.ren/Luogu-P2599-取石子游戏/</id>
-        <link href="https://potatoler.ren/Luogu-P2599-取石子游戏/">
-        </link>
-        <updated>2020-08-01T01:26:14.000Z</updated>
-        <summary type="html"><![CDATA[<p>生活总不是风平浪静，曾经的优势者也可能面临着劣势局面</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>生活总不是风平浪静，曾经的优势者也可能面临着劣势局面</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[2020暑假 欢乐培训（完结撒花！）]]></title>
-        <id>https://potatoler.ren/2020natsuyasumi/</id>
-        <link href="https://potatoler.ren/2020natsuyasumi/">
-        </link>
-        <updated>2020-07-28T04:52:10.000Z</updated>
     </entry>
 </feed>

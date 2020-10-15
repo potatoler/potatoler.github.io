@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>Luogu U104560 小Z搭积木 | potatoler</title>
+<title>DP | potatoler</title>
 <meta name="description" content="破ᴾᵒ T𝙰T Oler">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -87,74 +87,116 @@
 
 
       <div class="content-container">
-        <div class="post-detail">
-          
-          <h2 class="post-title">Luogu U104560 小Z搭积木</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2020-02-04</span>
-            
-              <span>
-                <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://potatoler.ren/x0JHrwlfb/">
-                    贪心
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://potatoler.ren/xsv9XG8Y6/">
-                    题解
-                    
-                  </a>
-                
-              </span>
-            
-          </div>
-          <div class="post-content">
-            <h3 id="题目"><a href="https://www.luogu.com.cn/problem/U104560">题目</a>描述:</h3>
-<p>小 Z 喜欢搭积木。小 Z 一共有 n 块积木，并且积木只能竖着一块一块的摞，可以摞多列。小 Z 的积木都是智能积木，第 i 块积木有一个情绪值 Xi。当摞在该积木上面积木总数超过 Xi 时，i 号积木就会不高兴。小 Z 情商这么高，肯定不希望有积木不高兴。但是他又希望每块积木都被用上，并且摞的积木列的总数最少。</p>
-<h3 id="思路">思路:</h3>
-<p>非常明显的贪心：对于一块积木而言，它所在的位置越低，它上面的积木就越多，所以自然是要让情绪值大的积木在下面。将所有的积木从小到大排序，从上往下加积木，如果有一块积木不开心了就再开一列。</p>
-<h3 id="代码">代码：</h3>
-<pre><code class="language-c++">#include&lt;cstdio&gt; 
-#include&lt;algorithm&gt;  
-using namespace std;  
-int n,x[5005],v[5005],ans,m;  
-int main(){  
-	scanf(&quot;%d&quot;,&amp;n); 
-	for(int i=1;i&lt;=n;i++) scanf(&quot;%d&quot;,&amp;x[i]);  
-	sort(x+1,x+n+1);  
-	for(int i=1;i&lt;=n;i++)  
-	if(!v[i]){  
-		ans++;  
-		m=1;  
-		for(int j=i+1;j&lt;=n;j++) 
-			if(!v[j]&amp;&amp;x[j]&gt;=m){  
-				v[j]=1;  
-				m++;  
-			}  
-	}  
-	printf(&quot;%d&quot;,ans); 
-	return 0;  
-}  
-</code></pre>
 
-          </div>
+        <div class="current-tag-container">
+          <h2 class="title">
+            <i class="icon icon-pricetags-outline"></i> DP
+          </h2> 
         </div>
 
         
-          <div class="next-post">
-            <a class="purple-link" href="https://potatoler.ren/Luogu-P5543-The-Great-Revegetation/">
-              <h3 class="post-title">
-                下一篇：Luogu P5543 The Great Revegetation
-              </h3>
-            </a>
-          </div>
-          
+<section class="post-item">
+    <div class="content">
+      <a href="https://potatoler.ren/Luogu-P1005-矩阵取数游戏/">
+        <h2 class="post-title">Luogu P1005 矩阵取数游戏</h2>
+      </a>
+      <div class="post-abstract">
+        
       </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-01-25</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://potatoler.ren/OKSnjLxga/">
+                区间DP
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://potatoler.ren/k8Bgcetq3/">
+                DP
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://potatoler.ren/x0JHrwlfb/">
+                贪心
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://potatoler.ren/xsv9XG8Y6/">
+                题解
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
 
-      
+<section class="post-item">
+    <div class="content">
+      <a href="https://potatoler.ren/Luogu-P1044-栈/">
+        <h2 class="post-title">Luogu P1044 栈</h2>
+      </a>
+      <div class="post-abstract">
+        
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-01-01</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://potatoler.ren/k8Bgcetq3/">
+                DP
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://potatoler.ren/GJHM-MLBzb/">
+                数学
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://potatoler.ren/xsv9XG8Y6/">
+                题解
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+      <a href="https://potatoler.ren/Luogu-P1044-栈/">
+        <div class="feature-container" style="background-image: url('https://potatoler.ren/post-images/Luogu-P1044-栈.png')">
+        </div>
+      </a>
+    
+  </section>
+
+
+<div class="pagination-container">
+  
+    <a href="https://potatoler.ren/k8Bgcetq3" class="prev"><i class="icon-arrow-ios-back-outline"></i> 上一页</a>
+  
+  
+</div>
+
+
+      </div>
 
       <div class="site-footer">
   <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
