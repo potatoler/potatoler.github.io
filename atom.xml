@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.ren</id>
     <title>potatoler</title>
-    <updated>2020-10-15T15:29:07.863Z</updated>
+    <updated>2020-10-15T15:30:02.006Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.ren"/>
     <link rel="self" href="https://potatoler.ren/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, potatoler</rights>
     <entry>
         <title type="html"><![CDATA[CF930C Teodor is not a liar!]]></title>
-        <id>https://potatoler.ren/CF930C-Teodor-is-not-a-Liar/</id>
-        <link href="https://potatoler.ren/CF930C-Teodor-is-not-a-Liar/">
+        <id>https://potatoler.ren/CF930C-Teodor/</id>
+        <link href="https://potatoler.ren/CF930C-Teodor/">
         </link>
         <updated>2020-10-15T14:34:19.000Z</updated>
         <summary type="html"><![CDATA[<p>看了十分钟才看懂题 QwQ</p>
