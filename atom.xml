@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.ren</id>
     <title>potatoler</title>
-    <updated>2020-10-19T00:52:47.959Z</updated>
+    <updated>2020-10-27T09:49:41.629Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.ren"/>
     <link rel="self" href="https://potatoler.ren/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://potatoler.ren/images/avatar.png</logo>
     <icon>https://potatoler.ren/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[SDFZOJ #204 RPG 游戏]]></title>
+        <id>https://potatoler.ren/RPG-game/</id>
+        <link href="https://potatoler.ren/RPG-game/">
+        </link>
+        <updated>2020-10-27T09:47:40.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CF1265E Beautiful Mirrors]]></title>
         <id>https://potatoler.ren/CF1265E-Beautiful-Mirrors/</id>
@@ -80,12 +87,5 @@
         <link href="https://potatoler.ren/LibreOJ-6500-操作/">
         </link>
         <updated>2020-08-17T23:36:10.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[将 Typora 打造成有「灵魂」的轻小说阅读器]]></title>
-        <id>https://potatoler.ren/Typora-自定义/</id>
-        <link href="https://potatoler.ren/Typora-自定义/">
-        </link>
-        <updated>2020-08-08T12:49:49.000Z</updated>
     </entry>
 </feed>
