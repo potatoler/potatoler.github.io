@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1603851610505">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1603940635926">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
 
@@ -39,7 +39,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://potatoler.ren">
-        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1603851610505" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1603940635926" alt="" width="32px" height="32px">
       </a>
       <a href="https://potatoler.ren">
         <h1 class="site-title">potatoler</h1>
@@ -119,6 +119,7 @@
 <li>不要先除或者先取模再求逆元</li>
 <li>用链表维护序列：考虑一道题需要维护多个序列，每次顺序往一个序列中插入元素，某个序列会在某个时刻停止维护。如果使用 <code>visited</code> 数组表示序列是否需要维护，则最坏情况下每次要遍历一整遍 <code>visited</code>，复杂度可以达到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi mathvariant="normal">序</mi><mi mathvariant="normal">列</mi><mi mathvariant="normal">总</mi><mi mathvariant="normal">数</mi><mo>∗</mo><mi mathvariant="normal">操</mi><mi mathvariant="normal">作</mi><mi mathvariant="normal">次</mi><mi mathvariant="normal">数</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(序列总数*操作次数)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord cjk_fallback">序</span><span class="mord cjk_fallback">列</span><span class="mord cjk_fallback">总</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">操</span><span class="mord cjk_fallback">作</span><span class="mord cjk_fallback">次</span><span class="mord cjk_fallback">数</span><span class="mclose">)</span></span></span></span>。考虑用链表将序列于序列的编号相连，一个序列结束维护后直接从链表中删去即可。</li>
 <li>一些路径中有障碍的题可以先考虑不带障碍的做法（显然应该这样考虑），往往部分分中也有这档</li>
+<li>Trie 的空间复杂度是 <code>O(strCnt * strLen)</code> ，不是 <code>O(strCnt)</code> ！开数组的时候一定要注意</li>
 </ul>
 
           </div>
