@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>CF837D Round Subset | potatoler</title>
+<meta name="description" content="破ᴾᵒ T𝙰T Oler">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1604927705683">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.ren">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1604927705683" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.ren">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="https://potatoler.ren" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/OI-TAT" class="menu purple-link">
+            OI TAT
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">CF837D Round Subset</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-11-09</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.ren/m1tWeyoEw/">
+                    背包
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/k8Bgcetq3/">
+                    DP
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h3 id="题目"><a href="https://www.luogu.com.cn/problem/CF837D">题目</a>简述</h3>
+<p>我们把一个数的 roundness 值定义为它末尾 0 的个数。给你一个长度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的数列，要求你从中选出 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个数，使得这些选出的数的积的 roundness 值最大。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo separator="true">,</mo><mi>k</mi><mo>≤</mo><mn>200</mn><mo separator="true">,</mo><mtext> </mtext><mi mathvariant="normal">数</mi><mi mathvariant="normal">列</mi><mi mathvariant="normal">中</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">每</mi><mi mathvariant="normal">一</mi><mi mathvariant="normal">项</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>18</mn></msup></mrow><annotation encoding="application/x-tex">n,k≤200,\ 数列中的每一项≤10^{18}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace"> </span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">列</span><span class="mord cjk_fallback">中</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">每</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">项</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h3 id="思路">思路</h3>
+<p>容易想到把每个数中因子 2 和因子 5 提取出，求出它们的数量 —— 因为原题相当于只要求因子 10 的数量，其他的因子对答案没有贡献。</p>
+<p>一开始的思路是设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 表示前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个数选了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 个的答案，但是注意到这个状态难以转移 —— 不能简单的将一个数中 2 的数量和 5 的数量去最小值作为贡献，因为这个数中的 5 可以别的数中的 2 产生贡献（反过来也是一样）。</p>
+<p>可以将原问题转化为二维费用背包问题 —— 将「选出数的 5 的总数」作为一维费用（其实 2 也是可以的，但是一般来讲 5 的话状态不是会少一些嘛），设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>f</mi><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">f_{i,j,k}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.10764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span><span class="mpunct mtight">,</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span> 表示前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个数选了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span></span></span></span> 个，选出的数 5 的总数是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的情况下最多的 2 的个数。最后更新答案时使用 <code>min(f[n][k][i], i)</code> 更新。注意第一维可以压掉。</p>
+<h3 id="code">Code</h3>
+<pre><code class="language-C++">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;climits&gt;
+#define int long long
+using namespace std;
+const int MaxN = 202, MaxLog = 20004;
+int n, k, two[MaxN], five[MaxN], f[MaxN][MaxLog], ans;
+
+inline int Read(){
+	int num = 0, op = 1;
+	char ch = getchar();
+	while(!isdigit(ch)){
+		if(ch == '-') op = -1;
+		ch = getchar();
+	}
+	while(isdigit(ch)){
+		num = num * 10 + ch - '0';
+		ch = getchar();
+	}
+	return num * op;
+}
+
+inline void Divide(int cnt, int x){
+	while(x % 2 == 0){
+		two[cnt]++;
+		x /= 2;
+	}
+	while(x % 5 == 0){
+		five[cnt]++;
+		x /= 5;
+	}
+	return;
+}
+
+signed main(){
+	n = Read(), k = Read();
+	for(int i=1; i&lt;=n; i++){
+		int a = Read();
+		Divide(i, a);
+	}
+	memset(f, -0x3f3f3f, sizeof(f));
+	f[0][0] = 0;
+	int sum = 0;
+	for(int l=1; l&lt;=n; l++){
+		sum += five[l];
+		for(int i=min(k,l); i&gt;=1; i--){
+			for(int j = sum; j&gt;=five[l]; j--)
+				f[i][j] = max(f[i][j], f[i-1][j-five[l]] + two[l]);
+		}
+	}
+	for(int i=1; i&lt;=min(k,n); i++)
+		for(int j=0; j&lt;=sum; j++)
+			ans = max(ans, min(j, f[i][j]));
+	printf(&quot;%lld&quot;, ans);
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.ren/CF353D-Queue/">
+              <h3 class="post-title">
+                下一篇：CF353D Queue
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/potatoler" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.ren/atom.xml" target="_blank">RSS</a>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
