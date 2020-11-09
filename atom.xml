@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.ren</id>
     <title>potatoler</title>
-    <updated>2020-11-09T10:13:14.544Z</updated>
+    <updated>2020-11-09T10:42:22.215Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.ren"/>
     <link rel="self" href="https://potatoler.ren/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://potatoler.ren/images/avatar.png</logo>
     <icon>https://potatoler.ren/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[CF353D Queue]]></title>
+        <id>https://potatoler.ren/CF353D-Queue/</id>
+        <link href="https://potatoler.ren/CF353D-Queue/">
+        </link>
+        <updated>2020-11-09T10:41:33.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CF768D Jon and Orbs]]></title>
         <id>https://potatoler.ren/CF768D-Jon-and-Orbs/</id>
@@ -84,12 +91,5 @@
         <link href="https://potatoler.ren/Luogu-P1272-重建道路/">
         </link>
         <updated>2020-09-29T03:15:21.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SDFZOJ #85 豌豆射手]]></title>
-        <id>https://potatoler.ren/pea-shooter/</id>
-        <link href="https://potatoler.ren/pea-shooter/">
-        </link>
-        <updated>2020-09-27T09:41:32.000Z</updated>
     </entry>
 </feed>

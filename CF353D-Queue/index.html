@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>UVA1607 Gates | potatoler</title>
+<title>CF353D Queue | potatoler</title>
 <meta name="description" content="破ᴾᵒ T𝙰T Oler">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -89,15 +89,22 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">UVA1607 Gates</h2>
+          <h2 class="post-title">CF353D Queue</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2020-01-23</span>
+            <span><i class="icon-calendar-outline"></i> 2020-11-09</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
                 
-                  <a href="https://potatoler.ren/CJfrVrsBK/">
-                    二分
+                  <a href="https://potatoler.ren/Z-lt_QUXz/">
+                    字符串
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/x0JHrwlfb/">
+                    贪心
                     
                       ，
                     
@@ -112,71 +119,41 @@
             
           </div>
           <div class="post-content">
-            <p><a href="https://www.luogu.com.cn/problem/UVA1607">题意</a>不难理解：描述一个电路结构，电路中若干个输入点都输入x，求此电路的等效电路，并使输入的x数量尽量少</p>
-<p>对于一组电路，在输入x的值确定时，输出的值可能与x无关，也可能与x有关，而因为输入输出只可能是0或1，一组电路可能有以下输出情况：</p>
-<ol>
-<li>永远输出0，与x的值无关</li>
-<li>永远输出1，与x的</li>
-<li>输出x</li>
-<li>输出非x（输出与x相反）</li>
-</ol>
-<p>显然对于前两种情况，无论输入x是多少，输出都是不变的，那么此时输入的x就没有任何实际意义，题目要求输入尽可能少的x，那么在这两种情况下可以不输入x。我们可以通过全输入0，在全输入1，比较两次输入的结果：若相同，则说明输出的值与输入的x无关；若不同，则说明输出的值与输入的x有关，即后两种情况</p>
-<p>在几个输入接口中，不一定所有的输入都会对输出结果造成影响，那么我们就需要想一种方式来找出对输出无关的位置，替换成定值减少x的输入。那么如何寻找与输出无关的位置呢？</p>
-<p>不妨设某组电路有5个输入位置，输入00000时，输出的结果是0。这里我们默认已经通过上文提到的方法确定了这组电路的输出与x有关，那么可以确定，当输入11111的时候，输出的值一定是1（因为每一个输入接口都被取反了，所以答案一定会被取反）</p>
-<p>那么我们可以将00000不断改变，使其变为11111，每次改变都记录一个输出的值，尽管我们无法确定输出结果在哪一次改变后发生了改变，我们仍然可以确定的是：一定有一次改变，使得输出结果发生了改变，我们可以用二分法找到这个位置</p>
-<p>值得注意的一点是：从整体来看输出的答案并不具有单调性，也就是说随着一次次改变，答案有可能经历被多次在0和1之间来回改变的情况（事实证明很可能会出现这种情况），但这并不会影响我们使用二分法，应为既然00000和11111的输出结果不同，就说明中间一定经历了至少一次从0到1的改变，此次改变前后的这一段答案一定是满足单调性的</p>
-<p>而由于答案可能经历多次改变，输入的内容也不一定会相同，但是无论哪种输入，x输入的次数都是相同的</p>
-<pre><code class="language-cpp">#include&lt;iostream&gt;
+            <h3 id="题目"><a href="https://www.luogu.com.cn/problem/CF353D">题目</a>简述</h3>
+<p>给定一个长度不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span> 的，由 <code>M</code> 和 <code>F</code> 组成的字符串。每秒可以做若干次这样的操作：选择一个 <code>F</code>，如果它的前面是 <code>M</code> 那么交换这两个字符（每一个 <code>F</code> 每一秒只能被操作一次）。多少秒后所有的 <code>F</code> 都在最前面？</p>
+<h3 id="思路">思路</h3>
+<p>因为每一个 <code>F</code> 每一秒只能被操作一次，对于一个 <code>F</code>， 要到最前面需要它前面的 <code>M</code> 的个数秒。因为每秒钟可以进行的操作次数没有限制所以不同的 <code>F</code> 操作可以叠加：考虑一个 <code>F</code>，如果它之前是一个 <code>F</code>，那么它只需要上一个 <code>F</code>的时间加一（因为每次上一个 <code>F</code> 交换来的 <code>M</code> 它都可以操作）。每次拿当前 <code>M</code>个数和上一个<code>F</code>的答案去最小值即可。</p>
+<h3 id="code">Code</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
 #include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
 #include&lt;cmath&gt;
 #include&lt;cstring&gt;
 #include&lt;algorithm&gt;
+#include&lt;climits&gt;
+#define int long long
 using namespace std;
-const int maxn=200000+5;
-int n,m;
-struct node{
-    int a,b,w;
-}q[maxn];
-int work(int k){
-    for(int i=1;i&lt;=m;i++){
-        int x=q[i].a;
-        int y=q[i].b;
-        int va=x&lt;0?-x&gt;k:q[x].w;
-        int vb=y&lt;0?-y&gt;k:q[y].w;
-        q[i].w=!(va&amp;&amp;vb);
-    }
-    return q[m].w;
-}
-int solve(int vx){
-    int l=1,r=n;
-    while(l&lt;r){
-        int mid=l+(r-l)/2;
-        if(work(mid)==vx)r=mid;
-        else l=mid+1;
-    }
-    return l;
-}
-int main(){
-    int T;
-    scanf(&quot;%d&quot;,&amp;T);
-    while(T--){
-        scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
-        for(int i=1;i&lt;=m;i++)
-            scanf(&quot;%d%d&quot;,&amp;q[i].a,&amp;q[i].b);
-        int v0=work(0);
-        int vx=work(n);
-        if(v0==vx){
-            for(int i=1;i&lt;=n;i++)printf(&quot;0&quot;);
-        }
-        else{
-            int x=solve(vx);
-            for(int i=1;i&lt;x;i++)printf(&quot;0&quot;);
-            printf(&quot;x&quot;);
-            for(int i=x+1;i&lt;=n;i++)printf(&quot;1&quot;);
-        }
-        printf(&quot;\n&quot;);
-    }
-    return 0;
+const int MaxN = 1000006;
+char str[MaxN];
+
+signed main(){
+	scanf(&quot;%s&quot;, str+1);
+	int len = strlen(str+1);
+	int ans = 0, danshi = 0;
+	for(int i=1; i&lt;=len; i++){
+		switch(str[i]){
+			case 'M':{
+				danshi++;
+				break;
+			}
+			case 'F':{
+				if(danshi &gt; 0) ans = max(ans+1, danshi);
+				break;
+			}
+		}
+	}
+	printf(&quot;%lld&quot;, ans);
+	return 0;
 }
 </code></pre>
 
@@ -185,9 +162,9 @@ int main(){
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://potatoler.ren/Luogu-P3486-可爱的质数/">
+            <a class="purple-link" href="https://potatoler.ren/CF768D-Jon-and-Orbs/">
               <h3 class="post-title">
-                下一篇：Luogu P3486 可爱的质数
+                下一篇：CF768D Jon and Orbs
               </h3>
             </a>
           </div>
