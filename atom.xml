@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.ren</id>
     <title>potatoler</title>
-    <updated>2020-11-09T13:15:10.483Z</updated>
+    <updated>2020-11-10T08:18:47.146Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.ren"/>
     <link rel="self" href="https://potatoler.ren/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://potatoler.ren/images/avatar.png</logo>
     <icon>https://potatoler.ren/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[S2OJ #23 淘淘蓝蓝之树林]]></title>
+        <id>https://potatoler.ren/S2OJ23-淘淘蓝蓝之树林/</id>
+        <link href="https://potatoler.ren/S2OJ23-淘淘蓝蓝之树林/">
+        </link>
+        <updated>2020-11-10T08:17:33.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CF837D Round Subset]]></title>
         <id>https://potatoler.ren/CF837D-Round-Subset/</id>
@@ -84,12 +91,5 @@
 ]]></summary>
         <content type="html"><![CDATA[<p>「<a href="https://www.luogu.com.cn/problem/P1020">导弹拦截</a>」这道题相信大家都已经做过了，这道题就是三维板的「导弹拦截」。</p>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Luogu P3354 Riv 河流]]></title>
-        <id>https://potatoler.ren/Luogu-P3354-Riv-河流/</id>
-        <link href="https://potatoler.ren/Luogu-P3354-Riv-河流/">
-        </link>
-        <updated>2020-09-29T10:18:23.000Z</updated>
     </entry>
 </feed>

@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>CF353D Queue | potatoler</title>
+<title>S2OJ #23 淘淘蓝蓝之树林 | potatoler</title>
 <meta name="description" content="破ᴾᵒ T𝙰T Oler">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -89,22 +89,15 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">CF353D Queue</h2>
+          <h2 class="post-title">S2OJ #23 淘淘蓝蓝之树林</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2020-11-09</span>
+            <span><i class="icon-calendar-outline"></i> 2020-11-10</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
                 
-                  <a href="https://potatoler.ren/Z-lt_QUXz/">
-                    字符串
-                    
-                      ，
-                    
-                  </a>
-                
-                  <a href="https://potatoler.ren/x0JHrwlfb/">
-                    贪心
+                  <a href="https://potatoler.ren/9dorec7MG/">
+                    最短路
                     
                       ，
                     
@@ -119,39 +112,85 @@
             
           </div>
           <div class="post-content">
-            <h3 id="题目"><a href="https://www.luogu.com.cn/problem/CF353D">题目</a>简述</h3>
-<p>给定一个长度不超过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">10^6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span></span></span> 的，由 <code>M</code> 和 <code>F</code> 组成的字符串。每秒可以做若干次这样的操作：选择一个 <code>F</code>，如果它的前面是 <code>M</code> 那么交换这两个字符（每一个 <code>F</code> 每一秒只能被操作一次）。多少秒后所有的 <code>F</code> 都在最前面？</p>
+            <h3 id="题目"><a href="http://www.sjzezoj.com:9280/problem/23">题目</a>简述</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n×m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的矩阵中有一个上下左右四联通的区域是「树林」，其内部没有空地。给定起点，可以往上下左右斜向八个方向走，并且路径必须是一个包住森林的环，求最短路径。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo separator="true">,</mo><mi>m</mi><mo>≤</mo><mn>2000</mn></mrow><annotation encoding="application/x-tex">n,m≤2000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span></span></span></span></p>
 <h3 id="思路">思路</h3>
-<p>因为每一个 <code>F</code> 每一秒只能被操作一次，对于一个 <code>F</code>， 要到最前面需要它前面的 <code>M</code> 的个数秒。因为每秒钟可以进行的操作次数没有限制所以不同的 <code>F</code> 操作可以叠加：考虑一个 <code>F</code>，如果它之前是一个 <code>F</code>，那么它只需要上一个 <code>F</code>的时间加一（因为每次上一个 <code>F</code> 交换来的 <code>M</code> 它都可以操作）。每次拿当前 <code>M</code>个数和上一个<code>F</code>的答案去最小值即可。</p>
+<p>可以在网格图上跑最短路。</p>
+<p>但是如果直接跑的话最后的路径不一定是一个环，可以找到「树林」中某个方向最突出的一个点，然后在那个方向设置一个「屏障」，这样就可以挡住另一半路径的去路，强制它绕圈，于是就可以构成环了。最后在那个点上面一个的八个方向去一下最小值就可以了。</p>
 <h3 id="code">Code</h3>
-<pre><code class="language-c++">#include&lt;iostream&gt;
+<pre><code class="language-C++">#include&lt;iostream&gt;
 #include&lt;cstdio&gt;
 #include&lt;cstdlib&gt;
 #include&lt;cmath&gt;
 #include&lt;cstring&gt;
 #include&lt;algorithm&gt;
 #include&lt;climits&gt;
+#include&lt;queue&gt;
+#include&lt;utility&gt;
+#include&lt;vector&gt;
 #define int long long
 using namespace std;
-const int MaxN = 1000006;
-char str[MaxN];
+const int MaxN = 2003;
+char mp[MaxN][MaxN];
+int n, m, sx, sy, xx, yy, dis[MaxN][MaxN];
+const int dx[8] = {-1,-1,-1,0,0,1,1,1}, dy[8] = {-1,0,1,-1,1,-1,0,1};
 
-signed main(){
-	scanf(&quot;%s&quot;, str+1);
-	int len = strlen(str+1);
-	int ans = 0, danshi = 0;
-	for(int i=1; i&lt;=len; i++){
-		switch(str[i]){
-			case 'M':{
-				danshi++;
-				break;
-			}
-			case 'F':{
-				if(danshi &gt; 0) ans = max(ans+1, danshi);
-				break;
+inline int Read(){
+	int num = 0, op = 1;
+	char ch = getchar();
+	while(!isdigit(ch)){
+		if(ch == '-') op = -1;
+		ch = getchar();
+	}
+	while(isdigit(ch)){
+		num = num * 10 + ch - '0';
+		ch = getchar();
+	}
+	return num * op;
+}
+
+inline void Dijstra(){
+	for(int i=0; i&lt;=n; i++)
+		for(int j=0; j&lt;=m; j++)
+			dis[i][j] = INT_MAX;
+	dis[sx][sy] = 0;
+	queue&lt;pair&lt;int,int&gt; &gt; q;
+	q.push(make_pair(sx, sy));
+	while(q.size()){
+		int x = q.front().first, y = q.front().second;
+		q.pop();
+		for(int i=0; i&lt;8; i++){
+			int nx = x + dx[i], ny = y + dy[i];
+			if(nx&gt;=1 &amp;&amp; nx&lt;=n &amp;&amp; ny&gt;=1 &amp;&amp; ny&lt;=m &amp;&amp; dis[x][y]+1&lt;dis[nx][ny] &amp;&amp; mp[nx][ny]!='X'){
+				dis[nx][ny] = dis[x][y]+1;
+				q.push(make_pair(nx, ny));
 			}
 		}
 	}
+	return;
+}
+
+signed main(){
+	n = Read(), m = Read();
+	for(int i=1; i&lt;=n; i++)
+		scanf(&quot;%s&quot;, mp[i]+1);
+	for(int i=1; i&lt;=n; i++){
+		for(int j=1; j&lt;=m; j++){
+			if(mp[i][j] == '*') sx = i, sy = j;
+			if(mp[i][j] == 'X' &amp;&amp; !xx) xx = i, yy = j;
+		}
+	}
+	for(int i=1; i&lt;xx; i++)
+		mp[i][yy] = 'X';
+	Dijstra();
+//	for(int i=1; i&lt;=n; i++){
+//		for(int j=1; j&lt;=m; j++)
+//			printf(&quot;%lld &quot;, dis[i][j]);
+//		printf(&quot;\n&quot;);
+//	}
+	int ans = INT_MAX;
+		ans = min(ans, min(dis[xx-1][yy-1], min(dis[xx-2][yy-1], dis[xx][yy-1])) + min(dis[xx-1][yy+1], min(dis[xx-2][yy+1], dis[xx][yy+1])) + 2);
 	printf(&quot;%lld&quot;, ans);
 	return 0;
 }
@@ -162,9 +201,9 @@ signed main(){
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://potatoler.ren/CF768D-Jon-and-Orbs/">
+            <a class="purple-link" href="https://potatoler.ren/CF837D-Round-Subset/">
               <h3 class="post-title">
-                下一篇：CF768D Jon and Orbs
+                下一篇：CF837D Round Subset
               </h3>
             </a>
           </div>
