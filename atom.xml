@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.ren</id>
     <title>potatoler</title>
-    <updated>2020-11-10T13:15:40.300Z</updated>
+    <updated>2020-11-11T13:13:01.908Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.ren"/>
     <link rel="self" href="https://potatoler.ren/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://potatoler.ren/images/avatar.png</logo>
     <icon>https://potatoler.ren/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[CF274E Mirror Room]]></title>
+        <id>https://potatoler.ren/CF274E-Mirror-Room/</id>
+        <link href="https://potatoler.ren/CF274E-Mirror-Room/">
+        </link>
+        <updated>2020-11-11T13:11:41.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[S2OJ #28 Legend hs_black - Rebuilding]]></title>
         <id>https://potatoler.ren/S2OJ28-Legend-hs_black-Rebuilding/</id>
@@ -80,12 +87,5 @@
 ]]></summary>
         <content type="html"><![CDATA[<p>看了十分钟才看懂题 QwQ</p>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[CF213C Relay Race]]></title>
-        <id>https://potatoler.ren/CF213C-Relay-Race/</id>
-        <link href="https://potatoler.ren/CF213C-Relay-Race/">
-        </link>
-        <updated>2020-10-15T13:27:59.000Z</updated>
     </entry>
 </feed>

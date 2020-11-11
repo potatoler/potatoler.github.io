@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>CF274E Mirror Room | potatoler</title>
+<meta name="description" content="破ᴾᵒ T𝙰T Oler">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1605100366172">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.ren">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1605100366172" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.ren">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="https://potatoler.ren" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/OI-TAT" class="menu purple-link">
+            OI TAT
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">CF274E Mirror Room</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-11-11</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.ren/cPteUJyES/">
+                    模拟
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/4gCQBNv0R/">
+                    STL
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/CJfrVrsBK/">
+                    二分
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h3 id="题目"><a href="https://www.luogu.com.cn/problem/CF274E">题目</a>简述</h3>
+<blockquote>
+<p>模拟赛又双叒叕考原题了</p>
+</blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n×m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的网格，其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个格子有障碍物，从一个空格子的中心点向左上、左下、右上、右下四个方向中的一个发出一束光线，若光线碰到障碍物或边界会反射，具体如下图：</p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2020/11/11/rz3QguamexFy1Hw.png" alt="反射" loading="lazy"></figure>
+<p>假如光线经过了某个格子中心，则称「光线经过了这个格子」，求光线经过的格子总数。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>≤</mo><mi>n</mi><mo separator="true">,</mo><mi>m</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup><mo separator="true">,</mo><mtext> </mtext><mn>0</mn><mo>≤</mo><mi>k</mi><mo>≤</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow><annotation encoding="application/x-tex">1≤n,m≤10^5,\ 0≤k≤10^5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78041em;vertical-align:-0.13597em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace"> </span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span></p>
+<h3 id="思路">思路</h3>
+<p>考场上写了个暴搜。</p>
+<p>这个题中的光线都是斜着走的，如果给网格图黑白染色不难发现光线从上一次反射（或出发）到下一次反射之间所走的格子一定是同色的。由于数据范围比较大，开数组肯定是存不下图的。我们可以给斜着的两种方向的每一排单独存障碍物，当光线走到某一个斜排的时候就在上面二分查找撞到那个障碍物。</p>
+<p>之后就和暴搜的思路一样是模拟光线。值得注意的是，光线其实有两种可能的路线，一种是绕了一圈，另一种是直接原路走回起点 —— 第二种情况可以特判一下，让开始返回的时候就结束模拟，会快一些。</p>
+<h3 id="code">Code</h3>
+<p>细节很多，写了一下午 QwQ</p>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;climits&gt;
+#include&lt;set&gt;
+#include&lt;vector&gt;
+#include&lt;utility&gt;
+#include&lt;map&gt;
+#define int long long
+using namespace std;
+const int MaxN = 100005;
+int n, m, k, sx, sy, sd;
+char str[5];
+
+inline int Read(){
+	int num = 0, op = 1;
+	char ch = getchar();
+	while(!isdigit(ch)){
+		if(ch == '-') op = -1;
+		ch = getchar();
+	}
+	while(isdigit(ch)){
+		num = num * 10 + ch - '0';
+		ch = getchar();
+	}
+	return num * op;
+}
+
+struct Record{
+	int x, y, d;
+	bool operator != (const Record &amp;b) const{
+		return (x != b.x || y != b.y || d != b.d);
+	}
+};
+
+class Block{
+	private:
+	set&lt;int&gt; storage[2][MaxN*2];
+	
+	public:
+	inline int Serial(int x, int y, int dir){
+		if(dir == 0) return x - y + m + 1;
+		else return x + y;
+	}
+	
+	inline void Insert(int x, int y){
+		storage[0][Serial(x,y,0)].insert(x);
+		storage[1][Serial(x,y,1)].insert(x);
+		return;
+	}
+	
+	inline set&lt;int&gt;::iterator Find(int dir, Record tar){
+		return storage[dir][Serial(tar.x, tar.y, dir)].lower_bound(tar.x);
+	}
+};
+
+class Grid{
+	private:
+	map&lt; pair&lt;int, int&gt;, bool &gt; mp;
+	Block block;
+	
+	public:
+	int ans;
+	#define Serial(x,y) make_pair(x,y)
+	
+	inline void AddBlock(int x, int y){
+		block.Insert(x,y);
+		mp[Serial(x,y)] = true;
+	}
+	
+	inline bool IfBlock(int x, int y){
+		return mp[Serial(x,y)];
+	}
+	
+	inline pair&lt;Record,int&gt; DFS(Record cur){
+		Record rec;
+		set&lt;int&gt; :: iterator it;
+		switch(cur.d){
+			case 1:{
+				it = block.Find(0, cur);
+				it--;
+				rec.x = cur.x - (abs(*it - cur.x) - 1);
+				rec.y = cur.y - (abs(*it - cur.x) - 1);
+				if(IfBlock(rec.x-1, rec.y) &amp;&amp; IfBlock(rec.x, rec.y-1)) rec.d = 3;
+				else if(IfBlock(rec.x-1, rec.y)){
+					rec.y--;
+					rec.d = 4;
+				}
+				else if(IfBlock(rec.x, rec.y-1)){
+					rec.x--;
+					rec.d = 2;
+				}
+				else rec.d = 3;
+				break;
+			}
+			case 2:{
+				it = block.Find(1, cur);
+				it--;
+				rec.x = cur.x - (abs(*it - cur.x) - 1);
+				rec.y = cur.y + (abs(*it - cur.x) - 1);
+				if(IfBlock(rec.x-1, rec.y) &amp;&amp; IfBlock(rec.x, rec.y+1)) rec.d = 4;
+				else if(IfBlock(rec.x-1, rec.y)){
+					rec.y++;
+					rec.d = 3;
+				}
+				else if(IfBlock(rec.x, rec.y+1)){
+					rec.x--;
+					rec.d = 1;
+				}
+				else rec.d = 4;
+				break;
+			}
+			case 3:{
+				it = block.Find(0, cur);
+				rec.x = cur.x + (abs(*it - cur.x) - 1);
+				rec.y = cur.y + (abs(*it - cur.x) - 1);
+//				printf(&quot;%lld %lld %lld %lld\n&quot;, cur.x, cur.y, rec.x, rec.y);
+				if(IfBlock(rec.x+1, rec.y) &amp;&amp; IfBlock(rec.x, rec.y+1)) rec.d = 1;
+				else if(IfBlock(rec.x+1, rec.y)){
+					rec.y++;
+					rec.d = 2;
+				}
+				else if(IfBlock(rec.x, rec.y+1)){
+					rec.x++;
+					rec.d = 4;
+				}
+				else rec.d = 1;
+				break;
+			}
+			case 4:{
+				it = block.Find(1, cur);
+				rec.x = cur.x + (abs(*it - cur.x) - 1);
+				rec.y = cur.y - (abs(*it - cur.x) - 1);
+				if(IfBlock(rec.x+1, rec.y) &amp;&amp; IfBlock(rec.x, rec.y-1)) rec.d = 2;
+				else if(IfBlock(rec.x+1, rec.y)){
+					rec.y--;
+					rec.d = 1;
+				}
+				else if(IfBlock(rec.x, rec.y-1)){
+					rec.x++;
+					rec.d = 3;
+				}
+				else rec.d = 2;
+				break;
+			}
+		}
+//		printf(&quot;%lld &quot;, rec.d);
+		return make_pair(rec, abs(*it - cur.x));
+	}
+	
+	inline bool Judge(Record cur){
+		Record rec = cur;
+		do{
+			pair&lt;Record,int&gt; tmp = DFS(cur);
+			ans += tmp.second;
+//			printf(&quot;%lld %lld %lld\n&quot;, tmp.first.x, tmp.first.y, tmp.first.d);
+			switch(tmp.first.d){
+				case 1:{
+					if(cur.d == 3) return false;
+					break;
+				}
+				case 2:{
+					if(cur.d == 4) return false;
+					break;
+				}
+				case 3:{
+					if(cur.d == 1) return false;
+					break;
+				}
+				case 4:{
+					if(cur.d == 2) return false;
+				}
+			}
+			cur = tmp.first;
+		}while(rec != cur);
+		return true;
+	}
+}grid;
+
+signed main(){
+	n = Read(), m = Read(), k = Read();
+	for(int i=0; i&lt;=m+1; i++){
+		grid.AddBlock(0,i);
+		grid.AddBlock(n+1,i);
+	}
+	for(int i=1; i&lt;=n; i++){
+		grid.AddBlock(i,0);
+		grid.AddBlock(i,m+1);
+	}
+	for(int i=1; i&lt;=k; i++){
+		int x = Read(), y = Read();
+		grid.AddBlock(x,y);
+	}
+	sx = Read(), sy = Read();
+	scanf(&quot;%s&quot;, str+1);
+	if(str[1] == 'N'){
+		if(str[2] == 'W') sd = 1;
+		else sd = 2;
+	}
+	else{
+		if(str[2] == 'W') sd = 4;
+		else sd = 3;
+	}
+	Record st = (Record){sx, sy, sd};
+//	printf(&quot;%lld\n&quot;, sd);
+	st = grid.DFS(st).first;
+	if(!grid.Judge(st)){
+		grid.ans--;
+		switch(st.d){
+			case 1:{
+				st.d = 3;
+				break;
+			}
+			case 2:{
+				st.d = 4;
+				break;
+			}
+			case 3:{
+				st.d = 1;
+				break;
+			}
+			case 4:{
+				st.d = 2;
+				break;
+			}
+		}
+		grid.Judge(st);
+	}
+	printf(&quot;%lld&quot;, grid.ans);
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.ren/S2OJ28-Legend-hs_black-Rebuilding/">
+              <h3 class="post-title">
+                下一篇：S2OJ #28 Legend hs_black - Rebuilding
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/potatoler" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.ren/atom.xml" target="_blank">RSS</a>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
