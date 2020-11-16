@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>S2OJ #57 平面图 | potatoler</title>
+<meta name="description" content="破ᴾᵒ T𝙰T Oler">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1605536597390">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.ren">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1605536597390" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.ren">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="https://potatoler.ren" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/OI-TAT" class="menu purple-link">
+            OI TAT
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">S2OJ #57 平面图</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-11-16</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.ren/tppR7nvd9/">
+                    最小生成树
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/LTV2ElzxZ/">
+                    图论
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/97Z_GGsdxE/">
+                    并查集
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h3 id="题目"><a href="http://www.sjzezoj.com:9280/problem/57">题目</a>简述</h3>
+<p>在平面上给定 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个点的坐标，你可以用一条线段连接任意两个点，使它们联通，代价为其长度的平方；平面上还有几 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 个简单的多边形，第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 个多边形包含给出的点中的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 个，你可以给多边形染色使多边形里的点联通，代价是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">c_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。求所有点联通的最小代价。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>≤</mo><mn>1000</mn><mo separator="true">,</mo><mtext> </mtext><mi>m</mi><mo>≤</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">n≤1000,\ m≤10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace"> </span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span></span></span></span></p>
+<h3 id="思路">思路</h3>
+<p>看到数据范围里的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 了嘛？这范围不是状压是啥啊！<s>考场上注意到数据范围却没有想到状压的 potatoler 是屑</s></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的范围也不大，于是可以放心给点连边，如果没有多边形染色的限定的话就是一个简单的最小生成树板子啦！考虑多边形的染色对最小生成树的影响 —— 染过色的多边形，其内部的点之间不再受到最小生成树的约束，但是值得注意的是，多边形染色只会使原来在最小生成树中的边不再需要，而不能是本不在原图最小生成树中的边被选中。也就是说我们可以先求原图的最小生成树然后在考虑那些边需要留那些边不需要留。</p>
+<p>考虑求最小生成树的算法流程：将边按权从小到大排序之后遍历，用一个并查集维护最小生成树的联通性 —— 这样可以在生成树联通的情况下保证边权和最小。给多边形染色之后相当于其中的有一些点已经联通，不需要在用最小生成树中的边了 —— 于是我们可以状压记录多边形的染色状态，对于每一种状态，初始化并查集使得染过色的多边形内部的点联通，然后像求最小生成树一样做就可以了。</p>
+<h3 id="code">Code</h3>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;climits&gt;
+#include&lt;algorithm&gt;
+#include&lt;utility&gt;
+#include&lt;queue&gt;
+#include&lt;vector&gt;
+#define int long long
+using namespace std;
+const int MaxN = 2003;
+int n, m, cntEdge, tot, ans;
+int x[MaxN], y[MaxN], father[MaxN];
+int cost[15];
+vector&lt;int&gt; block[15];
+
+class Edge{
+	public:
+	int from, to, value;
+	
+	Edge() = default;
+	Edge(int u, int v){
+		from = u, to = v;
+		value = (x[u]-x[v]) * (x[u]-x[v]) + (y[u]-y[v]) * (y[u]-y[v]);
+	}
+	
+	inline bool operator &lt; (const Edge &amp;b) const {
+		return value &lt; b.value;
+	}
+}graph[MaxN*MaxN], MST[MaxN];
+
+inline int Read(){
+	int num = 0, op = 1;
+	char ch = getchar();
+	while(!isdigit(ch)){
+		if(ch == '-') op = -1;
+		ch = getchar();
+	}
+	while(isdigit(ch)){
+		num = num * 10 + ch - '0';
+		ch = getchar();
+	}
+	return num * op;
+}
+
+inline int Find(int a){
+	return father[a] == a? a : father[a] = Find(father[a]);
+}
+
+inline void Init(){
+	for(int i=1; i&lt;=n; i++)
+		father[i] = i;
+	tot = 0;
+	for(int i=1; i&lt;=cntEdge; i++){
+		if(Find(father[graph[i].from]) == Find(father[graph[i].to])) continue;
+		father[Find(father[graph[i].from])] = Find(father[graph[i].to]);
+		ans += graph[i].value;
+		MST[++tot] = graph[i];
+		if(tot == n-1) break;
+	}
+	return;
+}
+
+inline void Solve(int s){
+	int sum = 0;
+	for(int i=1; i&lt;=n; i++)
+		father[i] = i;
+	for(int i=1; i&lt;=m; i++){
+		if(!(s &amp; (1&lt;&lt;(i-1)))) continue;
+		sum += cost[i];
+		for(int j=0; j&lt;block[i].size(); j++){
+			if(Find(block[i][j]) != Find(block[i][0])) father[Find(block[i][j])] = Find(block[i][0]);
+		}
+	}
+	for(int i=1; i&lt;n; i++){
+		if(Find(father[MST[i].from]) == Find(father[MST[i].to])) continue;
+		father[Find(father[MST[i].from])] = Find(father[MST[i].to]);
+		sum += MST[i].value;
+	}
+	ans = min(ans, sum);
+}
+
+signed main(){
+	n = Read(), m = Read();
+	for(int i=1; i&lt;=n; i++)
+		x[i] = Read(), y[i] = Read();
+	for(int i=1; i&lt;n; i++)
+		for(int j=i+1; j&lt;=n; j++)
+			graph[++cntEdge] = Edge(i,j);
+	sort(graph+1, graph+1+cntEdge);
+	Init();
+	for(int i=1; i&lt;=m; i++){
+		int k = Read();
+		cost[i] = Read();
+		while(k--){
+			int ver = Read();
+			block[i].push_back(ver);
+		}
+	}
+	for(int i=1; i&lt;(1&lt;&lt;m); i++)
+		Solve(i);
+	printf(&quot;%lld&quot;, ans);
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.ren/CF274E-Mirror-Room/">
+              <h3 class="post-title">
+                下一篇：CF274E Mirror Room
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/potatoler" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.ren/atom.xml" target="_blank">RSS</a>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

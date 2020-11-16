@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.ren</id>
     <title>potatoler</title>
-    <updated>2020-11-11T13:13:01.908Z</updated>
+    <updated>2020-11-16T14:23:22.093Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.ren"/>
     <link rel="self" href="https://potatoler.ren/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://potatoler.ren/images/avatar.png</logo>
     <icon>https://potatoler.ren/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[S2OJ #57 平面图]]></title>
+        <id>https://potatoler.ren/S2OJ-57-平面图/</id>
+        <link href="https://potatoler.ren/S2OJ-57-平面图/">
+        </link>
+        <updated>2020-11-16T14:21:43.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CF274E Mirror Room]]></title>
         <id>https://potatoler.ren/CF274E-Mirror-Room/</id>
@@ -76,16 +83,5 @@
         <link href="https://potatoler.ren/CF1265E-Beautiful-Mirrors/">
         </link>
         <updated>2020-10-16T01:43:46.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[CF930C Teodor is not a liar!]]></title>
-        <id>https://potatoler.ren/CF930C-Teodor/</id>
-        <link href="https://potatoler.ren/CF930C-Teodor/">
-        </link>
-        <updated>2020-10-15T14:34:19.000Z</updated>
-        <summary type="html"><![CDATA[<p>看了十分钟才看懂题 QwQ</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>看了十分钟才看懂题 QwQ</p>
-]]></content>
     </entry>
 </feed>
