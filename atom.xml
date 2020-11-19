@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.ren</id>
     <title>potatoler</title>
-    <updated>2020-11-17T15:17:55.937Z</updated>
+    <updated>2020-11-19T03:33:43.819Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.ren"/>
     <link rel="self" href="https://potatoler.ren/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://potatoler.ren/images/avatar.png</logo>
     <icon>https://potatoler.ren/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[打扫房间]]></title>
+        <id>https://potatoler.ren/打扫房间/</id>
+        <link href="https://potatoler.ren/打扫房间/">
+        </link>
+        <updated>2020-11-19T03:32:50.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[甜甜圈]]></title>
         <id>https://potatoler.ren/Mister-Donuts/</id>
@@ -76,12 +83,5 @@
 ]]></summary>
         <content type="html"><![CDATA[<p>这个建图真是太妙了</p>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SDFZOJ #204 RPG 游戏]]></title>
-        <id>https://potatoler.ren/RPG-game/</id>
-        <link href="https://potatoler.ren/RPG-game/">
-        </link>
-        <updated>2020-10-27T09:47:40.000Z</updated>
     </entry>
 </feed>
