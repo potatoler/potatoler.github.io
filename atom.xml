@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://potatoler.ren</id>
     <title>potatoler</title>
-    <updated>2020-11-19T03:33:43.819Z</updated>
+    <updated>2020-11-19T03:58:53.528Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://potatoler.ren"/>
     <link rel="self" href="https://potatoler.ren/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://potatoler.ren/images/avatar.png</logo>
     <icon>https://potatoler.ren/favicon.ico</icon>
     <rights>All rights reserved 2020, potatoler</rights>
+    <entry>
+        <title type="html"><![CDATA[育·谜题]]></title>
+        <id>https://potatoler.ren/育-谜题/</id>
+        <link href="https://potatoler.ren/育-谜题/">
+        </link>
+        <updated>2020-11-19T03:57:44.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[打扫房间]]></title>
         <id>https://potatoler.ren/打扫房间/</id>
@@ -72,16 +79,5 @@
         <link href="https://potatoler.ren/CF768D-Jon-and-Orbs/">
         </link>
         <updated>2020-11-09T10:11:53.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Luogu P5994 Kuglarz]]></title>
-        <id>https://potatoler.ren/Luogu-P5994-Kuglarz/</id>
-        <link href="https://potatoler.ren/Luogu-P5994-Kuglarz/">
-        </link>
-        <updated>2020-10-28T02:18:49.000Z</updated>
-        <summary type="html"><![CDATA[<p>这个建图真是太妙了</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>这个建图真是太妙了</p>
-]]></content>
     </entry>
 </feed>
