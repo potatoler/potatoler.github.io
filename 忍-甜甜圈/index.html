@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>忍·甜甜圈 | potatoler</title>
+<meta name="description" content="破ᴾᵒ T𝙰T Oler">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1605774440990">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.ren">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1605774440990" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.ren">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="https://potatoler.ren" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/OI-TAT" class="menu purple-link">
+            OI TAT
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">忍·甜甜圈</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-11-17</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.ren/FQa8aDTOL/">
+                    前缀和
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/aPr9ZLymlL/">
+                    暴力
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/k8Bgcetq3/">
+                    DP
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h3 id="题目"><a href="https://www.luogu.com.cn/problem/U141255">题目</a>简述</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n×m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的网格图，每个格子有权值，选三个不重叠的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>×</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">k×k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span> 的正方形区域，求最大权值和。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo separator="true">,</mo><mi>m</mi><mo>≤</mo><mn>1500</mn></mrow><annotation encoding="application/x-tex">n,m≤1500</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span><span class="mord">0</span><span class="mord">0</span></span></span></span></p>
+<h3 id="思路">思路</h3>
+<p>数据范围看起来很暴力，实际也很暴力。</p>
+<p>首先可以看出如果三个正方形一起枚举的话肯定是行不通的。但是我们可以考虑根据正方形的位置把网格图用两条线段分成不重叠的三部分 —— 每部分里面求一个最大的正方形区域。三个正方形可以横着一排或者竖着一列，又或者是形成一个三角形 —— 这种情况有四个方向。于是只要先对网格图二维前缀和预处理，就可以分类讨论，暴力 DP 统计了。</p>
+<h3 id="code">Code</h3>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;climits&gt;
+#define int long long
+using namespace std;
+const int MaxN = 1503;
+int n, m, k, sum[MaxN][MaxN], sq[MaxN][MaxN], ans;
+int rb[MaxN][MaxN], lb[MaxN][MaxN], rt[MaxN][MaxN], lt[MaxN][MaxN];
+
+inline int Read(){
+	int num = 0, op = 1;
+	char ch = getchar();
+	while(!isdigit(ch)){
+		if(ch == '-') op = -1;
+		ch = getchar();
+	}
+	while(isdigit(ch)){
+		num = num * 10 + ch - '0';
+		ch = getchar();
+	}
+	return num * op;
+}
+
+signed main(){
+	n = Read(), m = Read(), k = Read();
+	for(int i=1; i&lt;=n; i++){
+		for(int j=1; j&lt;=m; j++){
+			int val = Read();
+			sum[i][j] = sum[i-1][j] + sum[i][j-1] - sum[i-1][j-1] + val;
+		}
+	}
+	
+	for(int i=k; i&lt;=n; i++)
+		for(int j=k; j&lt;=m; j++)
+			sq[i][j] = sum[i][j] - sum[i-k][j] - sum[i][j-k] + sum[i-k][j-k];
+			
+	for(int i=k; i&lt;=n; i++)
+		for(int j=k; j&lt;=m; j++)
+			rb[i][j] = max(sq[i][j], max(rb[i-1][j], rb[i][j-1]));
+			
+	for(int i=k; i&lt;=n; i++)
+		for(int j=m-k+1; j; j--)
+			lb[i][j] = max(sq[i][j+k-1], max(lb[i-1][j], lb[i][j+1]));
+			
+	for(int i=n-k+1; i; i--)
+		for(int j=k; j&lt;=m; j++)
+			rt[i][j] = max(sq[i+k-1][j], max(rt[i+1][j], rt[i][j-1]));
+	
+	for(int i=n-k+1; i; i--)
+		for(int j=m-k+1; j; j--)
+			lt[i][j] = max(sq[i+k-1][j+k-1], max(lt[i+1][j], lt[i][j+1]));
+			
+	for(int i=k; i&lt;=n; i++)
+		for(int j=k+k; j&lt;=m-k; j++)
+			ans = max(ans, sq[i][j] + rb[n][j-k] + lb[n][j+1]);
+			
+	for(int i=k+k; i&lt;=n-k; i++)
+		for(int j=k; j&lt;=m; j++)
+			ans = max(ans, sq[i][j] + rb[i-k][m] + rt[i+1][m]);
+	
+	for(int i=k; i&lt;=n-k; i++)
+		for(int j=k; j&lt;=m-k; j++)
+			ans = max(ans, rb[i][j] + rt[i+1][j] + lt[1][j+1]);
+	
+	for(int i=k; i&lt;=n-k; i++)
+		for(int j=k; j&lt;=m-k; j++)
+			ans = max(ans, rb[n][j] + lb[i][j+1] + lt[i+1][j+1]);
+	
+	for(int i=k; i&lt;=n-k; i++)
+		for(int j=k; j&lt;=m-k; j++)
+			ans = max(ans, rb[i][j] + lb[i][j+1] + lt[i+1][1]);
+	
+	for(int i=k; i&lt;=n-k; i++)
+		for(int j=k; j&lt;=m-k; j++)
+			ans = max(ans, rb[i][m] + rt[i+1][j] + lt[i+1][j+1]);
+			
+	printf(&quot;%lld&quot;, ans);
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.ren/S2OJ-57-平面图/">
+              <h3 class="post-title">
+                下一篇：S2OJ #57 平面图
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/potatoler" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.ren/atom.xml" target="_blank">RSS</a>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
