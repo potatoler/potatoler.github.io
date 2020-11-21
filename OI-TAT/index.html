@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1605786731706">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1605952158560">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
 
@@ -39,7 +39,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://potatoler.ren">
-        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1605786731706" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1605952158560" alt="" width="32px" height="32px">
       </a>
       <a href="https://potatoler.ren">
         <h1 class="site-title">potatoler</h1>
@@ -124,6 +124,7 @@
 <li>一个 STL <code>map</code> 的小技巧：要多次运行这条语句时：<code>ans += mp[pos]</code>，不管 <code>pos</code> 这个下标有没有值，访问的时候都会把这个位置开出来 —— 这样会导致数据中有很多空下标时开出很多空的位置，使程序变慢。可以在前面加上 <code>if(mp.count(pos))</code> 或 <code>if(mp.find(pos))</code>，这样访问空下标的时候就会直接略过，不会开出多余的位置。某些题目中甚至可以快将近一倍。</li>
 <li>状压位数超过 30 用 <code>long long</code> 的时候移位要使用 <code>1ll</code></li>
 <li>状压位数用 <code>unsigned long long</code> 时注意位数为 64 时的特判</li>
+<li>队列取 <code>front</code> 的时候必要时先判是否非空，否则 UB。对于其他 STL 也适用</li>
 </ul>
 
           </div>
