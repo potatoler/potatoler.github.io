@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1605958129453">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1606012434604">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
 
@@ -39,7 +39,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://potatoler.ren">
-        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1605958129453" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1606012434604" alt="" width="32px" height="32px">
       </a>
       <a href="https://potatoler.ren">
         <h1 class="site-title">potatoler</h1>
@@ -125,6 +125,7 @@
 <li>状压位数超过 30 用 <code>long long</code> 的时候移位要使用 <code>1ll</code></li>
 <li>状压位数用 <code>unsigned long long</code> 时注意位数为 64 时的特判</li>
 <li>队列取 <code>front</code> 的时候必要时先判是否非空，否则 UB。对于其他 STL 也适用</li>
+<li>位运算前面加逻辑非的时候，位运算整体加括号！</li>
 </ul>
 
           </div>
