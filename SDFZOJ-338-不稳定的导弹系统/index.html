@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>SDFZOJ #338 不稳定的导弹系统 | potatoler</title>
+<meta name="description" content="破ᴾᵒ T𝙰T Oler">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1606226986694">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.ren">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1606226986694" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.ren">
+        <h1 class="site-title">potatoler</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="https://potatoler.ren" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://potatoler.ren/OI-TAT" class="menu purple-link">
+            OI TAT
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">SDFZOJ #338 不稳定的导弹系统</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-11-24</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.ren/2PiXxsBuQ/">
+                    网络流
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/0NMEV3x5oi/">
+                    最小割
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/LTV2ElzxZ/">
+                    图论
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/xsv9XG8Y6/">
+                    题解
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <h3 id="题目"><a href="http://sdfzoj.zhaojinxi.top/problem/338">题目</a>简述</h3>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">n×m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span> 的网格图，每一小格代表一个单位区域，单位区域上要么是空地，要么是导弹发射器，要么有一定数量的叛军，一个导弹发射器只能消灭一个方向的一个单位区域的叛军，求最多可以消灭多少叛军。保证不会有导弹发射器能炸到另一个导弹发射器，导弹的飞行路线不能有交叉。</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo separator="true">,</mo><mi>m</mi><mo>≤</mo><mn>50</mn></mrow><annotation encoding="application/x-tex">n,m≤50</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304100000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span></span></span></span></p>
+<h3 id="思路">思路</h3>
+<p>先不考虑导弹路线不能交叉的限制，对于每一个导弹发射器就可以选择点权最大的那个点。由于每个区域只可能被一个横向和一个纵向的导弹打到（因为题目题面保证了「导弹发射器不能炸到导弹发射器」），那么我们可以把每一个点拆成两个点。</p>
+<p>将一开始的答案<code>ans</code>设为每个导弹可以打到的最大点权之和，这个答案大概率是不合法的。将每个点的点权重新赋为一开始的答案减去这个点原来的点权，即<code>ans-a[i][j]</code>，这样做的意义是当将导弹发射器与某个点匹配的时候，只需要在原答案的基础上减去这个点的新点权就可以了，至此我们通过转化将原问题变成一个「减去尽量小的点权并使答案合法」的问题。</p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2020/11/24/Q9rhOJNoaAg4wUT.jpg" alt="建图" loading="lazy"></figure>
+<p>对于横点，向下一个点连一条边权为自己新点权的边，对于竖点，下一个点像自己连一条边权为自己新点权的边，可以得到上面这样的图。原来的减去一些点的点权就可以转化成删掉一些边。</p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2020/11/24/yt37xPasklwdvDJ.jpg" alt="不合法" loading="lazy"></figure>
+<p>按照上图建立超级源点和超级汇点可以发现，当网络图中存在一条通路时，两发导弹的路线会相交，此时的删边时不合法的。例如上面的删边方式代表的是两发导弹分别选择了两条边到达的点，这样它们的路线会相交，此时网络图中也确实存在一条通路（蓝色）。<br>
+最终这个问题变成了要删掉边权和尽量小的边并使图中不存在通路，也就是求最小割。</p>
+<p>至于为什么横竖的边方向不同？还记得我们一开始将一个点拆成了一个横点和一个竖点吗？这样连边可以时同一个点的横点和竖点形成通路，可以避免两个导弹同时选择这个点的情况，同时也避免了相交。</p>
+<h3 id="code">Code</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cmath&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;climits&gt;
+#define int long long
+#define ID1(x,y) (((x-1)*m+y)*2)
+#define ID2(x,y) (((x-1)*m+y)*2-1)
+using namespace std;
+int n, m, ans, a[55][55], head[55*55*2], cntEdge=1, dis[55*55*2];
+bool visited[55*55*2];
+struct Edge{
+	int destination, nextEdge, value;
+}edge[55*55*4*2];
+
+inline int Read(){
+	int num = 0, op = 1;
+	char ch = getchar();
+	while(!isdigit(ch)){
+		if(ch == '-') op = -1;
+		ch = getchar();
+	}
+	while(isdigit(ch)){
+		num = num * 10 + ch - '0';
+		ch = getchar();
+	}
+	return op * num;
+}
+
+inline void AddEdge(int u, int v, int w){
+	cntEdge++;
+	edge[cntEdge].destination = v;
+	edge[cntEdge].nextEdge = head[u];
+	edge[cntEdge].value = w;
+	head[u] = cntEdge;
+	return;
+}
+
+inline void Link(int u, int v, int w){
+	AddEdge(u, v, w);
+	AddEdge(v, u, 0);
+	return;
+}
+
+inline bool Check(){
+	int res = INT_MAX;
+	for(int i=0; i&lt;=n*m*2+1; i++){
+		if(visited[i]){
+			for(int j = head[i]; j; j = edge[j].nextEdge){
+				int to = edge[j].destination, val = edge[j].value;
+				if(val &amp;&amp; !visited[to]){
+					res = min(res, dis[to]+1-dis[i]);
+				}
+			}
+		}
+	}
+//	printf(&quot;%lld\n&quot;, res);
+	if(res == INT_MAX) return false;
+	for(int i=0; i&lt;=n*m*2+1; i++){
+		if(visited[i]) dis[i] += res;
+	}
+	return true;
+}
+
+inline int Update(int x, int y, int z){
+	visited[x] = true;
+//	printf(&quot;%lld\n&quot;, z);
+	if(x == y){
+		ans -= z;
+		return z;
+	}
+	for(int i = head[x]; i; i = edge[i].nextEdge){
+		int &amp;to = edge[i].destination, &amp;val = edge[i].value;
+		if(!visited[to] &amp;&amp; val &amp;&amp; dis[x] == dis[to] + 1){
+			int res = Update(to, y, min(z,val));
+			if(res){
+				edge[i].value -= res;
+				edge[i^1].value += res;
+				return res;
+			}
+		}
+	}
+	return 0;
+}
+
+signed main(){
+	n = Read(), m = Read();
+	for(int i=1; i&lt;=n; i++){
+		for(int j=1; j&lt;=m; j++){
+			a[i][j] = Read();
+			Link(ID1(i,j), ID2(i,j), INT_MAX);
+		}
+	}
+	for(int i=1; i&lt;=n; i++){
+		for(int j=1; j&lt;=m; j++){
+			int mx = 0;
+			switch(a[i][j]){
+				case -1:{
+					Link(0, ID1(i,j), INT_MAX);
+					for(int k=i; k&gt;=1; k--)
+						mx = max(mx, a[k][j]);
+					for(int k=i; k&gt;=2; k--)
+						Link(ID1(k,j), ID1(k-1,j), mx-max(a[k][j],0ll));
+					break;
+				}
+				case -2:{
+					Link(0, ID1(i,j), INT_MAX);
+					for(int k=i; k&lt;=n; k++)
+						mx = max(mx, a[k][j]);
+					for(int k=i; k&lt;n; k++)
+						Link(ID1(k,j), ID1(k+1,j), mx-max(a[k][j],0ll));
+					break;
+				}
+				case -3:{
+					Link(ID2(i,j), n*m*2+1, INT_MAX);
+					for(int k=j; k&gt;=1; k--)
+						mx = max(mx, a[i][k]);
+					for(int k=j; k&gt;=2; k--)
+						Link(ID2(i,k-1), ID2(i,k), mx-max(a[i][k],0ll));
+					break;
+				}
+				case -4:{
+					Link(ID2(i,j), n*m*2+1, INT_MAX);
+					for(int k=j; k&lt;=m; k++)
+						mx = max(mx, a[i][k]);
+					for(int k=j; k&lt;m; k++)
+						Link(ID2(i,k+1), ID2(i,k), mx-max(a[i][k],0ll));
+					break;
+				}
+			}
+			ans += mx;
+			Link(ID1(i,j), ID2(i,j), INT_MAX);
+		}
+	}
+	do{
+		memset(visited, false, sizeof(visited));
+//		printf(&quot;O&quot;);
+		while(Update(0, n*m*2+1, INT_MAX)){
+//			printf(&quot;h&quot;);
+			for(int i=0; i&lt;=n*m*2+1; i++)
+				visited[i] = false;
+		}
+//		printf(&quot;\n&quot;);
+//		printf(&quot;%lld\n&quot;, ans);
+	}while(Check());
+	printf(&quot;%lld&quot;, ans);
+	return 0;
+}
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.ren/火怜-体术/">
+              <h3 class="post-title">
+                下一篇：火怜·体术
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">破ᴾᵒ T𝙰T Oler</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/potatoler" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2020 | <a class="rss" href="https://potatoler.ren/atom.xml" target="_blank">RSS</a>
+</div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
