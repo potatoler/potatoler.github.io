@@ -6,16 +6,22 @@
 <meta charset="utf-8" >
 
 <title>树学杂谈: 树链剖分 | potatoler</title>
-<meta name="description" content="">
+<meta name="description" content="蕴藏着想成为真物的意志，伪物就比真物来的更真实">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1612171770242">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1612173400814">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -31,7 +37,6 @@
   gtag('config', 'UA-177886962-1');
 </script>
 
-
   </head>
   <body>
     <div id="app" class="main">
@@ -39,15 +44,24 @@
   <div class="site-header">
     <div class="left">
       <a href="https://potatoler.ren">
-        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1612171770242" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1612173400814" alt=""
+          width="32px" height="32px">
       </a>
       <a href="https://potatoler.ren">
-        <h1 class="site-title">potatoler</h1>
+        <h1 class="site-title">
+          potatoler
+        </h1>
       </a>
     </div>
     <div class="right">
+      <div class="gridea-search-div" v-if="headSearchShow">
+        <form id="gridea-search-form" action="https://potatoler.ren/search/">
+          <input class="gridea-search-input" autocomplete="off" spellcheck="false" name="q" />
+        </form>
+      </div>
       <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }"
+          @click="menuClick()"></i>
       </transition>
     </div>
   </div>
@@ -56,29 +70,33 @@
 <transition name="fade">
   <div class="menu-container" style="display: none;" v-show="menuVisible">
     <div class="menu-list">
+      <div class="gridea-search-div" v-if="menuSearchShow">
+        <form id="gridea-search-form" action="https://potatoler.ren/search/">
+          <input class="gridea-search-input" autocomplete="off" spellcheck="false" name="q" />
+        </form>
+      </div>
       
         
-          <a href="https://potatoler.ren" class="menu purple-link">
-            首页
-          </a>
+            <a href="https://potatoler.ren" class="menu purple-link">
+              首页
+            </a>
+            
+              
         
-      
+            <a href="https://potatoler.ren/tags" class="menu purple-link">
+              标签
+            </a>
+            
+              
         
-          <a href="https://potatoler.ren/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="https://potatoler.ren/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
+            <a href="https://potatoler.ren/archives" class="menu purple-link">
+              归档
+            </a>
+            
+              
     </div>
   </div>
 </transition>
-
 
       <div class="content-container">
         <div class="post-detail">
@@ -489,15 +507,17 @@ inline void TreeAdd(int x,int y,int z){
       </div>
 
       
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
 
       <div class="site-footer">
-  <div class="slogan"></div>
+  <div class="slogan">蕴藏着想成为真物的意志，伪物就比真物来的更真实</div>
   <div class="social-container">
     
-      
-        <a href="https://github.com/potatoler" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
       
     
       
@@ -514,18 +534,30 @@ inline void TreeAdd(int x,int y,int z){
 
 
     </div>
-    <script type="application/javascript">
+    <script src="https://potatoler.ren/media/scripts/index.js"></script>
 
-hljs.initHighlightingOnLoad()
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
-</script>
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'e8f1f71cce033ba0ab35',
+        clientSecret: 'ab50e9025967269975fd0a0cbd10a58741a2cd6a',
+        repo: 'potatoler.github.io',
+        owner: 'potatoler',
+        admin: ['potatoler'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 
