@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Apple Watch 太阳刻度表盘的另类之美与黄昏的剖析 | potatoler</title>
+<meta name="description" content="蕴藏着想成为真物的意志，伪物就比真物来的更真实">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://potatoler.ren/favicon.ico?v=1613705938663">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://potatoler.ren/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177886962-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177886962-1');
+</script>
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://potatoler.ren">
+        <img class="avatar" src="https://potatoler.ren/images/avatar.png?v=1613705938663" alt=""
+          width="32px" height="32px">
+      </a>
+      <a href="https://potatoler.ren">
+        <h1 class="site-title">
+          potatoler
+        </h1>
+      </a>
+    </div>
+    <div class="right">
+      <div class="gridea-search-div" v-if="headSearchShow">
+        <form id="gridea-search-form" action="https://potatoler.ren/search/">
+          <input class="gridea-search-input" autocomplete="off" spellcheck="false" name="q" />
+        </form>
+      </div>
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }"
+          @click="menuClick()"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      <div class="gridea-search-div" v-if="menuSearchShow">
+        <form id="gridea-search-form" action="https://potatoler.ren/search/">
+          <input class="gridea-search-input" autocomplete="off" spellcheck="false" name="q" />
+        </form>
+      </div>
+      
+        
+            <a href="https://potatoler.ren" class="menu purple-link">
+              首页
+            </a>
+            
+              
+        
+            <a href="https://potatoler.ren/tags" class="menu purple-link">
+              标签
+            </a>
+            
+              
+        
+            <a href="https://potatoler.ren/archives" class="menu purple-link">
+              归档
+            </a>
+            
+              
+    </div>
+  </div>
+</transition>
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+            <div class="feature-container" style="background-image: url('https://potatoler.ren/post-images/the-eerie-beauty-of-the-apple-watch-solar-face-and-the-anatomy-of-nightfall.jpg')">
+            </div>
+          
+          <h2 class="post-title">Apple Watch 太阳刻度表盘的另类之美与黄昏的剖析</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-02-19</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://potatoler.ren/4StD8nVpK/">
+                    数码
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/FSiSPgXtt/">
+                    搬运
+                    
+                      ，
+                    
+                  </a>
+                
+                  <a href="https://potatoler.ren/P5eoSxau7/">
+                    感
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>2014 年 Apple Watch 推出时，只有 10 组基本的表盘，从那以后，这个数字可以说是明显增加。现在<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>，从「健身记录<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>」到「大文字」，有 31 组不同的表盘。如果你考虑每组中的所有变种，并且将所有可能的颜色和复杂功能都算上，得到的总数即使算不上难以数计，也无疑是难以计算的。事实上，如果你是 Apple Watch 的忠实粉丝，你几乎可以找到任何符合心情或者改变口味的搭配（如果你把所有的表带搭配都算上，这个总数可以变成真正的天文数字）。</p>
+<p>我个人最喜欢的 Apple Watch 表盘总是包括那些天文类表盘，比如「天文」表盘（它让你可以通过转动表冠来查看太阳系中所有行星过去，现在和未来的位置）。原始的「太阳」表盘是太阳图，显示了太阳高度以及日出，太阳正午，傍晚和黄昏的时间。太阳正午很有意思，它是太阳真正到达最高点的时刻，这个时刻通常不是指针所指的正午 12 点钟。这是因为民用时间是整个时区的统一时间，这个问题在实行夏令时的地区更严重。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://gitee.com/potatoler/blogimages/raw/master/uPic/aw5-1.jpeg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">与 Apple Watch Series 5 一同推出的太阳刻度表盘</div>
+</center>
+<p>watchOS 6 增加了一个迷人的新「太阳」表盘，它叫做「太阳刻度表盘<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>」。它被描述为「手腕上的微型日冕」，但是它更像是同是在手腕上戴着日冕和太阳本身。此外，它还与机械表上一些相当特别的设计有诸多相似之处，我们稍后再讲。</p>
+<p>太阳刻度表盘有一个 24 小时的刻度盘，最上面是 12（正午）最下面是 24（午夜）。时针在一天中只经过每条刻度一次，在每小时中，表盘上的太阳也会移动一段距离代表太阳的变化。表盘上浅蓝色刻度的数量表示白昼的小时数，深蓝色的是黑夜的小时数，二者的边界则是代表日出日落的地平线。表盘上太阳的另一端是一个较小的刻度盘，通过模拟或数字的方式显示时和分。表盘的四个角可以设置复杂功能（我自己设置的是，从左上角起顺时针：世界时间，日期，健身记录和体能训练）。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://gitee.com/potatoler/blogimages/raw/master/uPic/729A5452.jpg.jpeg">
+    <br>
+</center>
+<p>点击表盘可以查看现在是白天还是晚上，亦或是曙暮光<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup>的不同阶段，表盘还会显示这一天的昼长。</p>
+<p>作为背景的天空颜色也会随一天中的时间变化。当傍晚时分太阳向地平线落下时，可以看到从蓝色，到深蓝色，再到可爱的浅粉色的过渡。你可以通过转动表冠查看日落以及曙暮光不同阶段的时间，还可以看到副表盘中以黄色数字显示的，从当前时间到日落或其他太阳天文事件的时间。</p>
+<figure data-type="image" tabindex="1"><img src="https://gitee.com/potatoler/blogimages/raw/master/uPic/IMG_4869.PNG.jpeg" alt="" loading="lazy"></figure>
+<p>你还可以注意到，清晨和傍晚两段时间都被四个时刻分割。上图中的太阳在日落。日落和日出的定义非常准确，它们是太阳盘的上半部分边缘消失在地平线下方以及出现在地平线上方的时刻（准确来讲是上半部分的边缘切到地平线的时刻）。有趣的是，由于太阳的影像在地球大气中的折射，在观察位置看到日落的时刻，太阳其实高出地平线一个多太阳直径的距离。</p>
+<p>然而，太阳上半边缘在地平线以下的消失并不意味着夜幕会像关灯一样立即降临，这个时刻是一段被称为「暮光<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup>」的时间的开始。暮光是日落和真正的黑夜之间的一段时间，在这个时间里太阳的余晖消失，天空变得完全黑暗。事实上，暮光本身又分为三个阶段：民用暮光，航海暮光和天文暮光 —— 加上白昼和黑夜，由傍晚的四个时间点分隔。当每个阶段的暮光变暗时，它达到黄昏<sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup>时刻，并向下一个暮光阶段过渡（顺带一提，暮光，对应原文中的 twilight，起源于古英语，描绘的是视觉上的模糊，twi 这个前缀意义不明，可能表示 half light）。</p>
+<p>因此，从日落开始的顺序是：日落；民用暮光，民用黄昏；航海暮光，航海黄昏；天文暮光，天文黄昏；最后是黑夜本身。最终结束于太阳午夜，这是从观察位置看，太阳在天球处于最低点的时刻。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://gitee.com/potatoler/blogimages/raw/master/uPic/Twilight_subcategories.jpg.jpeg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">白昼，黑夜，以及两者之间的时间</div>
+</center>
+<p>在夜间照明不太普遍的日子里，经历夜幕降临一定是焦虑的根源之一 —— 你只能点有限数量的蜡烛，并且天边的余晖总会慢慢消逝。在我们心中文明的那部分确信太阳一定会再次升起，但是我们的天性可不敢保证。莎士比亚在其最黑暗的戏剧《哈姆雷特》中将这种至暗时刻的不理性情绪通过人物的独白表现得淋漓尽致：</p>
+<blockquote>
+<p>现在是夜里最阴森的时间</p>
+<p>教堂墓地，甚至地狱都要向人间放出乌烟瘴气，传播疾病</p>
+<p>现在我可以痛饮热血</p>
+<p>可以干骇人听闻的痛苦勾当了</p>
+<p>（原文如下：）</p>
+<p>&quot;Tis now the very witching time of night,<br>
+When churchyards yawn and hell itself breathes out<br>
+Contagion to this world: now could I drink hot blood,<br>
+And do such bitter business as the day<br>
+Would quake to look on.&quot;</p>
+</blockquote>
+<p>描述暮光时刻的词汇很丰富，比如暮色，和暮光意思接近<sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup>。主要在黎明或傍晚时分活动的动物被称为曙暮性动物<sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup>我最喜欢的，也许也是你最喜欢的，是萤火虫。</p>
+<h3 id="民用暮光">民用暮光</h3>
+<p>在三个暮光阶段 —— 民用，航海和天文之中，民用暮光是起源最模糊的（甚至这个起源有点像是一个玩笑）。从历史上来讲，民用暮光似乎到近代才被定义，1817 年托马斯·莱伯恩写道「这些概念都非常模糊，与其说是天文学的暮光，不如说是还可以劳动和阅读的时间，朗伯提到它，并将棋命名为『民用暮光』」。这里莱伯恩提到的朗伯是指瑞士数学家，物理学家约翰·海因里希·朗伯，以首次证明  是无理数而闻名，于 1777 年在普鲁士去世，享年 49 岁。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://gitee.com/potatoler/blogimages/raw/master/uPic/IMG_5184.PNG.jpeg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">民用暮光在日落时立刻开始</div>
+</center>
+<p>梅里厄姆-韦伯斯特<sup class="footnote-ref"><a href="#fn10" id="fnref10">[10]</a></sup>有一篇讲「民用暮光」历史的<a href="https://www.merriam-webster.com/words-at-play/civil-twilight-word-history">小短文</a>，其中提到，直到 20 世纪初时，民用暮光还有六种不同的定义。实际上，民用暮光的定义与天文学没什么关系，而是定义为在室内外工作都不需要人造光源的时间。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://gitee.com/potatoler/blogimages/raw/master/uPic/IMG_4879.PNG.jpeg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">民用黄昏是民用暮光最后，最昏暗的时刻</div>
+</center>
+<p>现在对于民用暮光的公认定义是：它从日落开始（根据定义，日落是一个瞬时时刻）一直持续到太阳的几何中心低于地平线 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>6</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">6^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.674115em;vertical-align:0em;"></span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.674115em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span>。现在的民用曙暮光不仅是一个天文事件，在航空和法律等各个领域都很重要。在美国，FAA 在夜间，以及夜间飞机运营有关的规定中将「夜间」定义为民用暮光结束和民用曙光开始之间的时间。一些司法管辖区使用民用曙暮光确定犯人是否在夜间犯罪，夜间犯罪的处罚可能比白天更加严厉（不知道这样规定的理由是什么，显然对于受害者来讲受害程度没什么区别，但是人们似乎认为在夜间犯罪时要么是盗窃，要么就比白天在精神上更放松，所以从道德层面来讲更有罪）。</p>
+<h3 id="航海暮光">航海暮光</h3>
+<p>航海暮光是说三个暮光阶段中的第二个，正如它的名字一样，它于水手紧密相关。航海暮光从民用暮光/黄昏的结束开始，此时太阳的几何中心在地平线以下 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>6</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">6^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.674115em;vertical-align:0em;"></span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.674115em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span>。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://gitee.com/potatoler/blogimages/raw/master/uPic/IMG_4870.PNG.jpeg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">航海暮光：星星开始出现，地平线仍然可见</div>
+</center>
+<p>在天体导航中，天体在地平线以上的高度非常重要，尤其是对于著名的那些参考星来讲。航海黄昏时天空变得足够暗，使这些星星变得可见；但也在此期间，天边仍有足够的余光，以至于地平线还可以看到。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://gitee.com/potatoler/blogimages/raw/master/uPic/IMG_4876.PNG.jpeg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">航海黄昏：地平线不再可见，导航观测不再可行</div>
+</center>
+<p>我不是很了解天体导航，但是显然如果你需要利用星星的方位和高度来导航，那么就需要地平线作为参照。现实中，可以利用的时间并没有那么多，因为这段时间里必须足够暗，有关的星星才能看到，但又不能太暗，要不然就看不到地平线了。现代的六分仪（用于测量天体高度的导航仪器）通常包含人造地平线，即使看不到地平线也可以观测。</p>
+<p>当太阳的几何中心低于地平线下 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>2</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">12^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.674115em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.674115em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span> 时，航海暮光就结束了 —— 这是航海黄昏的时刻以及天文暮光的开始。在历史上，航海黄昏和黎明分别是军事行动停止，开始防御阵地的时刻和行动可以开始的时刻，因为在这些时刻，光线已经降低到与敌人交战的最低水平，或者增加到可以行动的水平了。</p>
+<h3 id="天文暮光">天文暮光</h3>
+<p>天文暮光于太阳的几何中心低于地平线 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>2</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">12^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.674115em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.674115em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span> 时开始，于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>8</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">18^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.674115em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">8</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.674115em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span> 时结束。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://gitee.com/potatoler/blogimages/raw/master/uPic/IMG_4882.PNG.jpeg">
+</center>
+<p>天文暮光或许时三个阶段中最具诗意的 —— 这是星星真正出现的时候。民用暮光和航海暮光都是出于实际需求考虑的（你能工作到多晚，或者天体导航要求的时间），但是天文暮光完全基于天体观测。即使有实际的考虑，也只不过是对于裸眼天文学家来说的吧。我一直认为天文学抽象但使人放心，不想研究遗传学或者核物理学时总会有根本停不下来的那种思考。</p>
+<p>天文暮光开始于航海黄昏，是太阳的几何中心低于地平线 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>2</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">12^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.674115em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.674115em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span> 与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>8</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">18^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.674115em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">8</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.674115em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span> 之间的时间。在此期间，肉眼可见的最暗的恒星（六等星）逐渐可见。可惜由于光污染，我们这些生活在大城市中的人一般没有机会体验天文暮光。</p>
+<p>还有三个与早晨相关的时间，也叫曙暮光<sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup> —— 天文曙光，航海曙光和民用曙光 —— 从太阳低于地平线 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><msup><mn>8</mn><mo>∘</mo></msup></mrow><annotation encoding="application/x-tex">18^\circ</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.674115em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">8</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.674115em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∘</span></span></span></span></span></span></span></span></span></span></span> 开始直至清晨的结束。太阳刻度表盘还显示太阳正午和太阳午夜的时刻，这两个时刻太阳处于天空中位置的最高点和最低点。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://gitee.com/potatoler/blogimages/raw/master/uPic/IMG_4884.PNG.jpeg">
+</center>
+<h3 id="对钟表制造商的挑战">对钟表制造商的挑战</h3>
+<p>我常听到的对于 Apple Watch 的抱怨就是「他并不是一块真正的手表」（在我看来这就是再说「我不喜欢智能手表，我排斥他们，它们与手表给人的乐趣完全无关，没有手表的灵魂」）。对于我来讲，Apple Watch 的趣味在于可以自定义不同的表盘，通过选择不同的表盘样式获得不同的体验。我认为太阳刻度表盘创造了一种非常像传统手表的体验 —— 比其他的表盘更像手表的体验。</p>
+<p>作为天文复杂功能的铁粉，我总是在想这样的功能能不能在机械手表或者怀表中实现。一块「三段曙暮光」手表会是非常美妙的东西 —— 我们已经有了日出日落的手表，也有显示太阳正午的手表，其中有一款非常惊艳但可惜（对于我来讲）已经停产的手表，Jules Audemars Equation Of Time<sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup>，使其他的手表都索然无味 —— 它可以显示日出日落的时刻，太阳正午以及均时差，它是随身携带的万年历。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://gitee.com/potatoler/blogimages/raw/master/uPic/AP_JA_EOT.jpg.jpeg">
+</center>
+<p>对于能否在日出-日落的基础上增加曙暮光功能，我还没有仔细研究，不过有几块手表指明这方向，包括 Krayon Everywhere watch 以及 Ochs Und Junior Day/Night，两者都使用了类似风扇的装置以便显示太阳在地平线上还是下，并且与 Apple Watch 中的太阳刻度盘显示方式相似。由于曙暮光的持续时间基于几何学，我认为至少在理论上来讲，设计这种功能也许并不难（就像日出-日落功能一样，可能需要为特定位置定制）。</p>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://gitee.com/potatoler/blogimages/raw/master/uPic/Untitled_Session1366.jpg.jpeg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Ochs Und Junior Day/Night</div>
+</center>
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://gitee.com/potatoler/blogimages/raw/master/uPic/P3251508.jpg.jpeg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">Krayon Everywhere watch，几乎可以显示任何一个地方的日出日落时间</div>
+</center>
+<p>这样的手表非常吸引人，就算不是完全的新东西，也至少是日出日落手表中有趣的新变种。但是就目前而言，我要给予 Apple Watch 太阳刻度表盘极高的评价，它利用了智能手表的优势，并创造出引人入胜的体验。随着夜幕降临，屏幕的亮度不断变化，并显示出不同的颜色，表盘的样式不断变化，使其内涵远比单纯的信息传递更加丰富，更能唤起人们的情感。它也给了我们一个机会细细品味黑暗和光明在文化和历史上曾经的意味，并畅想它们将来的意义。在手腕上拥有这样一个小小的宇宙，这是谁都无法抗拒的。</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>本文由 potatoler 搬运自 <a href="https://www.hodinkee.com">HODINKEE</a>，原文标题为 <a href="https://www.hodinkee.com/articles/the-eerie-beauty-of-the-apple-watch-solar-face-and-the-anatomy-of-nightfall">The Eerie Beauty Of The Apple Watch Solar Face, And The Anatomy Of Nightfall</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>指原文发表时的 2020年4月8日 <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>除非有特殊说明，翻译过程中将原文中的英文名称更换为 iOS 和 watchOS 中简体中文（中国大陆）的对应名称，以翻译时（2021年2月18日）的最新公众版本（iOS 14.4, watchOS 7.3.1）为准 <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>实际上，这个表盘叫做『太阳刻度盘』，为了读起来通顺，本文中称其为『太阳刻度表盘』 <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p>原文 twilight，是一个天文术语，Apple 翻译为「晨昏蒙影」，这里为了读来通顺采用另一种「曙暮光」的翻译，并且特指清晨和傍晚时使用「曙光」「暮光」。 <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p>因为这里讲的是日落后的时间，所以使用了『暮光』的翻译，原文 twilight 没有清晨和傍晚的区分，译作『曙暮光』 <a href="#fnref6" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn7" class="footnote-item"><p>原文 dusk，是一个点时间，一般语意的黄昏时间段在本文中称为「傍晚」 <a href="#fnref7" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn8" class="footnote-item"><p>原文为 crepuscular 和 twilight，这里的「暮光」与上文翻译统一，「暮色」是中文中与「暮光」意义相近的词 <a href="#fnref8" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn9" class="footnote-item"><p>crepuscular animals，原文可以与上文「暮色」的原文 crepuscular 照应 <a href="#fnref9" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn10" class="footnote-item"><p>美国权威的词典出版机构 <a href="#fnref10" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn11" class="footnote-item"><p>上文中的「暮光」都由英文中的 twilight 翻译来，与下文中的「曙光」是一个词 <a href="#fnref11" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn12" class="footnote-item"><p>这些手表名称均使用原文名称 <a href="#fnref12" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://potatoler.ren/CF875F-Royal-Questions/">
+              <h3 class="post-title">
+                下一篇：CF875F Royal Questions
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+          <div id="gitalk-container"></div>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">蕴藏着想成为真物的意志，伪物就比真物来的更真实</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  potatoler’s space 2021 | <a class="rss" href="https://potatoler.ren/atom.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script src="https://potatoler.ren/media/scripts/index.js"></script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'e8f1f71cce033ba0ab35',
+        clientSecret: 'ab50e9025967269975fd0a0cbd10a58741a2cd6a',
+        repo: 'potatoler.github.io',
+        owner: 'potatoler',
+        admin: ['potatoler'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
