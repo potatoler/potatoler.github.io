@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='UVA11806 Cheerleaders 题解 题目大意 有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：
+四个边都至少有一个人 一个格子最多放一个人 每个人都要放进去 求有多少种合法的放法——答案对 1e6&#43;7 取模
+注：四个角上的人可以看做同时在一行和一列
+思路 这道题中计算合法的方案数比较困难，所以我们可以计算出全部的方案数再减去不合法的方案数
+不考虑约束条件，单纯地将这些人放进网格中，方案数显然有 $allAnswer=C^k_{mn}$
+我们知道有四种因素会导致方案不合法，我们用四个集合表示具有某种因素的不合法方案：
+$A:$ 第一行没有人
+$B:$ 最后一行没有人
+$C:$ 第一列没有人
+$D:$ 最后一列没有人
+于是就可以通过容斥原理计算合法的方案数了： $$ approvedAnswer=allAnswer&#43;A\cup B\cup C\cup D-(A\cup B\cup C&#43;A\cup B\cup D&#43;A\cup C\cup D&#43;B\cup C\cup D)&#43;(A\cup B&#43;A\cup C&#43;A\cup D&#43;B\cup C&#43;B\cup D&#43;C\cup D)-(A&#43;B&#43;C&#43;D) $$ 对于任意一种方案数我们都可以用一个四元组表示这种方案具有哪几个不合法因素，其中每个元素1表示具有这种不合法因素，0表示没有。更进一步的，可以将这个四元组通过状态压缩记录在一个整形中，于是我们只需要通过0到15这16个数就可以遍历所有方案的种类，通过与1，2，4，8进行&amp;amp;运算就可以判断是否具有某种不合法因素。
+如果一种方案具有$A$这个不合法因素，那么这种方案其实就是将原来的网格场地消去一行之后所有的方案数，即对于(n-1)*m的场地放k个人的全部方案数——$C^k_{m(n-1)}$，和我们一开始求出的 $allAnswer$ 得到了统一。
+上面的公式中，约束条件的个数决定了加减，即满足「偶加奇减」原则。因为 $allAnswer$ 实质上是不受任何不合法条件约束的一种特殊的不合法情况，其不合法因素数是0，所以在&amp;amp;1时结果为0，判断为偶数，于是也要加上——和公式相符，不需要特判。
+至此，这道题就做完了。不过还有值得注意的一点：在不合法因素数为奇数，需要减去时，我们需要先累加一个模数在进行减法运算，这样就可以保证在取模意义下结果正确而不会因减法运算后得到负数而导致取模后得到负数，以致答案错误。
+代码： #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;algorithm&amp;gt; using namespace std; const int mod=1e6&#43;7,maxn=405; int n,m,k,T; int c[maxn][maxn],ans; void init(){//Calculate value of combinatorial number at the very first.'>
+<title>UVA11806 Cheerleaders 题解</title>
+
+<link rel='canonical' href='https://example.org/post/uva11806/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='UVA11806 Cheerleaders 题解'>
+<meta property='og:description' content='UVA11806 Cheerleaders 题解 题目大意 有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：
+四个边都至少有一个人 一个格子最多放一个人 每个人都要放进去 求有多少种合法的放法——答案对 1e6&#43;7 取模
+注：四个角上的人可以看做同时在一行和一列
+思路 这道题中计算合法的方案数比较困难，所以我们可以计算出全部的方案数再减去不合法的方案数
+不考虑约束条件，单纯地将这些人放进网格中，方案数显然有 $allAnswer=C^k_{mn}$
+我们知道有四种因素会导致方案不合法，我们用四个集合表示具有某种因素的不合法方案：
+$A:$ 第一行没有人
+$B:$ 最后一行没有人
+$C:$ 第一列没有人
+$D:$ 最后一列没有人
+于是就可以通过容斥原理计算合法的方案数了： $$ approvedAnswer=allAnswer&#43;A\cup B\cup C\cup D-(A\cup B\cup C&#43;A\cup B\cup D&#43;A\cup C\cup D&#43;B\cup C\cup D)&#43;(A\cup B&#43;A\cup C&#43;A\cup D&#43;B\cup C&#43;B\cup D&#43;C\cup D)-(A&#43;B&#43;C&#43;D) $$ 对于任意一种方案数我们都可以用一个四元组表示这种方案具有哪几个不合法因素，其中每个元素1表示具有这种不合法因素，0表示没有。更进一步的，可以将这个四元组通过状态压缩记录在一个整形中，于是我们只需要通过0到15这16个数就可以遍历所有方案的种类，通过与1，2，4，8进行&amp;amp;运算就可以判断是否具有某种不合法因素。
+如果一种方案具有$A$这个不合法因素，那么这种方案其实就是将原来的网格场地消去一行之后所有的方案数，即对于(n-1)*m的场地放k个人的全部方案数——$C^k_{m(n-1)}$，和我们一开始求出的 $allAnswer$ 得到了统一。
+上面的公式中，约束条件的个数决定了加减，即满足「偶加奇减」原则。因为 $allAnswer$ 实质上是不受任何不合法条件约束的一种特殊的不合法情况，其不合法因素数是0，所以在&amp;amp;1时结果为0，判断为偶数，于是也要加上——和公式相符，不需要特判。
+至此，这道题就做完了。不过还有值得注意的一点：在不合法因素数为奇数，需要减去时，我们需要先累加一个模数在进行减法运算，这样就可以保证在取模意义下结果正确而不会因减法运算后得到负数而导致取模后得到负数，以致答案错误。
+代码： #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;algorithm&amp;gt; using namespace std; const int mod=1e6&#43;7,maxn=405; int n,m,k,T; int c[maxn][maxn],ans; void init(){//Calculate value of combinatorial number at the very first.'>
+<meta property='og:url' content='https://example.org/post/uva11806/'>
+<meta property='og:site_name' content='My New Hugo Site'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-09-07T22:57:14&#43;08:00'/><meta property='article:modified_time' content='2023-09-07T22:57:14&#43;08:00'/>
+<meta name="twitter:title" content="UVA11806 Cheerleaders 题解">
+<meta name="twitter:description" content="UVA11806 Cheerleaders 题解 题目大意 有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：
+四个边都至少有一个人 一个格子最多放一个人 每个人都要放进去 求有多少种合法的放法——答案对 1e6&#43;7 取模
+注：四个角上的人可以看做同时在一行和一列
+思路 这道题中计算合法的方案数比较困难，所以我们可以计算出全部的方案数再减去不合法的方案数
+不考虑约束条件，单纯地将这些人放进网格中，方案数显然有 $allAnswer=C^k_{mn}$
+我们知道有四种因素会导致方案不合法，我们用四个集合表示具有某种因素的不合法方案：
+$A:$ 第一行没有人
+$B:$ 最后一行没有人
+$C:$ 第一列没有人
+$D:$ 最后一列没有人
+于是就可以通过容斥原理计算合法的方案数了： $$ approvedAnswer=allAnswer&#43;A\cup B\cup C\cup D-(A\cup B\cup C&#43;A\cup B\cup D&#43;A\cup C\cup D&#43;B\cup C\cup D)&#43;(A\cup B&#43;A\cup C&#43;A\cup D&#43;B\cup C&#43;B\cup D&#43;C\cup D)-(A&#43;B&#43;C&#43;D) $$ 对于任意一种方案数我们都可以用一个四元组表示这种方案具有哪几个不合法因素，其中每个元素1表示具有这种不合法因素，0表示没有。更进一步的，可以将这个四元组通过状态压缩记录在一个整形中，于是我们只需要通过0到15这16个数就可以遍历所有方案的种类，通过与1，2，4，8进行&amp;amp;运算就可以判断是否具有某种不合法因素。
+如果一种方案具有$A$这个不合法因素，那么这种方案其实就是将原来的网格场地消去一行之后所有的方案数，即对于(n-1)*m的场地放k个人的全部方案数——$C^k_{m(n-1)}$，和我们一开始求出的 $allAnswer$ 得到了统一。
+上面的公式中，约束条件的个数决定了加减，即满足「偶加奇减」原则。因为 $allAnswer$ 实质上是不受任何不合法条件约束的一种特殊的不合法情况，其不合法因素数是0，所以在&amp;amp;1时结果为0，判断为偶数，于是也要加上——和公式相符，不需要特判。
+至此，这道题就做完了。不过还有值得注意的一点：在不合法因素数为奇数，需要减去时，我们需要先累加一个模数在进行减法运算，这样就可以保证在取模意义下结果正确而不会因减法运算后得到负数而导致取模后得到负数，以致答案错误。
+代码： #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;algorithm&amp;gt; using namespace std; const int mod=1e6&#43;7,maxn=405; int n,m,k,T; int c[maxn][maxn],ans; void init(){//Calculate value of combinatorial number at the very first.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">My New Hugo Site</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/uva11806/">UVA11806 Cheerleaders 题解</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 07, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="uva11806-cheerleadershttpswwwluogucomcnproblemuva11806-题解"><a class="link" href="https://www.luogu.com.cn/problem/UVA11806"  target="_blank" rel="noopener"
+    >UVA11806 Cheerleaders</a> 题解</h2>
+<h4 id="题目大意">题目大意</h4>
+<p>有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：</p>
+<ol>
+<li>四个边都至少有一个人</li>
+<li>一个格子最多放一个人</li>
+<li>每个人都要放进去</li>
+</ol>
+<p>求有多少种合法的放法——答案对 1e6+7 取模</p>
+<p>注：四个角上的人可以看做同时在一行和一列</p>
+<h4 id="思路">思路</h4>
+<p>这道题中计算合法的方案数比较困难，所以我们可以计算出全部的方案数再减去不合法的方案数</p>
+<p>不考虑约束条件，单纯地将这些人放进网格中，方案数显然有 $allAnswer=C^k_{mn}$</p>
+<p>我们知道有四种因素会导致方案不合法，我们用四个集合表示具有某种因素的不合法方案：</p>
+<ul>
+<li>
+<p>$A:$ 第一行没有人</p>
+</li>
+<li>
+<p>$B:$ 最后一行没有人</p>
+</li>
+<li>
+<p>$C:$ 第一列没有人</p>
+</li>
+<li>
+<p>$D:$ 最后一列没有人</p>
+</li>
+</ul>
+<p>于是就可以通过容斥原理计算合法的方案数了：
+$$
+approvedAnswer=allAnswer+A\cup B\cup C\cup D-(A\cup B\cup C+A\cup B\cup D+A\cup C\cup D+B\cup C\cup D)+(A\cup B+A\cup C+A\cup D+B\cup C+B\cup D+C\cup D)-(A+B+C+D)
+$$
+对于任意一种方案数我们都可以用一个四元组表示这种方案具有哪几个不合法因素，其中每个元素1表示具有这种不合法因素，0表示没有。更进一步的，可以将这个四元组通过状态压缩记录在一个整形中，于是我们只需要通过0到15这16个数就可以遍历所有方案的种类，通过与1，2，4，8进行&amp;运算就可以判断是否具有某种不合法因素。</p>
+<p>如果一种方案具有$A$这个不合法因素，那么这种方案其实就是将原来的网格场地消去一行之后所有的方案数，即对于(n-1)*m的场地放k个人的全部方案数——$C^k_{m(n-1)}$，和我们一开始求出的 $allAnswer$ 得到了统一。</p>
+<p>上面的公式中，约束条件的个数决定了加减，即满足「偶加奇减」原则。因为 $allAnswer$ 实质上是不受任何不合法条件约束的一种特殊的不合法情况，其不合法因素数是0，所以在&amp;1时结果为0，判断为偶数，于是也要加上——和公式相符，不需要特判。</p>
+<p>至此，这道题就做完了。不过还有值得注意的一点：在不合法因素数为奇数，需要减去时，我们需要先累加一个模数在进行减法运算，这样就可以保证在取模意义下结果正确而不会因减法运算后得到负数而导致取模后得到负数，以致答案错误。</p>
+<h4 id="代码">代码：</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> mod<span style="color:#f92672">=</span><span style="color:#ae81ff">1e6</span><span style="color:#f92672">+</span><span style="color:#ae81ff">7</span>,maxn<span style="color:#f92672">=</span><span style="color:#ae81ff">405</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n,m,k,T;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> c[maxn][maxn],ans;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">init</span>(){<span style="color:#75715e">//Calculate value of combinatorial number at the very first.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	memset(c,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(c));
+</span></span><span style="display:flex;"><span>	c[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span>maxn;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		c[i][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span>c[i][i]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;j<span style="color:#f92672">&lt;</span>i;j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			c[i][j]<span style="color:#f92672">=</span>(c[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+</span>c[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j])<span style="color:#f92672">%</span>mod;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>	init();
+</span></span><span style="display:flex;"><span>	scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>T);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> gameRound<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;gameRound<span style="color:#f92672">&lt;=</span>T;gameRound<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		ans<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>		scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>n,<span style="color:#f92672">&amp;</span>m,<span style="color:#f92672">&amp;</span>k);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> gameCase<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;gameCase<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">16</span>;gameCase<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> fieldRow<span style="color:#f92672">=</span>n,fieldColumn<span style="color:#f92672">=</span>m,situationSummary<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span>(gameCase<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">1</span>) fieldRow<span style="color:#f92672">--</span>,situationSummary<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span>(gameCase<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">2</span>) fieldRow<span style="color:#f92672">--</span>,situationSummary<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span>(gameCase<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">4</span>) fieldColumn<span style="color:#f92672">--</span>,situationSummary<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span>(gameCase<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">8</span>) fieldColumn<span style="color:#f92672">--</span>,situationSummary<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span>(situationSummary<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">1</span>) ans<span style="color:#f92672">=</span>(ans<span style="color:#f92672">+</span>mod<span style="color:#f92672">-</span>c[fieldRow<span style="color:#f92672">*</span>fieldColumn][k])<span style="color:#f92672">%</span>mod;
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">//Plus &#34;mod&#34; to avoid &#34;ans&#34; becoming a negative.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">else</span> ans<span style="color:#f92672">=</span>(ans<span style="color:#f92672">+</span>c[fieldRow<span style="color:#f92672">*</span>fieldColumn][k])<span style="color:#f92672">%</span>mod;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		printf(<span style="color:#e6db74">&#34;Case %d: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,gameRound,ans);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 My New Hugo Site
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
