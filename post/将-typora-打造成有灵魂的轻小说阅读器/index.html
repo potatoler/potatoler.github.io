@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='在我接触的 ACGN 作品中，大部分都是动画。但是即使作为一般意义上的「动画党」的一员，我也看了不少作品的轻小说原著。由于众所周的原因，所以我阅读轻小说主要是找 epub 电子版或者是购买台版，要不是日文太菜我就直接买日版了。
+阅读 epub 版轻小说有两个致命缺点：第一是绝大多数的 epub 轻小说都是制作成横版的；二是网友 epub 的制作进度一般都跟不上民间翻译进度。最近在看《物语》时就遇到了这样的问题：从《忍物语》开始我便找不到 epub 资源了，于是只好拿轻国的 txt 版凑合着看。但是使用系统自带文本编辑器阅读 txt 小说的体验实在是糟糕，于是我便想到了魔改平时使用的 Markdown 编辑器：Typora。
+为什么是 Typora？ 事实上，Markdown 文档的本质其实就是一个文本文档，其中添加的格式标记只有在编译之后才会生效。在 txt 文档中添加了 Markdown 的标记，用 Typora 打开也是有效果的。而介于 Typora 是我所见过的少数「所见即所得」的 Markdown 编辑器，它也可以使我在阅读中实时修改小说中的排版，不完全翻译，以及错别字（民间翻译时常会有这些问题）。
+多种字体的支持 一款优秀的小说阅读器最重要的功能之一，就是对多种字体的支持。纵然 Typora 中自带了多种主题，社区中也有不少主题，但这些主题都是成套的模版，要想个性化字体，我们就要对 Typora 的主题文件下手了。
+根据系统的不同，Typora 的主题文件存放的位置不尽相同，但是我们可以在其偏好设置中找到一个快速打开主题文件夹的按钮。选择一个喜欢的主题作为基础主题，并将它的主题文件夹与 CSS 文件复制一份。打开 CSS 文件并在文件中搜索 font family，你可以看到在它的后面看到一些名称，它们就是这个主题中字体的名称。仿照其格式在后面添加你喜欢的字体的名称，再次重启 Typora 时刚复制的主题会出现在 Typora 的主题列表中，这时候换上这个主题你就会发现字体已经变了。
+值得注意的几点是：第一，一份 CSS 文件中的 font family 时常不只一处，除了前面带有 @font-face 的，其他都要修改，不过如果你懂一些 CSS，你应该可以看出不同位置的 font family 管束的也是不同地方的字体，可以按照个人喜好进行修改；第二，字体名称的顺序代表了字体应用的优先级，当靠前的字体不可用时才应用靠后的字体，而如果你要添加的是中文字体，应该添加到英文字体的名称之后，因为大部分的中文字体都对英文字母的支持，但是一般都很难看，所以放在后面的话，英文还是原来的字体，中文就是你自定义的字体了。
+竖版阅读 Typora 原生并没有对竖行文字的支持，但是我们还是可以通过魔改主题样式来实现。这个方法还是我在翻 Typora Github 项目的 issue 时知道的：'>
+<title>将 Typora 打造成有「灵魂」的轻小说阅读器</title>
+
+<link rel='canonical' href='https://example.org/post/%E5%B0%86-typora-%E6%89%93%E9%80%A0%E6%88%90%E6%9C%89%E7%81%B5%E9%AD%82%E7%9A%84%E8%BD%BB%E5%B0%8F%E8%AF%B4%E9%98%85%E8%AF%BB%E5%99%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='将 Typora 打造成有「灵魂」的轻小说阅读器'>
+<meta property='og:description' content='在我接触的 ACGN 作品中，大部分都是动画。但是即使作为一般意义上的「动画党」的一员，我也看了不少作品的轻小说原著。由于众所周的原因，所以我阅读轻小说主要是找 epub 电子版或者是购买台版，要不是日文太菜我就直接买日版了。
+阅读 epub 版轻小说有两个致命缺点：第一是绝大多数的 epub 轻小说都是制作成横版的；二是网友 epub 的制作进度一般都跟不上民间翻译进度。最近在看《物语》时就遇到了这样的问题：从《忍物语》开始我便找不到 epub 资源了，于是只好拿轻国的 txt 版凑合着看。但是使用系统自带文本编辑器阅读 txt 小说的体验实在是糟糕，于是我便想到了魔改平时使用的 Markdown 编辑器：Typora。
+为什么是 Typora？ 事实上，Markdown 文档的本质其实就是一个文本文档，其中添加的格式标记只有在编译之后才会生效。在 txt 文档中添加了 Markdown 的标记，用 Typora 打开也是有效果的。而介于 Typora 是我所见过的少数「所见即所得」的 Markdown 编辑器，它也可以使我在阅读中实时修改小说中的排版，不完全翻译，以及错别字（民间翻译时常会有这些问题）。
+多种字体的支持 一款优秀的小说阅读器最重要的功能之一，就是对多种字体的支持。纵然 Typora 中自带了多种主题，社区中也有不少主题，但这些主题都是成套的模版，要想个性化字体，我们就要对 Typora 的主题文件下手了。
+根据系统的不同，Typora 的主题文件存放的位置不尽相同，但是我们可以在其偏好设置中找到一个快速打开主题文件夹的按钮。选择一个喜欢的主题作为基础主题，并将它的主题文件夹与 CSS 文件复制一份。打开 CSS 文件并在文件中搜索 font family，你可以看到在它的后面看到一些名称，它们就是这个主题中字体的名称。仿照其格式在后面添加你喜欢的字体的名称，再次重启 Typora 时刚复制的主题会出现在 Typora 的主题列表中，这时候换上这个主题你就会发现字体已经变了。
+值得注意的几点是：第一，一份 CSS 文件中的 font family 时常不只一处，除了前面带有 @font-face 的，其他都要修改，不过如果你懂一些 CSS，你应该可以看出不同位置的 font family 管束的也是不同地方的字体，可以按照个人喜好进行修改；第二，字体名称的顺序代表了字体应用的优先级，当靠前的字体不可用时才应用靠后的字体，而如果你要添加的是中文字体，应该添加到英文字体的名称之后，因为大部分的中文字体都对英文字母的支持，但是一般都很难看，所以放在后面的话，英文还是原来的字体，中文就是你自定义的字体了。
+竖版阅读 Typora 原生并没有对竖行文字的支持，但是我们还是可以通过魔改主题样式来实现。这个方法还是我在翻 Typora Github 项目的 issue 时知道的：'>
+<meta property='og:url' content='https://example.org/post/%E5%B0%86-typora-%E6%89%93%E9%80%A0%E6%88%90%E6%9C%89%E7%81%B5%E9%AD%82%E7%9A%84%E8%BD%BB%E5%B0%8F%E8%AF%B4%E9%98%85%E8%AF%BB%E5%99%A8/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-08-08T22:57:14&#43;08:00'/><meta property='article:modified_time' content='2020-08-08T22:57:14&#43;08:00'/>
+<meta name="twitter:title" content="将 Typora 打造成有「灵魂」的轻小说阅读器">
+<meta name="twitter:description" content="在我接触的 ACGN 作品中，大部分都是动画。但是即使作为一般意义上的「动画党」的一员，我也看了不少作品的轻小说原著。由于众所周的原因，所以我阅读轻小说主要是找 epub 电子版或者是购买台版，要不是日文太菜我就直接买日版了。
+阅读 epub 版轻小说有两个致命缺点：第一是绝大多数的 epub 轻小说都是制作成横版的；二是网友 epub 的制作进度一般都跟不上民间翻译进度。最近在看《物语》时就遇到了这样的问题：从《忍物语》开始我便找不到 epub 资源了，于是只好拿轻国的 txt 版凑合着看。但是使用系统自带文本编辑器阅读 txt 小说的体验实在是糟糕，于是我便想到了魔改平时使用的 Markdown 编辑器：Typora。
+为什么是 Typora？ 事实上，Markdown 文档的本质其实就是一个文本文档，其中添加的格式标记只有在编译之后才会生效。在 txt 文档中添加了 Markdown 的标记，用 Typora 打开也是有效果的。而介于 Typora 是我所见过的少数「所见即所得」的 Markdown 编辑器，它也可以使我在阅读中实时修改小说中的排版，不完全翻译，以及错别字（民间翻译时常会有这些问题）。
+多种字体的支持 一款优秀的小说阅读器最重要的功能之一，就是对多种字体的支持。纵然 Typora 中自带了多种主题，社区中也有不少主题，但这些主题都是成套的模版，要想个性化字体，我们就要对 Typora 的主题文件下手了。
+根据系统的不同，Typora 的主题文件存放的位置不尽相同，但是我们可以在其偏好设置中找到一个快速打开主题文件夹的按钮。选择一个喜欢的主题作为基础主题，并将它的主题文件夹与 CSS 文件复制一份。打开 CSS 文件并在文件中搜索 font family，你可以看到在它的后面看到一些名称，它们就是这个主题中字体的名称。仿照其格式在后面添加你喜欢的字体的名称，再次重启 Typora 时刚复制的主题会出现在 Typora 的主题列表中，这时候换上这个主题你就会发现字体已经变了。
+值得注意的几点是：第一，一份 CSS 文件中的 font family 时常不只一处，除了前面带有 @font-face 的，其他都要修改，不过如果你懂一些 CSS，你应该可以看出不同位置的 font family 管束的也是不同地方的字体，可以按照个人喜好进行修改；第二，字体名称的顺序代表了字体应用的优先级，当靠前的字体不可用时才应用靠后的字体，而如果你要添加的是中文字体，应该添加到英文字体的名称之后，因为大部分的中文字体都对英文字母的支持，但是一般都很难看，所以放在后面的话，英文还是原来的字体，中文就是你自定义的字体了。
+竖版阅读 Typora 原生并没有对竖行文字的支持，但是我们还是可以通过魔改主题样式来实现。这个方法还是我在翻 Typora Github 项目的 issue 时知道的：">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E5%B0%86-typora-%E6%89%93%E9%80%A0%E6%88%90%E6%9C%89%E7%81%B5%E9%AD%82%E7%9A%84%E8%BD%BB%E5%B0%8F%E8%AF%B4%E9%98%85%E8%AF%BB%E5%99%A8/">将 Typora 打造成有「灵魂」的轻小说阅读器</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 08, 2020</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>在我接触的 ACGN 作品中，大部分都是动画。但是即使作为一般意义上的「动画党」的一员，我也看了不少作品的轻小说原著。由于众所周的原因，所以我阅读轻小说主要是找 epub 电子版或者是购买台版，<del>要不是日文太菜我就直接买日版了</del>。</p>
+<p>阅读 epub 版轻小说有两个致命缺点：第一是绝大多数的 epub 轻小说都是制作成横版的；二是网友 epub 的制作进度一般都跟不上民间翻译进度。最近在看《物语》时就遇到了这样的问题：从《忍物语》开始我便找不到 epub 资源了，于是只好拿轻国的 txt 版凑合着看。但是使用系统自带文本编辑器阅读 txt 小说的体验实在是糟糕，于是我便想到了魔改平时使用的 Markdown 编辑器：Typora。</p>
+<h3 id="为什么是-typora">为什么是 Typora？</h3>
+<p>事实上，Markdown 文档的本质其实就是一个文本文档，其中添加的格式标记只有在编译之后才会生效。在 txt 文档中添加了 Markdown 的标记，用 Typora 打开也是有效果的。而介于 Typora 是我所见过的少数「所见即所得」的 Markdown 编辑器，它也可以使我在阅读中实时修改小说中的排版，不完全翻译，以及错别字（民间翻译时常会有这些问题）。</p>
+<h3 id="多种字体的支持">多种字体的支持</h3>
+<p>一款优秀的小说阅读器最重要的功能之一，就是对多种字体的支持。纵然 Typora 中自带了多种主题，社区中也有不少主题，但这些主题都是成套的模版，要想个性化字体，我们就要对 Typora 的主题文件下手了。</p>
+<p>根据系统的不同，Typora 的主题文件存放的位置不尽相同，但是我们可以在其偏好设置中找到一个快速打开主题文件夹的按钮。选择一个喜欢的主题作为基础主题，并将它的主题文件夹与 CSS 文件复制一份。打开 CSS 文件并在文件中搜索 <code>font family</code>，你可以看到在它的后面看到一些名称，它们就是这个主题中字体的名称。仿照其格式在后面添加你喜欢的字体的名称，再次重启 Typora 时刚复制的主题会出现在 Typora 的主题列表中，这时候换上这个主题你就会发现字体已经变了。</p>
+<p>值得注意的几点是：第一，一份 CSS 文件中的 <code>font family</code> 时常不只一处，除了前面带有 <code>@font-face</code> 的，其他都要修改，不过如果你懂一些 CSS，你应该可以看出不同位置的 <code>font family</code> 管束的也是不同地方的字体，可以按照个人喜好进行修改；第二，字体名称的顺序代表了字体应用的优先级，当靠前的字体不可用时才应用靠后的字体，而如果你要添加的是中文字体，应该添加到英文字体的名称之后，因为大部分的中文字体都对英文字母的支持，<del>但是一般都很难看</del>，所以放在后面的话，英文还是原来的字体，中文就是你自定义的字体了。</p>
+<h3 id="竖版阅读">竖版阅读</h3>
+<p>Typora 原生并没有对竖行文字的支持，但是我们还是可以通过魔改主题样式来实现。这个方法还是我在翻 Typora Github 项目的 issue 时知道的：<img src="https://i.loli.net/2020/08/08/7EdbefDtABoqsr2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="issue"
+	
+	
+></p>
+<p>在 CSS 文件中添加下面的这一段:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>#write {
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">writing-mode</span>: <span style="color:#66d9ef">vertical</span><span style="color:#f92672">-</span>rl;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-webkit-</span><span style="color:#66d9ef">writing-mode</span>: <span style="color:#66d9ef">vertical</span><span style="color:#f92672">-</span>rl;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">text-orientation</span>: <span style="color:#66d9ef">mixed</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">overflow-x</span>: <span style="color:#66d9ef">auto</span>; <span style="color:#75715e">/* This enables horizontal scrolling */</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>#write <span style="color:#f92672">&gt;</span> <span style="color:#f92672">p</span>:<span style="color:#a6e22e">first-child</span><span style="color:#f92672">,</span> #write <span style="color:#f92672">&gt;</span> <span style="color:#f92672">ul</span>:<span style="color:#a6e22e">first-child</span><span style="color:#f92672">,</span> #write <span style="color:#f92672">&gt;</span> <span style="color:#f92672">ol</span>:<span style="color:#a6e22e">first-child</span><span style="color:#f92672">,</span> #write <span style="color:#f92672">&gt;</span> <span style="color:#f92672">pre</span>:<span style="color:#a6e22e">first-child</span><span style="color:#f92672">,</span> #write <span style="color:#f92672">&gt;</span> <span style="color:#f92672">blockquote</span>:<span style="color:#a6e22e">first-child</span><span style="color:#f92672">,</span> #write <span style="color:#f92672">&gt;</span> <span style="color:#f92672">div</span>:<span style="color:#a6e22e">first-child</span><span style="color:#f92672">,</span> #write <span style="color:#f92672">&gt;</span> <span style="color:#f92672">table</span>:<span style="color:#a6e22e">first-child</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">margin-top</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然后就可以让文字变成竖版并从右往左了。对于习惯于阅读台版或者日版轻小说的同志们来说，这种样式是真的充满了灵魂。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

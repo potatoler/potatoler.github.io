@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='关于树的直径 连接树上相距最远的两点的路径被称作这棵树的最长链。树的直径指这条最长链或者它的长度。
+树的直径的求法 一般来将我们可以使用两种方法求数的直径，它们的时间复杂度都是 $O(n)$。
+两次搜索 我们可以通过两次 DFS 或两次 BFS 来求树的直径，其原理非常简单：从任意一个节点 $start$ 出发进行第一次搜索，找到距离起点最远的点（记为 $deepest$），再从 $deepest$ 出发进行第二次搜索，找到距离它最远的点（记为 $ending$）。$deepest$ 和 $ending$ 之间的路径便是这棵树的直径，在这个过程中 $deepest$ 一定是直径的一端，否则第一次搜索的结果一定不是 $deepest$，因为直径的两个端点中一定有一个比 $deepest$ 离 $start$ 远。
+#define des edge[i].destinationVertex inline void BFS(int x, int secondTime){ Reset(); queue&amp;lt;int&amp;gt; q; q.push(x); vertex[x].vis = true; while(!q.empty()){ int cur = q.front(); q.pop(); for(int i=head[cur];i;i=edge[i].nextEdge){ if(!vertex[des].vis){ vertex[des].vis = true; vertex[des].depth = vertex[cur].depth &#43; edge[i].value; q.push(des); if(secondTime) vertex[des].father = cur; } } } for(int i=1;i&amp;lt;=n;i&#43;&#43;) if(treeLength &amp;lt; vertex[i].'>
+<title>树学杂谈1: 树的直径</title>
+
+<link rel='canonical' href='https://example.org/post/%E6%A0%91%E5%AD%A6%E6%9D%82%E8%B0%881%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='树学杂谈1: 树的直径'>
+<meta property='og:description' content='关于树的直径 连接树上相距最远的两点的路径被称作这棵树的最长链。树的直径指这条最长链或者它的长度。
+树的直径的求法 一般来将我们可以使用两种方法求数的直径，它们的时间复杂度都是 $O(n)$。
+两次搜索 我们可以通过两次 DFS 或两次 BFS 来求树的直径，其原理非常简单：从任意一个节点 $start$ 出发进行第一次搜索，找到距离起点最远的点（记为 $deepest$），再从 $deepest$ 出发进行第二次搜索，找到距离它最远的点（记为 $ending$）。$deepest$ 和 $ending$ 之间的路径便是这棵树的直径，在这个过程中 $deepest$ 一定是直径的一端，否则第一次搜索的结果一定不是 $deepest$，因为直径的两个端点中一定有一个比 $deepest$ 离 $start$ 远。
+#define des edge[i].destinationVertex inline void BFS(int x, int secondTime){ Reset(); queue&amp;lt;int&amp;gt; q; q.push(x); vertex[x].vis = true; while(!q.empty()){ int cur = q.front(); q.pop(); for(int i=head[cur];i;i=edge[i].nextEdge){ if(!vertex[des].vis){ vertex[des].vis = true; vertex[des].depth = vertex[cur].depth &#43; edge[i].value; q.push(des); if(secondTime) vertex[des].father = cur; } } } for(int i=1;i&amp;lt;=n;i&#43;&#43;) if(treeLength &amp;lt; vertex[i].'>
+<meta property='og:url' content='https://example.org/post/%E6%A0%91%E5%AD%A6%E6%9D%82%E8%B0%881%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-06-04T09:08:33&#43;08:00'/><meta property='article:modified_time' content='2020-06-04T09:08:33&#43;08:00'/>
+<meta name="twitter:title" content="树学杂谈1: 树的直径">
+<meta name="twitter:description" content="关于树的直径 连接树上相距最远的两点的路径被称作这棵树的最长链。树的直径指这条最长链或者它的长度。
+树的直径的求法 一般来将我们可以使用两种方法求数的直径，它们的时间复杂度都是 $O(n)$。
+两次搜索 我们可以通过两次 DFS 或两次 BFS 来求树的直径，其原理非常简单：从任意一个节点 $start$ 出发进行第一次搜索，找到距离起点最远的点（记为 $deepest$），再从 $deepest$ 出发进行第二次搜索，找到距离它最远的点（记为 $ending$）。$deepest$ 和 $ending$ 之间的路径便是这棵树的直径，在这个过程中 $deepest$ 一定是直径的一端，否则第一次搜索的结果一定不是 $deepest$，因为直径的两个端点中一定有一个比 $deepest$ 离 $start$ 远。
+#define des edge[i].destinationVertex inline void BFS(int x, int secondTime){ Reset(); queue&amp;lt;int&amp;gt; q; q.push(x); vertex[x].vis = true; while(!q.empty()){ int cur = q.front(); q.pop(); for(int i=head[cur];i;i=edge[i].nextEdge){ if(!vertex[des].vis){ vertex[des].vis = true; vertex[des].depth = vertex[cur].depth &#43; edge[i].value; q.push(des); if(secondTime) vertex[des].father = cur; } } } for(int i=1;i&amp;lt;=n;i&#43;&#43;) if(treeLength &amp;lt; vertex[i].">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E6%A0%91%E5%AD%A6%E6%9D%82%E8%B0%881%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/">树学杂谈1: 树的直径</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 04, 2020</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="关于树的直径">关于树的直径</h3>
+<p>连接树上相距最远的两点的路径被称作这棵树的最长链。树的直径指这条最长链或者它的长度。</p>
+<h3 id="树的直径的求法">树的直径的求法</h3>
+<p>一般来将我们可以使用两种方法求数的直径，它们的时间复杂度都是 $O(n)$。</p>
+<h4 id="两次搜索">两次搜索</h4>
+<p>我们可以通过两次 DFS 或两次 BFS 来求树的直径，其原理非常简单：从任意一个节点 $start$ 出发进行第一次搜索，找到距离起点最远的点（记为 $deepest$），再从 $deepest$ 出发进行第二次搜索，找到距离它最远的点（记为 $ending$）。$deepest$ 和 $ending$ 之间的路径便是这棵树的直径，在这个过程中 $deepest$ 一定是直径的一端，否则第一次搜索的结果一定不是 $deepest$，因为直径的两个端点中一定有一个比 $deepest$ 离 $start$ 远。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#define des edge[i].destinationVertex
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">BFS</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> secondTime){
+</span></span><span style="display:flex;"><span>    Reset();
+</span></span><span style="display:flex;"><span>    queue<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> q;
+</span></span><span style="display:flex;"><span>    q.push(x);
+</span></span><span style="display:flex;"><span>    vertex[x].vis <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>q.empty()){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> q.front();
+</span></span><span style="display:flex;"><span>        q.pop();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>head[cur];i;i<span style="color:#f92672">=</span>edge[i].nextEdge){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>vertex[des].vis){
+</span></span><span style="display:flex;"><span>                vertex[des].vis <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>                vertex[des].depth <span style="color:#f92672">=</span> vertex[cur].depth <span style="color:#f92672">+</span> edge[i].value;
+</span></span><span style="display:flex;"><span>                q.push(des);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(secondTime) vertex[des].father <span style="color:#f92672">=</span> cur;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(treeLength <span style="color:#f92672">&lt;</span> vertex[i].depth){
+</span></span><span style="display:flex;"><span>            treeLength <span style="color:#f92672">=</span> vertex[i].depth;
+</span></span><span style="display:flex;"><span>            deepest <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>不同于接下来只能统计直径长度的树形 DP，在第二次搜索中，我们可以记录每一个点第一次被访问时的父亲节点，最后从搜索到的 $ending$ 往回走，就可以取得这条直径。两次搜索的方法虽然码量稍大，但是它记录信息量大，且思维简单容易理解——不过它真正的致命缺点在于遇到负权边就会暴毙。</p>
+<h4 id="树形-dp">树形 DP</h4>
+<p>设 $d[x]$ 表示从 x 出发走向以 x 为根的子树所能够到达的最远节点的深度，$f[x]$ 表示经过 x 的树上最长链的长度，x 的子节点分别为 $y_1,y_2,…,y_k$，则可以得到 $d[x]=max_{1≤i≤k}(d[y_i]+edge[x,y_i])$。</p>
+<p>对于 x 的任意两子节点 $y_i,y_j(j&lt;i)$，我们可以将经过 x 的最长链长度拆成 4 个部分：$d[y_i],d[y_j],edge[x,y_i],edge[x,y_j]$。于是有 $f[x]=max_{1≤j≤i≤k}(d[y_i],d[y_j],edge[x,y_i],edge[x,y_j])$。</p>
+<p>事实上我们没有必要使用 $y_i,y_j$ 两个参数来更新 $f[x]$—— 回顾一下 $d[x]$ 的定义：从 x 出发走向以 x 为根的子树所能达到的最远节点的深度 —— 在循环枚举到 $i$ 之前，$d[x]$ 所表示的就是 $max_{1≤j≤i}(d[y_j]+edge[x,y_j])$，当然这个值是 $f[x]$ 的一部分。也就是可以先用 $d[x]+d[y]+edge(x,y)$ 更新 $f[x]$，再用 $d[y]+edge[x,y]$ 更新 $d[x]$。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#define des edge[i].destinationVertex
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">DP</span>(<span style="color:#66d9ef">int</span> x){
+</span></span><span style="display:flex;"><span>    vertex[x].vis <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>head[x];i;i<span style="color:#f92672">=</span>edge[i].nextEdge){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(vertex[des].vis) <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>        DP(des);
+</span></span><span style="display:flex;"><span>        treeLength <span style="color:#f92672">=</span> max(treeLength, vertex[x].depth <span style="color:#f92672">+</span> vertex[des].depth <span style="color:#f92672">+</span> edge[i].value);
+</span></span><span style="display:flex;"><span>        vertex[x].depth <span style="color:#f92672">=</span> max(vertex[x].depth, vertex[des].depth <span style="color:#f92672">+</span> edge[i].value);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>DP 方法的码量明显小于搜索方法，但是缺点也很明显，由于只关注状态的转移，DP 方法只能求出直径的长度，由于在树形图上搜索的时间复杂度也是 $O(n)$，DP 节约时间的方法在这里变成了它的劣势。但是 DP 方法也弥补了搜索方法最大的不足 —— 它可以处理负权边，可以说是一种短小精悍的方法了。</p>
+<h3 id="例题">例题</h3>
+<p>一道我个人感觉挺好的题，这里当作例题来做：<a class="link" href="https://www.luogu.com.cn/problem/P3629"  target="_blank" rel="noopener"
+    >P3629 巡逻</a></p>
+<h4 id="题目大意">题目大意</h4>
+<p>给定一棵 n 个节点的树，树上的每条边边权都为 1。我们规定“巡逻距离”是从 1 号点出发将树上所有遍历至少一次再回到起点所走过的边权和。现在在树上添加 1 或 2 条边，规定添加的边<strong>必须且只能走一次</strong>，求最短的巡逻距离。</p>
+<h4 id="思路">思路</h4>
+<p>在还没有添加任何边的时候，巡逻距离显然是 $2*(n-1)$，因为在树上巡逻一次相当于做了一遍 DFS，每条边都会被递一次归一次 —— 换句话说，由于是一棵树，所以从 1 号点到达每一点的最短路径是唯一的，而对于每个节点 $vertex[i]$，直接连接它的边 $edge[j]$ 都会在到达 $vertex[i]$ 和从 $vertex[i]$ 返回时各被走一遍。</p>
+<p><img src="https://i.loli.net/2020/06/04/qT4RLzgUOuF9amc.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="添加一条边.png"
+	
+	
+>添加一条边的时候也很简单，因为添加一条边相当于在图上添加了一个环，由于每条边都要巡逻到，我们要把这个环完整地走一遍。对于题目中给出的样例树，我们添加一条 $edge_{2,8}$，那么现在就有由 8，5，3，1，2 构成的环。原本遍历环上的边（除了新添加的那条）巡逻距离为 8，但是现在我们走这个环距离就只有 5 —— 环上每条边都少走了一次，取而代之的是走了一次新添加的边。对于树上的一条链，如果用其两端点为 $i,j$，其长度为 $chain[i][j]$，那么在这种情况下我们遍历这个链只需要 $chain[i][j]+1$ 的路程，即可以节约 $chain[i][j]-1$ 的路程。</p>
+<p>所以添加一条边的时候，我们只需要求出树的直径长度 $treeLength$，巡逻路径长度便是 $2*(n-1)-(treeLength-1)$。</p>
+<p>添加两条边时，我们按照上面的思路添加好第一条边，重点处理第二条边。添加第二条边就又增加了一个环，如果这个环与第一个环毫不相干，那么只需要按照上面的方法计算第二个环节约的路径长度。</p>
+<p><img src="https://i.loli.net/2020/06/04/5vs4JYrUhQm9VRa.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="添加两条边.png"
+	
+	
+>但是当第二个环与第一个环有重合的边时，事情就没有那么简单了。对于题目中给出的样例树，再添加一条 $edge_{4,6}$，就形成了由 3，5，6，4 构成的第二个环。此时 $edge_{3,5}$ 既在第一个环上又在第二个环上。由于每条边都要被巡逻到，我们必须要把第二个环也完整地走一遍。这样一来 $edge_{3,5}$ 就被走了两边，和不添加任何边的时候相同。也就是说添加第一条边的时候减少的那次，又被走回来了。</p>
+<p>我们可以认为添加一条边时求出的直径是“要被减少的距离”，因为有直径长度的边被少走了一次。现在添加第二条边时有些边少走的那一次被加回来了，我们可以将第一次求出的直径上的所有边权取负，这样在走第二个环的时候走上这些重合的边，将会在答案中减去这条边的边权，即“不仅没有再减少距离，反而还让本来被减少的边又被走了”。</p>
+<p>再修改后的树上求直径添加第二条边，这个题就基本做完了。同添加第一条边一样，节省的路径长度是 $treeLength-1$。</p>
+<p>回过头来看，第一次我们不仅需要求出树直径的长度，而且还需要求出直径的具体方案，因此使用两次搜索的方法；第二次只需要求出直径的长度，且因为修改后出现了负权边，所以要使用树形 DP 的方法求直径 —— 一次就把两种方法练了，这难道不是一道很妙的题吗？</p>
+<h4 id="code">Code</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;map&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define des edge[i].destinationVertex
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MaxN <span style="color:#f92672">=</span> <span style="color:#ae81ff">100005</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Edge</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> destinationVertex, nextEdge, value;
+</span></span><span style="display:flex;"><span>}edge[MaxN <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Vertex</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> depth, father;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> vis;
+</span></span><span style="display:flex;"><span>}vertex[MaxN];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> head[MaxN], tot, n, k, deepest, treeLength;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> vis[MaxN];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">AddEdge</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v){
+</span></span><span style="display:flex;"><span>    tot<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    edge[tot].destinationVertex <span style="color:#f92672">=</span> v;
+</span></span><span style="display:flex;"><span>    edge[tot].nextEdge <span style="color:#f92672">=</span> head[u];
+</span></span><span style="display:flex;"><span>    edge[tot].value <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    head[u] <span style="color:#f92672">=</span> tot;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Reset</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        vertex[i].depth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        vertex[i].vis <span style="color:#f92672">=</span> false;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">BFS</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> secondTime){
+</span></span><span style="display:flex;"><span>    Reset();
+</span></span><span style="display:flex;"><span>    queue<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> q;
+</span></span><span style="display:flex;"><span>    q.push(x);
+</span></span><span style="display:flex;"><span>    vertex[x].vis <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>q.empty()){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> cur <span style="color:#f92672">=</span> q.front();
+</span></span><span style="display:flex;"><span>        q.pop();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>head[cur];i;i<span style="color:#f92672">=</span>edge[i].nextEdge){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>vertex[des].vis){
+</span></span><span style="display:flex;"><span>                vertex[des].vis <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>                vertex[des].depth <span style="color:#f92672">=</span> vertex[cur].depth <span style="color:#f92672">+</span> edge[i].value;
+</span></span><span style="display:flex;"><span>                q.push(des);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(secondTime) vertex[des].father <span style="color:#f92672">=</span> cur;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(treeLength <span style="color:#f92672">&lt;</span> vertex[i].depth){
+</span></span><span style="display:flex;"><span>            treeLength <span style="color:#f92672">=</span> vertex[i].depth;
+</span></span><span style="display:flex;"><span>            deepest <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Change</span>(<span style="color:#66d9ef">int</span> x){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(vertex[x].father){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> fa <span style="color:#f92672">=</span> vertex[x].father;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>head[fa];i;i<span style="color:#f92672">=</span>edge[i].nextEdge){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(des <span style="color:#f92672">==</span> x){
+</span></span><span style="display:flex;"><span>                edge[i].value <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }   
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>head[x];i;i<span style="color:#f92672">=</span>edge[i].nextEdge){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(des <span style="color:#f92672">==</span> fa){
+</span></span><span style="display:flex;"><span>                edge[i].value <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> fa;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">DP</span>(<span style="color:#66d9ef">int</span> x){
+</span></span><span style="display:flex;"><span>    vertex[x].vis <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>head[x];i;i<span style="color:#f92672">=</span>edge[i].nextEdge){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(vertex[des].vis) <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>        DP(des);
+</span></span><span style="display:flex;"><span>        treeLength <span style="color:#f92672">=</span> max(treeLength, vertex[x].depth <span style="color:#f92672">+</span> vertex[des].depth <span style="color:#f92672">+</span> edge[i].value);
+</span></span><span style="display:flex;"><span>        vertex[x].depth <span style="color:#f92672">=</span> max(vertex[x].depth, vertex[des].depth <span style="color:#f92672">+</span> edge[i].value);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>n,<span style="color:#f92672">&amp;</span>k);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> u, v;
+</span></span><span style="display:flex;"><span>        scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>u,<span style="color:#f92672">&amp;</span>v);
+</span></span><span style="display:flex;"><span>        AddEdge(u,v), AddEdge(v,u);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(k <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+</span></span><span style="display:flex;"><span>        BFS(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>        BFS(deepest, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> n <span style="color:#f92672">-</span> vertex[deepest].depth <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>        BFS(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>        BFS(deepest, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> firstLength <span style="color:#f92672">=</span> vertex[deepest].depth;
+</span></span><span style="display:flex;"><span>        Change(deepest);
+</span></span><span style="display:flex;"><span>        Reset();
+</span></span><span style="display:flex;"><span>        treeLength <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        DP(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> n <span style="color:#f92672">-</span> treeLength <span style="color:#f92672">-</span> firstLength);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

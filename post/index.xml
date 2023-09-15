@@ -6,88 +6,847 @@
         <description>Recent content in Posts on potatoler space</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Thu, 07 Sep 2023 22:57:14 +0800</lastBuildDate><atom:link href="https://example.org/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>UVA11806 Cheerleaders 题解</title>
-        <link>https://example.org/post/uva11806/</link>
-        <pubDate>Thu, 07 Sep 2023 22:57:14 +0800</pubDate>
+        <lastBuildDate>Tue, 12 Sep 2023 19:03:48 +0800</lastBuildDate><atom:link href="https://example.org/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>缸中之脑</title>
+        <link>https://example.org/post/%E7%BC%B8%E4%B8%AD%E4%B9%8B%E8%84%91/</link>
+        <pubDate>Tue, 12 Sep 2023 19:03:48 +0800</pubDate>
         
-        <guid>https://example.org/post/uva11806/</guid>
-        <description>&lt;h2 id=&#34;uva11806-cheerleadershttpswwwluogucomcnproblemuva11806-题解&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/UVA11806&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;UVA11806 Cheerleaders&lt;/a&gt; 题解&lt;/h2&gt;
-&lt;h4 id=&#34;题目大意&#34;&gt;题目大意&lt;/h4&gt;
-&lt;p&gt;有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;四个边都至少有一个人&lt;/li&gt;
-&lt;li&gt;一个格子最多放一个人&lt;/li&gt;
-&lt;li&gt;每个人都要放进去&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;求有多少种合法的放法——答案对 1e6+7 取模&lt;/p&gt;
-&lt;p&gt;注：四个角上的人可以看做同时在一行和一列&lt;/p&gt;
-&lt;h4 id=&#34;思路&#34;&gt;思路&lt;/h4&gt;
-&lt;p&gt;这道题中计算合法的方案数比较困难，所以我们可以计算出全部的方案数再减去不合法的方案数&lt;/p&gt;
-&lt;p&gt;不考虑约束条件，单纯地将这些人放进网格中，方案数显然有 $allAnswer=C^k_{mn}$&lt;/p&gt;
-&lt;p&gt;我们知道有四种因素会导致方案不合法，我们用四个集合表示具有某种因素的不合法方案：&lt;/p&gt;
+        <guid>https://example.org/post/%E7%BC%B8%E4%B8%AD%E4%B9%8B%E8%84%91/</guid>
+        <description>&lt;p&gt;​		「想养金鱼」&lt;/p&gt;
+&lt;p&gt;​		我想养一条金鱼。宿舍里本是不让养宠物的，我想应该仅局限于小猫小狗这一类会到处跑的动物。虽然小猫很可爱（不是说小狗不可爱，但我是猫党），但如果饲主没有看管好的话，满楼道乱跑，甚至在楼道里乱尿乱拉的话，不仅会给别人带来麻烦，更会增加保洁人员的工作量。&lt;/p&gt;
+&lt;p&gt;​		多不好啊。&lt;/p&gt;
+&lt;p&gt;​		金鱼就不会有这样的问题，买来鱼缸装好水，投小鱼入其中，于是她的天地就是鱼缸的全部空间了。只需要定期给鱼缸换水，定期投食，她就能活命。我不清楚金鱼又怎样的视力，但在水和鱼缸壁的折射下，想必她看到是梦幻般的华彩吧。&lt;/p&gt;
+&lt;p&gt;​		不知什么时候，世界微微亮起，这就是早晨。&lt;/p&gt;
+&lt;p&gt;​		不知什么时候，世界悄悄暗淡，这就是黄昏。&lt;/p&gt;
+&lt;p&gt;​		不知什么时候，身边骤然明亮，如烈焰一般，这就是夜晚。&lt;/p&gt;
+&lt;p&gt;​		不知什么时候，身边五彩流动，如极光一般，这也是夜晚。&lt;/p&gt;
+&lt;p&gt;​		不知什么时候，寰宇骚动，佳肴缓缓下落，这是下雨。&lt;/p&gt;
+&lt;p&gt;​		不知什么时候，天地异变，混沌重归清澈，这是轮回。&lt;/p&gt;
+&lt;p&gt;​		「养呗，买个鱼缸」&lt;/p&gt;
+&lt;p&gt;​		「有点纠结」&lt;/p&gt;
+&lt;p&gt;​		「别纠结」&lt;/p&gt;
+&lt;p&gt;​		金鱼很可爱，听说淡水鱼喜欢弱碱性水，本想接自来水晒两天除氯以后当作鱼缸水，但是既然是单人豪华间，而且缸子也不大，不如购买一些矿泉水，反正有矿物质，算不上所谓「至清」。每天睡觉之前都要仔细观察金鱼的曼妙身姿，记录在日记本上；每两天投一次食，听说金鱼不懂饥饱，喂太多容易撑死；每周换一次水，对于手头生活费来讲不是很大的负担；每个月洗一次鱼缸。悉心地照料她，日子久了感觉鱼也通了人性。也许鱼本就通人性，只是在朝朝暮暮间心意相通了？她吐出的每一朵泡泡里都有动听的歌声，她的每次游动都是在炫耀自己的裙摆 —— 使人忍不住沉溺其中。&lt;/p&gt;
+&lt;p&gt;​		突然有一天金鱼不动了，不再吐泡泡也不再游动，而是仰着身子一动不动。也许她只是累了。&lt;/p&gt;
+&lt;p&gt;​		然后第二天也仰着身子，她是真的累坏了！&lt;/p&gt;
+&lt;p&gt;​		然后第三天也仰着身子，她不会是生病了吧？&lt;/p&gt;
+&lt;p&gt;​		然后第四天也仰着身子，然后第五天也仰着身子。&lt;/p&gt;
+&lt;p&gt;​		然后她霓虹的鳞片开始褪色了。&lt;/p&gt;
+&lt;p&gt;​		金鱼死了。&lt;/p&gt;
+&lt;p&gt;​		是水质不好吗？矿泉水果然还是不能养鱼吗？还是说每周一次的换水太勤了？问题难道出在洗鱼缸上？每个月一次是不是间隔有点长？还是投食的问题？喂太对还是喂太少了？放在书桌上是不是光照有点少？台灯的光不能代替太阳光吗？晚上开台灯是不是打扰她休息了？只有一条是不是太孤单了？鱼会因为孤独而死掉吗？还是这些原因都有？&lt;/p&gt;
+&lt;p&gt;​		数罪并罚。&lt;/p&gt;
+&lt;p&gt;​		「感觉会养死」&lt;/p&gt;
+&lt;p&gt;​		我不太懂养金鱼，虽然家里也有很大的鱼缸里面有好多条金鱼，但是大多数照料工作是母亲在做，我只是在她出差的时候帮她投喂鱼食。换水和洗缸自然是一次都没做过。摆放的位置我也没有思考过，在那里就是在那里了。鱼缸灯的定时计划方案不是我指定的，我只是帮忙设定了。因此我其实没有对金鱼的生命负责的能力，只不过是自顾自地想象养了金鱼以后发生的种种罢了，包括她的死。没有能力承担她的死，没有资格决定它的死，但却假想，臆想，妄想她的死。不负责任的假定，多少有点冒犯。&lt;/p&gt;
+&lt;p&gt;​		「要是能买鱼干泡在水里让它自己活就好了」&lt;/p&gt;
+&lt;p&gt;​		「你想的还挺美」&lt;/p&gt;
+&lt;p&gt;​		但想到她死掉的时候，哪怕只有一瞬间，我内心生出的那股悲伤却是真的。既然这样的感情是真心实意的，即使是颇有冒犯，也能被原谅吧，更何况虽说是冒犯，却是虚假的冒犯，是没有具体的对象的冒犯 —— 冒犯全体金鱼这样无理的说辞是不能给人定罪的吧。在像做错事的孩子一样幼稚地为自己辩解，或者说为逃避辩解之时，我却觉得那种自己养的金鱼死掉的悲伤愈发真切，愈发强烈了。&lt;/p&gt;
+&lt;p&gt;​		明明是假的。明明说好是假的呢？&lt;/p&gt;
+&lt;p&gt;​		就结果来看，其实是我不自觉地陷入儿时宠物死掉的回忆中了。小的时候我养过一只叫「蘑菇」的松鼠，起这样的名字是因为他对蘑菇情有独钟，我有时候会拿蘑菇喂他。他死后被我埋在后院，用六角砖立了一块碑。虽然只是那个小区里随处可见的砖块，但是在当时的我心中那就是精致的墓碑。我还很认真地为蘑菇写了悼词，在埋葬时小声念出来，后来的几天也曾半夜悄悄哭过。&lt;/p&gt;
+&lt;p&gt;​		这段现在说出来略有羞耻的经历本该在我记忆的角落中了，但却在这个时候被翻出来，并且和我那不负责任的想象杂糅在一块了，甚至我那不负责任的想象有一部分来源于过去和蘑菇度过的时光也说不定。这样的事情在无意识中发生了，虽然在无意识中发生但还是被我捉到了，我想到这是不是在每个人身上都会发生，是不是还有些人能自由地控制这种事情的发生。核裂变在不受控制地发生时就是不负责任的破坏性的力量，但在受控进行时就能源源不断地输出能量为人们所用。我的妄想的确是不负责任的，但是主动地，有控制地把记忆中的情感混入到虚构的事件中，便是一件美妙的事情吧 —— 搞不好诗词、戏曲、小说都是这么被创作出来的。&lt;/p&gt;
+&lt;p&gt;​		「那就先养草再养金鱼」&lt;/p&gt;
+&lt;p&gt;​		「小学的时候我当过绿植委员，结果班里的吊兰都被我养死了，最后我被撤职了」&lt;/p&gt;
+&lt;p&gt;​		「别笑死我」&lt;/p&gt;
+&lt;p&gt;​		唐代诗人李贺用《雁门太守行》这一乐府古题创作了一首描写战争场面的诗歌。「黑云压城城欲摧 甲光向日金鳞开」的首句既是写景又是写事，从一开始就成功地渲染出了敌军兵临城下的紧张气氛和危急形势。剩下三联更是不负众望地用浓艳斑驳的色彩描绘出史诗般的奇异画面，结尾还抛出典故写出誓死报效国家的决心，极具震撼与艺术感染力。本来惨烈的战斗场面不宜使用鲜艳色彩的词语，李贺却反其道而行之，让鲜艳的色彩充斥在这首诗中，金色、胭脂色、紫红色与黑色、秋色、玉白色被调制在一起，不是分层也不是混匀，而是互相在对方中产生漩涡，得到梵高《星空》一样色彩斑斓的画面。&lt;/p&gt;
+&lt;p&gt;​		但事实是，李贺作为著名边塞诗人却从未见过边塞景色。和有过军旅生活的岑参不同，《雁门太守行》是一个书生即兴赋诗鼓舞士气而作。「忽如一夜春风来 千树万树梨花开」是精妙的比喻，但「角声满天秋色里 塞上燕脂凝夜紫」就已经是想象的范畴了。&lt;/p&gt;
+&lt;p&gt;​		怪不得李贺被称为「诗鬼」呢。诗鬼写鬼诗：是鬼斧神工，超脱人能描写的景象，简直是风水山石自然酿造成的诗句被他一滴滴接去了；同时也是鬼畜之气，奇诡而又妥帖，鬼魅而又充满着神奇，雪一般的大漠美得不现实，只能藏在他的鬼诗里了。&lt;/p&gt;
+&lt;p&gt;​		惟其奇诡，愈觉新颖；惟其妥贴，则倍感真切；奇诡而又妥帖，从而构成浑融蕴藉富有情思的意境。李贺这绝招让他的创作可贵而难以模仿，结果《雁门太守行》的宏大气势其实不在边塞，誓死报国之忠心其实不是自己所想。一切景色事物都超脱自己所见，未超脱自然的就成了鬼斧，超脱自然的就成了鬼畜。&lt;/p&gt;
+&lt;p&gt;​		正因为未见到全貌，所以才能想到更多。&lt;/p&gt;
+&lt;p&gt;​		正因为不知道轮廓，所以才不进行白描。&lt;/p&gt;
+&lt;p&gt;​		正因为是自我感情，所以才是后印象派。&lt;/p&gt;
+&lt;p&gt;​		撕下想象力的面具，眼前的是移情能力 —— 从别人到自己，从过去到现在的自己。&lt;/p&gt;
+&lt;p&gt;​		「爱护植物不是人的权利，植物有被爱护的权利，答应我要爱护植物，好吗」&lt;/p&gt;
+&lt;p&gt;​		「怎么植入了环保宣传」&lt;/p&gt;
+&lt;p&gt;​		文字是移情的媒介，诗词、戏曲、小说是移情的产物。文字将我们祖先的共同记忆抽象出来，文字的使用是相似之时的再体验，文字的组合是将共同情感放在个人的想象上。「即」与「既」字形半同半异，左边是同样的食器，右边是不同的人。前者是人跪坐面对食物，食物在旁边想吃就吃，靠近食物马上吃；后者是人背向食物，已经吃饱了吃完了。文字 —— 无论描述的是声音还是图像 —— 是理性的，理性的却不是真实的，文字在世界中创造出既不真实又非虚假的东西。作为唯一拥有文字的动物，人类也是唯一同时拥有虚假和真实的动物。&lt;/p&gt;
+&lt;p&gt;​		用真的情感写出假的故事，用真创造出了假。&lt;/p&gt;
+&lt;p&gt;​		从假的故事悟出真的道理，从假诞生出了真。&lt;/p&gt;
+&lt;p&gt;​		「这也是一种身体力行」&lt;/p&gt;
+&lt;p&gt;​		「植入物不是植物」&lt;/p&gt;
+&lt;p&gt;​		不同的字典记载的文字数量也是不一样的，但字典终究被我翻到最后一页了。文字竟是如此匮乏，用数百倍于此的文字也不足以说明现在的世界，完全不够，过去就是如此，未来还是这样。人类用文字说明了战争说明了和平说明了善意说明了敌意说明了健康说明了疾病说明了帮助说明了欺诈说明了沉默说明了聒噪说明了重视说明了无视说明了塑造说明了破坏说明了喜爱说明了厌恶说明了出生说明了死亡。唯独没能用文字说明世界。人类却用文字创造了说谎鼻子就会变长的世界，创造了一个家族必然衰落的世界，创造了全人类为一个共同理想奋斗的世界，创造了人类自身都不存在的世界。&lt;/p&gt;
+&lt;p&gt;​		结果文字还是无力的，文字没法说明世界。&lt;/p&gt;
+&lt;p&gt;​		结果文字还是暴力的，文字用于创造世界。&lt;/p&gt;
+&lt;p&gt;​		文字没能描述我所处的，我眼前的，却创造了我感受的，我看见的。不是世界却是我的世界，不是世界却是我。&lt;/p&gt;
+&lt;p&gt;​		于是我看见的变成了我变成了我的文字。&lt;/p&gt;
+&lt;p&gt;​		于是我阅读的变成了我变成了我的文字。&lt;/p&gt;
+&lt;p&gt;​		于是我感受的变成了我变成了我的文字。&lt;/p&gt;
+&lt;p&gt;​		于是我思考的变成了我变成了我的文字。&lt;/p&gt;
+&lt;p&gt;​		但我的文字也无法说明世界。&lt;/p&gt;
+&lt;p&gt;​		因为让我看见的是世界，然后才有了我的文字。&lt;/p&gt;
+&lt;p&gt;​		因为让我阅读的是世界，然后才有了我的文字。&lt;/p&gt;
+&lt;p&gt;​		因为让我感受的是世界，然后才有了我的文字。&lt;/p&gt;
+&lt;p&gt;​		因为让我思考的是世界，然后才有了我的文字。&lt;/p&gt;
+&lt;p&gt;​		世界产生了文字，接着让我生活在名为「我」的世界里，把我浸泡在名为「我」的缸里，然后「我」的世界开始运行，名为「我」的缸开始运行。&lt;/p&gt;
+&lt;p&gt;​		终于，在名为「我」的缸中看见「我」的世界。&lt;/p&gt;
+&lt;p&gt;​		终于，在名为「我」的缸中阅读「我」的世界。&lt;/p&gt;
+&lt;p&gt;​		终于，在名为「我」的缸中感受「我」的世界。&lt;/p&gt;
+&lt;p&gt;​		终于，在名为「我」的缸中思考「我」的世界。&lt;/p&gt;
+&lt;p&gt;​		「我还是买一盆塑料仙人掌吧」&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>将 Typora 打造成有「灵魂」的轻小说阅读器</title>
+        <link>https://example.org/post/%E5%B0%86-typora-%E6%89%93%E9%80%A0%E6%88%90%E6%9C%89%E7%81%B5%E9%AD%82%E7%9A%84%E8%BD%BB%E5%B0%8F%E8%AF%B4%E9%98%85%E8%AF%BB%E5%99%A8/</link>
+        <pubDate>Sat, 08 Aug 2020 22:57:14 +0800</pubDate>
+        
+        <guid>https://example.org/post/%E5%B0%86-typora-%E6%89%93%E9%80%A0%E6%88%90%E6%9C%89%E7%81%B5%E9%AD%82%E7%9A%84%E8%BD%BB%E5%B0%8F%E8%AF%B4%E9%98%85%E8%AF%BB%E5%99%A8/</guid>
+        <description>&lt;p&gt;在我接触的 ACGN 作品中，大部分都是动画。但是即使作为一般意义上的「动画党」的一员，我也看了不少作品的轻小说原著。由于众所周的原因，所以我阅读轻小说主要是找 epub 电子版或者是购买台版，&lt;del&gt;要不是日文太菜我就直接买日版了&lt;/del&gt;。&lt;/p&gt;
+&lt;p&gt;阅读 epub 版轻小说有两个致命缺点：第一是绝大多数的 epub 轻小说都是制作成横版的；二是网友 epub 的制作进度一般都跟不上民间翻译进度。最近在看《物语》时就遇到了这样的问题：从《忍物语》开始我便找不到 epub 资源了，于是只好拿轻国的 txt 版凑合着看。但是使用系统自带文本编辑器阅读 txt 小说的体验实在是糟糕，于是我便想到了魔改平时使用的 Markdown 编辑器：Typora。&lt;/p&gt;
+&lt;h3 id=&#34;为什么是-typora&#34;&gt;为什么是 Typora？&lt;/h3&gt;
+&lt;p&gt;事实上，Markdown 文档的本质其实就是一个文本文档，其中添加的格式标记只有在编译之后才会生效。在 txt 文档中添加了 Markdown 的标记，用 Typora 打开也是有效果的。而介于 Typora 是我所见过的少数「所见即所得」的 Markdown 编辑器，它也可以使我在阅读中实时修改小说中的排版，不完全翻译，以及错别字（民间翻译时常会有这些问题）。&lt;/p&gt;
+&lt;h3 id=&#34;多种字体的支持&#34;&gt;多种字体的支持&lt;/h3&gt;
+&lt;p&gt;一款优秀的小说阅读器最重要的功能之一，就是对多种字体的支持。纵然 Typora 中自带了多种主题，社区中也有不少主题，但这些主题都是成套的模版，要想个性化字体，我们就要对 Typora 的主题文件下手了。&lt;/p&gt;
+&lt;p&gt;根据系统的不同，Typora 的主题文件存放的位置不尽相同，但是我们可以在其偏好设置中找到一个快速打开主题文件夹的按钮。选择一个喜欢的主题作为基础主题，并将它的主题文件夹与 CSS 文件复制一份。打开 CSS 文件并在文件中搜索 &lt;code&gt;font family&lt;/code&gt;，你可以看到在它的后面看到一些名称，它们就是这个主题中字体的名称。仿照其格式在后面添加你喜欢的字体的名称，再次重启 Typora 时刚复制的主题会出现在 Typora 的主题列表中，这时候换上这个主题你就会发现字体已经变了。&lt;/p&gt;
+&lt;p&gt;值得注意的几点是：第一，一份 CSS 文件中的 &lt;code&gt;font family&lt;/code&gt; 时常不只一处，除了前面带有 &lt;code&gt;@font-face&lt;/code&gt; 的，其他都要修改，不过如果你懂一些 CSS，你应该可以看出不同位置的 &lt;code&gt;font family&lt;/code&gt; 管束的也是不同地方的字体，可以按照个人喜好进行修改；第二，字体名称的顺序代表了字体应用的优先级，当靠前的字体不可用时才应用靠后的字体，而如果你要添加的是中文字体，应该添加到英文字体的名称之后，因为大部分的中文字体都对英文字母的支持，&lt;del&gt;但是一般都很难看&lt;/del&gt;，所以放在后面的话，英文还是原来的字体，中文就是你自定义的字体了。&lt;/p&gt;
+&lt;h3 id=&#34;竖版阅读&#34;&gt;竖版阅读&lt;/h3&gt;
+&lt;p&gt;Typora 原生并没有对竖行文字的支持，但是我们还是可以通过魔改主题样式来实现。这个方法还是我在翻 Typora Github 项目的 issue 时知道的：&lt;img src=&#34;https://i.loli.net/2020/08/08/7EdbefDtABoqsr2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;issue&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在 CSS 文件中添加下面的这一段:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;#write {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;writing-mode&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;vertical&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;rl;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;-webkit-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;writing-mode&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;vertical&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;rl;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;text-orientation&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;mixed&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;overflow-x&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;auto&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;/* This enables horizontal scrolling */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;#write &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;:&lt;span style=&#34;color:#a6e22e&#34;&gt;first-child&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; #write &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;ul&lt;/span&gt;:&lt;span style=&#34;color:#a6e22e&#34;&gt;first-child&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; #write &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;ol&lt;/span&gt;:&lt;span style=&#34;color:#a6e22e&#34;&gt;first-child&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; #write &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;pre&lt;/span&gt;:&lt;span style=&#34;color:#a6e22e&#34;&gt;first-child&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; #write &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;blockquote&lt;/span&gt;:&lt;span style=&#34;color:#a6e22e&#34;&gt;first-child&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; #write &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;:&lt;span style=&#34;color:#a6e22e&#34;&gt;first-child&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; #write &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;table&lt;/span&gt;:&lt;span style=&#34;color:#a6e22e&#34;&gt;first-child&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;margin-top&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后就可以让文字变成竖版并从右往左了。对于习惯于阅读台版或者日版轻小说的同志们来说，这种样式是真的充满了灵魂。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>树学杂谈2: 树链剖分</title>
+        <link>https://example.org/post/%E6%A0%91%E5%AD%A6%E6%9D%82%E8%B0%882%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</link>
+        <pubDate>Mon, 15 Jun 2020 09:10:00 +0800</pubDate>
+        
+        <guid>https://example.org/post/%E6%A0%91%E5%AD%A6%E6%9D%82%E8%B0%882%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/</guid>
+        <description>&lt;h3 id=&#34;没有树链剖分的时代&#34;&gt;没有树链剖分的时代&amp;hellip;&lt;/h3&gt;
+&lt;p&gt;没有树链剖分的时代无疑是一个黑暗的时代 —— 明明在线性空间里很简单的问题，在这个扭曲的空间里都变得难以解决。虽然树形结构数据难以计算和统计，但现实生活中又有不少问题和数据需要用树形结构表示和储存。直到有一天，一位天才树学家的出现，为水深火热中的人们带来了希望…&lt;/p&gt;
+&lt;h3 id=&#34;树链剖分的原理&#34;&gt;树链剖分的原理&lt;/h3&gt;
+&lt;p&gt;我们仍未知道那位大树学家从何而来，又往何而去，但是他留下的宝贵遗产 —— 树链剖分却彻底颠覆了解决树上问题的方法：将一棵树剖分成多条链，将树上问题转换成了链上问题。形象话地理解，就是把一棵树的枝条砍下来，摆成一行去统计和计算。通过某种规则将树剖分成链，并根据这个规则在访问链式结构的同时又不丢失树形信息，就是树链剖分的目的和核心。&lt;/p&gt;
+&lt;h3 id=&#34;树链剖分的流程&#34;&gt;树链剖分的流程&lt;/h3&gt;
+&lt;p&gt;事实上树链剖分的规则不止一种，具体有以子树大小决定优先级的重链剖分，以子树深度决定优先级的长链剖分，以及用于 LCT 的实链剖分。以下只介绍最常用的重链剖分，在不特殊说明的情况下，「树链剖分」即指「重链剖分」。在进行树链剖分之前，我们首先要明确一些变量和概念。对于表示树上一点的 &lt;code&gt;vertex&lt;/code&gt;：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;$A:$ 第一行没有人&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;$B:$ 最后一行没有人&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;$C:$ 第一列没有人&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;$D:$ 最后一列没有人&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;father&lt;/code&gt; 该点在树上的父亲节点&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;depth&lt;/code&gt;（有时为 &lt;code&gt;distance&lt;/code&gt;，有时两者都有）该点的深度&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;subtreeSize&lt;/code&gt; 以该点为根的子树大小&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;heavySon&lt;/code&gt; 该点的重多儿子中，子树最大的儿子，称作「重儿子」，重儿子只能有一个 —— 当某点的多个儿子子树大小相同的时候，任选一个作为重儿子即可&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;chainTop&lt;/code&gt; 该点所在重链的链顶&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;serial[MaxN]&lt;/code&gt; 每一个 DFN 对应的子节点编号&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DFN&lt;/code&gt; 优先遍历重儿子的 DFS 序&lt;/li&gt;
+&lt;li&gt;重边和轻边：连接该点与其重儿子的边称为「重边」，剩余的边称为「轻边」。值得注意的是，重边不要求连接的两个节点都是重子节点，而只要求较深的点是较浅的点的重子节点&lt;/li&gt;
+&lt;li&gt;重链：由重边连成的链。特别地，我们将剖分后被孤立的由轻边连成的链也视作重链&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;于是就可以通过容斥原理计算合法的方案数了：
-$$
-approvedAnswer=allAnswer+A\cup B\cup C\cup D-(A\cup B\cup C+A\cup B\cup D+A\cup C\cup D+B\cup C\cup D)+(A\cup B+A\cup C+A\cup D+B\cup C+B\cup D+C\cup D)-(A+B+C+D)
-$$
-对于任意一种方案数我们都可以用一个四元组表示这种方案具有哪几个不合法因素，其中每个元素1表示具有这种不合法因素，0表示没有。更进一步的，可以将这个四元组通过状态压缩记录在一个整形中，于是我们只需要通过0到15这16个数就可以遍历所有方案的种类，通过与1，2，4，8进行&amp;amp;运算就可以判断是否具有某种不合法因素。&lt;/p&gt;
-&lt;p&gt;如果一种方案具有$A$这个不合法因素，那么这种方案其实就是将原来的网格场地消去一行之后所有的方案数，即对于(n-1)*m的场地放k个人的全部方案数——$C^k_{m(n-1)}$，和我们一开始求出的 $allAnswer$ 得到了统一。&lt;/p&gt;
-&lt;p&gt;上面的公式中，约束条件的个数决定了加减，即满足「偶加奇减」原则。因为 $allAnswer$ 实质上是不受任何不合法条件约束的一种特殊的不合法情况，其不合法因素数是0，所以在&amp;amp;1时结果为0，判断为偶数，于是也要加上——和公式相符，不需要特判。&lt;/p&gt;
-&lt;p&gt;至此，这道题就做完了。不过还有值得注意的一点：在不合法因素数为奇数，需要减去时，我们需要先累加一个模数在进行减法运算，这样就可以保证在取模意义下结果正确而不会因减法运算后得到负数而导致取模后得到负数，以致答案错误。&lt;/p&gt;
-&lt;h4 id=&#34;代码&#34;&gt;代码：&lt;/h4&gt;
+&lt;p&gt;树链剖分的核心代码是两次 DFS，上面的图片清晰地展现了一棵树剖分后的样子，我们现在重点来看一下剖分的过程（为了方便起见，请容许我直接使用 DFN 序作为节点的编号）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/06/13/ET2hLcz18w9FVM3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;树链剖分图解.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第一次 DFS 处理了节点的深度，父亲，子树大小和重儿子：&lt;/strong&gt;
+从一号点出发，遍历每一个儿子 —— 遍历顺序单纯的依据边添加的顺序，因为这个时候我们还不知道谁是重儿子 —— 在这里我们可以按照从上往下从左往右的顺序。对于每一个儿子，它的深度是父亲深度 +1（离根节点的距离是父亲离根节点的距离加上这条边的权值），父亲是边连接的另一个节点，接着再 DFS 这个子节点，最后将这个儿子的子树大小累加到父亲的子树大小上，并根据儿子的子树大小更新重儿子。例如当我们将 1 号的每一个儿子都便利结束后，可以得到 2 号的子树大小是 5，7 号的子树大小是 9，16 号的子树大小是 4，子树最大的子节点是 7 号，那么 7 号便是 1 号的重儿子。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define thisSon edge[i].destination
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/*The first-time DFS marks each vertex&amp;#39;s
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;father, depth, heavy son, and subtree size*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;DFS1&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    vertex[x].subtreeSize &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;&lt;span style=&#34;color:#75715e&#34;&gt;//The father itself contribute to the subtree size
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; head[x]; i; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; edge[i].nextEdge){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(thisSon &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; vertex[x].father) &lt;span style=&#34;color:#66d9ef&#34;&gt;continue&lt;/span&gt;;&lt;span style=&#34;color:#75715e&#34;&gt;//ThisSon shouldn&amp;#39;t be the father
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        vertex[thisSon].depth &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; vertex[x].depth &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        vertex[thisSon].father &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; x;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        DFS1(thisSon);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        vertex[x].subtreeSize &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; vertex[thisSon].subtreeSize;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;//Update father&amp;#39;s heavy son when the father doesn&amp;#39;t have a heavy son or there&amp;#39;s a heavier one (with a larger subtree)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(vertex[thisSon].subtreeSize &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; vertex[vertex[x].heavySon].subtreeSize) vertex[x].heavySon &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; thisSon;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;第二次 DFS 处理了节点的 DFN，所在重链的链顶，以及每个 DFN 对应的节点编号:&lt;/strong&gt;
+不妨像添加边一样用一个 &lt;code&gt;cntDFN&lt;/code&gt; 记录现在的 DFN 是多少。第二次的 DFS 优先遍历重儿子，当没有重儿子的时候就直接返回。重儿子一定和父亲在同一条重链上，所以对于第二次 DFS 的入口 1 号，其链顶正是它自己，接着优先遍历它的重儿子 7 号，并将 1 号的链顶继承给它。接着再遍历其他的儿子。当然这些儿子和父亲已经不在一条链上，没有继承权的他们只好另起炉灶，以自己作为新的重链的链顶。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define thisSon edge[i].destination
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/*The second-time DFS marks DFN of vertexes,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;serial of DFNs, and chain top of the chain that contain certain vertex,*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;DFS2&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; top){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    vertex[x].DFN &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;cntDFN;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    serial[vertex[x].DFN] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; x;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    vertex[x].chainTop &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; top;&lt;span style=&#34;color:#75715e&#34;&gt;//init: default chainTop is itself
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;vertex[x].heavySon) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;&lt;span style=&#34;color:#75715e&#34;&gt;//to leaf vertex then return
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//Mark the heavy son first, because it&amp;#39;s on the same chain with the father
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//This ensures that the DFN of vertexes on the same chain is continous
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    DFS2(vertex[x].heavySon, top);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; head[x]; i; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; edge[i].nextEdge){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;//Then mark other sons, but they&amp;#39;re not on the same chain with their father
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(thisSon &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; vertex[x].father &lt;span style=&#34;color:#f92672&#34;&gt;||&lt;/span&gt; thisSon &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; vertex[x].heavySon) &lt;span style=&#34;color:#66d9ef&#34;&gt;continue&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        DFS2(thisSon, thisSon);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;值得注意的几点：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以发现我们没有对 1 号的深度以及父亲做处理：因为我们将 1 号作为根节点，它是最上级的祖先；在这里我们将根节点的深度定为 0，当然也可以让根节点的深度为 1 —— 事实上图中的树根节点深度就是 1。&lt;/li&gt;
+&lt;li&gt;子树大小的累加应该在对子节点 DFS 之后进行，相当于是向上传递的「归」的过程，DFS 之前子树大小没有被记录，这时候累加只是竹篮打水一场空。&lt;/li&gt;
+&lt;li&gt;因为树链剖分的一般都是无根树，根结点是我们自己定义的，所以在通过边枚举儿子的时候注意跳过父亲。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;树链剖分的性质&#34;&gt;树链剖分的性质&lt;/h3&gt;
+&lt;p&gt;也许在上面的重链剖分流程中你就已经发现了这些有趣的性质：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;正如其目的，树链剖分将一棵树完全剖分成若干条重链，每个点必且只属于一条重链 —— 这样才能在将树形结构转化为线性结构时保证节点的不重不漏。&lt;/li&gt;
+&lt;li&gt;DFN 是优先遍历重儿子的 DFS 序，所以重儿子的 DFN 和其父亲一定是连续的。所以，由多条重边连成的重链，其上面的节点 DFN 也是连续的。轻儿子紧随重儿子被遍历，所以一颗子树的 DFN 序也是连续的。&lt;/li&gt;
+&lt;li&gt;当向下经过轻边后，子树大小至少减半 —— 某节点拥有轻边仅当它至少拥有至少两个儿子，则一个轻儿子最多分到一半的子树大小。&lt;/li&gt;
+&lt;li&gt;由上一条可得对于树上的任意一条路径，拆成从 LCA 向两边跳链，条链次数为至多 logn 级别。因此任意一条路径中的重链条数都不超过 logn 级别。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;树链剖分之后的维护&#34;&gt;树链剖分之后的维护&lt;/h3&gt;
+&lt;p&gt;树链剖分将树上路径转换成线性空间中的一段或多段区间，常使用线段树或树状数组维护。不妨通过&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P3384&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;P3384 轻重链剖分&lt;/a&gt;来熟悉基本应用。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一棵包含 N 个结点的联通且无环的树，每个节点上包含一个数值，需要支持以下操作：&lt;/p&gt;
+&lt;p&gt;操作1: 格式: 1 x y z 表示将树从 x 到 y 结点最短路径上所有节点的值都加上 z&lt;/p&gt;
+&lt;p&gt;操作2: 格式: 2 x y 表示求树从 x 到 y 结点最短路径上所有节点的值之和&lt;/p&gt;
+&lt;p&gt;操作3: 格式: 3 x z 表示将以 x 为根节点的子树内所有节点值都加上 z&lt;/p&gt;
+&lt;p&gt;操作4: 格式: 4 x 表示求以 x 为根节点的子树内所有节点值之和&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/06/13/ET2hLcz18w9FVM3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;树链剖分图解.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;从 x 到 y 的路径由多条重链的片段组成。由于重链中节点的 DFN 是连续的，我们尝试在从 x 跳到 y 的过程中统计 x 走过的重链片段。但是这样做有一个问题：我们记录了每个点的重子节点，它的 DFN 是承接父节点的，但是对于剩下的轻子节点我们并没有严格区分。更何况我们只记录了某点所在重链的链顶，种种因素导致我们只能往上跳而不能往下跳。所以我们可以每次让 x 和 y 链顶深度更深的那一个往上跳链，最终当两个节点在同一条重链上时在深度较浅的节点相会。&lt;/p&gt;
+&lt;p&gt;在上面的图中，倘若我们要求出 12 号到 15 号的路径，先从 15 号出发，由于 12 号是其所在链的链顶，我们跳到它的父亲 10 号，到达另一条链。这时候 x 的链顶是 1号，深度为1，而 y 的链顶是 14 号，深度为 3 。所以从 15 号出发到其链顶 14 号，由 14 号跳到它的父亲 7 号。这时候两个指针已经处于一条重链，但是没有相会我们让深度较浅的指针找到深度较深的指针，即让处于 10 号的 x 找到处于 7 号的 y。最终我们得出 12 号到 15 号的路径，用 DFN 序表示为 7, 5-2, 9-10，但是程序运势运行时累加答案的顺序是 7, 9-10, 2-5。&lt;/p&gt;
+&lt;p&gt;可以两个指针最终总是在 LCA 处相会，也许你已经意识到了出现这种情况的原因：由于只能向上跳链，所以我们在跳链之初就是将从 x 到 y 的路径拆成了从 LCA 向下走的两条路。事实上在利用树链剖分解决两点之间路径上的问题时，我们总能顺便求出他们的 LCA。&lt;/p&gt;
+&lt;p&gt;在完整子树上的操作和询问就简单很多：以 x 为根的子树，其 DFN 序是连续的，是从 &lt;code&gt;vertex[x].DFN &lt;/code&gt; 到 &lt;code&gt;vertex[x].DFN + vertex[x].subtreeSize - 1&lt;/code&gt;。这里减去 1 是为了去除重复统计的根节点 x。&lt;/p&gt;
+&lt;p&gt;为上面的例题献上代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstdlib&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstring&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define thisSon edge[i].destiVertex
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define xTop vertex[x].chainTop
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define yTop vertex[y].chainTop
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; std;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; MaxN &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1000005&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n, m, root, mod, finalValue[MaxN];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Vertex&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; val, father, depth, subtreeSize, heavySon, chainTop, DFN;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//Differ from finalValue, vertex[x].val record the input vertex value, which had not been re-numbered yet
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}vertex[MaxN];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Edge&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; destiVertex, nextEdge;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}edge[MaxN &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SegmentTree&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; data, addTag, l, r;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}seg[MaxN &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; tot, head[MaxN], cntDFN;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;AddEdge&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; u,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; v){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    edge[&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;tot].destiVertex &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; v;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    edge[tot].nextEdge &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; head[u];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    head[u] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tot;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/*The first-time DFS marks each vertex&amp;#39;s
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;father, depth, heavy son, and subtree size*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;DFS1&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    vertex[x].subtreeSize &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;&lt;span style=&#34;color:#75715e&#34;&gt;//The father itself contribute to the subtree size
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; head[x]; i; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; edge[i].nextEdge){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(thisSon &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; vertex[x].father) &lt;span style=&#34;color:#66d9ef&#34;&gt;continue&lt;/span&gt;;&lt;span style=&#34;color:#75715e&#34;&gt;//ThisSon shouldn&amp;#39;t be the father
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        vertex[thisSon].depth &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; vertex[x].depth &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        vertex[thisSon].father &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; x;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        DFS1(thisSon);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        vertex[x].subtreeSize &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; vertex[thisSon].subtreeSize;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;//Update father&amp;#39;s heavy son when the father doesn&amp;#39;t have a heavy son or there&amp;#39;s a heavier one (with a larger subtree)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(vertex[thisSon].subtreeSize &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; vertex[vertex[x].heavySon].subtreeSize) vertex[x].heavySon &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; thisSon;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/*The second-time DFS marks DFN of vertexes,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;Rank of DFNs, and chain top of the chain that contain certain vertex,*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;DFS2&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; top){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    vertex[x].DFN &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;cntDFN;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    finalValue[vertex[x].DFN] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; vertex[x].val;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    vertex[x].chainTop &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; top;&lt;span style=&#34;color:#75715e&#34;&gt;//init: default chainTop is itself
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;vertex[x].heavySon) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;&lt;span style=&#34;color:#75715e&#34;&gt;//to leaf vertex then return
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//Mark the heavy son first, because it&amp;#39;s on the same chain with the father
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//This ensures that the DFN of vertexes on the same chain is continous
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    DFS2(vertex[x].heavySon, top);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; head[x]; i; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; edge[i].nextEdge){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;//Then mark other sons, but they&amp;#39;re not on the same chain with their father
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(thisSon &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; vertex[x].father &lt;span style=&#34;color:#f92672&#34;&gt;||&lt;/span&gt; thisSon &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; vertex[x].heavySon) &lt;span style=&#34;color:#66d9ef&#34;&gt;continue&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        DFS2(thisSon, thisSon);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//SegmentTree below
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//Because of the contiguity of vertex DFNs, we can use segment tree as the statistic of range answer  
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PassTag&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;].data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;].data &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; (seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;].r &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;].l&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; seg[x].addTag) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;].data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;].data &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; (seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;].r &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;].l&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; seg[x].addTag) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;].addTag &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;].addTag &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; seg[x].addTag) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;].addTag &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;].addTag &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; seg[x].addTag) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    seg[x].addTag &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Build&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; l,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    seg[x].l &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; l, seg[x].r &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; r;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(seg[x].l &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; seg[x].r){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        seg[x].data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; finalValue[l];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; mid &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (l &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; r) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Build(x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, l, mid);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Build(x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, mid&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, r);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    seg[x].data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;].data &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;].data) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//Ask and Addition are two basic segment-tree functions used in other higher-level function
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Addition&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; l,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; z){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(seg[x].l &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; l &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; seg[x].r &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; r){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        seg[x].data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (seg[x].data &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; (seg[x].r &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; seg[x].l &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; z) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        seg[x].addTag &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (seg[x].addTag &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; z) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(seg[x].addTag) PassTag(x);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; mid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(seg[x].l&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;seg[x].r)&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(l &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; mid) Addition(x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, l, r, z);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(r &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; mid) Addition(x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, l, r, z);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    seg[x].data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;].data &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; seg[x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;].data) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Ask&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; l,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; ans &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(seg[x].l &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt; l &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; seg[x].r &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; r) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; seg[x].data;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(seg[x].addTag) PassTag(x);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; mid &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (seg[x].l &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; seg[x].r) &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//Remember to mod here, or ans will overflow
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(l &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; mid) ans &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (ans &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Ask(x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, l, r)) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(r &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; mid) ans &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (ans &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Ask(x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, l, r)) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//SegmentTree above
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//Problem tasks below
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//Just move x to the chain that y is on, add answer on the way, and then add range answer from x to y
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;WayAdd&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; y,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; z){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//Keep x moving until x and y are on the same chain
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;(xTop &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; yTop){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(vertex[xTop].depth &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; vertex[yTop].depth) swap(x,y);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Addition(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, vertex[xTop].DFN, vertex[x].DFN, z);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;//jump from one chain to another
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        x&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;vertex[xTop].father;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(vertex[x].depth &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; vertex[y].depth) swap(x,y);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Addition(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, vertex[x].DFN, vertex[y].DFN, z);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;WayAsk&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; y){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;//same as WayAdd
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;(xTop &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; yTop){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(vertex[xTop].depth &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; vertex[yTop].depth) swap(x,y);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ans &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Ask(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, vertex[xTop].DFN, vertex[x].DFN)) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        x&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;vertex[xTop].father;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(vertex[x].depth &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; vertex[y].depth) swap(x,y);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ans &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (ans &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; Ask(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, vertex[x].DFN, vertex[y].DFN)) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SubtreeAdd&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; z){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Addition(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, vertex[x].DFN ,vertex[x].DFN &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; vertex[x].subtreeSize &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, z &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; mod);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SubtreeAsk&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Ask(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, vertex[x].DFN ,vertex[x].DFN &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; vertex[x].subtreeSize &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//Problem tasks above
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;n,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;m,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;root,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;mod);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; n; i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;) scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;vertex[i].val);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; n; i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; u, v;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;u,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;v);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        AddEdge(u, v);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        AddEdge(v, u);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    DFS1(root);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    DFS2(root,root);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Build(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,n);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;(m&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; op, x, y, z;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;op);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(op&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;x,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;y,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;z);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            WayAdd(x,y,z&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;mod);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(op&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;x,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;y);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,WayAsk(x,y));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(op&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;x,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;z);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            SubtreeAdd(x, z);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(op&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;x);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,SubtreeAsk(x));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这段代码只是为了让大家感受一下树链剖分在完整的题中和数据结构结合的写法。在打板子的时候一定要自己调代码直到 AC 哦 —— 这样才能真正理解树剖的实现。&lt;del&gt;其实只是因为我调这个板子调了两天 QwQ&lt;/del&gt;。下面我们来看几道题吧。&lt;/p&gt;
+&lt;h5 id=&#34;p2146-软件包管理器httpswwwluogucomcnproblemp2146&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P2146&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;P2146 软件包管理器&lt;/a&gt;&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;软件包的依赖关系形成一个树形结构，除了不依赖任何软件包的 0 号软件包，每个软件包只直接依赖一个软件包，一开始所有的软件包都未安装。现在有两种操作：
+&lt;code&gt;install x&lt;/code&gt; 要求安装 x 号软件包，想要安装软件包 x 必须安装它依赖的软件包
+&lt;code&gt;uninstall x&lt;/code&gt; 要求卸载 x 号软件包，想要卸载 x 号软件包必须先卸载直接或间接依赖它的软件包。
+对于每次操作，你需要计算出这次操作会改变多少软件包的安装状态，并应用这个操作。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们用每个点的权值表示它的安装状态（1 和 0），那么安装软件包 x 就是将 x 到根节点路径上的点权值都变为 1，卸载软件包 x 就是将以 x 为根的子树上的点的权值都变为 0。显然可以先树剖进行处理。&lt;/p&gt;
+&lt;p&gt;考虑如何统计被改变状态的点的数量：我们可以用操作前后状态和的差值表示。每次操作前询问操作空间的状态和 &lt;code&gt;sum1&lt;/code&gt;，操作后操作空间的状态和 &lt;code&gt;sum2&lt;/code&gt;，安装就是 &lt;code&gt;sum2-sum1&lt;/code&gt;，卸载就是&lt;code&gt;sum1-sum2&lt;/code&gt;。&lt;/p&gt;
+&lt;h5 id=&#34;p3313-旅行httpswwwluogucomcnproblemp3313&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P3313&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;P3313 旅行&lt;/a&gt;&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个宗教信仰自由的国家有 n 个城市，呈树形结构，每个城市的居民只信仰一种宗教，且有一个旅行评级。该国居民爱好旅行，但是为了避免与信仰不同的异邦人发生冲突，他们只去相同信仰的城市，且只在相同信仰的城市停留。现有以下四种事件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;城市 x 全体居民改信 c 教&lt;/li&gt;
+&lt;li&gt;城市 x 旅行评级调整为 w&lt;/li&gt;
+&lt;li&gt;某旅行者从 x 出发到 y，记下中途停留的城市的评级总和&lt;/li&gt;
+&lt;li&gt;某旅行者从 x 出发到 y，记下中途停留的城市的评级最大值&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果没有宗教的限制，本题就是一道简单的树剖+线段树题，&lt;del&gt;所以限制宗教信仰有利于统治者的管理&lt;/del&gt;，我们现在考虑如何处理宗教信仰。&lt;/p&gt;
+&lt;p&gt;信仰 c 教的旅行者只去信仰 c 教的城市，且只在信仰 c 教的城市停留，也就是说途中的异教城市与他无关。这样一来我们可以对这些城市视而不见，仅把路程累加到同教城市之间。我们可以给每一种宗教开一颗线段树，到时候只需要在相应的线段树上进行修改和查询即可。值得注意的是本题数据范围中 $C≤10^{5}$，所以直接开线段树就只能等着 MLE，使用动态开点线段树可以避免暴毙。动态开点线段树与传统的线段树很相似，只是舍弃了使用数组下标表示左右儿子的方式而是把儿子的序号单独记录下来 —— 如果你使用线段树的结构体写法可以很方便的转换过来。记得在动态开点修改时要使用取地址符，因为此时你不知道要修改的位置是否开了点。&lt;/p&gt;
+&lt;h5 id=&#34;p4211-lcahttpswwwluogucomcnproblemp4211&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P4211&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;P4211 LCA&lt;/a&gt;&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给出一棵树，并有若干次询问，每次询问给出 l, r, z, 求 $\large\Sigma^{r}_{i=l}dep[LCA(i,z)]$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们可以暴力求 LCA 然后把深度加起来，但是显然是过不了的 —— 我们要考虑如何将这么一坨转化成好求的东西。&lt;/p&gt;
+&lt;p&gt;在学习 LCA 之初，我们就知道两个点的 LCA (x, y) 的深度就是 x y 到根的公共路径长度。那么将边的默认权值设为0，把 x 到根的路径上所有的边权赋为 1，再统计 y 到根的路径长度，这个值就是 LCA 的深度。因为 y 到根的路径显然可以拆成 y 到 LCA (x, y) 和 LCA (x, y) 到根两部分。其中 LCA (x, y) 到根的这一段被标记过了，而我们要求的 LCA 深度就是这一段。这道题中每次询问的终点 z 是不变的，起点是一个区间，我们可以根据差分思想将题目中的 $[l,r]$ 转化为$[1,r]-[1,l-1]$。&lt;/p&gt;
+&lt;p&gt;现在我们尝试求每次询问中 $[1,x]$ 到 $v$ 对答案的贡献，显然可以对于每次询问把 $[1,x]$ 到根节点的路径上边权 +1，然后统计 v 到根节点的路径长度。但是这样就会进行很多重复的标记，即使我们可以通过每次询问后清除标记防止答案重复累加，我们还是不断地添加并清除同一个位置的标记，时间复杂度会很大。&lt;/p&gt;
+&lt;p&gt;而 $[1,x]$ 与 $[1,x+1]$ 显然有很多很多公共部分，于是我们可以将询问离线，差分处理后按照 x 从小到大排序，对于每一个 x 处理含有它的询问的每一个 v，将答案累加到一个&lt;code&gt;ans[]&lt;/code&gt;数组中。处理结束后在原有的基础上对 x+1 到根的路径打标记，再用相同方法处理 x+1，以此类推。&lt;/p&gt;
+&lt;h5 id=&#34;p4556-雨天的尾巴httpswwwluogucomcnproblemp4556&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P4556&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;P4556 雨天的尾巴&lt;/a&gt;&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;n 座房屋构成一个树形结构。救济粮发放 m 次，每次给从 x 到 y 路径上的房子发放一袋 z 类型的救济粮，求发放终了后每座房子中那种救济粮最多。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这道题是洛谷上线段树合并的模版，不过可以使用常数更小的树剖+线段树解法。用树剖将路径修改转换成若干个区间修改，然后根据差分思想，将区间 $[x,y]$ 增加 z 的修改变为在 x 处打一个正标记在 y 处打一个负标记的单点修改，用线段树维护即可。&lt;/p&gt;
+&lt;p&gt;大体思路很容易，可是我们怎样区分不同种类的救济粮呢？在线段树合并做法中，我们正是为了区分不同种类的救济粮而给每个点开了一棵权值线段树，而在树剖做法中我们可以给每一个节点开一个 &lt;code&gt;vector&lt;/code&gt; 来储存救济粮的种类和对应的标记：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Vertex&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; father, depth, DFN, subtreeSize, chainTop, heavySon;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    vector&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; pair&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; item;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}vertex[MaxN];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;TreeAdd&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; y,&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; z){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;(xTop&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;yTop){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(vertex[xTop].depth &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; vertex[yTop].depth) swap(x,y);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		vertex[vertex[xTop].DFN].item.push_back(make_pair(z,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		vertex[vertex[x].DFN&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;].item.push_back(make_pair(z,&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; vertex[xTop].father;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(vertex[x].depth &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; vertex[y].depth) swap(x,y);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	vertex[vertex[x].DFN].item.push_back(make_pair(z,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	vertex[vertex[y].DFN&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;].item.push_back(make_pair(z,&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;vector&lt;/code&gt; 中再放种类和标记的二元组，就可以轻松统计每个点不同种类救济粮的信息啦！&lt;/p&gt;
+&lt;h5 id=&#34;p1600-天天爱跑步httpswwwluogucomcnproblemp1600&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P1600&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;P1600 天天爱跑步&lt;/a&gt;&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;n 个节点的树上有 m 个人，每个人都想好了起点 S 和终点 T。所有人都同时从自己心的起点出发，跑向心目中的终点，速度是 $1edge/s$。每个点上有一个观察员，每个观察员都选择一个时间 W 观察玩家，一个玩家可以被某个点的观察员观察到当且仅当他在这个点观察员观察的时间恰好到达这个点。求每个点的观察员各能够观察到几个人。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;对于第 i 个人，他的跑步路径可以分成两段：从 $S_{i}$ 到 $LCA(S_{i},T_{i})$ 以及从 $LCA(S_{i},T_{i})$ 到 $T_{i}$。值得注意的是，LCA 只包含在其中的一段中。对于节点 x 的观察员，他能观察到第 i 个人有两种情况：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;节点 x 在第一段路上，这时需要满足 $depth[S_{i}]-depth&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; =w&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; $&lt;/li&gt;
+&lt;li&gt;节点 x 在第二段路上，这时需要满足 $depth[S_{i}]+depth&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; -2*depth[LCA(S_{i},T_{i})]=w&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; $&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;由于具有两种不同的规则，我们将一个点的观察员在两种规则下观察到的玩家分别计算最后再加起来。乍看仿佛无法下手，但是将上面的两个式子移一下项就可以变成 $depth[S_{i}]=w[x]+depth[x]$ 和 $depth[S_{i}]-2&lt;em&gt;depth[LCA(S_{i},T_{i})]=w[x]-depth[x]$。结合上一道题，本题可以转换成「第 i 次操作给 $S_{i}$ 到 $LCA(S_{i},T_{i})$ 上的每一个房屋发放一袋类型为 $depth[S_{i}]$ 的救济粮，并给 $LCA(S_{i},T_{i})$ 到 $T_{i}$ 的每一个房屋发放一袋类型为 $depth[S_{i}]-2&lt;/em&gt;depth[LCA(S_{i},T_{i})]$ 的救济粮，最终求每个节点处 $w[x]+depth[x]$ 和 $w[x]-depth[x]$ 类型的救济粮共多少袋」。做法也是相似的 —— 对每一个点开一个 &lt;code&gt;vector&lt;/code&gt;，利用差分统计。不过和上一题有所不同的是，本题要求的是和而不是数量最多的类型，所以可以直接用前缀和统计而不需要另写一个统计函数寻找最大值。&lt;/p&gt;
+&lt;h3 id=&#34;树链剖分求-lca-的综合应用&#34;&gt;树链剖分求 LCA 的综合应用&lt;/h3&gt;
+&lt;p&gt;树链剖分所解决的问题基本都与 LCA 相关，在一些综合题中常有 LCA 的应用，这时使用树链剖分不仅可以方便地求 LCA，还可以简化后续问题，帮助我们求解。&lt;/p&gt;
+&lt;h5 id=&#34;acwing355-异象石httpswwwacwingcomproblemcontent357&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.acwing.com/problem/content/357/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;AcWing355 异象石&lt;/a&gt;&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;有N个点，有N-1条双向边把它们连通起来。起初地图上没有任何异象石，在接下来的M个时刻中，每个时刻会发生以下三种类型的事件之一：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;地图的某个点上出现了异象石（已经出现的不会再次出现）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;地图某个点上的异象石被摧毁（不会摧毁没有异象石的点）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;询问使所有异象石所在的点连通的边集的总长度最小是多少&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;LYD 蓝书上写道「仔细思考可以发现，如果我们按照 DFN 从大到小排序，把出现异象石的节点排成一圈（首尾相接），并且累加相邻两个节点之间的路径长度，最后得到的结果恰好是所求答案的两倍」这可能让人有点摸不着头脑，我们现在来「仔细思考」一下。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/06/14/4hcXT2w9ziLErOV.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;异象石&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在这幅图中，我们用 DFN 作为节点的标号，2，10，11 号是异象石，红色的边权总和便是我们要求的答案。从所有异象石的 LCA 出发，以类似 DFS 的方式找所有的异象石，每条红边都被走过两次。所有异象石的 LCA 可以通过求 LCA 的 LCA 得到：$LCA(11,10)=7,LCA(2,11)=1,LCA(2,10)=1,LCA(1,7)=1,LCA(1,1)=1$。而且每两个异象石之间的路径都可以拆成从它们的 LCA 向下走的两段 —— 一个是先求总的 LCA 再求总的路径，一个是两两求 LCA，然后一段一段走，最终每条边都走了两次。所以我们假设现在有异象石集合 {s}，那么我们要求的答案就可以表示为 $answer=(dis(s_{i},s_{i+1})+dis(s_{i+1},s_{i+2})+…+dis(s_{n-1},s_{n})+dis(s_{n},s_{1}))/2$。不要忘记最后的一项。&lt;/p&gt;
+&lt;p&gt;想到这里，剩下就基本是常规的树剖 LCA 应用了。用 &lt;code&gt;set&lt;/code&gt; 维护异象石节点序列，并用一个变量 &lt;code&gt;ans&lt;/code&gt; 动态记录异象石出现的不同状态下红边边权之和。对于两点 x y 有 $dis(x,y)=depth[x]+depth[y]-2*depth[LCA(x,y)]$。当某一节点 x 出现异象石，就把它放入集合，若它的前后节点为 a b，有 &lt;code&gt;ans+=dis(a,x)+dis(x,b)-dis(a,b)&lt;/code&gt;。某点异象石消失就减去。&lt;/p&gt;
+&lt;p&gt;顺便提供一个双倍经验，稍有区别但基本一样: &lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P3320&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;P3320 寻宝游戏&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;树链剖分的非传统应用&#34;&gt;树链剖分的非传统应用&lt;/h3&gt;
+&lt;h5 id=&#34;loj6669-奈绪和二叉树httpslojacproblem6669&#34;&gt;&lt;a class=&#34;link&#34; href=&#34;https://loj.ac/problem/6669&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;LOJ6669 奈绪和二叉树&lt;/a&gt;&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一道交互题。有 n 个节点（n ≤ 3000），以 1 号点为根的二叉树，你可以询问树上两点间的距离，但是询问次数不能超过 30000 次。你需要求出每个节点的父亲。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;通过上面的题目，一个思想已经在我们的脑中根深蒂固：我们可以用点的深度计算点的距离。而在本题中我们可以询问两点之间的距离 —— 那么我们是不是可以通过将其与点的深度联系在一起，来推出树上的其他信息呢？&lt;/p&gt;
+&lt;p&gt;首先很容易想到，一个节点的深度就是它与根节点的距离 —— 我们知道根节点是 1 号节点，那么就可以通过 n - 1 次询问求出每个点的深度。因为要求出每个节点的父亲，所以我们一层一层往下扩展，这样找到新节点的时候它的父亲就已经知道了，可以由已知求解未知。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/06/15/X4DsCnfbm15ro3a.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;奈绪和二叉树&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在寻找一个点之前我们先对已知的树进行剖分，红边代表重链，x y z 和 a b c 都是重链上的点。我们想要寻找 w 的父亲，于是询问 w 与当前已知重链底端的距离，这样就可以求出他们 LCA 的深度。如果这个深度比 w 的深度小 1，那么 LCA 就是 w 的父亲，如右图 y 就是 w 的父亲。而如果深度相差大于 1，那么我们求走到 LCA 的轻儿子，再它的子树中重复刚才的过程。由于这是一颗二叉树， 亲轻儿子是唯一的。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>树学杂谈1: 树的直径</title>
+        <link>https://example.org/post/%E6%A0%91%E5%AD%A6%E6%9D%82%E8%B0%881%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/</link>
+        <pubDate>Thu, 04 Jun 2020 09:08:33 +0800</pubDate>
+        
+        <guid>https://example.org/post/%E6%A0%91%E5%AD%A6%E6%9D%82%E8%B0%881%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/</guid>
+        <description>&lt;h3 id=&#34;关于树的直径&#34;&gt;关于树的直径&lt;/h3&gt;
+&lt;p&gt;连接树上相距最远的两点的路径被称作这棵树的最长链。树的直径指这条最长链或者它的长度。&lt;/p&gt;
+&lt;h3 id=&#34;树的直径的求法&#34;&gt;树的直径的求法&lt;/h3&gt;
+&lt;p&gt;一般来将我们可以使用两种方法求数的直径，它们的时间复杂度都是 $O(n)$。&lt;/p&gt;
+&lt;h4 id=&#34;两次搜索&#34;&gt;两次搜索&lt;/h4&gt;
+&lt;p&gt;我们可以通过两次 DFS 或两次 BFS 来求树的直径，其原理非常简单：从任意一个节点 $start$ 出发进行第一次搜索，找到距离起点最远的点（记为 $deepest$），再从 $deepest$ 出发进行第二次搜索，找到距离它最远的点（记为 $ending$）。$deepest$ 和 $ending$ 之间的路径便是这棵树的直径，在这个过程中 $deepest$ 一定是直径的一端，否则第一次搜索的结果一定不是 $deepest$，因为直径的两个端点中一定有一个比 $deepest$ 离 $start$ 远。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define des edge[i].destinationVertex
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;BFS&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; secondTime){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Reset();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    queue&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; q;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    q.push(x);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    vertex[x].vis &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; true;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;q.empty()){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; cur &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; q.front();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        q.pop();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;head[cur];i;i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;edge[i].nextEdge){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;vertex[des].vis){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                vertex[des].vis &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; true;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                vertex[des].depth &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; vertex[cur].depth &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; edge[i].value;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                q.push(des);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(secondTime) vertex[des].father &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; cur;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;n;i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(treeLength &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; vertex[i].depth){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            treeLength &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; vertex[i].depth;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            deepest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;不同于接下来只能统计直径长度的树形 DP，在第二次搜索中，我们可以记录每一个点第一次被访问时的父亲节点，最后从搜索到的 $ending$ 往回走，就可以取得这条直径。两次搜索的方法虽然码量稍大，但是它记录信息量大，且思维简单容易理解——不过它真正的致命缺点在于遇到负权边就会暴毙。&lt;/p&gt;
+&lt;h4 id=&#34;树形-dp&#34;&gt;树形 DP&lt;/h4&gt;
+&lt;p&gt;设 $d[x]$ 表示从 x 出发走向以 x 为根的子树所能够到达的最远节点的深度，$f[x]$ 表示经过 x 的树上最长链的长度，x 的子节点分别为 $y_1,y_2,…,y_k$，则可以得到 $d[x]=max_{1≤i≤k}(d[y_i]+edge[x,y_i])$。&lt;/p&gt;
+&lt;p&gt;对于 x 的任意两子节点 $y_i,y_j(j&amp;lt;i)$，我们可以将经过 x 的最长链长度拆成 4 个部分：$d[y_i],d[y_j],edge[x,y_i],edge[x,y_j]$。于是有 $f[x]=max_{1≤j≤i≤k}(d[y_i],d[y_j],edge[x,y_i],edge[x,y_j])$。&lt;/p&gt;
+&lt;p&gt;事实上我们没有必要使用 $y_i,y_j$ 两个参数来更新 $f[x]$—— 回顾一下 $d[x]$ 的定义：从 x 出发走向以 x 为根的子树所能达到的最远节点的深度 —— 在循环枚举到 $i$ 之前，$d[x]$ 所表示的就是 $max_{1≤j≤i}(d[y_j]+edge[x,y_j])$，当然这个值是 $f[x]$ 的一部分。也就是可以先用 $d[x]+d[y]+edge(x,y)$ 更新 $f[x]$，再用 $d[y]+edge[x,y]$ 更新 $d[x]$。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define des edge[i].destinationVertex
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;DP&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    vertex[x].vis &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; true;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;head[x];i;i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;edge[i].nextEdge){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(vertex[des].vis) &lt;span style=&#34;color:#66d9ef&#34;&gt;continue&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        DP(des);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        treeLength &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(treeLength, vertex[x].depth &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; vertex[des].depth &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; edge[i].value);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        vertex[x].depth &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(vertex[x].depth, vertex[des].depth &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; edge[i].value);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;DP 方法的码量明显小于搜索方法，但是缺点也很明显，由于只关注状态的转移，DP 方法只能求出直径的长度，由于在树形图上搜索的时间复杂度也是 $O(n)$，DP 节约时间的方法在这里变成了它的劣势。但是 DP 方法也弥补了搜索方法最大的不足 —— 它可以处理负权边，可以说是一种短小精悍的方法了。&lt;/p&gt;
+&lt;h3 id=&#34;例题&#34;&gt;例题&lt;/h3&gt;
+&lt;p&gt;一道我个人感觉挺好的题，这里当作例题来做：&lt;a class=&#34;link&#34; href=&#34;https://www.luogu.com.cn/problem/P3629&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;P3629 巡逻&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;题目大意&#34;&gt;题目大意&lt;/h4&gt;
+&lt;p&gt;给定一棵 n 个节点的树，树上的每条边边权都为 1。我们规定“巡逻距离”是从 1 号点出发将树上所有遍历至少一次再回到起点所走过的边权和。现在在树上添加 1 或 2 条边，规定添加的边&lt;strong&gt;必须且只能走一次&lt;/strong&gt;，求最短的巡逻距离。&lt;/p&gt;
+&lt;h4 id=&#34;思路&#34;&gt;思路&lt;/h4&gt;
+&lt;p&gt;在还没有添加任何边的时候，巡逻距离显然是 $2*(n-1)$，因为在树上巡逻一次相当于做了一遍 DFS，每条边都会被递一次归一次 —— 换句话说，由于是一棵树，所以从 1 号点到达每一点的最短路径是唯一的，而对于每个节点 $vertex[i]$，直接连接它的边 $edge[j]$ 都会在到达 $vertex[i]$ 和从 $vertex[i]$ 返回时各被走一遍。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/06/04/qT4RLzgUOuF9amc.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;添加一条边.png&#34;
+	
+	
+&gt;添加一条边的时候也很简单，因为添加一条边相当于在图上添加了一个环，由于每条边都要巡逻到，我们要把这个环完整地走一遍。对于题目中给出的样例树，我们添加一条 $edge_{2,8}$，那么现在就有由 8，5，3，1，2 构成的环。原本遍历环上的边（除了新添加的那条）巡逻距离为 8，但是现在我们走这个环距离就只有 5 —— 环上每条边都少走了一次，取而代之的是走了一次新添加的边。对于树上的一条链，如果用其两端点为 $i,j$，其长度为 $chain[i][j]$，那么在这种情况下我们遍历这个链只需要 $chain[i][j]+1$ 的路程，即可以节约 $chain[i][j]-1$ 的路程。&lt;/p&gt;
+&lt;p&gt;所以添加一条边的时候，我们只需要求出树的直径长度 $treeLength$，巡逻路径长度便是 $2*(n-1)-(treeLength-1)$。&lt;/p&gt;
+&lt;p&gt;添加两条边时，我们按照上面的思路添加好第一条边，重点处理第二条边。添加第二条边就又增加了一个环，如果这个环与第一个环毫不相干，那么只需要按照上面的方法计算第二个环节约的路径长度。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.loli.net/2020/06/04/5vs4JYrUhQm9VRa.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;添加两条边.png&#34;
+	
+	
+&gt;但是当第二个环与第一个环有重合的边时，事情就没有那么简单了。对于题目中给出的样例树，再添加一条 $edge_{4,6}$，就形成了由 3，5，6，4 构成的第二个环。此时 $edge_{3,5}$ 既在第一个环上又在第二个环上。由于每条边都要被巡逻到，我们必须要把第二个环也完整地走一遍。这样一来 $edge_{3,5}$ 就被走了两边，和不添加任何边的时候相同。也就是说添加第一条边的时候减少的那次，又被走回来了。&lt;/p&gt;
+&lt;p&gt;我们可以认为添加一条边时求出的直径是“要被减少的距离”，因为有直径长度的边被少走了一次。现在添加第二条边时有些边少走的那一次被加回来了，我们可以将第一次求出的直径上的所有边权取负，这样在走第二个环的时候走上这些重合的边，将会在答案中减去这条边的边权，即“不仅没有再减少距离，反而还让本来被减少的边又被走了”。&lt;/p&gt;
+&lt;p&gt;再修改后的树上求直径添加第二条边，这个题就基本做完了。同添加第一条边一样，节省的路径长度是 $treeLength-1$。&lt;/p&gt;
+&lt;p&gt;回过头来看，第一次我们不仅需要求出树直径的长度，而且还需要求出直径的具体方案，因此使用两次搜索的方法；第二次只需要求出直径的长度，且因为修改后出现了负权边，所以要使用树形 DP 的方法求直径 —— 一次就把两种方法练了，这难道不是一道很妙的题吗？&lt;/p&gt;
+&lt;h4 id=&#34;code&#34;&gt;Code&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstdlib&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstring&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cmath&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;map&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;queue&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define des edge[i].destinationVertex
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; std;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; mod&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1e6&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;,maxn&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;405&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n,m,k,T;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; c[maxn][maxn],ans;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;init&lt;/span&gt;(){&lt;span style=&#34;color:#75715e&#34;&gt;//Calculate value of combinatorial number at the very first.
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	memset(c,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(c));
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	c[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;][&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;maxn;i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		c[i][&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;c[i][i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;i;j&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			c[i][j]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(c[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;][j&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;c[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;][j])&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;mod;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; MaxN &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100005&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Edge&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; destinationVertex, nextEdge, value;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}edge[MaxN &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Vertex&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; depth, father;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt; vis;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}vertex[MaxN];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; head[MaxN], tot, n, k, deepest, treeLength;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt; vis[MaxN];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;AddEdge&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; u, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; v){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    tot&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    edge[tot].destinationVertex &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; v;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    edge[tot].nextEdge &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; head[u];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    edge[tot].value &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    head[u] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; tot;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Reset&lt;/span&gt;(){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;n;i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        vertex[i].depth &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        vertex[i].vis &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; false;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;BFS&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; secondTime){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Reset();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    queue&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; q;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    q.push(x);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    vertex[x].vis &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; true;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;q.empty()){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; cur &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; q.front();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        q.pop();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;head[cur];i;i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;edge[i].nextEdge){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;vertex[des].vis){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                vertex[des].vis &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; true;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                vertex[des].depth &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; vertex[cur].depth &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; edge[i].value;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                q.push(des);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(secondTime) vertex[des].father &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; cur;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;n;i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(treeLength &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt; vertex[i].depth){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            treeLength &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; vertex[i].depth;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            deepest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Change&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;(vertex[x].father){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; fa &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; vertex[x].father;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;head[fa];i;i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;edge[i].nextEdge){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(des &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; x){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                edge[i].value &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }   
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;head[x];i;i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;edge[i].nextEdge){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(des &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; fa){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                edge[i].value &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; fa;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;DP&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; x){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    vertex[x].vis &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; true;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;head[x];i;i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;edge[i].nextEdge){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(vertex[des].vis) &lt;span style=&#34;color:#66d9ef&#34;&gt;continue&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        DP(des);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        treeLength &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(treeLength, vertex[x].depth &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; vertex[des].depth &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; edge[i].value);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        vertex[x].depth &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; max(vertex[x].depth, vertex[des].depth &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; edge[i].value);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(){
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	init();
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;T);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; gameRound&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;gameRound&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;T;gameRound&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;n,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;m,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;k);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; gameCase&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;gameCase&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt;;gameCase&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; fieldRow&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;n,fieldColumn&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;m,situationSummary&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(gameCase&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) fieldRow&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;,situationSummary&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(gameCase&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;) fieldRow&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;,situationSummary&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(gameCase&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;) fieldColumn&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;,situationSummary&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(gameCase&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;) fieldColumn&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;,situationSummary&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(situationSummary&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ans&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;mod&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;c[fieldRow&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;fieldColumn][k])&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;mod;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#75715e&#34;&gt;//Plus &amp;#34;mod&amp;#34; to avoid &amp;#34;ans&amp;#34; becoming a negative.
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;			&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ans&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;c[fieldRow&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;fieldColumn][k])&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;mod;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Case %d: %d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,gameRound,ans);
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;n,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;k);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n;i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; u, v;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;u,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;v);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        AddEdge(u,v), AddEdge(v,u);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(k &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        BFS(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        BFS(deepest, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; vertex[deepest].depth &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        BFS(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        BFS(deepest, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; firstLength &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; vertex[deepest].depth;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Change(deepest);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        Reset();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        treeLength &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        DP(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; treeLength &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; firstLength);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>鸽巢原理与中国剩余定理初见</title>
+        <link>https://example.org/post/%E9%B8%BD%E5%B7%A2%E5%8E%9F%E7%90%86%E4%B8%8E%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86%E5%88%9D%E8%A7%81/</link>
+        <pubDate>Fri, 22 May 2020 09:13:47 +0800</pubDate>
+        
+        <guid>https://example.org/post/%E9%B8%BD%E5%B7%A2%E5%8E%9F%E7%90%86%E4%B8%8E%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86%E5%88%9D%E8%A7%81/</guid>
+        <description>&lt;h3 id=&#34;初级鸽巢原理&#34;&gt;初级鸽巢原理&lt;/h3&gt;
+&lt;p&gt;鸽巢原理，也叫狄利克雷抽屉原理，或者鸽笼原理——我认为前者读来拗口，后者有些残忍（咕咕咕这么可爱你竟然把它关起来！），于是就使用「鸽巢原理」这种更加贴近自然的叫法了。&lt;/p&gt;
+&lt;h4 id=&#34;定理内容&#34;&gt;定理内容&lt;/h4&gt;
+&lt;p&gt;鸽巢原理指的是一个简单的事实：一大群鸽子飞进为数不多的巢中，至少有一个巢飞进了不止一只鸽子。我们可以把鸽巢原理的简单形式抽象成一个简洁但枯燥的数学模型：&lt;/p&gt;
+&lt;p&gt;把 $n+1$ 个物品放入 $n$ 个盒子中，那么至少有一个盒子中有两个或者更多的物品。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;证明&lt;/strong&gt;：如果每个盒子中至多有一个物品，那么 $n$ 个盒子中至多有 $n$ 个物品，与条件矛盾，固定理成立。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这个原理并无深奥之处，其正确性也是显而易见的，但利用它可以解决许多有趣的组合问题，得到一些很重要的结论，它在数学发展的历史上起了很重要的作用。——《组合数学引论》&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我的高中数学老师曾在一节讲概率课上讲过这样一个题：证明在边长为 1 的正方形内任取 5 个点，则其中至少有两个点的距离不超过 $\frac{\sqrt 2}{2}$.&lt;/p&gt;
+&lt;p&gt;虽然表面上使用了概率知识，但是背后的原理其实就是鸽巢原理——把正方形切成一个「田」字，四个小正方形的对角线距离是 $\frac{\sqrt 2}{2}$。四个小正方形是「巢」，五个点是「鸽」。&lt;/p&gt;
+&lt;h4 id=&#34;例题怠惰的-potatoler&#34;&gt;例题：怠惰的 potatoler&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;potatoler 是一名 OIer，它有 11 周的时间准备 NOIP 比赛。potatoler 很菜，于是它决定每天至少做一道题；但是又因为 potatoler 很怠惰，所以它一周（连续的 7 天）内做的题不会多于 12 道。证明：在此期间一定有连续的一些日子，potatoler 共做了 21 道题。——改自《组合数学引论》P7 例4&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这个问题的难点在于：我们知道要往鸽巢原理上想，但是不知如何下手。事实上，题目中的「21 道题」绝非是简单的三乘七，其中还包含着解锁鸽巢原理的钥匙。&lt;/p&gt;
+&lt;p&gt;用 $b_1,b_2,…,b_{77}$ 表示 potatoler 每一天做的题目数，并用 $a_1,a_2,…,a_{77}$ 表示到每一天为止一共做题的数目，即：&lt;/p&gt;
+&lt;p&gt;$a_1=b_1$,&lt;/p&gt;
+&lt;p&gt;$a_2=b_1+b_2$,&lt;/p&gt;
+&lt;p&gt;…,&lt;/p&gt;
+&lt;p&gt;$a_{77}=b_1+b_2+…+b_{77}$.&lt;/p&gt;
+&lt;p&gt;由于每周做题不超过 12 道，于是有 $1\le a_1&amp;lt; a_2&amp;lt;…&amp;lt;a_{77}\le 12\times11$&lt;/p&gt;
+&lt;p&gt;考虑这两个数列：$a_1,a_2,…a_{77}$ 和 $a_1+21,a_2+21,…a_{77}+21$&lt;/p&gt;
+&lt;p&gt;其中每一项都在 1 到 12x11+21=153 之间，而且根据上面得出的结论，每一个数列的各个项两两不同。现在两个数列一共有 154 项，但是取值范围只有 153 个整数——154只「鸽子」，153个「巢」，那么一定有第二个数列中的某一项等于第一个数列中的某一项，即一定有 $a_j=a_i+21(1\le i&amp;lt;j\le77)$。&lt;/p&gt;
+&lt;p&gt;所以从第 $i+1$ 到第 $j$ 这 $i-1$ 天中，potatoler 正好做了 21 道题。&lt;/p&gt;
+&lt;h3 id=&#34;中国剩余定理初见&#34;&gt;中国剩余定理初见&lt;/h3&gt;
+&lt;p&gt;中国剩余定理可以求解如下形式的一元线性同余方程组，其中 $n_1,n_2,…n_k$ 两两互素：
+$$
+\left{
+\begin{aligned}
+x≡a_1(\bmod n_1)\
+x≡a_2(\bmod n_2)\
+&amp;hellip;\
+x≡a_k(\bmod n_k)
+\end{aligned}
+\right.
+$$
+我们在这里证明弱化的定理。设 $m,n$ 为两个互素的正整数，$a,b$ 是满足 $0\le a\le m-1,0\le b\le n-1$ 的正整数。证明：存在正整数 $x$，使得 $x$ 除以 $m$ 的余数是 $a$，除以 $n$ 的余数是 $b$，即存在 $p,q$，使得$x=pm+a, x=qn+b$.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;证明&lt;/strong&gt;：考虑数列 $a,m+a,2m+a,…(n-1)m+a$，这 n 个数除以 $m$ 余数都是 $a$。假设其中有两个数除以 $n$ 同余，余数为 $r$ ，即有$(j&amp;gt;i)$：
+$$
+\left{
+\begin{aligned}
+im+a=q_in+r\
+jm+a=q_jn+1\
+\end{aligned}
+\right.
+$$
+则有 $(j-i)m=(q_j-q_i)n$。我们知道 $m$ 与 $n$ 互素而且一定有 $(j-i)\le n-1$，所以右边的 $n$ 既不是 $j-i$ 的因子也不是 $m$ 的因子，与假设得出的结论矛盾——所以不可能有两个数除以 $n$ 同余。&lt;/p&gt;
+&lt;p&gt;除以 $n$ 得到的余数有 n 个，从 0 到 n-1，而最开始的数列中没有除以 $n$ 同余的数，那么这个数列中的数除以 $n$ 就可以取遍余数，因此一定存在正整数 $x$，使得$x=pm+a, x=qn+b$。&lt;/p&gt;
+&lt;p&gt;当然我们这里证明的只是中国剩余定理的超级弱化版，主要目的是为了熟悉鸽巢原理，~~并开拓思维，~~完整的证明可以去看 &lt;a class=&#34;link&#34; href=&#34;https://oi-wiki.org/math/crt/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;OI wiki&lt;/a&gt;。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>筛法</title>
+        <link>https://example.org/post/%E7%AD%9B%E6%B3%95/</link>
+        <pubDate>Tue, 19 May 2020 09:12:07 +0800</pubDate>
+        
+        <guid>https://example.org/post/%E7%AD%9B%E6%B3%95/</guid>
+        <description>&lt;p&gt;素数是一类很奇妙的数字，不仅本身具有“只有1和本身两个因数”的性质，而且在很多著名的函数和算法中都有它的参与。所以从给定的一堆数中快速筛选出素数是一个很常见的需求——各种各样的素数筛法应运而生。&lt;/p&gt;
+&lt;h3 id=&#34;朴素筛法&#34;&gt;朴素筛法&lt;/h3&gt;
+&lt;p&gt;法如其名，就是一种利用素数基本性质的筛法：对于每一个数，枚举1到$\sqrt n$ 的数判断是可以被n整除——其实就是对每一个数进行了一次素数判断，显然不怎么高效。&lt;/p&gt;
+&lt;h3 id=&#34;eratosthenes-筛法埃氏筛&#34;&gt;Eratosthenes 筛法（埃氏筛）&lt;/h3&gt;
+&lt;p&gt;Eratosthenes 筛法即埃氏筛，运用了“以小标大”的思想：对于一个素数 x，它的倍数 ax 一定是一个合数。所以对于一个素数，我们就需要把它在给定范围内的倍数全标记为合数——当枚举到一个已经被标记为合数的数时就可以直接跳过，避免冗余的判断，运行一次 Eratosthenes 筛法，没有被标记的数就是素数了。&lt;/p&gt;
+&lt;p&gt;另外，我们可以发现 2 和 3 都会将 6 标记为合数——事实上任何小于 x^2^ 的 x 的倍数，都会被比 x 更小的素数标记，所以为了减少重复标记，可以从 x^2^ 开始标记。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt; isPrime[maxn];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;  primeNumber[maxn],primeCount;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;primeEratosthenes&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    primeCount&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;n;i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;) isPrime[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;true;&lt;span style=&#34;color:#75715e&#34;&gt;//As 2 is a prime number
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    isPrime[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;isPrime[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;false;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;;i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;n;i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(isPrime[i]){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            primeCount&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            primeNumber[primeCount]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;i;&lt;span style=&#34;color:#75715e&#34;&gt;//If current number is a prime then put into the prime colletion
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;i;j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;n;j&lt;span style=&#34;color:#f92672&#34;&gt;*=&lt;/span&gt;i) isPrime[j]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;false;&lt;span style=&#34;color:#75715e&#34;&gt;//And mark its multiple as &amp;#34;non-prime&amp;#34; (starts from i*i)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Eratosthenes 筛法的时间复杂度为 $O(nloglogn)$，效率很高接近线性，但是即使是在优化后还是会有重复标记——一个简单的例子：12 既被 2 标记又被 3 标记。&lt;/p&gt;
+&lt;h3 id=&#34;线性筛法欧拉筛&#34;&gt;线性筛法（欧拉筛）&lt;/h3&gt;
+&lt;p&gt;上面的 Eratosthenes 筛法固然很优秀——事实上它因为代码少，思想简单，而且时间复杂度足够优秀，成为 OI 中最常用的素数筛法——但是仍存在重复标记的情况。还有一种更加高效的筛法——线性筛法。&lt;/p&gt;
+&lt;p&gt;先来总结一下 Eratosthenes 筛法出现重复的经验：它通过单纯标记倍数的方法标记合数，但是 12 既是 2 的倍数 又是 3 的倍数，虽然通过从 x^2^ 开始标记的方法避免了 6 被重复标记，但是其他 2 和 3 的公倍数，即所有 6 的倍数都会被 2 和 3 标记。&lt;/p&gt;
+&lt;p&gt;出现重复标记，究其原因是没有对每一个合数进行不重不漏的分类来确定它应该被哪个素数标记：在上面的例子中，12 被分解为 2 x 6，也被分解为 3 x 4。线性筛法使用最小素因子来去确定一个合数应该被哪个素数标记——对于 12，在线性筛法中被分解为 2 x 2 x 3，最小素因子是 2，那么就没 3 啥事了。使用一个数组&lt;code&gt;minimizedPrimeFactor[]&lt;/code&gt; 来记录一个数的最小素因子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;若有&lt;code&gt;minimizedPrimeFactor[x]==x&lt;/code&gt;则 x 是一个素数，把它保存下来。&lt;/li&gt;
+&lt;li&gt;扫描每一个不大于&lt;code&gt;minimizedPrimeFactor[x]&lt;/code&gt;的素数 y，并令&lt;code&gt;minimizedPrimeFactor[x*y]=y&lt;/code&gt;——由于 x 中没有比&lt;code&gt;minimizedPrimeFactor[x]&lt;/code&gt;更小的素因子，且 y 是更小的素数，所以 x*y 的最小素因子一定是 y。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其线性的时间复杂度很容易证明：每一个合数只会被它的最小素因子筛一次，所以时间复杂度显然为$O(n)$。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; minimizedPrimeFactor[MaxN],primeNumber[MaxN],primeCount;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Eular&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; n){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    memset(minimizedPrimeFactor,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(minimizedPrimeFactor));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    primeCount &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;; i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; n; i&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(minimizedPrimeFactor[i] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            minimizedPrimeFactor[i] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i;&lt;span style=&#34;color:#75715e&#34;&gt;//The minimized prime factor of a prime number is itself
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            primeNumber[&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;primeCount] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; i;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; j &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt; primeCount; j&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt;(primeNumber[j] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; minimizedPrimeFactor[i] &lt;span style=&#34;color:#f92672&#34;&gt;||&lt;/span&gt; primeNumber[j] &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; n&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;i) &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;;&lt;span style=&#34;color:#75715e&#34;&gt;//j should be a prime, and be smaller than the minimized prime factor of i; i*j should be in the range
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            minimizedPrimeFactor[i &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; primeNumber[j]] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; primeNumber[j];
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
         </item>

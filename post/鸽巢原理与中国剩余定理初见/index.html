@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='初级鸽巢原理 鸽巢原理，也叫狄利克雷抽屉原理，或者鸽笼原理——我认为前者读来拗口，后者有些残忍（咕咕咕这么可爱你竟然把它关起来！），于是就使用「鸽巢原理」这种更加贴近自然的叫法了。
+定理内容 鸽巢原理指的是一个简单的事实：一大群鸽子飞进为数不多的巢中，至少有一个巢飞进了不止一只鸽子。我们可以把鸽巢原理的简单形式抽象成一个简洁但枯燥的数学模型：
+把 $n&#43;1$ 个物品放入 $n$ 个盒子中，那么至少有一个盒子中有两个或者更多的物品。
+证明：如果每个盒子中至多有一个物品，那么 $n$ 个盒子中至多有 $n$ 个物品，与条件矛盾，固定理成立。
+这个原理并无深奥之处，其正确性也是显而易见的，但利用它可以解决许多有趣的组合问题，得到一些很重要的结论，它在数学发展的历史上起了很重要的作用。——《组合数学引论》
+我的高中数学老师曾在一节讲概率课上讲过这样一个题：证明在边长为 1 的正方形内任取 5 个点，则其中至少有两个点的距离不超过 $\frac{\sqrt 2}{2}$.
+虽然表面上使用了概率知识，但是背后的原理其实就是鸽巢原理——把正方形切成一个「田」字，四个小正方形的对角线距离是 $\frac{\sqrt 2}{2}$。四个小正方形是「巢」，五个点是「鸽」。
+例题：怠惰的 potatoler potatoler 是一名 OIer，它有 11 周的时间准备 NOIP 比赛。potatoler 很菜，于是它决定每天至少做一道题；但是又因为 potatoler 很怠惰，所以它一周（连续的 7 天）内做的题不会多于 12 道。证明：在此期间一定有连续的一些日子，potatoler 共做了 21 道题。——改自《组合数学引论》P7 例4
+这个问题的难点在于：我们知道要往鸽巢原理上想，但是不知如何下手。事实上，题目中的「21 道题」绝非是简单的三乘七，其中还包含着解锁鸽巢原理的钥匙。
+用 $b_1,b_2,…,b_{77}$ 表示 potatoler 每一天做的题目数，并用 $a_1,a_2,…,a_{77}$ 表示到每一天为止一共做题的数目，即：
+$a_1=b_1$,
+$a_2=b_1&#43;b_2$,
+…,
+$a_{77}=b_1&#43;b_2&#43;…&#43;b_{77}$.
+由于每周做题不超过 12 道，于是有 $1\le a_1&amp;lt; a_2&amp;lt;…&amp;lt;a_{77}\le 12\times11$
+考虑这两个数列：$a_1,a_2,…a_{77}$ 和 $a_1&#43;21,a_2&#43;21,…a_{77}&#43;21$
+其中每一项都在 1 到 12x11&#43;21=153 之间，而且根据上面得出的结论，每一个数列的各个项两两不同。现在两个数列一共有 154 项，但是取值范围只有 153 个整数——154只「鸽子」，153个「巢」，那么一定有第二个数列中的某一项等于第一个数列中的某一项，即一定有 $a_j=a_i&#43;21(1\le i&amp;lt;j\le77)$。'>
+<title>鸽巢原理与中国剩余定理初见</title>
+
+<link rel='canonical' href='https://example.org/post/%E9%B8%BD%E5%B7%A2%E5%8E%9F%E7%90%86%E4%B8%8E%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86%E5%88%9D%E8%A7%81/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='鸽巢原理与中国剩余定理初见'>
+<meta property='og:description' content='初级鸽巢原理 鸽巢原理，也叫狄利克雷抽屉原理，或者鸽笼原理——我认为前者读来拗口，后者有些残忍（咕咕咕这么可爱你竟然把它关起来！），于是就使用「鸽巢原理」这种更加贴近自然的叫法了。
+定理内容 鸽巢原理指的是一个简单的事实：一大群鸽子飞进为数不多的巢中，至少有一个巢飞进了不止一只鸽子。我们可以把鸽巢原理的简单形式抽象成一个简洁但枯燥的数学模型：
+把 $n&#43;1$ 个物品放入 $n$ 个盒子中，那么至少有一个盒子中有两个或者更多的物品。
+证明：如果每个盒子中至多有一个物品，那么 $n$ 个盒子中至多有 $n$ 个物品，与条件矛盾，固定理成立。
+这个原理并无深奥之处，其正确性也是显而易见的，但利用它可以解决许多有趣的组合问题，得到一些很重要的结论，它在数学发展的历史上起了很重要的作用。——《组合数学引论》
+我的高中数学老师曾在一节讲概率课上讲过这样一个题：证明在边长为 1 的正方形内任取 5 个点，则其中至少有两个点的距离不超过 $\frac{\sqrt 2}{2}$.
+虽然表面上使用了概率知识，但是背后的原理其实就是鸽巢原理——把正方形切成一个「田」字，四个小正方形的对角线距离是 $\frac{\sqrt 2}{2}$。四个小正方形是「巢」，五个点是「鸽」。
+例题：怠惰的 potatoler potatoler 是一名 OIer，它有 11 周的时间准备 NOIP 比赛。potatoler 很菜，于是它决定每天至少做一道题；但是又因为 potatoler 很怠惰，所以它一周（连续的 7 天）内做的题不会多于 12 道。证明：在此期间一定有连续的一些日子，potatoler 共做了 21 道题。——改自《组合数学引论》P7 例4
+这个问题的难点在于：我们知道要往鸽巢原理上想，但是不知如何下手。事实上，题目中的「21 道题」绝非是简单的三乘七，其中还包含着解锁鸽巢原理的钥匙。
+用 $b_1,b_2,…,b_{77}$ 表示 potatoler 每一天做的题目数，并用 $a_1,a_2,…,a_{77}$ 表示到每一天为止一共做题的数目，即：
+$a_1=b_1$,
+$a_2=b_1&#43;b_2$,
+…,
+$a_{77}=b_1&#43;b_2&#43;…&#43;b_{77}$.
+由于每周做题不超过 12 道，于是有 $1\le a_1&amp;lt; a_2&amp;lt;…&amp;lt;a_{77}\le 12\times11$
+考虑这两个数列：$a_1,a_2,…a_{77}$ 和 $a_1&#43;21,a_2&#43;21,…a_{77}&#43;21$
+其中每一项都在 1 到 12x11&#43;21=153 之间，而且根据上面得出的结论，每一个数列的各个项两两不同。现在两个数列一共有 154 项，但是取值范围只有 153 个整数——154只「鸽子」，153个「巢」，那么一定有第二个数列中的某一项等于第一个数列中的某一项，即一定有 $a_j=a_i&#43;21(1\le i&amp;lt;j\le77)$。'>
+<meta property='og:url' content='https://example.org/post/%E9%B8%BD%E5%B7%A2%E5%8E%9F%E7%90%86%E4%B8%8E%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86%E5%88%9D%E8%A7%81/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-05-22T09:13:47&#43;08:00'/><meta property='article:modified_time' content='2020-05-22T09:13:47&#43;08:00'/>
+<meta name="twitter:title" content="鸽巢原理与中国剩余定理初见">
+<meta name="twitter:description" content="初级鸽巢原理 鸽巢原理，也叫狄利克雷抽屉原理，或者鸽笼原理——我认为前者读来拗口，后者有些残忍（咕咕咕这么可爱你竟然把它关起来！），于是就使用「鸽巢原理」这种更加贴近自然的叫法了。
+定理内容 鸽巢原理指的是一个简单的事实：一大群鸽子飞进为数不多的巢中，至少有一个巢飞进了不止一只鸽子。我们可以把鸽巢原理的简单形式抽象成一个简洁但枯燥的数学模型：
+把 $n&#43;1$ 个物品放入 $n$ 个盒子中，那么至少有一个盒子中有两个或者更多的物品。
+证明：如果每个盒子中至多有一个物品，那么 $n$ 个盒子中至多有 $n$ 个物品，与条件矛盾，固定理成立。
+这个原理并无深奥之处，其正确性也是显而易见的，但利用它可以解决许多有趣的组合问题，得到一些很重要的结论，它在数学发展的历史上起了很重要的作用。——《组合数学引论》
+我的高中数学老师曾在一节讲概率课上讲过这样一个题：证明在边长为 1 的正方形内任取 5 个点，则其中至少有两个点的距离不超过 $\frac{\sqrt 2}{2}$.
+虽然表面上使用了概率知识，但是背后的原理其实就是鸽巢原理——把正方形切成一个「田」字，四个小正方形的对角线距离是 $\frac{\sqrt 2}{2}$。四个小正方形是「巢」，五个点是「鸽」。
+例题：怠惰的 potatoler potatoler 是一名 OIer，它有 11 周的时间准备 NOIP 比赛。potatoler 很菜，于是它决定每天至少做一道题；但是又因为 potatoler 很怠惰，所以它一周（连续的 7 天）内做的题不会多于 12 道。证明：在此期间一定有连续的一些日子，potatoler 共做了 21 道题。——改自《组合数学引论》P7 例4
+这个问题的难点在于：我们知道要往鸽巢原理上想，但是不知如何下手。事实上，题目中的「21 道题」绝非是简单的三乘七，其中还包含着解锁鸽巢原理的钥匙。
+用 $b_1,b_2,…,b_{77}$ 表示 potatoler 每一天做的题目数，并用 $a_1,a_2,…,a_{77}$ 表示到每一天为止一共做题的数目，即：
+$a_1=b_1$,
+$a_2=b_1&#43;b_2$,
+…,
+$a_{77}=b_1&#43;b_2&#43;…&#43;b_{77}$.
+由于每周做题不超过 12 道，于是有 $1\le a_1&amp;lt; a_2&amp;lt;…&amp;lt;a_{77}\le 12\times11$
+考虑这两个数列：$a_1,a_2,…a_{77}$ 和 $a_1&#43;21,a_2&#43;21,…a_{77}&#43;21$
+其中每一项都在 1 到 12x11&#43;21=153 之间，而且根据上面得出的结论，每一个数列的各个项两两不同。现在两个数列一共有 154 项，但是取值范围只有 153 个整数——154只「鸽子」，153个「巢」，那么一定有第二个数列中的某一项等于第一个数列中的某一项，即一定有 $a_j=a_i&#43;21(1\le i&amp;lt;j\le77)$。">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E9%B8%BD%E5%B7%A2%E5%8E%9F%E7%90%86%E4%B8%8E%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86%E5%88%9D%E8%A7%81/">鸽巢原理与中国剩余定理初见</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 22, 2020</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="初级鸽巢原理">初级鸽巢原理</h3>
+<p>鸽巢原理，也叫狄利克雷抽屉原理，或者鸽笼原理——我认为前者读来拗口，后者有些残忍（咕咕咕这么可爱你竟然把它关起来！），于是就使用「鸽巢原理」这种更加贴近自然的叫法了。</p>
+<h4 id="定理内容">定理内容</h4>
+<p>鸽巢原理指的是一个简单的事实：一大群鸽子飞进为数不多的巢中，至少有一个巢飞进了不止一只鸽子。我们可以把鸽巢原理的简单形式抽象成一个简洁但枯燥的数学模型：</p>
+<p>把 $n+1$ 个物品放入 $n$ 个盒子中，那么至少有一个盒子中有两个或者更多的物品。</p>
+<p><strong>证明</strong>：如果每个盒子中至多有一个物品，那么 $n$ 个盒子中至多有 $n$ 个物品，与条件矛盾，固定理成立。</p>
+<blockquote>
+<p>这个原理并无深奥之处，其正确性也是显而易见的，但利用它可以解决许多有趣的组合问题，得到一些很重要的结论，它在数学发展的历史上起了很重要的作用。——《组合数学引论》</p>
+</blockquote>
+<p>我的高中数学老师曾在一节讲概率课上讲过这样一个题：证明在边长为 1 的正方形内任取 5 个点，则其中至少有两个点的距离不超过 $\frac{\sqrt 2}{2}$.</p>
+<p>虽然表面上使用了概率知识，但是背后的原理其实就是鸽巢原理——把正方形切成一个「田」字，四个小正方形的对角线距离是 $\frac{\sqrt 2}{2}$。四个小正方形是「巢」，五个点是「鸽」。</p>
+<h4 id="例题怠惰的-potatoler">例题：怠惰的 potatoler</h4>
+<blockquote>
+<p>potatoler 是一名 OIer，它有 11 周的时间准备 NOIP 比赛。potatoler 很菜，于是它决定每天至少做一道题；但是又因为 potatoler 很怠惰，所以它一周（连续的 7 天）内做的题不会多于 12 道。证明：在此期间一定有连续的一些日子，potatoler 共做了 21 道题。——改自《组合数学引论》P7 例4</p>
+</blockquote>
+<p>这个问题的难点在于：我们知道要往鸽巢原理上想，但是不知如何下手。事实上，题目中的「21 道题」绝非是简单的三乘七，其中还包含着解锁鸽巢原理的钥匙。</p>
+<p>用 $b_1,b_2,…,b_{77}$ 表示 potatoler 每一天做的题目数，并用 $a_1,a_2,…,a_{77}$ 表示到每一天为止一共做题的数目，即：</p>
+<p>$a_1=b_1$,</p>
+<p>$a_2=b_1+b_2$,</p>
+<p>…,</p>
+<p>$a_{77}=b_1+b_2+…+b_{77}$.</p>
+<p>由于每周做题不超过 12 道，于是有 $1\le a_1&lt; a_2&lt;…&lt;a_{77}\le 12\times11$</p>
+<p>考虑这两个数列：$a_1,a_2,…a_{77}$ 和 $a_1+21,a_2+21,…a_{77}+21$</p>
+<p>其中每一项都在 1 到 12x11+21=153 之间，而且根据上面得出的结论，每一个数列的各个项两两不同。现在两个数列一共有 154 项，但是取值范围只有 153 个整数——154只「鸽子」，153个「巢」，那么一定有第二个数列中的某一项等于第一个数列中的某一项，即一定有 $a_j=a_i+21(1\le i&lt;j\le77)$。</p>
+<p>所以从第 $i+1$ 到第 $j$ 这 $i-1$ 天中，potatoler 正好做了 21 道题。</p>
+<h3 id="中国剩余定理初见">中国剩余定理初见</h3>
+<p>中国剩余定理可以求解如下形式的一元线性同余方程组，其中 $n_1,n_2,…n_k$ 两两互素：
+$$
+\left{
+\begin{aligned}
+x≡a_1(\bmod n_1)\
+x≡a_2(\bmod n_2)\
+&hellip;\
+x≡a_k(\bmod n_k)
+\end{aligned}
+\right.
+$$
+我们在这里证明弱化的定理。设 $m,n$ 为两个互素的正整数，$a,b$ 是满足 $0\le a\le m-1,0\le b\le n-1$ 的正整数。证明：存在正整数 $x$，使得 $x$ 除以 $m$ 的余数是 $a$，除以 $n$ 的余数是 $b$，即存在 $p,q$，使得$x=pm+a, x=qn+b$.</p>
+<p><strong>证明</strong>：考虑数列 $a,m+a,2m+a,…(n-1)m+a$，这 n 个数除以 $m$ 余数都是 $a$。假设其中有两个数除以 $n$ 同余，余数为 $r$ ，即有$(j&gt;i)$：
+$$
+\left{
+\begin{aligned}
+im+a=q_in+r\
+jm+a=q_jn+1\
+\end{aligned}
+\right.
+$$
+则有 $(j-i)m=(q_j-q_i)n$。我们知道 $m$ 与 $n$ 互素而且一定有 $(j-i)\le n-1$，所以右边的 $n$ 既不是 $j-i$ 的因子也不是 $m$ 的因子，与假设得出的结论矛盾——所以不可能有两个数除以 $n$ 同余。</p>
+<p>除以 $n$ 得到的余数有 n 个，从 0 到 n-1，而最开始的数列中没有除以 $n$ 同余的数，那么这个数列中的数除以 $n$ 就可以取遍余数，因此一定存在正整数 $x$，使得$x=pm+a, x=qn+b$。</p>
+<p>当然我们这里证明的只是中国剩余定理的超级弱化版，主要目的是为了熟悉鸽巢原理，~~并开拓思维，~~完整的证明可以去看 <a class="link" href="https://oi-wiki.org/math/crt/"  target="_blank" rel="noopener"
+    >OI wiki</a>。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
