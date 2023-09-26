@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='题目描述 $n$ 个杯子，一些杯子里有小球。可以花费 $c_{i,j}$ 的代价询问从 $i$ 到 $j$ 号杯子中有球的杯子数量的奇偶性，求要知道每个杯子中是否有小球的最小代价。
+思路 很有趣的一道题，一开始以为是区间 DP，但是原题 $2×10^9$ 的数据范围 $O(n^3)$ 复杂度直接去世。
+要想知道 $pos$ 位置有没有小球，我们只需要知道任意的 $[a,pos]$ 和 $[a,pos&#43;1]$ 的奇偶性就可以了（显然），进一步来说，我们只需要知道所有的 $[0,i]$ 的奇偶性就可以知道每个位置是否有小球了。
+现在要求知道所有的 $[0,i]$ 的奇偶性的最小代价：假设我们现在知道了 $[0,i-1]$ 的奇偶性，那么我们只需要询问 $[i,j]$ 的奇偶性就可以知道 $[0,j]$ 的奇偶性了，反过来也是成立的 —— 那么对于 $[0,i]$ 和 $[0,j]$，我们只要知道一个，在花费 $c_{i,j}$ 的代价就可以知道另一个了。将每个 $[0,i]$ 看成点，每个这样的「知道」关系看作是点之间的无向边，具体来讲对于上面的例子就是点 $i$ 和 点 $j$ 之间有一条权值为 $c_{i,j}$ 的无向边。
+于是我们就是要用最小的边权让所有点都联通，就是最小生成树啦。
+Code 注意造出来的图比较稠密，请使用 Prim 算法（不过好像原题用 Kruskal 也能过）。
+#include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;climits&amp;gt; #include&amp;lt;queue&amp;gt; #include&amp;lt;vector&amp;gt; #include&amp;lt;utility&amp;gt; #define int long long #define fake false using namespace std; const int MaxN = 2003; int n, ans, c[MaxN][MaxN], dis[MaxN]; bool visited[MaxN]; inline int Read(){ int num = 0, op = 1; char ch = getchar(); while(!'>
+<title>P5994 Kuglarz</title>
+
+<link rel='canonical' href='https://example.org/post/kuglarz/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='P5994 Kuglarz'>
+<meta property='og:description' content='题目描述 $n$ 个杯子，一些杯子里有小球。可以花费 $c_{i,j}$ 的代价询问从 $i$ 到 $j$ 号杯子中有球的杯子数量的奇偶性，求要知道每个杯子中是否有小球的最小代价。
+思路 很有趣的一道题，一开始以为是区间 DP，但是原题 $2×10^9$ 的数据范围 $O(n^3)$ 复杂度直接去世。
+要想知道 $pos$ 位置有没有小球，我们只需要知道任意的 $[a,pos]$ 和 $[a,pos&#43;1]$ 的奇偶性就可以了（显然），进一步来说，我们只需要知道所有的 $[0,i]$ 的奇偶性就可以知道每个位置是否有小球了。
+现在要求知道所有的 $[0,i]$ 的奇偶性的最小代价：假设我们现在知道了 $[0,i-1]$ 的奇偶性，那么我们只需要询问 $[i,j]$ 的奇偶性就可以知道 $[0,j]$ 的奇偶性了，反过来也是成立的 —— 那么对于 $[0,i]$ 和 $[0,j]$，我们只要知道一个，在花费 $c_{i,j}$ 的代价就可以知道另一个了。将每个 $[0,i]$ 看成点，每个这样的「知道」关系看作是点之间的无向边，具体来讲对于上面的例子就是点 $i$ 和 点 $j$ 之间有一条权值为 $c_{i,j}$ 的无向边。
+于是我们就是要用最小的边权让所有点都联通，就是最小生成树啦。
+Code 注意造出来的图比较稠密，请使用 Prim 算法（不过好像原题用 Kruskal 也能过）。
+#include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;climits&amp;gt; #include&amp;lt;queue&amp;gt; #include&amp;lt;vector&amp;gt; #include&amp;lt;utility&amp;gt; #define int long long #define fake false using namespace std; const int MaxN = 2003; int n, ans, c[MaxN][MaxN], dis[MaxN]; bool visited[MaxN]; inline int Read(){ int num = 0, op = 1; char ch = getchar(); while(!'>
+<meta property='og:url' content='https://example.org/post/kuglarz/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2022-11-22T23:37:44&#43;08:00'/><meta property='article:modified_time' content='2022-11-22T23:37:44&#43;08:00'/>
+<meta name="twitter:title" content="P5994 Kuglarz">
+<meta name="twitter:description" content="题目描述 $n$ 个杯子，一些杯子里有小球。可以花费 $c_{i,j}$ 的代价询问从 $i$ 到 $j$ 号杯子中有球的杯子数量的奇偶性，求要知道每个杯子中是否有小球的最小代价。
+思路 很有趣的一道题，一开始以为是区间 DP，但是原题 $2×10^9$ 的数据范围 $O(n^3)$ 复杂度直接去世。
+要想知道 $pos$ 位置有没有小球，我们只需要知道任意的 $[a,pos]$ 和 $[a,pos&#43;1]$ 的奇偶性就可以了（显然），进一步来说，我们只需要知道所有的 $[0,i]$ 的奇偶性就可以知道每个位置是否有小球了。
+现在要求知道所有的 $[0,i]$ 的奇偶性的最小代价：假设我们现在知道了 $[0,i-1]$ 的奇偶性，那么我们只需要询问 $[i,j]$ 的奇偶性就可以知道 $[0,j]$ 的奇偶性了，反过来也是成立的 —— 那么对于 $[0,i]$ 和 $[0,j]$，我们只要知道一个，在花费 $c_{i,j}$ 的代价就可以知道另一个了。将每个 $[0,i]$ 看成点，每个这样的「知道」关系看作是点之间的无向边，具体来讲对于上面的例子就是点 $i$ 和 点 $j$ 之间有一条权值为 $c_{i,j}$ 的无向边。
+于是我们就是要用最小的边权让所有点都联通，就是最小生成树啦。
+Code 注意造出来的图比较稠密，请使用 Prim 算法（不过好像原题用 Kruskal 也能过）。
+#include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;climits&amp;gt; #include&amp;lt;queue&amp;gt; #include&amp;lt;vector&amp;gt; #include&amp;lt;utility&amp;gt; #define int long long #define fake false using namespace std; const int MaxN = 2003; int n, ans, c[MaxN][MaxN], dis[MaxN]; bool visited[MaxN]; inline int Read(){ int num = 0, op = 1; char ch = getchar(); while(!">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/kuglarz/">P5994 Kuglarz</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 22, 2022</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="题目httpswwwluogucomcnproblemp5994submit描述"><a class="link" href="https://www.luogu.com.cn/problem/P5994#submit"  target="_blank" rel="noopener"
+    >题目</a>描述</h3>
+<p>$n$ 个杯子，一些杯子里有小球。可以花费 $c_{i,j}$ 的代价询问从 $i$ 到 $j$ 号杯子中有球的杯子数量的奇偶性，求要知道每个杯子中是否有小球的最小代价。</p>
+<h3 id="思路">思路</h3>
+<p>很有趣的一道题，一开始以为是区间 DP，但是原题 $2×10^9$ 的数据范围 $O(n^3)$ 复杂度直接去世。</p>
+<p>要想知道 $pos$ 位置有没有小球，我们只需要知道任意的 $[a,pos]$ 和 $[a,pos+1]$ 的奇偶性就可以了（显然），进一步来说，我们只需要知道所有的 $[0,i]$ 的奇偶性就可以知道每个位置是否有小球了。</p>
+<p>现在要求知道所有的 $[0,i]$ 的奇偶性的最小代价：假设我们现在知道了 $[0,i-1]$ 的奇偶性，那么我们只需要询问 $[i,j]$ 的奇偶性就可以知道 $[0,j]$ 的奇偶性了，反过来也是成立的 —— 那么对于 $[0,i]$ 和 $[0,j]$，我们只要知道一个，在花费 $c_{i,j}$ 的代价就可以知道另一个了。将每个 $[0,i]$ 看成点，每个这样的「知道」关系看作是点之间的无向边，具体来讲对于上面的例子就是点 $i$ 和 点 $j$ 之间有一条权值为 $c_{i,j}$ 的无向边。</p>
+<p>于是我们就是要用最小的边权让所有点都联通，就是最小生成树啦。</p>
+<h3 id="code">Code</h3>
+<p>注意造出来的图比较稠密，请使用 Prim 算法（不过好像原题用 Kruskal 也能过）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;climits&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;queue&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;utility&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define fake false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MaxN <span style="color:#f92672">=</span> <span style="color:#ae81ff">2003</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n, ans, c[MaxN][MaxN], dis[MaxN];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> visited[MaxN];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">Read</span>(){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, op <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>isdigit(ch)){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(ch <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;-&#39;</span>) op <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(isdigit(ch)){
+</span></span><span style="display:flex;"><span>		num <span style="color:#f92672">=</span> num <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> ch <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>		ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> num <span style="color:#f92672">*</span> op;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Prim</span>(){
+</span></span><span style="display:flex;"><span>	memset(dis, <span style="color:#ae81ff">0x3f3f3f3f</span>, <span style="color:#66d9ef">sizeof</span>(dis));
+</span></span><span style="display:flex;"><span>	dis[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>n; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;=</span>n; j<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span>(visited[j]) <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span>(x <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> dis[j] <span style="color:#f92672">&lt;</span> dis[x]) x <span style="color:#f92672">=</span> j;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		visited[x] <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>fake;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;=</span>n; j<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>visited[j]) dis[j] <span style="color:#f92672">=</span> min(dis[j], c[x][j]);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signed</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>	n <span style="color:#f92672">=</span> Read();
+</span></span><span style="display:flex;"><span>	memset(c, <span style="color:#ae81ff">0x3f3f3f3f</span>, <span style="color:#66d9ef">sizeof</span>(c));
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;=</span>n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		c[i][i] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>n; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; j<span style="color:#f92672">&lt;=</span>n; j<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>			c[i][j] <span style="color:#f92672">=</span> c[j][i] <span style="color:#f92672">=</span> Read();
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	Prim();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;=</span>n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		ans <span style="color:#f92672">+=</span> dis[i];
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;%lld&#34;</span>, ans);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

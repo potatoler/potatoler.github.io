@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='题目描述 给一个长度为 $n$ 的 01 序列，一个整数 $k$，并进行 $m$ 次询问。每次询问给出一个区间，可以进行若干次操作：每次选择这个区间的长度为 $k$ 的子区间，将子区间的每一位取反 —— 至少需要几次操作才能将这个区间内的所有元素变成 $0$？
+思路 $\small O(nmk)$ 不妨从最简单的暴力开始想起：从左往右数的第一个 $1$（不管是原来就有的还是新产生的）一定是一个要反转的子区间的左端点 —— 这是因为如果将它忽略，以它右边的数为左端点的反转子区间再也无法改变这个 $1$。于是对于每次操作，我们可以从左往右枚举，遇到一个 $1$ 就以它为左端点暴力做一次取反。
+$\small O(nm)$ 当我们求出区间的差分序列，一次子区间的取反其实就是在差分序列上对要取反子区间的左右端点处进行了取反。最后只需要让差分序列全是 $0$ 就可以了。对于以 $i$ 位置为左端点的，长度为 $k$ 的子区间，改变的其实就是差分序列上 $i$ 位置和 $i&#43;k$ 位置的 $1$。从左往右扫一遍，遇到一个 $1$ 就做一次这样的操作。
+$\small O(n&#43;m)$ 在上面的差分优化上进一步思考：对于每个位置 $i$，如果 $i \mod k $ 的值相同，那它们就是相互联系的，否则就是相互独立的。我们可以通过若干次操作将相互联系的位置抵消掉，而相互独立的位置则不能相互抵消。手玩几组数据可以很深刻地体会这一点，在这里不妨看一下这个样例：原序列是 0100011010，我们可以得到其差分序列为 0110010110。当 $k=2$ 时我们可以将差分序列上 $1$ 的位置分为两类：$\mod k$ 为 $0$ 的和 $\mod k$ 为 $1$ 的。具体来讲：
+%k == 0: 2, 6, 8, 10 %k == 1: 3, 9 拿位置 3 和 9 来说，虽然它们之间的距离不等于 $k$，即这两个位置的 1 不能通过一次操作全变成 0，但是因为它们对 $k$ 取模的结果相同，我们可以将 3 位置变成 0，将 5 位置变成 1，将 5 位置变成 0，将 7 位置变成 1，将 7 位置变成 0，将 9 位置变成 0。这样可以看作是消耗 3 次将 3 位置和 9 位置同时变成 0。如果是不同的种类，即相互独立的位置，例如位置 3 和位置 6，就不能通过这种方法一起变成 0，反而会产生新的 1。'>
+<title>LOJ 6500 操作</title>
+
+<link rel='canonical' href='https://example.org/post/%E6%93%8D%E4%BD%9C/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='LOJ 6500 操作'>
+<meta property='og:description' content='题目描述 给一个长度为 $n$ 的 01 序列，一个整数 $k$，并进行 $m$ 次询问。每次询问给出一个区间，可以进行若干次操作：每次选择这个区间的长度为 $k$ 的子区间，将子区间的每一位取反 —— 至少需要几次操作才能将这个区间内的所有元素变成 $0$？
+思路 $\small O(nmk)$ 不妨从最简单的暴力开始想起：从左往右数的第一个 $1$（不管是原来就有的还是新产生的）一定是一个要反转的子区间的左端点 —— 这是因为如果将它忽略，以它右边的数为左端点的反转子区间再也无法改变这个 $1$。于是对于每次操作，我们可以从左往右枚举，遇到一个 $1$ 就以它为左端点暴力做一次取反。
+$\small O(nm)$ 当我们求出区间的差分序列，一次子区间的取反其实就是在差分序列上对要取反子区间的左右端点处进行了取反。最后只需要让差分序列全是 $0$ 就可以了。对于以 $i$ 位置为左端点的，长度为 $k$ 的子区间，改变的其实就是差分序列上 $i$ 位置和 $i&#43;k$ 位置的 $1$。从左往右扫一遍，遇到一个 $1$ 就做一次这样的操作。
+$\small O(n&#43;m)$ 在上面的差分优化上进一步思考：对于每个位置 $i$，如果 $i \mod k $ 的值相同，那它们就是相互联系的，否则就是相互独立的。我们可以通过若干次操作将相互联系的位置抵消掉，而相互独立的位置则不能相互抵消。手玩几组数据可以很深刻地体会这一点，在这里不妨看一下这个样例：原序列是 0100011010，我们可以得到其差分序列为 0110010110。当 $k=2$ 时我们可以将差分序列上 $1$ 的位置分为两类：$\mod k$ 为 $0$ 的和 $\mod k$ 为 $1$ 的。具体来讲：
+%k == 0: 2, 6, 8, 10 %k == 1: 3, 9 拿位置 3 和 9 来说，虽然它们之间的距离不等于 $k$，即这两个位置的 1 不能通过一次操作全变成 0，但是因为它们对 $k$ 取模的结果相同，我们可以将 3 位置变成 0，将 5 位置变成 1，将 5 位置变成 0，将 7 位置变成 1，将 7 位置变成 0，将 9 位置变成 0。这样可以看作是消耗 3 次将 3 位置和 9 位置同时变成 0。如果是不同的种类，即相互独立的位置，例如位置 3 和位置 6，就不能通过这种方法一起变成 0，反而会产生新的 1。'>
+<meta property='og:url' content='https://example.org/post/%E6%93%8D%E4%BD%9C/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-05-25T00:03:10&#43;08:00'/><meta property='article:modified_time' content='2023-05-25T00:03:10&#43;08:00'/>
+<meta name="twitter:title" content="LOJ 6500 操作">
+<meta name="twitter:description" content="题目描述 给一个长度为 $n$ 的 01 序列，一个整数 $k$，并进行 $m$ 次询问。每次询问给出一个区间，可以进行若干次操作：每次选择这个区间的长度为 $k$ 的子区间，将子区间的每一位取反 —— 至少需要几次操作才能将这个区间内的所有元素变成 $0$？
+思路 $\small O(nmk)$ 不妨从最简单的暴力开始想起：从左往右数的第一个 $1$（不管是原来就有的还是新产生的）一定是一个要反转的子区间的左端点 —— 这是因为如果将它忽略，以它右边的数为左端点的反转子区间再也无法改变这个 $1$。于是对于每次操作，我们可以从左往右枚举，遇到一个 $1$ 就以它为左端点暴力做一次取反。
+$\small O(nm)$ 当我们求出区间的差分序列，一次子区间的取反其实就是在差分序列上对要取反子区间的左右端点处进行了取反。最后只需要让差分序列全是 $0$ 就可以了。对于以 $i$ 位置为左端点的，长度为 $k$ 的子区间，改变的其实就是差分序列上 $i$ 位置和 $i&#43;k$ 位置的 $1$。从左往右扫一遍，遇到一个 $1$ 就做一次这样的操作。
+$\small O(n&#43;m)$ 在上面的差分优化上进一步思考：对于每个位置 $i$，如果 $i \mod k $ 的值相同，那它们就是相互联系的，否则就是相互独立的。我们可以通过若干次操作将相互联系的位置抵消掉，而相互独立的位置则不能相互抵消。手玩几组数据可以很深刻地体会这一点，在这里不妨看一下这个样例：原序列是 0100011010，我们可以得到其差分序列为 0110010110。当 $k=2$ 时我们可以将差分序列上 $1$ 的位置分为两类：$\mod k$ 为 $0$ 的和 $\mod k$ 为 $1$ 的。具体来讲：
+%k == 0: 2, 6, 8, 10 %k == 1: 3, 9 拿位置 3 和 9 来说，虽然它们之间的距离不等于 $k$，即这两个位置的 1 不能通过一次操作全变成 0，但是因为它们对 $k$ 取模的结果相同，我们可以将 3 位置变成 0，将 5 位置变成 1，将 5 位置变成 0，将 7 位置变成 1，将 7 位置变成 0，将 9 位置变成 0。这样可以看作是消耗 3 次将 3 位置和 9 位置同时变成 0。如果是不同的种类，即相互独立的位置，例如位置 3 和位置 6，就不能通过这种方法一起变成 0，反而会产生新的 1。">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E6%93%8D%E4%BD%9C/">LOJ 6500 操作</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 25, 2023</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="题目httpslojacproblem6500描述"><a class="link" href="https://loj.ac/problem/6500"  target="_blank" rel="noopener"
+    >题目</a>描述</h3>
+<p>给一个长度为 $n$ 的 01 序列，一个整数 $k$，并进行 $m$ 次询问。每次询问给出一个区间，可以进行若干次操作：每次选择这个区间的长度为 $k$ 的子区间，将子区间的每一位取反 —— 至少需要几次操作才能将这个区间内的所有元素变成 $0$？</p>
+<h3 id="思路">思路</h3>
+<h4 id="small-onmk">$\small O(nmk)$</h4>
+<p>不妨从最简单的暴力开始想起：从左往右数的第一个 $1$（不管是原来就有的还是新产生的）一定是一个要反转的子区间的左端点 —— 这是因为如果将它忽略，以它右边的数为左端点的反转子区间再也无法改变这个 $1$。于是对于每次操作，我们可以从左往右枚举，遇到一个 $1$ 就以它为左端点暴力做一次取反。</p>
+<h4 id="small-onm">$\small O(nm)$</h4>
+<p>当我们求出区间的差分序列，一次子区间的取反其实就是在差分序列上对要取反子区间的左右端点处进行了取反。最后只需要让差分序列全是 $0$ 就可以了。对于以 $i$ 位置为左端点的，长度为 $k$ 的子区间，改变的其实就是差分序列上 $i$ 位置和 $i+k$ 位置的 $1$。从左往右扫一遍，遇到一个 $1$ 就做一次这样的操作。</p>
+<h4 id="small-onm-1">$\small O(n+m)$</h4>
+<p>在上面的差分优化上进一步思考：对于每个位置 $i$，如果 $i \mod k $ 的值相同，那它们就是相互联系的，否则就是相互独立的。我们可以通过若干次操作将相互联系的位置抵消掉，而相互独立的位置则不能相互抵消。手玩几组数据可以很深刻地体会这一点，在这里不妨看一下这个样例：原序列是 <code>0100011010</code>，我们可以得到其差分序列为 <code>0110010110</code>。当 $k=2$ 时我们可以将差分序列上 $1$ 的位置分为两类：$\mod k$ 为 $0$ 的和 $\mod k$ 为 $1$ 的。具体来讲：</p>
+<pre tabindex="0"><code>%k == 0: 2, 6, 8, 10
+%k == 1: 3, 9
+</code></pre><p>拿位置 3 和 9 来说，虽然它们之间的距离不等于 $k$，即这两个位置的 1 不能通过一次操作全变成 0，但是因为它们对 $k$ 取模的结果相同，我们可以将 3 位置变成 0，将 5 位置变成 1，将 5 位置变成 0，将 7 位置变成 1，将 7 位置变成 0，将 9 位置变成 0。这样可以看作是消耗 3 次将 3 位置和 9 位置同时变成 0。如果是不同的种类，即相互独立的位置，例如位置 3 和位置 6，就不能通过这种方法一起变成 0，反而会产生新的 1。</p>
+<p>可以想到，只有询问区间里每种位置的个数都是偶数的时候才有的解，否当同类两两配对抵消之后，一定会剩下若干个种类两两不同的位置 —— 这些位置不能通过上面说的方法抵消，所以一定会产生新的 1，于是我们永远也无法将差分序列变成全是 0，询问误无解。</p>
+<p>使用哈希判断当前的区间里面每一类位置的个数是奇数还是偶数：给同一类的差分序列上为 1 的位置赋一个同一个的随机值，用哈希值去异或它，这样当同一类位置个数为偶数时，异或下来的值就是 0。</p>
+<p>最小操作次数计算也很简单：同一类位置两两抵消时，所消产生操作次数只与位置的差值，即它们的距离的有关。贪心地选择相距最近的位置两两抵消，可以得到最小的次数要求。例如在上面的例子中第一类的四个位置 2，6，8，10：如果 2 和 6，8 和 10 抵消，需要进行三次 3 次操作，这个次数是最少的，可以手玩几个样例感受一下。维护这样求出的总消耗的前缀和，每一类从右往左第奇数个产生正贡献，第偶数个产生负贡献（因为是右面的减去左面的），当从左往右扫，右边出现同一类新的位置时，从右往左数的奇偶性会改变，正负也会交换，所以当出现这样的新位置时，直接将同类位置的贡献取反在和新位置的贡献一起加入前缀即可。、</p>
+<p>虽然我们将原序列取反问题转化成了差分序列上的问题，但是每一次的询问目标都是原序列的一段区间，差分必然会受到询问区间之外的位置的影响。例如询问区间是 $[l,r]$, 那么我们需要「强制」使得原序列 $l-1$ 和 $r+1$ 的位置是 0。否则我们看上去把差分序列的区间都变成了 0，实际上却是把原序列都变成 1 了。具体来讲，如果原序列 $l$ 位置是 1，那么即使差分是 0 也要做一次取反操作；如果原序列 $r$ 位置是 1，那么即使差分是 1 也不需要取反操作。</p>
+<p>细节非常多，写起来比较麻烦 —— 而且一定要记得位运算加括号！</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;climits&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;utility&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MaxN <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000006</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n, m, k, hashval[MaxN], sum[MaxN], last[MaxN], group[MaxN], password[MaxN], pre[MaxN];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> ori[MaxN], dif[MaxN];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">Read</span>(){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, op <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>isdigit(ch)){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(ch <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;-&#39;</span>) op <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(isdigit(ch)){
+</span></span><span style="display:flex;"><span>		num <span style="color:#f92672">=</span> num <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> ch <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>		ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> num <span style="color:#f92672">*</span> op;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signed</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>	n <span style="color:#f92672">=</span> Read(), k <span style="color:#f92672">=</span> Read(), m <span style="color:#f92672">=</span> Read();
+</span></span><span style="display:flex;"><span>	srand(<span style="color:#ae81ff">20040131</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>k; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		password[i] <span style="color:#f92672">=</span> ((<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span>)rand()<span style="color:#f92672">*</span>rand()<span style="color:#f92672">*</span>rand());
+</span></span><span style="display:flex;"><span>	ori[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;=</span>n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(i<span style="color:#f92672">&lt;=</span>n) scanf(<span style="color:#e6db74">&#34;%1d&#34;</span>, <span style="color:#f92672">&amp;</span>ori[i]);
+</span></span><span style="display:flex;"><span>		dif[i] <span style="color:#f92672">=</span> ori[i] <span style="color:#f92672">^</span> ori[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>		sum[i] <span style="color:#f92672">=</span> sum[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>		hashval[i] <span style="color:#f92672">=</span> hashval[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>		group[i] <span style="color:#f92672">=</span> last[i<span style="color:#f92672">%</span>k];
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(dif[i]){
+</span></span><span style="display:flex;"><span>			sum[i] <span style="color:#f92672">+=</span> (<span style="color:#f92672">-</span>last[i<span style="color:#f92672">%</span>k] <span style="color:#f92672">+</span> (i<span style="color:#f92672">+</span>k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span>k) <span style="color:#f92672">-</span> last[i<span style="color:#f92672">%</span>k];
+</span></span><span style="display:flex;"><span>			last[i<span style="color:#f92672">%</span>k] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>last[i<span style="color:#f92672">%</span>k] <span style="color:#f92672">+</span> (i<span style="color:#f92672">+</span>k<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span>k;
+</span></span><span style="display:flex;"><span>			hashval[i] <span style="color:#f92672">^=</span> password[i<span style="color:#f92672">%</span>k];
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		pre[i] <span style="color:#f92672">=</span> last[i<span style="color:#f92672">%</span>k];
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;=</span>m; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> l <span style="color:#f92672">=</span> Read(), r <span style="color:#f92672">=</span> Read();
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> lkey <span style="color:#f92672">=</span> ori[l]<span style="color:#f92672">?</span>password[l<span style="color:#f92672">%</span>k]<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>, rkey <span style="color:#f92672">=</span> ori[r]<span style="color:#f92672">?</span>password[(r<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">%</span>k]<span style="color:#f92672">:</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>((hashval[r] <span style="color:#f92672">^</span> rkey <span style="color:#f92672">^</span> lkey) <span style="color:#f92672">!=</span> hashval[l]){
+</span></span><span style="display:flex;"><span>			printf(<span style="color:#e6db74">&#34;-1</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> sum[r] <span style="color:#f92672">-</span> sum[l];
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(ori[r]) ans <span style="color:#f92672">+=</span> (<span style="color:#f92672">-</span>group[r<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">+</span> (r<span style="color:#f92672">+</span>k)<span style="color:#f92672">/</span>k) <span style="color:#f92672">-</span> group[r<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(ori[l]) ans <span style="color:#f92672">-=</span> (<span style="color:#f92672">-</span>pre[l] <span style="color:#f92672">+</span> (l<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>k)<span style="color:#f92672">/</span>k) <span style="color:#f92672">-</span> pre[l];
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(ans <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) ans <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>ans;
+</span></span><span style="display:flex;"><span>		printf(<span style="color:#e6db74">&#34;%lld</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

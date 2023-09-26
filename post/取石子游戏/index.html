@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='题目简述： $n$ 堆石子排成一排，每次可以从最左或最右的一堆中取若干，不能不取。两人轮流操作，不能操作的就输了。对于给定的一个初始局面，是否存在先手必胜策略？
+思路： 比较容易想到的是，如果两端石子相同时，先手必败。这是因为无论先手做什么操作，后手只需要做与之对称的操作就可以了，最后拿光石子的一定是后手。那么对于先手自身来讲，使其必胜的状态就是能够使两端石子相同的状态，这样就可以先发制人，使后手面对刚才说过的局面。
+与之前做过的其他题目有一个显著的不同在于，这道题只允许玩家从两端取石子，在两端的石子取完之前中间的石子状态并不会发生改变。两端的石子的确可以决定玩家的状态，但生活总不是风平浪静，两端的石子被取完后，曾经的优势者也可能面临着劣势局面 —— 如何力挽狂澜是他需要考虑的事情，而对于我们来讲，不仅需要考虑能操作范围内 (即两端) 石子的状态，更要考虑现在能操作的石子与未来要操作的石子之间的关系，考虑 DP。
+不妨先做一些规定吧：$l_{i,j}$ 表示先手必败时中间石子形成的闭区间 $[i,j]$ 左端的石子数，$r_{i,j}$ 表示先手必败时闭区间 $[i,j]$ 右端的石子数，$a_i$ 表示 $i$ 位置的石子数。值得注意的是，前两个条件不仅限制了两端的石子数，还限制了游戏中剩余所有石子的范围 —— 换句话说，只有除去两端石子，剩下的石子正好是闭区间 $[i,j]$ 时，$l_{i,j}$ 和 $r_{i,j}$ 才会生效。
+首先，如果 $l_{i,j}$ 和 $r_{i,j}$ 存在，那它们一定是唯一的。假设 $l_{i,j}$ 有两个值 $l_1$ 和 $l_2$ ( $l_1&amp;gt;l_2$ )，那么当最左端的石子数量为 $l_1$ 时，先手本应必败，但是他可以将最左端石子拿成 $l_2$，局面变为后手必败，与前边先手必败矛盾。其次，$l_{i,j}$ 和 $r_{i,j}$ 一定都存在。假设 $l_{i,j}$ 不存在，那么无论最左端有多少石子都是必胜态。拿左边的石子显然是徒劳的，因为不管剩下多少都一定是必胜态，所以先手拿右边的石子。现在先手拿了右边的石子使得后手必败，那么后手无论从左边拿多少都必败，与「无论最左端有多少石子都是必胜态」矛盾。综上，$l_{i,j}$ 和 $r_{i,j}$ 存在且唯一。
+Case0：边界 $[i,i]$ $l_{i,j}=r_{i,j}=a_i$，最开始已经说过了，两端石子相同时先手必败。
+Case1：$a_j=r_{i,j-1}$ 最右边的石子已经满足了先手必败时的条件，先手必败。
+Case2：$a_j&amp;lt;l_{i,j-1},\ a_j&amp;lt;r_{i,j-1}$ 此时有 $l_{i,j}=a_j$，又构成了最开始说的情况：最右端的石子是 $a_j$，那么最左端的石子和最右端对称的时候先手必败。
+Case3：$a_j≥l_{i,j-1},\ a_j&amp;lt;r_{i,j-1}$ 此时有 $l_{i,j}=a_j&#43;1$。如果先手取左侧：
+若剩余石子大于 $l_{i,j-1}$，后手只需要在右侧取相同数量的石子就可以循环回到 Case3。 若剩余石子等于 $l_{i,j-1}$，后手只需要取完右端所有石子，触发 $a_{i-1}=l_{i,j-1}$ 的先手必败状态。 若剩余石子小于 $l_{i,j-1}$，后者只需要取右端石子直至与左端相等，则回到 Case2。由于有 $a_j≥l_{i,j-1}$，所以先手取完时一定有 $a_j≥l_{i,j-1}≥a_{i-1}$。 如果先手取右侧：'>
+<title>P2599 取石子游戏</title>
+
+<link rel='canonical' href='https://example.org/post/%E5%8F%96%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='P2599 取石子游戏'>
+<meta property='og:description' content='题目简述： $n$ 堆石子排成一排，每次可以从最左或最右的一堆中取若干，不能不取。两人轮流操作，不能操作的就输了。对于给定的一个初始局面，是否存在先手必胜策略？
+思路： 比较容易想到的是，如果两端石子相同时，先手必败。这是因为无论先手做什么操作，后手只需要做与之对称的操作就可以了，最后拿光石子的一定是后手。那么对于先手自身来讲，使其必胜的状态就是能够使两端石子相同的状态，这样就可以先发制人，使后手面对刚才说过的局面。
+与之前做过的其他题目有一个显著的不同在于，这道题只允许玩家从两端取石子，在两端的石子取完之前中间的石子状态并不会发生改变。两端的石子的确可以决定玩家的状态，但生活总不是风平浪静，两端的石子被取完后，曾经的优势者也可能面临着劣势局面 —— 如何力挽狂澜是他需要考虑的事情，而对于我们来讲，不仅需要考虑能操作范围内 (即两端) 石子的状态，更要考虑现在能操作的石子与未来要操作的石子之间的关系，考虑 DP。
+不妨先做一些规定吧：$l_{i,j}$ 表示先手必败时中间石子形成的闭区间 $[i,j]$ 左端的石子数，$r_{i,j}$ 表示先手必败时闭区间 $[i,j]$ 右端的石子数，$a_i$ 表示 $i$ 位置的石子数。值得注意的是，前两个条件不仅限制了两端的石子数，还限制了游戏中剩余所有石子的范围 —— 换句话说，只有除去两端石子，剩下的石子正好是闭区间 $[i,j]$ 时，$l_{i,j}$ 和 $r_{i,j}$ 才会生效。
+首先，如果 $l_{i,j}$ 和 $r_{i,j}$ 存在，那它们一定是唯一的。假设 $l_{i,j}$ 有两个值 $l_1$ 和 $l_2$ ( $l_1&amp;gt;l_2$ )，那么当最左端的石子数量为 $l_1$ 时，先手本应必败，但是他可以将最左端石子拿成 $l_2$，局面变为后手必败，与前边先手必败矛盾。其次，$l_{i,j}$ 和 $r_{i,j}$ 一定都存在。假设 $l_{i,j}$ 不存在，那么无论最左端有多少石子都是必胜态。拿左边的石子显然是徒劳的，因为不管剩下多少都一定是必胜态，所以先手拿右边的石子。现在先手拿了右边的石子使得后手必败，那么后手无论从左边拿多少都必败，与「无论最左端有多少石子都是必胜态」矛盾。综上，$l_{i,j}$ 和 $r_{i,j}$ 存在且唯一。
+Case0：边界 $[i,i]$ $l_{i,j}=r_{i,j}=a_i$，最开始已经说过了，两端石子相同时先手必败。
+Case1：$a_j=r_{i,j-1}$ 最右边的石子已经满足了先手必败时的条件，先手必败。
+Case2：$a_j&amp;lt;l_{i,j-1},\ a_j&amp;lt;r_{i,j-1}$ 此时有 $l_{i,j}=a_j$，又构成了最开始说的情况：最右端的石子是 $a_j$，那么最左端的石子和最右端对称的时候先手必败。
+Case3：$a_j≥l_{i,j-1},\ a_j&amp;lt;r_{i,j-1}$ 此时有 $l_{i,j}=a_j&#43;1$。如果先手取左侧：
+若剩余石子大于 $l_{i,j-1}$，后手只需要在右侧取相同数量的石子就可以循环回到 Case3。 若剩余石子等于 $l_{i,j-1}$，后手只需要取完右端所有石子，触发 $a_{i-1}=l_{i,j-1}$ 的先手必败状态。 若剩余石子小于 $l_{i,j-1}$，后者只需要取右端石子直至与左端相等，则回到 Case2。由于有 $a_j≥l_{i,j-1}$，所以先手取完时一定有 $a_j≥l_{i,j-1}≥a_{i-1}$。 如果先手取右侧：'>
+<meta property='og:url' content='https://example.org/post/%E5%8F%96%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2019-12-01T23:46:04&#43;08:00'/><meta property='article:modified_time' content='2019-12-01T23:46:04&#43;08:00'/>
+<meta name="twitter:title" content="P2599 取石子游戏">
+<meta name="twitter:description" content="题目简述： $n$ 堆石子排成一排，每次可以从最左或最右的一堆中取若干，不能不取。两人轮流操作，不能操作的就输了。对于给定的一个初始局面，是否存在先手必胜策略？
+思路： 比较容易想到的是，如果两端石子相同时，先手必败。这是因为无论先手做什么操作，后手只需要做与之对称的操作就可以了，最后拿光石子的一定是后手。那么对于先手自身来讲，使其必胜的状态就是能够使两端石子相同的状态，这样就可以先发制人，使后手面对刚才说过的局面。
+与之前做过的其他题目有一个显著的不同在于，这道题只允许玩家从两端取石子，在两端的石子取完之前中间的石子状态并不会发生改变。两端的石子的确可以决定玩家的状态，但生活总不是风平浪静，两端的石子被取完后，曾经的优势者也可能面临着劣势局面 —— 如何力挽狂澜是他需要考虑的事情，而对于我们来讲，不仅需要考虑能操作范围内 (即两端) 石子的状态，更要考虑现在能操作的石子与未来要操作的石子之间的关系，考虑 DP。
+不妨先做一些规定吧：$l_{i,j}$ 表示先手必败时中间石子形成的闭区间 $[i,j]$ 左端的石子数，$r_{i,j}$ 表示先手必败时闭区间 $[i,j]$ 右端的石子数，$a_i$ 表示 $i$ 位置的石子数。值得注意的是，前两个条件不仅限制了两端的石子数，还限制了游戏中剩余所有石子的范围 —— 换句话说，只有除去两端石子，剩下的石子正好是闭区间 $[i,j]$ 时，$l_{i,j}$ 和 $r_{i,j}$ 才会生效。
+首先，如果 $l_{i,j}$ 和 $r_{i,j}$ 存在，那它们一定是唯一的。假设 $l_{i,j}$ 有两个值 $l_1$ 和 $l_2$ ( $l_1&amp;gt;l_2$ )，那么当最左端的石子数量为 $l_1$ 时，先手本应必败，但是他可以将最左端石子拿成 $l_2$，局面变为后手必败，与前边先手必败矛盾。其次，$l_{i,j}$ 和 $r_{i,j}$ 一定都存在。假设 $l_{i,j}$ 不存在，那么无论最左端有多少石子都是必胜态。拿左边的石子显然是徒劳的，因为不管剩下多少都一定是必胜态，所以先手拿右边的石子。现在先手拿了右边的石子使得后手必败，那么后手无论从左边拿多少都必败，与「无论最左端有多少石子都是必胜态」矛盾。综上，$l_{i,j}$ 和 $r_{i,j}$ 存在且唯一。
+Case0：边界 $[i,i]$ $l_{i,j}=r_{i,j}=a_i$，最开始已经说过了，两端石子相同时先手必败。
+Case1：$a_j=r_{i,j-1}$ 最右边的石子已经满足了先手必败时的条件，先手必败。
+Case2：$a_j&amp;lt;l_{i,j-1},\ a_j&amp;lt;r_{i,j-1}$ 此时有 $l_{i,j}=a_j$，又构成了最开始说的情况：最右端的石子是 $a_j$，那么最左端的石子和最右端对称的时候先手必败。
+Case3：$a_j≥l_{i,j-1},\ a_j&amp;lt;r_{i,j-1}$ 此时有 $l_{i,j}=a_j&#43;1$。如果先手取左侧：
+若剩余石子大于 $l_{i,j-1}$，后手只需要在右侧取相同数量的石子就可以循环回到 Case3。 若剩余石子等于 $l_{i,j-1}$，后手只需要取完右端所有石子，触发 $a_{i-1}=l_{i,j-1}$ 的先手必败状态。 若剩余石子小于 $l_{i,j-1}$，后者只需要取右端石子直至与左端相等，则回到 Case2。由于有 $a_j≥l_{i,j-1}$，所以先手取完时一定有 $a_j≥l_{i,j-1}≥a_{i-1}$。 如果先手取右侧：">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E5%8F%96%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F/">P2599 取石子游戏</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 01, 2019</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="题目httpswwwluogucomcnproblemp2599简述"><a class="link" href="https://www.luogu.com.cn/problem/P2599"  target="_blank" rel="noopener"
+    >题目</a>简述：</h3>
+<p>$n$ 堆石子排成一排，每次可以从最左或最右的一堆中取若干，不能不取。两人轮流操作，不能操作的就输了。对于给定的一个初始局面，是否存在先手必胜策略？</p>
+<h3 id="思路">思路：</h3>
+<p>比较容易想到的是，如果两端石子相同时，先手必败。这是因为无论先手做什么操作，后手只需要做与之对称的操作就可以了，最后拿光石子的一定是后手。那么对于先手自身来讲，使其必胜的状态就是能够使两端石子相同的状态，这样就可以先发制人，使后手面对刚才说过的局面。</p>
+<p>与之前做过的其他题目有一个显著的不同在于，这道题只允许玩家从两端取石子，在两端的石子取完之前中间的石子状态并不会发生改变。两端的石子的确可以决定玩家的状态，但生活总不是风平浪静，两端的石子被取完后，曾经的优势者也可能面临着劣势局面 —— 如何力挽狂澜是他需要考虑的事情，而对于我们来讲，不仅需要考虑能操作范围内 (即两端) 石子的状态，更要考虑现在能操作的石子与未来要操作的石子之间的关系，考虑 DP。</p>
+<p>不妨先做一些规定吧：$l_{i,j}$ 表示先手必败时中间石子形成的闭区间 $[i,j]$ 左端的石子数，$r_{i,j}$ 表示先手必败时闭区间 $[i,j]$ 右端的石子数，$a_i$ 表示 $i$ 位置的石子数。值得注意的是，前两个条件不仅限制了两端的石子数，还限制了游戏中剩余所有石子的范围 —— 换句话说，只有除去两端石子，剩下的石子正好是闭区间 $[i,j]$ 时，$l_{i,j}$ 和 $r_{i,j}$ 才会生效。</p>
+<p>首先，如果 $l_{i,j}$ 和 $r_{i,j}$ 存在，那它们一定是唯一的。假设 $l_{i,j}$ 有两个值 $l_1$ 和 $l_2$ ( $l_1&gt;l_2$ )，那么当最左端的石子数量为 $l_1$ 时，先手本应必败，但是他可以将最左端石子拿成 $l_2$，局面变为后手必败，与前边先手必败矛盾。其次，$l_{i,j}$ 和 $r_{i,j}$ 一定都存在。假设 $l_{i,j}$ 不存在，那么无论最左端有多少石子都是必胜态。拿左边的石子显然是徒劳的，因为不管剩下多少都一定是必胜态，所以先手拿右边的石子。现在先手拿了右边的石子使得后手必败，那么后手无论从左边拿多少都必败，与「无论最左端有多少石子都是必胜态」矛盾。综上，$l_{i,j}$ 和 $r_{i,j}$ 存在且唯一。</p>
+<h4 id="case0边界-ii">Case0：边界 $[i,i]$</h4>
+<p>$l_{i,j}=r_{i,j}=a_i$，最开始已经说过了，两端石子相同时先手必败。</p>
+<h4 id="case1a_jr_ij-1">Case1：$a_j=r_{i,j-1}$</h4>
+<p>最右边的石子已经满足了先手必败时的条件，先手必败。</p>
+<h4 id="case2a_jl_ij-1-a_jr_ij-1">Case2：$a_j&lt;l_{i,j-1},\ a_j&lt;r_{i,j-1}$</h4>
+<p>此时有 $l_{i,j}=a_j$，又构成了最开始说的情况：最右端的石子是 $a_j$，那么最左端的石子和最右端对称的时候先手必败。</p>
+<h4 id="case3a_jl_ij-1-a_jr_ij-1">Case3：$a_j≥l_{i,j-1},\ a_j&lt;r_{i,j-1}$</h4>
+<p>此时有 $l_{i,j}=a_j+1$。如果先手取左侧：</p>
+<ul>
+<li>若剩余石子大于 $l_{i,j-1}$，后手只需要在右侧取相同数量的石子就可以循环回到 Case3。</li>
+<li>若剩余石子等于 $l_{i,j-1}$，后手只需要取完右端所有石子，触发 $a_{i-1}=l_{i,j-1}$ 的先手必败状态。</li>
+<li>若剩余石子小于 $l_{i,j-1}$，后者只需要取右端石子直至与左端相等，则回到 Case2。由于有 $a_j≥l_{i,j-1}$，所以先手取完时一定有 $a_j≥l_{i,j-1}≥a_{i-1}$。</li>
+</ul>
+<p>如果先手取右侧：</p>
+<ul>
+<li>若剩余石子大于 $l_{i,j-1}$，后手只需要在左侧取石子直至比右端多一就可以回到 Case3。</li>
+<li>若剩余石子等于 $l_{i,j-1}$，后手只需要在左侧取石子直至比右端多一就可以回到 Case3。</li>
+<li>若剩余石子小于 $l_{i,j-1}$，后手只需要在左侧取石子直至与右端相等，则回到 Case2。</li>
+</ul>
+<h4 id="case4a_jl_ij-1-a_jr_ij-1">Case4：$a_j≤l_{i,j-1},\ a_j&gt;r_{i,j-1}$</h4>
+<p>此时有 $l_{i,j}=a_j-1$。如果先手取左侧：</p>
+<ul>
+<li>若剩余石子大于 $r_{i,j-1}$，后手只需要在右侧取石子直至比左端多一就可以回到 Case4。</li>
+<li>若剩余石子等于 $r_{i,j-1}$，后手只需要在右侧取石子直至比左端多一就可以回到 Case4。</li>
+<li>若剩余石子小于 $r_{i,j-1}$，后者只需要取右端石子直至与左端相等，则回到 Case2。</li>
+</ul>
+<p>如果先手取右侧：</p>
+<ul>
+<li>若剩余石子大于 $r_{i,j-1}$，后手只需要在左侧取相同数量的石子就可以循环回到 Case3。</li>
+<li>若剩余石子等于 $r_{i,j-1}$，后手只需要取完左端所有石子，触发 $a_{j}=r_{i,j-1}$ 的先手必败状态。</li>
+<li>若剩余石子小于 $r_{i,j-1}$，后者只需要取左端石子直至与右端相等，则回到 Case2。</li>
+</ul>
+<h4 id="case5a_jl_ij-1-a_jr_ij-1">Case5：$a_j≥l_{i,j-1},\ a_j&gt;r_{i,j-1}$</h4>
+<p>此时有 $l_{i,j}=a_j$。无论先手取哪一侧：</p>
+<ul>
+<li>若剩余石子小于 $l_{i,j-1}，r_{i,j-1}$，一定可以回到 Case2。</li>
+<li>若剩余石子大于 $l_{i,j-1}，r_{i,j-1}$，一定可以回到 Case5。</li>
+<li>若剩余石子等于 $l_{i,j-1}，r_{i,j-1}$，后手可以通过在另一堆取石子回到 Case4 或 Case3。</li>
+</ul>
+<p>上面的五个 Case 对称过来就是其他的方案，方案类似不再赘述。最后只需要判断 $a_1$ 是否等于 $l_{2,n}$</p>
+<h3 id="code">Code：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;climits&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;utility&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MaxN<span style="color:#f92672">=</span><span style="color:#ae81ff">1003</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> lL[MaxN][MaxN], rR[MaxN][MaxN], a[MaxN];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">Read</span>(){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, op <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>isdigit(ch)){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(ch <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;-&#39;</span>) op <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(isdigit(ch)){
+</span></span><span style="display:flex;"><span>		num <span style="color:#f92672">=</span> num <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> ch <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>		ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> num <span style="color:#f92672">*</span> op;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signed</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> T <span style="color:#f92672">=</span> Read();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(T<span style="color:#f92672">--</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> Read();
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;<span style="color:#f92672">++</span>i)
+</span></span><span style="display:flex;"><span>			a[i] <span style="color:#f92672">=</span> Read(), lL[i][i] <span style="color:#f92672">=</span> rR[i][i] <span style="color:#f92672">=</span> a[i];
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> len<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; len<span style="color:#f92672">&lt;</span>n; len<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> l<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,r<span style="color:#f92672">=</span>l<span style="color:#f92672">+</span>len; r<span style="color:#f92672">&lt;=</span>n; l<span style="color:#f92672">++</span>,r<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">int</span> x, L, R;
+</span></span><span style="display:flex;"><span>				x <span style="color:#f92672">=</span> a[r], L <span style="color:#f92672">=</span> lL[l][r<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], R <span style="color:#f92672">=</span> rR[l][r<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span>(x <span style="color:#f92672">==</span> R) lL[l][r] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(x <span style="color:#f92672">&gt;</span> R <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&gt;</span> L <span style="color:#f92672">||</span> x <span style="color:#f92672">&lt;</span> R <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&lt;</span> L) lL[l][r] <span style="color:#f92672">=</span> x;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(x <span style="color:#f92672">&gt;=</span> L <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&lt;</span> R) lL[l][r] <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(x <span style="color:#f92672">&gt;</span> R <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&lt;=</span> L) lL[l][r] <span style="color:#f92672">=</span> x <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>				x <span style="color:#f92672">=</span> a[l], L <span style="color:#f92672">=</span> lL[l<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][r], R <span style="color:#f92672">=</span> rR[l<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>][r];
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span>(x <span style="color:#f92672">==</span> L) rR[l][r] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(x <span style="color:#f92672">&gt;</span> R <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&gt;</span> L <span style="color:#f92672">||</span> x <span style="color:#f92672">&lt;</span> R <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&lt;</span> L) rR[l][r] <span style="color:#f92672">=</span> x;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(x <span style="color:#f92672">&gt;</span> L <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&lt;=</span> R) rR[l][r] <span style="color:#f92672">=</span> x <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(x <span style="color:#f92672">&gt;=</span> R <span style="color:#f92672">&amp;&amp;</span> x <span style="color:#f92672">&lt;</span> L) rR[l][r] <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(a[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">==</span>lL[<span style="color:#ae81ff">2</span>][n]) printf(<span style="color:#e6db74">&#34;0</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span> printf(<span style="color:#e6db74">&#34;1</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

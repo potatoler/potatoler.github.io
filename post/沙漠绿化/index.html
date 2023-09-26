@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Task200204.2 沙漠绿化
+题目描述： 定义沙漠是满足如下性质的图: 没有重边和自环，且图中任意一条边至多属于一个简单环。 给定一片沙漠，从中删去任意多条边，使得删去边之后的图是一个森林，求有多少种方法，答案对 998244353 取模。
+这里必须吐槽一下&amp;hellip; 题目描述很硬核：沙漠里有很多的仙人掌，把仙人掌修剪成树，就绿化了沙漠（笑）
+看到这里就已经懵了？没关系，你只是不知道「仙人掌图」，不妨认识一下？
+思路： 树中不能有环，所以要将「沙漠」删边变成「森林」，就是将每一个环至少删掉一条边，而不在环中的边则删不删都可以（森林中的树不要求连通）
+重点在于环的查找：我们可以DFS记录边的深度，一旦从较深DFS到较浅，就说明找到了一个环
+DFS的过程中我们有以下几种情况需要处理：
+DFS到了自己的父亲——continue； DFS到比自己浅的点——找到了一个环，环中的边数即为两点深度差&#43;1； DFS到比自己深的店——访问到了已经统计过的环，不用管； DFS到未标记深度的点——一个新的点，将此点的深度标记为父亲的深度&#43;1，并从此点开始DFS； 值得注意的一点在于情况4的处理，当我们遇到一个新的点并标记他的深度之后，我们需要从此点开始DFS，因为题目中并没有规定「沙漠」是一个连通的图（只有一株仙人掌的沙漠还叫沙漠？）
+代码： #include&amp;lt;iostream&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;vector&amp;gt; #define ll long long using namespace std; const int maxn=300010; const ll mod=998244353; int vis[maxn]; vector&amp;lt;int&amp;gt;map[maxn]; int n,m; int ans,num; ll qp(ll a,ll b){ ll res=1; while(b&amp;gt;0){ if(b%2) res=(res*a)%mod; a=(a*a)%mod; b/=2; } return res; } void dfs(int u,int fa){ vis[u]=vis[fa]&#43;1; for(int i=0;i&amp;lt;map[u].size();i&#43;&#43;){ int v=map[u][i]; if(fa==v) continue; if(vis[v]==0) dfs(v,u); else if(vis[u]&amp;gt;vis[v]){ int temp=vis[u]-vis[v]&#43;1; num&#43;=temp; ans=(ans%mod*(qp(2,temp)-1)%mod)%mod; } } } int main(){ scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;n,&amp;amp;m); memset(vis,0,sizeof(vis)); for(int i=1;i&amp;lt;=n;i&#43;&#43;) map[i].'>
+<title>Task200204.2 沙漠绿化</title>
+
+<link rel='canonical' href='https://example.org/post/%E6%B2%99%E6%BC%A0%E7%BB%BF%E5%8C%96/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Task200204.2 沙漠绿化'>
+<meta property='og:description' content='Task200204.2 沙漠绿化
+题目描述： 定义沙漠是满足如下性质的图: 没有重边和自环，且图中任意一条边至多属于一个简单环。 给定一片沙漠，从中删去任意多条边，使得删去边之后的图是一个森林，求有多少种方法，答案对 998244353 取模。
+这里必须吐槽一下&amp;hellip; 题目描述很硬核：沙漠里有很多的仙人掌，把仙人掌修剪成树，就绿化了沙漠（笑）
+看到这里就已经懵了？没关系，你只是不知道「仙人掌图」，不妨认识一下？
+思路： 树中不能有环，所以要将「沙漠」删边变成「森林」，就是将每一个环至少删掉一条边，而不在环中的边则删不删都可以（森林中的树不要求连通）
+重点在于环的查找：我们可以DFS记录边的深度，一旦从较深DFS到较浅，就说明找到了一个环
+DFS的过程中我们有以下几种情况需要处理：
+DFS到了自己的父亲——continue； DFS到比自己浅的点——找到了一个环，环中的边数即为两点深度差&#43;1； DFS到比自己深的店——访问到了已经统计过的环，不用管； DFS到未标记深度的点——一个新的点，将此点的深度标记为父亲的深度&#43;1，并从此点开始DFS； 值得注意的一点在于情况4的处理，当我们遇到一个新的点并标记他的深度之后，我们需要从此点开始DFS，因为题目中并没有规定「沙漠」是一个连通的图（只有一株仙人掌的沙漠还叫沙漠？）
+代码： #include&amp;lt;iostream&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;vector&amp;gt; #define ll long long using namespace std; const int maxn=300010; const ll mod=998244353; int vis[maxn]; vector&amp;lt;int&amp;gt;map[maxn]; int n,m; int ans,num; ll qp(ll a,ll b){ ll res=1; while(b&amp;gt;0){ if(b%2) res=(res*a)%mod; a=(a*a)%mod; b/=2; } return res; } void dfs(int u,int fa){ vis[u]=vis[fa]&#43;1; for(int i=0;i&amp;lt;map[u].size();i&#43;&#43;){ int v=map[u][i]; if(fa==v) continue; if(vis[v]==0) dfs(v,u); else if(vis[u]&amp;gt;vis[v]){ int temp=vis[u]-vis[v]&#43;1; num&#43;=temp; ans=(ans%mod*(qp(2,temp)-1)%mod)%mod; } } } int main(){ scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;n,&amp;amp;m); memset(vis,0,sizeof(vis)); for(int i=1;i&amp;lt;=n;i&#43;&#43;) map[i].'>
+<meta property='og:url' content='https://example.org/post/%E6%B2%99%E6%BC%A0%E7%BB%BF%E5%8C%96/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-02-04T23:21:19&#43;08:00'/><meta property='article:modified_time' content='2020-02-04T23:21:19&#43;08:00'/>
+<meta name="twitter:title" content="Task200204.2 沙漠绿化">
+<meta name="twitter:description" content="Task200204.2 沙漠绿化
+题目描述： 定义沙漠是满足如下性质的图: 没有重边和自环，且图中任意一条边至多属于一个简单环。 给定一片沙漠，从中删去任意多条边，使得删去边之后的图是一个森林，求有多少种方法，答案对 998244353 取模。
+这里必须吐槽一下&amp;hellip; 题目描述很硬核：沙漠里有很多的仙人掌，把仙人掌修剪成树，就绿化了沙漠（笑）
+看到这里就已经懵了？没关系，你只是不知道「仙人掌图」，不妨认识一下？
+思路： 树中不能有环，所以要将「沙漠」删边变成「森林」，就是将每一个环至少删掉一条边，而不在环中的边则删不删都可以（森林中的树不要求连通）
+重点在于环的查找：我们可以DFS记录边的深度，一旦从较深DFS到较浅，就说明找到了一个环
+DFS的过程中我们有以下几种情况需要处理：
+DFS到了自己的父亲——continue； DFS到比自己浅的点——找到了一个环，环中的边数即为两点深度差&#43;1； DFS到比自己深的店——访问到了已经统计过的环，不用管； DFS到未标记深度的点——一个新的点，将此点的深度标记为父亲的深度&#43;1，并从此点开始DFS； 值得注意的一点在于情况4的处理，当我们遇到一个新的点并标记他的深度之后，我们需要从此点开始DFS，因为题目中并没有规定「沙漠」是一个连通的图（只有一株仙人掌的沙漠还叫沙漠？）
+代码： #include&amp;lt;iostream&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;vector&amp;gt; #define ll long long using namespace std; const int maxn=300010; const ll mod=998244353; int vis[maxn]; vector&amp;lt;int&amp;gt;map[maxn]; int n,m; int ans,num; ll qp(ll a,ll b){ ll res=1; while(b&amp;gt;0){ if(b%2) res=(res*a)%mod; a=(a*a)%mod; b/=2; } return res; } void dfs(int u,int fa){ vis[u]=vis[fa]&#43;1; for(int i=0;i&amp;lt;map[u].size();i&#43;&#43;){ int v=map[u][i]; if(fa==v) continue; if(vis[v]==0) dfs(v,u); else if(vis[u]&amp;gt;vis[v]){ int temp=vis[u]-vis[v]&#43;1; num&#43;=temp; ans=(ans%mod*(qp(2,temp)-1)%mod)%mod; } } } int main(){ scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;n,&amp;amp;m); memset(vis,0,sizeof(vis)); for(int i=1;i&amp;lt;=n;i&#43;&#43;) map[i].">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E6%B2%99%E6%BC%A0%E7%BB%BF%E5%8C%96/">Task200204.2 沙漠绿化</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 04, 2020</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><a class="link" href="https://www.luogu.com.cn/problem/U104562"  target="_blank" rel="noopener"
+    >Task200204.2 沙漠绿化</a></p>
+<h3 id="题目描述">题目描述：</h3>
+<p>定义沙漠是满足如下性质的图: 没有重边和自环，且图中任意一条边至多属于一个简单环。 给定一片沙漠，从中删去任意多条边，使得删去边之后的图是一个森林，求有多少种方法，答案对 998244353 取模。</p>
+<h3 id="这里必须吐槽一下">这里必须吐槽一下&hellip;</h3>
+<p>题目描述很硬核：沙漠里有很多的仙人掌，把仙人掌修剪成树，就绿化了沙漠（笑）</p>
+<p>看到这里就已经懵了？没关系，你只是不知道「仙人掌图」，<a class="link" href="https://blog.csdn.net/CreationAugust/article/details/48007069"  target="_blank" rel="noopener"
+    >不妨认识一下？</a></p>
+<h3 id="思路">思路：</h3>
+<p>树中不能有环，所以要将「沙漠」删边变成「森林」，就是将每一个环至少删掉一条边，而不在环中的边则删不删都可以（森林中的树不要求连通）</p>
+<p>重点在于环的查找：我们可以DFS记录边的深度，一旦从较深DFS到较浅，就说明找到了一个环</p>
+<p>DFS的过程中我们有以下几种情况需要处理：</p>
+<ol>
+<li>DFS到了自己的父亲——continue；</li>
+<li>DFS到比自己浅的点——找到了一个环，环中的边数即为两点深度差+1；</li>
+<li>DFS到比自己深的店——访问到了已经统计过的环，不用管；</li>
+<li>DFS到未标记深度的点——一个新的点，将此点的深度标记为父亲的深度+1，并从此点开始DFS；</li>
+</ol>
+<p>值得注意的一点在于情况4的处理，当我们遇到一个新的点并标记他的深度之后，我们需要从此点开始DFS，因为题目中并没有规定「沙漠」是一个连通的图（只有一株仙人掌的沙漠还叫沙漠？）</p>
+<h3 id="代码">代码：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define ll long long
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> maxn<span style="color:#f92672">=</span><span style="color:#ae81ff">300010</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> ll mod<span style="color:#f92672">=</span><span style="color:#ae81ff">998244353</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> vis[maxn];
+</span></span><span style="display:flex;"><span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>map[maxn];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n,m;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> ans,num;
+</span></span><span style="display:flex;"><span>ll <span style="color:#a6e22e">qp</span>(ll a,ll b){
+</span></span><span style="display:flex;"><span>    ll res<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(b<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(b<span style="color:#f92672">%</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>            res<span style="color:#f92672">=</span>(res<span style="color:#f92672">*</span>a)<span style="color:#f92672">%</span>mod;
+</span></span><span style="display:flex;"><span>        a<span style="color:#f92672">=</span>(a<span style="color:#f92672">*</span>a)<span style="color:#f92672">%</span>mod;
+</span></span><span style="display:flex;"><span>        b<span style="color:#f92672">/=</span><span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> res;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs</span>(<span style="color:#66d9ef">int</span> u,<span style="color:#66d9ef">int</span> fa){
+</span></span><span style="display:flex;"><span>    vis[u]<span style="color:#f92672">=</span>vis[fa]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;</span>map[u].size();i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> v<span style="color:#f92672">=</span>map[u][i];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(fa<span style="color:#f92672">==</span>v) <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(vis[v]<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>            dfs(v,u);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(vis[u]<span style="color:#f92672">&gt;</span>vis[v]){
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> temp<span style="color:#f92672">=</span>vis[u]<span style="color:#f92672">-</span>vis[v]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>            num<span style="color:#f92672">+=</span>temp;
+</span></span><span style="display:flex;"><span>            ans<span style="color:#f92672">=</span>(ans<span style="color:#f92672">%</span>mod<span style="color:#f92672">*</span>(qp(<span style="color:#ae81ff">2</span>,temp)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">%</span>mod)<span style="color:#f92672">%</span>mod;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>n,<span style="color:#f92672">&amp;</span>m);
+</span></span><span style="display:flex;"><span>    memset(vis,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(vis));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>) map[i].clear();
+</span></span><span style="display:flex;"><span>    ans<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,num<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>m;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> x,y;
+</span></span><span style="display:flex;"><span>        scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>x,<span style="color:#f92672">&amp;</span>y);
+</span></span><span style="display:flex;"><span>        map[x].push_back(y);
+</span></span><span style="display:flex;"><span>        map[y].push_back(x);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>vis[i])
+</span></span><span style="display:flex;"><span>            dfs(i,<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    ans<span style="color:#f92672">=</span>(ans<span style="color:#f92672">%</span>mod<span style="color:#f92672">*</span>(qp(<span style="color:#ae81ff">2</span>,m<span style="color:#f92672">-</span>num))<span style="color:#f92672">%</span>mod)<span style="color:#f92672">%</span>mod;
+</span></span><span style="display:flex;"><span>    cout<span style="color:#f92672">&lt;&lt;</span>ans<span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

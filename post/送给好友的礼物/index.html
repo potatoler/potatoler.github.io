@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='题目简述 给定一棵 $n$ 个节点的树，有 $k$ 个节点有草莓。两个人同时从 1 号点出发，每一时刻可以不动或者走向相邻的节点，经过到达一个点的时候可以摘到那个点的草莓。至少在第几时刻末，两个人一共可以摘到所有草莓，并且都回到 1 号点。$1≤k≤n≤415$
+思路 先把有草莓的点称为关键节点，那么对于一个点：
+如果这个点是关键节点且其子树中有关键节点，那么取消这个点关键节点的资格，因为要达到下面的关键节点一定要经过这个点，顺便就可以采摘这个点的草莓，对答案没有影响。 如果这个点不是关键节点且其子树中没有关键节点，那么这个点就没有用，可以删掉。 现在所有关键节点都是叶节点，并且只有关键节点是叶节点。我们要给两个人分配他们需要经过的关键节点。称一个叶节点集合 $S$ 的代价 $cost_S$ 为包含 1 号点和 $S$ 中每一个点的最小联通块所含边数。这样以来对于两个人分配的关键节点集合 $S_1$ 和 $S_2$，我们就要最小化 $2×\max{cost_{S_1}&#43;cost_{S_2}}$。
+考虑如何计算 $cost$，设每个点的深度是 $depth$，那么对于 $S={a_1,a_2,…,a_k},\ cost_S=depth_{a_1} &#43; \Sigma(depth_{a_i}-depth_{LCA(a_i,a_{i-1})})$。因为到达集合内的第一个点一直走下去后，去往下一个点时只需要返回这两个点的 LCA 就可以了。但是不同的两点 LCA 深度可能不同，为了最小化代价，我们在将一系列点加入集合前按照 DFS 序排序，这样可以最大化相邻两点的 LCA 深度和。
+设 $f_{i,j,k,l}$ 为考虑到第 $i$ 个关键节点，上一个在两个人分配的集合内的点是 $j,k$，第一个人分配了 $l$ 个点时第二个人集合代价的最小值，于是可以从 $f_{i-1,j,i-1,l},\ f_{i-1,i-1,k,l-1}$ 转移过来。
+然而原题这样开数组是开不下的，注意到每次转移时 $j,k$ 中一定有一个是 $i-1$，那么可以将状态修改为 $f_{i,0/1,j,l}$ 表示考虑到第 $i$ 个关键节点，上一个关键节点分给了谁，上一个分配给另外那个人的关键节点是 $j$，第一个人分配了 $l$ 个点时第二个人几个代价的最小值。
+然而空间可能还不够用，可以考虑把第一维滚掉或者用 short 代替 int（毕竟没有多少边）。
+Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;climits&amp;gt; #include&amp;lt;vector&amp;gt; #define int short using namespace std; const int MaxN = 500; int n, c, father[MaxN], depth[MaxN], head[MaxN], cntEdge, ans = 0x3f3f; int stack[MaxN], top; struct Vertex{ int father, depth, subtreeSize, chainTop, heavySon; bool berry; }vertex[MaxN]; #define xTop vertex[x].'>
+<title>送给好友的礼物</title>
+
+<link rel='canonical' href='https://example.org/post/%E9%80%81%E7%BB%99%E5%A5%BD%E5%8F%8B%E7%9A%84%E7%A4%BC%E7%89%A9/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='送给好友的礼物'>
+<meta property='og:description' content='题目简述 给定一棵 $n$ 个节点的树，有 $k$ 个节点有草莓。两个人同时从 1 号点出发，每一时刻可以不动或者走向相邻的节点，经过到达一个点的时候可以摘到那个点的草莓。至少在第几时刻末，两个人一共可以摘到所有草莓，并且都回到 1 号点。$1≤k≤n≤415$
+思路 先把有草莓的点称为关键节点，那么对于一个点：
+如果这个点是关键节点且其子树中有关键节点，那么取消这个点关键节点的资格，因为要达到下面的关键节点一定要经过这个点，顺便就可以采摘这个点的草莓，对答案没有影响。 如果这个点不是关键节点且其子树中没有关键节点，那么这个点就没有用，可以删掉。 现在所有关键节点都是叶节点，并且只有关键节点是叶节点。我们要给两个人分配他们需要经过的关键节点。称一个叶节点集合 $S$ 的代价 $cost_S$ 为包含 1 号点和 $S$ 中每一个点的最小联通块所含边数。这样以来对于两个人分配的关键节点集合 $S_1$ 和 $S_2$，我们就要最小化 $2×\max{cost_{S_1}&#43;cost_{S_2}}$。
+考虑如何计算 $cost$，设每个点的深度是 $depth$，那么对于 $S={a_1,a_2,…,a_k},\ cost_S=depth_{a_1} &#43; \Sigma(depth_{a_i}-depth_{LCA(a_i,a_{i-1})})$。因为到达集合内的第一个点一直走下去后，去往下一个点时只需要返回这两个点的 LCA 就可以了。但是不同的两点 LCA 深度可能不同，为了最小化代价，我们在将一系列点加入集合前按照 DFS 序排序，这样可以最大化相邻两点的 LCA 深度和。
+设 $f_{i,j,k,l}$ 为考虑到第 $i$ 个关键节点，上一个在两个人分配的集合内的点是 $j,k$，第一个人分配了 $l$ 个点时第二个人集合代价的最小值，于是可以从 $f_{i-1,j,i-1,l},\ f_{i-1,i-1,k,l-1}$ 转移过来。
+然而原题这样开数组是开不下的，注意到每次转移时 $j,k$ 中一定有一个是 $i-1$，那么可以将状态修改为 $f_{i,0/1,j,l}$ 表示考虑到第 $i$ 个关键节点，上一个关键节点分给了谁，上一个分配给另外那个人的关键节点是 $j$，第一个人分配了 $l$ 个点时第二个人几个代价的最小值。
+然而空间可能还不够用，可以考虑把第一维滚掉或者用 short 代替 int（毕竟没有多少边）。
+Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;climits&amp;gt; #include&amp;lt;vector&amp;gt; #define int short using namespace std; const int MaxN = 500; int n, c, father[MaxN], depth[MaxN], head[MaxN], cntEdge, ans = 0x3f3f; int stack[MaxN], top; struct Vertex{ int father, depth, subtreeSize, chainTop, heavySon; bool berry; }vertex[MaxN]; #define xTop vertex[x].'>
+<meta property='og:url' content='https://example.org/post/%E9%80%81%E7%BB%99%E5%A5%BD%E5%8F%8B%E7%9A%84%E7%A4%BC%E7%89%A9/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-08-21T00:17:48&#43;08:00'/><meta property='article:modified_time' content='2023-08-21T00:17:48&#43;08:00'/>
+<meta name="twitter:title" content="送给好友的礼物">
+<meta name="twitter:description" content="题目简述 给定一棵 $n$ 个节点的树，有 $k$ 个节点有草莓。两个人同时从 1 号点出发，每一时刻可以不动或者走向相邻的节点，经过到达一个点的时候可以摘到那个点的草莓。至少在第几时刻末，两个人一共可以摘到所有草莓，并且都回到 1 号点。$1≤k≤n≤415$
+思路 先把有草莓的点称为关键节点，那么对于一个点：
+如果这个点是关键节点且其子树中有关键节点，那么取消这个点关键节点的资格，因为要达到下面的关键节点一定要经过这个点，顺便就可以采摘这个点的草莓，对答案没有影响。 如果这个点不是关键节点且其子树中没有关键节点，那么这个点就没有用，可以删掉。 现在所有关键节点都是叶节点，并且只有关键节点是叶节点。我们要给两个人分配他们需要经过的关键节点。称一个叶节点集合 $S$ 的代价 $cost_S$ 为包含 1 号点和 $S$ 中每一个点的最小联通块所含边数。这样以来对于两个人分配的关键节点集合 $S_1$ 和 $S_2$，我们就要最小化 $2×\max{cost_{S_1}&#43;cost_{S_2}}$。
+考虑如何计算 $cost$，设每个点的深度是 $depth$，那么对于 $S={a_1,a_2,…,a_k},\ cost_S=depth_{a_1} &#43; \Sigma(depth_{a_i}-depth_{LCA(a_i,a_{i-1})})$。因为到达集合内的第一个点一直走下去后，去往下一个点时只需要返回这两个点的 LCA 就可以了。但是不同的两点 LCA 深度可能不同，为了最小化代价，我们在将一系列点加入集合前按照 DFS 序排序，这样可以最大化相邻两点的 LCA 深度和。
+设 $f_{i,j,k,l}$ 为考虑到第 $i$ 个关键节点，上一个在两个人分配的集合内的点是 $j,k$，第一个人分配了 $l$ 个点时第二个人集合代价的最小值，于是可以从 $f_{i-1,j,i-1,l},\ f_{i-1,i-1,k,l-1}$ 转移过来。
+然而原题这样开数组是开不下的，注意到每次转移时 $j,k$ 中一定有一个是 $i-1$，那么可以将状态修改为 $f_{i,0/1,j,l}$ 表示考虑到第 $i$ 个关键节点，上一个关键节点分给了谁，上一个分配给另外那个人的关键节点是 $j$，第一个人分配了 $l$ 个点时第二个人几个代价的最小值。
+然而空间可能还不够用，可以考虑把第一维滚掉或者用 short 代替 int（毕竟没有多少边）。
+Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;climits&amp;gt; #include&amp;lt;vector&amp;gt; #define int short using namespace std; const int MaxN = 500; int n, c, father[MaxN], depth[MaxN], head[MaxN], cntEdge, ans = 0x3f3f; int stack[MaxN], top; struct Vertex{ int father, depth, subtreeSize, chainTop, heavySon; bool berry; }vertex[MaxN]; #define xTop vertex[x].">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E9%80%81%E7%BB%99%E5%A5%BD%E5%8F%8B%E7%9A%84%E7%A4%BC%E7%89%A9/">送给好友的礼物</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 21, 2023</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="题目简述">题目简述</h3>
+<p>给定一棵 $n$ 个节点的树，有 $k$ 个节点有草莓。两个人同时从 1 号点出发，每一时刻可以不动或者走向相邻的节点，经过到达一个点的时候可以摘到那个点的草莓。至少在第几时刻末，两个人一共可以摘到所有草莓，并且都回到 1 号点。$1≤k≤n≤415$</p>
+<h3 id="思路">思路</h3>
+<p>先把有草莓的点称为关键节点，那么对于一个点：</p>
+<ul>
+<li>如果这个点是关键节点且其子树中有关键节点，那么取消这个点关键节点的资格，因为要达到下面的关键节点一定要经过这个点，顺便就可以采摘这个点的草莓，对答案没有影响。</li>
+<li>如果这个点不是关键节点且其子树中没有关键节点，那么这个点就没有用，可以删掉。</li>
+</ul>
+<p>现在所有关键节点都是叶节点，并且只有关键节点是叶节点。我们要给两个人分配他们需要经过的关键节点。称一个叶节点集合 $S$ 的代价 $cost_S$ 为包含 1 号点和 $S$ 中每一个点的最小联通块所含边数。这样以来对于两个人分配的关键节点集合 $S_1$ 和 $S_2$，我们就要最小化 $2×\max{cost_{S_1}+cost_{S_2}}$。</p>
+<p>考虑如何计算 $cost$，设每个点的深度是 $depth$，那么对于 $S={a_1,a_2,…,a_k},\ cost_S=depth_{a_1} + \Sigma(depth_{a_i}-depth_{LCA(a_i,a_{i-1})})$。因为到达集合内的第一个点一直走下去后，去往下一个点时只需要返回这两个点的 LCA 就可以了。但是不同的两点 LCA 深度可能不同，为了最小化代价，我们在将一系列点加入集合前按照 DFS 序排序，这样可以最大化相邻两点的 LCA 深度和。</p>
+<p>设 $f_{i,j,k,l}$ 为考虑到第 $i$ 个关键节点，上一个在两个人分配的集合内的点是 $j,k$，第一个人分配了 $l$ 个点时第二个人集合代价的最小值，于是可以从 $f_{i-1,j,i-1,l},\ f_{i-1,i-1,k,l-1}$ 转移过来。</p>
+<p>然而原题这样开数组是开不下的，注意到每次转移时 $j,k$ 中一定有一个是 $i-1$，那么可以将状态修改为 $f_{i,0/1,j,l}$ 表示考虑到第 $i$ 个关键节点，上一个关键节点分给了谁，上一个分配给另外那个人的关键节点是 $j$，第一个人分配了 $l$ 个点时第二个人几个代价的最小值。</p>
+<p>然而空间可能还不够用，可以考虑把第一维滚掉或者用 <code>short</code> 代替 <code>int</code>（毕竟没有多少边）。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;climits&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define int short
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MaxN <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n, c, father[MaxN], depth[MaxN], head[MaxN], cntEdge, ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> stack[MaxN], top;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Vertex</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> father, depth, subtreeSize, chainTop, heavySon;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">bool</span> berry;
+</span></span><span style="display:flex;"><span>}vertex[MaxN];
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define xTop vertex[x].chainTop
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define yTop vertex[y].chainTop
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Edge</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> destination, nextEdge;
+</span></span><span style="display:flex;"><span>}edge[MaxN<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define thisSon edge[i].destination
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> f[MaxN][MaxN][<span style="color:#ae81ff">2</span>][MaxN];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">Read</span>(){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, op <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>isdigit(ch)){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(ch <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;-&#39;</span>) op <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(isdigit(ch)){
+</span></span><span style="display:flex;"><span>		num <span style="color:#f92672">=</span> num <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> ch <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>		ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> num <span style="color:#f92672">*</span> op;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">min</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b){<span style="color:#66d9ef">return</span> a <span style="color:#f92672">&lt;</span> b <span style="color:#f92672">?</span> a : b;}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">max</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b){<span style="color:#66d9ef">return</span> a <span style="color:#f92672">&gt;</span> b <span style="color:#f92672">?</span> a : b;}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">AddEdge</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v){
+</span></span><span style="display:flex;"><span>	cntEdge<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	edge[cntEdge].destination <span style="color:#f92672">=</span> v;
+</span></span><span style="display:flex;"><span>	edge[cntEdge].nextEdge <span style="color:#f92672">=</span> head[u];
+</span></span><span style="display:flex;"><span>	head[u] <span style="color:#f92672">=</span> cntEdge;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">DFS1</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> fa){
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//	printf(&#34;%lld %lld\n&#34;, x, vertex[x].berry);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	vertex[x].subtreeSize <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	vertex[x].father <span style="color:#f92672">=</span> fa;
+</span></span><span style="display:flex;"><span>	vertex[x].depth <span style="color:#f92672">=</span> vertex[fa].depth<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[x]; i; i <span style="color:#f92672">=</span> edge[i].nextEdge){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(thisSon <span style="color:#f92672">==</span> vertex[x].father) <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>		vertex[x].berry <span style="color:#f92672">&amp;=</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">^</span> DFS1(thisSon, x);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//		printf(&#34;%lld &#34;, vertex[x].berry);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		vertex[x].subtreeSize <span style="color:#f92672">+=</span> vertex[thisSon].subtreeSize;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(vertex[thisSon].subtreeSize <span style="color:#f92672">&gt;</span> vertex[vertex[x].heavySon].subtreeSize) vertex[x].heavySon <span style="color:#f92672">=</span> thisSon;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//	printf(&#34;%lld %lld\n&#34;, x, vertex[x].berry);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(vertex[x].berry) stack[<span style="color:#f92672">++</span>top] <span style="color:#f92672">=</span> x;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> vertex[x].berry;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">DFS2</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> thisTop){
+</span></span><span style="display:flex;"><span>	vertex[x].chainTop <span style="color:#f92672">=</span> thisTop;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>vertex[x].heavySon) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>	DFS2(vertex[x].heavySon, thisTop);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[x]; i; i <span style="color:#f92672">=</span> edge[i].nextEdge){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(thisSon <span style="color:#f92672">==</span> vertex[x].father <span style="color:#f92672">||</span> thisSon <span style="color:#f92672">==</span> vertex[x].heavySon) <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>		DFS2(thisSon, thisSon);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">LCA</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(xTop <span style="color:#f92672">!=</span> yTop){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(vertex[xTop].depth <span style="color:#f92672">&lt;</span> vertex[yTop].depth) swap(x,y);
+</span></span><span style="display:flex;"><span>		x <span style="color:#f92672">=</span> vertex[xTop].father;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(vertex[x].depth <span style="color:#f92672">&gt;</span> vertex[y].depth) swap(x,y);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> x;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">Value</span>(<span style="color:#66d9ef">int</span> x, <span style="color:#66d9ef">int</span> y){
+</span></span><span style="display:flex;"><span>	x <span style="color:#f92672">=</span> stack[x], y <span style="color:#f92672">=</span> stack[y];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>x) <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">short</span>)vertex[y].depth <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> vertex[y].depth <span style="color:#f92672">-</span> vertex[LCA(x,y)].depth;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>F(<span style="color:#66d9ef">int</span> i, <span style="color:#66d9ef">int</span> j, <span style="color:#66d9ef">int</span> k, <span style="color:#66d9ef">int</span> l){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(j <span style="color:#f92672">==</span> i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> f[i][k][<span style="color:#ae81ff">0</span>][l];
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> f[i][j][<span style="color:#ae81ff">1</span>][l];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signed</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>	n <span style="color:#f92672">=</span> Read(), c <span style="color:#f92672">=</span> Read();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span>n; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> u <span style="color:#f92672">=</span> Read(), v <span style="color:#f92672">=</span> Read();
+</span></span><span style="display:flex;"><span>		AddEdge(u,v);
+</span></span><span style="display:flex;"><span>		AddEdge(v,u);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;=</span>c; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> Read();
+</span></span><span style="display:flex;"><span>		vertex[x].berry <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	DFS1(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>	DFS2(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">&lt;=</span>top<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;j<span style="color:#f92672">&lt;=</span>top;j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> l<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;l<span style="color:#f92672">&lt;=</span>n;l<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>				f[i][j][<span style="color:#ae81ff">0</span>][l] <span style="color:#f92672">=</span> f[i][j][<span style="color:#ae81ff">1</span>][l] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3f3f</span>;
+</span></span><span style="display:flex;"><span>	f[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> f[<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">1</span>][<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;=</span>top; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;</span>i; j<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> k<span style="color:#f92672">=</span>(j<span style="color:#f92672">==</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">?</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">:</span> i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>); k<span style="color:#f92672">&lt;=</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; k<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> l<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; l<span style="color:#f92672">&lt;</span>n; l<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>					F(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, i, k, l<span style="color:#f92672">+</span>Value(j,i)) <span style="color:#f92672">=</span> min(F(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, i, k, l<span style="color:#f92672">+</span>Value(j,i)), F(i,j,k,l));
+</span></span><span style="display:flex;"><span>					F(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, j, i, l) <span style="color:#f92672">=</span> min(F(i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,j,i,l), F(i,j,k,l) <span style="color:#f92672">+</span> Value(k,i));
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;=</span>top; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;</span>n; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			ans <span style="color:#f92672">=</span> min(ans, max(min(F(top<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, i, top, j), F(top<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, top, i, j)), j));
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	cout<span style="color:#f92672">&lt;&lt;</span>ans<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

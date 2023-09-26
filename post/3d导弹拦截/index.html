@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='题目简述 「导弹拦截」这道题相信大家都已经做过了，现在这道题就是三维板的「导弹拦截」。
+具体来讲，每发导弹有三个参数 $x,y,z$，所有导弹的三个参数各不相同。导弹拦截系统第一次可以拦截任意的一个导弹吗，但是之后拦截的导弹三个参数必须都大于第一次拦截的导弹。问这套系统最多可以拦截多少导弹，要拦截所有的导弹至少需要部署多少个这样的系统？
+思路 第一问很容易做，无非就是多了两个参数 —— 可以在 $n^{2}$ 时间里 DP 求得。
+关键是第二问：考虑从导弹拦截的顺序下手，如果系统在拦截导弹 $i$ 之后还可以继续拦截导弹 $j$，那么我们就连一条 $i$ 到 $j$ 的有向边，最终我们会得到一个图 —— 显然这是个 DAG（有向无环图）。我们可以发现系统可以拦截的导弹以及拦截顺序其实就是图上的简单路径，那么要用最少数量的导弹拦截系统拦截所有的导弹就是用最少的简单路径覆盖图上的所有点 —— 也就是求最小路径点覆盖。
+最小路径点覆盖的求解 给定一张有向无环图，要求用尽量少的不相交简单路径覆盖图上所有点（即每个点恰好被覆盖一次），这个问题就是有向无环图上的「最小路径点覆盖」（或「最小路径覆盖」）。
+拆点二分图： 设原来的 DAG 为 $G=(V,E),n=|V|$，把 $G$ 中的每个顶点 $x$ 拆成 $x_{o},x_{i}$ 两个点，建立一张新的二分图，其中 $o$ 类点作为左部点，$i$ 类点作为右部点。对于原图中的每条有向边 $(x,y)$，在左部点 $x_{o}$ 和右部点 $y_{i}$ 间连边 $(x_{o},y_{i})$，最终得到的二分图称为原图 $G$ 的拆点二分图，记为 $G_{2}$。
+定理： 有向无环图 $G$ 的最小路径点覆盖包含的路径条数，等于原图点数 $n$ 减去其拆点二分图 $G_{2}$ 的最大匹配数。
+证明： 最小路径点覆盖中 $G$ 的每一点都恰好被覆盖一次，即其入度和出度有且仅有一个是 $1$。于是原图最小路径点覆盖的所有边在其拆点二分图 $G_{2}$ 中构成一组匹配 —— 每条边的起点 $x$ 于拆点二分图中匹配边左部点 $x_{o}$ 一一对应。对于每条路径的终点 $t$，由于其没有出边，所以在二分图中 $t_{o}$ 失配，于是原图每条路径的终点与拆点二分图失配的左部点一一对应。'>
+<title>3D导弹拦截</title>
+
+<link rel='canonical' href='https://example.org/post/3d%E5%AF%BC%E5%BC%B9%E6%8B%A6%E6%88%AA/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='3D导弹拦截'>
+<meta property='og:description' content='题目简述 「导弹拦截」这道题相信大家都已经做过了，现在这道题就是三维板的「导弹拦截」。
+具体来讲，每发导弹有三个参数 $x,y,z$，所有导弹的三个参数各不相同。导弹拦截系统第一次可以拦截任意的一个导弹吗，但是之后拦截的导弹三个参数必须都大于第一次拦截的导弹。问这套系统最多可以拦截多少导弹，要拦截所有的导弹至少需要部署多少个这样的系统？
+思路 第一问很容易做，无非就是多了两个参数 —— 可以在 $n^{2}$ 时间里 DP 求得。
+关键是第二问：考虑从导弹拦截的顺序下手，如果系统在拦截导弹 $i$ 之后还可以继续拦截导弹 $j$，那么我们就连一条 $i$ 到 $j$ 的有向边，最终我们会得到一个图 —— 显然这是个 DAG（有向无环图）。我们可以发现系统可以拦截的导弹以及拦截顺序其实就是图上的简单路径，那么要用最少数量的导弹拦截系统拦截所有的导弹就是用最少的简单路径覆盖图上的所有点 —— 也就是求最小路径点覆盖。
+最小路径点覆盖的求解 给定一张有向无环图，要求用尽量少的不相交简单路径覆盖图上所有点（即每个点恰好被覆盖一次），这个问题就是有向无环图上的「最小路径点覆盖」（或「最小路径覆盖」）。
+拆点二分图： 设原来的 DAG 为 $G=(V,E),n=|V|$，把 $G$ 中的每个顶点 $x$ 拆成 $x_{o},x_{i}$ 两个点，建立一张新的二分图，其中 $o$ 类点作为左部点，$i$ 类点作为右部点。对于原图中的每条有向边 $(x,y)$，在左部点 $x_{o}$ 和右部点 $y_{i}$ 间连边 $(x_{o},y_{i})$，最终得到的二分图称为原图 $G$ 的拆点二分图，记为 $G_{2}$。
+定理： 有向无环图 $G$ 的最小路径点覆盖包含的路径条数，等于原图点数 $n$ 减去其拆点二分图 $G_{2}$ 的最大匹配数。
+证明： 最小路径点覆盖中 $G$ 的每一点都恰好被覆盖一次，即其入度和出度有且仅有一个是 $1$。于是原图最小路径点覆盖的所有边在其拆点二分图 $G_{2}$ 中构成一组匹配 —— 每条边的起点 $x$ 于拆点二分图中匹配边左部点 $x_{o}$ 一一对应。对于每条路径的终点 $t$，由于其没有出边，所以在二分图中 $t_{o}$ 失配，于是原图每条路径的终点与拆点二分图失配的左部点一一对应。'>
+<meta property='og:url' content='https://example.org/post/3d%E5%AF%BC%E5%BC%B9%E6%8B%A6%E6%88%AA/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2021-08-18T00:13:15&#43;08:00'/><meta property='article:modified_time' content='2021-08-18T00:13:15&#43;08:00'/>
+<meta name="twitter:title" content="3D导弹拦截">
+<meta name="twitter:description" content="题目简述 「导弹拦截」这道题相信大家都已经做过了，现在这道题就是三维板的「导弹拦截」。
+具体来讲，每发导弹有三个参数 $x,y,z$，所有导弹的三个参数各不相同。导弹拦截系统第一次可以拦截任意的一个导弹吗，但是之后拦截的导弹三个参数必须都大于第一次拦截的导弹。问这套系统最多可以拦截多少导弹，要拦截所有的导弹至少需要部署多少个这样的系统？
+思路 第一问很容易做，无非就是多了两个参数 —— 可以在 $n^{2}$ 时间里 DP 求得。
+关键是第二问：考虑从导弹拦截的顺序下手，如果系统在拦截导弹 $i$ 之后还可以继续拦截导弹 $j$，那么我们就连一条 $i$ 到 $j$ 的有向边，最终我们会得到一个图 —— 显然这是个 DAG（有向无环图）。我们可以发现系统可以拦截的导弹以及拦截顺序其实就是图上的简单路径，那么要用最少数量的导弹拦截系统拦截所有的导弹就是用最少的简单路径覆盖图上的所有点 —— 也就是求最小路径点覆盖。
+最小路径点覆盖的求解 给定一张有向无环图，要求用尽量少的不相交简单路径覆盖图上所有点（即每个点恰好被覆盖一次），这个问题就是有向无环图上的「最小路径点覆盖」（或「最小路径覆盖」）。
+拆点二分图： 设原来的 DAG 为 $G=(V,E),n=|V|$，把 $G$ 中的每个顶点 $x$ 拆成 $x_{o},x_{i}$ 两个点，建立一张新的二分图，其中 $o$ 类点作为左部点，$i$ 类点作为右部点。对于原图中的每条有向边 $(x,y)$，在左部点 $x_{o}$ 和右部点 $y_{i}$ 间连边 $(x_{o},y_{i})$，最终得到的二分图称为原图 $G$ 的拆点二分图，记为 $G_{2}$。
+定理： 有向无环图 $G$ 的最小路径点覆盖包含的路径条数，等于原图点数 $n$ 减去其拆点二分图 $G_{2}$ 的最大匹配数。
+证明： 最小路径点覆盖中 $G$ 的每一点都恰好被覆盖一次，即其入度和出度有且仅有一个是 $1$。于是原图最小路径点覆盖的所有边在其拆点二分图 $G_{2}$ 中构成一组匹配 —— 每条边的起点 $x$ 于拆点二分图中匹配边左部点 $x_{o}$ 一一对应。对于每条路径的终点 $t$，由于其没有出边，所以在二分图中 $t_{o}$ 失配，于是原图每条路径的终点与拆点二分图失配的左部点一一对应。">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/3d%E5%AF%BC%E5%BC%B9%E6%8B%A6%E6%88%AA/">3D导弹拦截</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 18, 2021</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="题目httpsdarkbzojtkproblem2044简述"><a class="link" href="https://darkbzoj.tk/problem/2044"  target="_blank" rel="noopener"
+    >题目</a>简述</h3>
+<p>「<a class="link" href="https://www.luogu.com.cn/problem/P1020"  target="_blank" rel="noopener"
+    >导弹拦截</a>」这道题相信大家都已经做过了，现在这道题就是三维板的「导弹拦截」。</p>
+<p>具体来讲，每发导弹有三个参数 $x,y,z$，所有导弹的三个参数各不相同。导弹拦截系统第一次可以拦截任意的一个导弹吗，但是之后拦截的导弹三个参数必须都<strong>大于</strong>第一次拦截的导弹。问这套系统最多可以拦截多少导弹，要拦截所有的导弹至少需要部署多少个这样的系统？</p>
+<h3 id="思路">思路</h3>
+<p>第一问很容易做，无非就是多了两个参数 —— 可以在 $n^{2}$ 时间里 DP 求得。</p>
+<p>关键是第二问：考虑从导弹拦截的顺序下手，如果系统在拦截导弹 $i$ 之后还可以继续拦截导弹 $j$，那么我们就连一条 $i$ 到 $j$ 的有向边，最终我们会得到一个图 —— 显然这是个 DAG（有向无环图）。我们可以发现系统可以拦截的导弹以及拦截顺序其实就是图上的简单路径，那么要用最少数量的导弹拦截系统拦截所有的导弹就是用最少的简单路径覆盖图上的所有点 —— 也就是求最小路径点覆盖。</p>
+<h3 id="最小路径点覆盖的求解">最小路径点覆盖的求解</h3>
+<p>给定一张<strong>有向无环图</strong>，要求用尽量少的不相交简单路径覆盖图上所有点（即每个点恰好被覆盖一次），这个问题就是有向无环图上的「最小路径点覆盖」（或「最小路径覆盖」）。</p>
+<h4 id="拆点二分图">拆点二分图：</h4>
+<p>设原来的 DAG 为 $G=(V,E),n=|V|$，把 $G$ 中的每个顶点 $x$ 拆成 $x_{o},x_{i}$ 两个点，建立一张新的二分图，其中 $o$ 类点作为左部点，$i$ 类点作为右部点。对于原图中的每条有向边 $(x,y)$，在左部点 $x_{o}$ 和右部点 $y_{i}$ 间连边 $(x_{o},y_{i})$，最终得到的二分图称为原图 $G$ 的拆点二分图，记为 $G_{2}$。</p>
+<h4 id="定理">定理：</h4>
+<p>有向无环图 $G$ 的最小路径点覆盖包含的路径条数，等于原图点数 $n$ 减去其拆点二分图 $G_{2}$ 的最大匹配数。</p>
+<h4 id="证明">证明：</h4>
+<p>最小路径点覆盖中 $G$ 的每一点都恰好被覆盖一次，即其入度和出度有且仅有一个是 $1$。于是原图最小路径点覆盖的所有边在其拆点二分图 $G_{2}$ 中构成一组匹配 —— 每条边的起点 $x$ 于拆点二分图中匹配边左部点 $x_{o}$ 一一对应。对于每条路径的终点 $t$，由于其没有出边，所以在二分图中 $t_{o}$ 失配，于是原图每条路径的终点与拆点二分图失配的左部点一一对应。</p>
+<p>最小路径覆盖中要求包含路径最少，即路径终点数最少，即在拆点二分图中左部非匹配点最少，即匹配点最多。于是最小路径点覆盖的路径条数等于原图点数 $n$ 减去其拆点二分图 $G_{2}$ 的最大匹配数。</p>
+<h3 id="狄尔沃斯定理于本题的不适用性">狄尔沃斯定理于本题的不适用性</h3>
+<h4 id="偏序集">偏序集：</h4>
+<p>现有集合 $P$，$P$ 上的二元关系 $≤$（不是小于，只是一种二元关系，使用了这个符号而已）满足以下三个条件，则称 $≤$ 是 $P$ 上的偏序关系</p>
+<ol>
+<li>
+<p>自反性：$∀a∈P,\ a≤a$</p>
+</li>
+<li>
+<p>反对称性：$∀a,b∈P,\ 若 \ a≤b \ 且 \ b≤a,  \ 则 \ a=b$</p>
+</li>
+<li>
+<p>传递性：$∀a,b,c∈P,\ 若\ a≤b\ 且\ b≤c,\ 则\ a≤c$</p>
+</li>
+</ol>
+<p>具有偏序关系的集合 $P$ 为偏序集（或称半序集），记为 $(P, ≤)$</p>
+<h4 id="狄尔沃斯定理">狄尔沃斯定理：</h4>
+<p>对于任意有限偏序集，其最大反链中元素的数目必等于最小链划分中链的数目，其最长链中元素的数目必等于其最小反链划分中反链的数目。</p>
+<h4 id="于导弹拦截的适用性">于「导弹拦截」的适用性：</h4>
+<p>还记得这道题中的两个答案就是最长不升子序列和最长上升子序列的长度吗？</p>
+<blockquote>
+<p>虽然它的第一发炮弹能够到达任意的高度，但是以后每一发炮弹都<strong>不能高于</strong>前一发的高度。</p>
+</blockquote>
+<p>「导弹拦截」一题中，导弹构成的集合中有偏序关系「高度小于等于」，具体来讲，「高度小于等于」的关系满足：</p>
+<ol>
+<li>任意一颗导弹，其高度小于等于自己的高度（自反性）</li>
+<li>两颗导弹 $a,b$，$a$ 的高度小于等于 $b$ 的高度，$b$ 的高度小于等于 $a$ 的高度，那么两颗导弹高度相等（反对称性）</li>
+<li>三颗导弹 $a,b,c$，$a$ 的高度小于等于 $b$ 的高度，$b$ 的高度小于等于 $c$ 的高度，那么 $a$ 的高度小于等于 $c$ 的高度(传递性)</li>
+</ol>
+<p>于是狄尔沃斯定理适用于这道题</p>
+<h4 id="于本题中的不适用性">于本题中的不适用性：</h4>
+<p>为什么这道题中我们不使用狄尔沃斯定理，而是要使用上面所讲的比较麻烦的方法呢？</p>
+<blockquote>
+<p>虽然它的第一发炮弹能够到达三维空间中任意的点，但是以后每一发炮弹到达点的坐标 (x,y,z) 的三个坐标值都必须<strong>大于</strong>前一发炮弹的对应坐标值。</p>
+</blockquote>
+<p>本题中导弹构成的集合具有关系「每个坐标值都大于」，不满足自反性 —— 因为对于任意一个导弹，其每个坐标值都等于它自己，不具有「每个坐标值都大于」的关系，故「每个坐标值都大于」不是偏序关系，导弹构成的集合不是偏序集，无法使用狄尔沃斯定理求解。</p>
+<p>如果将本题中「每个坐标值都大于」改为「每个坐标值都不小于」，那么导弹构成了一个偏序集，我们就可以直接在 DP 转移时实时更新答案了。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;climits&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MaxN <span style="color:#f92672">=</span> <span style="color:#ae81ff">1003</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n, f[MaxN], ans, cnt, head[MaxN<span style="color:#f92672">*</span>MaxN], cntEdge, from[MaxN];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> visited[MaxN<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Edge</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> destination, nextEdge;
+</span></span><span style="display:flex;"><span>}edge[MaxN<span style="color:#f92672">*</span>MaxN];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Missile</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> x, y, z;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">bool</span> <span style="color:#66d9ef">operator</span> <span style="color:#f92672">&lt;</span> (<span style="color:#66d9ef">const</span> Missile <span style="color:#f92672">&amp;</span>a) <span style="color:#66d9ef">const</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> x <span style="color:#f92672">&lt;</span> a.x;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}missile[MaxN<span style="color:#f92672">*</span>MaxN];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">Read</span>(){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, op <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>isdigit(ch)){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(ch <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;-&#39;</span>) op <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(isdigit(ch)){
+</span></span><span style="display:flex;"><span>		num <span style="color:#f92672">=</span> num <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> ch <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>;
+</span></span><span style="display:flex;"><span>		ch <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> num <span style="color:#f92672">*</span> op;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">AddEdge</span>(<span style="color:#66d9ef">int</span> u, <span style="color:#66d9ef">int</span> v){
+</span></span><span style="display:flex;"><span>	cntEdge<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	edge[cntEdge].destination <span style="color:#f92672">=</span> v;
+</span></span><span style="display:flex;"><span>	edge[cntEdge].nextEdge <span style="color:#f92672">=</span> head[u];
+</span></span><span style="display:flex;"><span>	head[u] <span style="color:#f92672">=</span> cntEdge;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">DFS</span>(<span style="color:#66d9ef">int</span> x){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[x]; i; i <span style="color:#f92672">=</span> edge[i].nextEdge){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> edge[i].destination;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(visited[y]) <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>		visited[y] <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span>from[y] <span style="color:#f92672">||</span> DFS(from[y])){
+</span></span><span style="display:flex;"><span>			from[y] <span style="color:#f92672">=</span> x;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signed</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>	n <span style="color:#f92672">=</span> Read();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;=</span>n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		missile[i] <span style="color:#f92672">=</span> (Missile){Read(), Read(), Read()};
+</span></span><span style="display:flex;"><span>	sort(missile<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>, missile<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>n);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;=</span>n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; j<span style="color:#f92672">&lt;=</span>n; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span>(missile[i].x <span style="color:#f92672">&lt;</span> missile[j].x <span style="color:#f92672">&amp;&amp;</span> missile[i].y <span style="color:#f92672">&lt;</span> missile[j].y <span style="color:#f92672">&amp;&amp;</span> missile[i].z <span style="color:#f92672">&lt;</span> missile[j].z){
+</span></span><span style="display:flex;"><span>				f[j] <span style="color:#f92672">=</span> max(f[j], f[i]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>				ans <span style="color:#f92672">=</span> max(ans, f[j]);
+</span></span><span style="display:flex;"><span>				AddEdge(j, i);
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;=</span>n; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		memset(visited, false, <span style="color:#66d9ef">sizeof</span>(visited));
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(DFS(i)) cnt<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	ans <span style="color:#f92672">=</span> ans <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;%lld</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">%lld</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans, n<span style="color:#f92672">-</span>cnt);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

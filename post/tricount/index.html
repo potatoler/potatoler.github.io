@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='题目简述 给定一个 $N\times M$ 的网格，请计算三点都在格点上的三角形共有多少个。注意三角形的三点不能共线。
+思路 直接求三角形的个数比较困难。我们知道在网格中随便选三个不共线的格点就可以构成一个三角形，所以总选法减去三点共线的方案数就是三角形的个数。
+横纵向三点共线的方案很好统计：对于题目中 $N$ 行 $M$ 列的网格，每行有 $M&#43;1$ 个点，三点共线的方案数就是 $C^3_n$，因为有 $N$ 行所以横向三点共线总方案数一共是 $N \times C^3_n$；纵向可以使用相同的方法算出。
+接下来我们考虑一下斜向三点共线的方案数：选定三点中的两个点作为一条线段上的两个端点，线段上（除两端点）的格点数就是在两点确定的情况下三点共线的方案数。 不妨看一下这张图：黑色的线是我们选定两端点构成的线段，添加灰色的辅助线我们可以以它为斜边扩展成一个两条直角边分别为 $i$，$j$ 的直角三角形。如果其中还有 $i=nk$，$j=mk$，那么我们还可以找到正好 $k$ 个小三角形，它们的两条直角边分别是 $n$，$m$，斜边是原来的线段上均等的 $k$ 段。为什么是这样呢？如果把左下的端点看作平面直角坐标系上的原点，那么右上的端点坐标就是 $(i,\ j)$。这条线段所处的直线是正比例函数 $y=kx$，其中斜率 $k=\frac{j}{i}=\frac{m}{n}$。线段上的点都满足这个关系式，但是因为是在网格图上，可选的只有坐标为整数的点。约去 $i$ 与 $j$ 的最大公约数 $k$，所得的 $m$ 和 $n$ 便是按照上面的的方法画出的小直角三角形的直角边长度。因为约去了 $k=GCD(i,j)$，所以一共有 $k$ 个这样的小三角形，即线段可以被格点分成 $k$ 段，也就是有 $k-1$ 个可选的中间点。
+刚才只是对于一个固定的线段分析的，同样形态的线段可以在网格中的多个位置出现，线段也会有不同的形态。我们可以枚举 $i$ 和 $j$ 处理不同形态的线段，并将结果乘以它横纵可以移动的范围。当然更简单的理解方法是将线段抽象成一个向量，仍然枚举 $i$ 和 $j$ 并让它在网格中移动。
+值得注意的是，$N\times M$ 的网格横纵点数都要加一，而且如果默认讨论两端点在左下和右上，实际的方案数还要乘以 2。
+Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;climits&amp;gt; #include&amp;lt;utility&amp;gt; #define int long long using namespace std; int n, m, ans; inline int GCD(int a, int b){ return b&amp;gt;0 ?'>
+<title>P3166 数三角形</title>
+
+<link rel='canonical' href='https://example.org/post/tricount/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='P3166 数三角形'>
+<meta property='og:description' content='题目简述 给定一个 $N\times M$ 的网格，请计算三点都在格点上的三角形共有多少个。注意三角形的三点不能共线。
+思路 直接求三角形的个数比较困难。我们知道在网格中随便选三个不共线的格点就可以构成一个三角形，所以总选法减去三点共线的方案数就是三角形的个数。
+横纵向三点共线的方案很好统计：对于题目中 $N$ 行 $M$ 列的网格，每行有 $M&#43;1$ 个点，三点共线的方案数就是 $C^3_n$，因为有 $N$ 行所以横向三点共线总方案数一共是 $N \times C^3_n$；纵向可以使用相同的方法算出。
+接下来我们考虑一下斜向三点共线的方案数：选定三点中的两个点作为一条线段上的两个端点，线段上（除两端点）的格点数就是在两点确定的情况下三点共线的方案数。 不妨看一下这张图：黑色的线是我们选定两端点构成的线段，添加灰色的辅助线我们可以以它为斜边扩展成一个两条直角边分别为 $i$，$j$ 的直角三角形。如果其中还有 $i=nk$，$j=mk$，那么我们还可以找到正好 $k$ 个小三角形，它们的两条直角边分别是 $n$，$m$，斜边是原来的线段上均等的 $k$ 段。为什么是这样呢？如果把左下的端点看作平面直角坐标系上的原点，那么右上的端点坐标就是 $(i,\ j)$。这条线段所处的直线是正比例函数 $y=kx$，其中斜率 $k=\frac{j}{i}=\frac{m}{n}$。线段上的点都满足这个关系式，但是因为是在网格图上，可选的只有坐标为整数的点。约去 $i$ 与 $j$ 的最大公约数 $k$，所得的 $m$ 和 $n$ 便是按照上面的的方法画出的小直角三角形的直角边长度。因为约去了 $k=GCD(i,j)$，所以一共有 $k$ 个这样的小三角形，即线段可以被格点分成 $k$ 段，也就是有 $k-1$ 个可选的中间点。
+刚才只是对于一个固定的线段分析的，同样形态的线段可以在网格中的多个位置出现，线段也会有不同的形态。我们可以枚举 $i$ 和 $j$ 处理不同形态的线段，并将结果乘以它横纵可以移动的范围。当然更简单的理解方法是将线段抽象成一个向量，仍然枚举 $i$ 和 $j$ 并让它在网格中移动。
+值得注意的是，$N\times M$ 的网格横纵点数都要加一，而且如果默认讨论两端点在左下和右上，实际的方案数还要乘以 2。
+Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;climits&amp;gt; #include&amp;lt;utility&amp;gt; #define int long long using namespace std; int n, m, ans; inline int GCD(int a, int b){ return b&amp;gt;0 ?'>
+<meta property='og:url' content='https://example.org/post/tricount/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2022-11-03T23:44:30&#43;08:00'/><meta property='article:modified_time' content='2022-11-03T23:44:30&#43;08:00'/>
+<meta name="twitter:title" content="P3166 数三角形">
+<meta name="twitter:description" content="题目简述 给定一个 $N\times M$ 的网格，请计算三点都在格点上的三角形共有多少个。注意三角形的三点不能共线。
+思路 直接求三角形的个数比较困难。我们知道在网格中随便选三个不共线的格点就可以构成一个三角形，所以总选法减去三点共线的方案数就是三角形的个数。
+横纵向三点共线的方案很好统计：对于题目中 $N$ 行 $M$ 列的网格，每行有 $M&#43;1$ 个点，三点共线的方案数就是 $C^3_n$，因为有 $N$ 行所以横向三点共线总方案数一共是 $N \times C^3_n$；纵向可以使用相同的方法算出。
+接下来我们考虑一下斜向三点共线的方案数：选定三点中的两个点作为一条线段上的两个端点，线段上（除两端点）的格点数就是在两点确定的情况下三点共线的方案数。 不妨看一下这张图：黑色的线是我们选定两端点构成的线段，添加灰色的辅助线我们可以以它为斜边扩展成一个两条直角边分别为 $i$，$j$ 的直角三角形。如果其中还有 $i=nk$，$j=mk$，那么我们还可以找到正好 $k$ 个小三角形，它们的两条直角边分别是 $n$，$m$，斜边是原来的线段上均等的 $k$ 段。为什么是这样呢？如果把左下的端点看作平面直角坐标系上的原点，那么右上的端点坐标就是 $(i,\ j)$。这条线段所处的直线是正比例函数 $y=kx$，其中斜率 $k=\frac{j}{i}=\frac{m}{n}$。线段上的点都满足这个关系式，但是因为是在网格图上，可选的只有坐标为整数的点。约去 $i$ 与 $j$ 的最大公约数 $k$，所得的 $m$ 和 $n$ 便是按照上面的的方法画出的小直角三角形的直角边长度。因为约去了 $k=GCD(i,j)$，所以一共有 $k$ 个这样的小三角形，即线段可以被格点分成 $k$ 段，也就是有 $k-1$ 个可选的中间点。
+刚才只是对于一个固定的线段分析的，同样形态的线段可以在网格中的多个位置出现，线段也会有不同的形态。我们可以枚举 $i$ 和 $j$ 处理不同形态的线段，并将结果乘以它横纵可以移动的范围。当然更简单的理解方法是将线段抽象成一个向量，仍然枚举 $i$ 和 $j$ 并让它在网格中移动。
+值得注意的是，$N\times M$ 的网格横纵点数都要加一，而且如果默认讨论两端点在左下和右上，实际的方案数还要乘以 2。
+Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;climits&amp;gt; #include&amp;lt;utility&amp;gt; #define int long long using namespace std; int n, m, ans; inline int GCD(int a, int b){ return b&amp;gt;0 ?">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/tricount/">P3166 数三角形</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 03, 2022</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="题目httpswwwluogucomcnproblemp3166简述"><a class="link" href="https://www.luogu.com.cn/problem/P3166"  target="_blank" rel="noopener"
+    >题目</a>简述</h3>
+<p>给定一个 $N\times M$ 的网格，请计算三点都在格点上的三角形共有多少个。注意三角形的三点不能共线。</p>
+<h3 id="思路">思路</h3>
+<p>直接求三角形的个数比较困难。我们知道在网格中随便选三个不共线的格点就可以构成一个三角形，所以总选法减去三点共线的方案数就是三角形的个数。</p>
+<p>横纵向三点共线的方案很好统计：对于题目中 $N$ 行 $M$ 列的网格，每行有 $M+1$ 个点，三点共线的方案数就是 $C^3_n$，因为有 $N$ 行所以横向三点共线总方案数一共是 $N \times C^3_n$；纵向可以使用相同的方法算出。</p>
+<p>接下来我们考虑一下斜向三点共线的方案数：选定三点中的两个点作为一条线段上的两个端点，线段上（除两端点）的格点数就是在两点确定的情况下三点共线的方案数。<img src="https://i.loli.net/2020/07/25/94M51bv8wd36uBJ.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="三角形.png"
+	
+	
+>
+不妨看一下这张图：黑色的线是我们选定两端点构成的线段，添加灰色的辅助线我们可以以它为斜边扩展成一个两条直角边分别为 $i$，$j$ 的直角三角形。如果其中还有 $i=nk$，$j=mk$，那么我们还可以找到正好 $k$ 个小三角形，它们的两条直角边分别是 $n$，$m$，斜边是原来的线段上均等的 $k$ 段。为什么是这样呢？如果把左下的端点看作平面直角坐标系上的原点，那么右上的端点坐标就是 $(i,\ j)$。这条线段所处的直线是正比例函数 $y=kx$，其中斜率 $k=\frac{j}{i}=\frac{m}{n}$。线段上的点都满足这个关系式，但是因为是在网格图上，可选的只有坐标为整数的点。约去 $i$ 与 $j$ 的最大公约数 $k$，所得的 $m$ 和 $n$ 便是按照上面的的方法画出的小直角三角形的直角边长度。因为约去了 $k=GCD(i,j)$，所以一共有 $k$ 个这样的小三角形，即线段可以被格点分成 $k$ 段，也就是有 $k-1$ 个可选的中间点。</p>
+<p>刚才只是对于一个固定的线段分析的，同样形态的线段可以在网格中的多个位置出现，线段也会有不同的形态。我们可以枚举 $i$ 和 $j$ 处理不同形态的线段，并将结果乘以它横纵可以移动的范围。当然更简单的理解方法是将线段抽象成一个向量，仍然枚举 $i$ 和 $j$ 并让它在网格中移动。</p>
+<p>值得注意的是，$N\times M$ 的网格横纵点数都要加一，而且如果默认讨论两端点在左下和右上，实际的方案数还要乘以 2。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;climits&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;utility&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define int long long
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n, m, ans;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">GCD</span>(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> b<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">?</span> GCD(b, a<span style="color:#f92672">%</span>b) <span style="color:#f92672">:</span> a;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">signed</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>	scanf(<span style="color:#e6db74">&#34;%lld%lld&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);
+</span></span><span style="display:flex;"><span>	n<span style="color:#f92672">++</span>, m<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	ans <span style="color:#f92672">=</span> (n<span style="color:#f92672">*</span>m)<span style="color:#f92672">*</span>(n<span style="color:#f92672">*</span>m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>(n<span style="color:#f92672">*</span>m<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">6</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(n <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">3</span>) ans <span style="color:#f92672">-=</span> (n<span style="color:#f92672">*</span>(n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>(n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">6</span>) <span style="color:#f92672">*</span> m;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(m <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">3</span>) ans <span style="color:#f92672">-=</span> (m<span style="color:#f92672">*</span>(m<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>(m<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">/</span><span style="color:#ae81ff">6</span>) <span style="color:#f92672">*</span> n;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span>n;i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;j<span style="color:#f92672">&lt;</span>m;j<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>			ans <span style="color:#f92672">-=</span> (n<span style="color:#f92672">-</span>i)<span style="color:#f92672">*</span>(m<span style="color:#f92672">-</span>j)<span style="color:#f92672">*</span>(GCD(i,j)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;%lld&#34;</span>, ans);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

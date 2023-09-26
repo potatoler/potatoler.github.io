@@ -4,7 +4,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='UVA11806 Cheerleaders 题解 题目大意 有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='UVA11806 Cheerleaders
+题目大意
+有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：
 四个边都至少有一个人 一个格子最多放一个人 每个人都要放进去 求有多少种合法的放法——答案对 1e6&#43;7 取模
 注：四个角上的人可以看做同时在一行和一列
 思路 这道题中计算合法的方案数比较困难，所以我们可以计算出全部的方案数再减去不合法的方案数
@@ -19,12 +21,14 @@ $D:$ 最后一列没有人
 上面的公式中，约束条件的个数决定了加减，即满足「偶加奇减」原则。因为 $allAnswer$ 实质上是不受任何不合法条件约束的一种特殊的不合法情况，其不合法因素数是0，所以在&amp;amp;1时结果为0，判断为偶数，于是也要加上——和公式相符，不需要特判。
 至此，这道题就做完了。不过还有值得注意的一点：在不合法因素数为奇数，需要减去时，我们需要先累加一个模数在进行减法运算，这样就可以保证在取模意义下结果正确而不会因减法运算后得到负数而导致取模后得到负数，以致答案错误。
 代码： #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;algorithm&amp;gt; using namespace std; const int mod=1e6&#43;7,maxn=405; int n,m,k,T; int c[maxn][maxn],ans; void init(){//Calculate value of combinatorial number at the very first.'>
-<title>UVA11806 Cheerleaders 题解</title>
+<title>UVA11806 Cheerleaders</title>
 
 <link rel='canonical' href='https://example.org/post/uva11806/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='UVA11806 Cheerleaders 题解'>
-<meta property='og:description' content='UVA11806 Cheerleaders 题解 题目大意 有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='UVA11806 Cheerleaders'>
+<meta property='og:description' content='UVA11806 Cheerleaders
+题目大意
+有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：
 四个边都至少有一个人 一个格子最多放一个人 每个人都要放进去 求有多少种合法的放法——答案对 1e6&#43;7 取模
 注：四个角上的人可以看做同时在一行和一列
 思路 这道题中计算合法的方案数比较困难，所以我们可以计算出全部的方案数再减去不合法的方案数
@@ -42,8 +46,10 @@ $D:$ 最后一列没有人
 <meta property='og:url' content='https://example.org/post/uva11806/'>
 <meta property='og:site_name' content='potatoler space'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-09-07T22:57:14&#43;08:00'/><meta property='article:modified_time' content='2023-09-07T22:57:14&#43;08:00'/>
-<meta name="twitter:title" content="UVA11806 Cheerleaders 题解">
-<meta name="twitter:description" content="UVA11806 Cheerleaders 题解 题目大意 有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：
+<meta name="twitter:title" content="UVA11806 Cheerleaders">
+<meta name="twitter:description" content="UVA11806 Cheerleaders
+题目大意
+有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：
 四个边都至少有一个人 一个格子最多放一个人 每个人都要放进去 求有多少种合法的放法——答案对 1e6&#43;7 取模
 注：四个角上的人可以看做同时在一行和一列
 思路 这道题中计算合法的方案数比较困难，所以我们可以计算出全部的方案数再减去不合法的方案数
@@ -113,7 +119,7 @@ $D:$ 最后一列没有人
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">potatoler space</a></h1>
-            <h2 class="site-description"></h2>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
         </div>
     </header><ol class="menu" id="main-menu">
         
@@ -157,7 +163,7 @@ $D:$ 最后一列没有人
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/post/uva11806/">UVA11806 Cheerleaders 题解</a>
+            <a href="/post/uva11806/">UVA11806 Cheerleaders</a>
         </h2>
     
         
@@ -184,20 +190,6 @@ $D:$ 最后一列没有人
         
 
         
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="12" r="9" />
-  <polyline points="12 7 12 12 15 15" />
-</svg>
-
-
-
-                <time class="article-time--reading">
-                    1 minute read
-                </time>
-            </div>
-        
     </footer>
     
 
@@ -209,9 +201,9 @@ $D:$ 最后一列没有人
     <section class="article-content">
     
     
-    <h2 id="uva11806-cheerleadershttpswwwluogucomcnproblemuva11806-题解"><a class="link" href="https://www.luogu.com.cn/problem/UVA11806"  target="_blank" rel="noopener"
-    >UVA11806 Cheerleaders</a> 题解</h2>
-<h4 id="题目大意">题目大意</h4>
+    <p><a class="link" href="https://www.luogu.com.cn/problem/UVA11806"  target="_blank" rel="noopener"
+    >UVA11806 Cheerleaders</a></p>
+<p>题目大意</p>
 <p>有一个 n*m 的网格场地，现在把 k 个人放进去，要求满足：</p>
 <ol>
 <li>四个边都至少有一个人</li>
@@ -340,6 +332,8 @@ $$
     </section>
     
     <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>

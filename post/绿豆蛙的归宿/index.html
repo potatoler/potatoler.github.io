@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='题目简述 给定一个有向无环图，求起点到终点的路径长度期望（从某一点走向各子节点的概率均等）。
+思路 对于一个点，如果它的出度为 $K$，那么走向每一点的概率就是 $\frac{1}{k}$。每一个点，$K$ 是不尽相同的，所以我们难以直接线性地计算路径的期望。我们可以采用树形 DP 的思路，以起点作为祖先，用路径中靠近终点的点不断往上更新。
+用f[i]表示 i 号节点到终点的路径长度期望——终点没有出度，到自身的路径长度期望为 0，可以很容易得到f[n] = 0。顺应这这个思路，将f[n]作为初始状态，由起点作为 DFS 入口，搜到终点后更新状态。对于点 x 的每一条出边 i，连接子节点为 y 有 f[x] &#43;= (f[y] &#43; edge[i].edgeValue) / outdu[x];
+值得注意的两点：
+对于点 x 的每一个字节点 y，都要先递归 DFS 再累加答案——答案是在递归中「归」的不分累加的，不往下搜就累加了个寂寞 对于点 x 的出度，其影响范围不仅在于这一层的边对于答案的贡献，还有之后所有边对于答案的贡献——先要走到一条指定的边才能走这条边的终点所连的边，所以要用累加的结果除以出度 代码 #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;algorithm&amp;gt; using namespace std; const int MaxN = 100005; struct Edge{ int nextEdge, destinationVertex, edgeValue; }edge[MaxN * 2]; int n, m, tot, head[MaxN], outdu[MaxN]; double f[MaxN]; bool vis[MaxN]; inline void AddEdge(int u,int v,int w){ tot&#43;&#43;; edge[tot].'>
+<title>P4316 绿豆蛙的归宿</title>
+
+<link rel='canonical' href='https://example.org/post/%E7%BB%BF%E8%B1%86%E8%9B%99%E7%9A%84%E5%BD%92%E5%AE%BF/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='P4316 绿豆蛙的归宿'>
+<meta property='og:description' content='题目简述 给定一个有向无环图，求起点到终点的路径长度期望（从某一点走向各子节点的概率均等）。
+思路 对于一个点，如果它的出度为 $K$，那么走向每一点的概率就是 $\frac{1}{k}$。每一个点，$K$ 是不尽相同的，所以我们难以直接线性地计算路径的期望。我们可以采用树形 DP 的思路，以起点作为祖先，用路径中靠近终点的点不断往上更新。
+用f[i]表示 i 号节点到终点的路径长度期望——终点没有出度，到自身的路径长度期望为 0，可以很容易得到f[n] = 0。顺应这这个思路，将f[n]作为初始状态，由起点作为 DFS 入口，搜到终点后更新状态。对于点 x 的每一条出边 i，连接子节点为 y 有 f[x] &#43;= (f[y] &#43; edge[i].edgeValue) / outdu[x];
+值得注意的两点：
+对于点 x 的每一个字节点 y，都要先递归 DFS 再累加答案——答案是在递归中「归」的不分累加的，不往下搜就累加了个寂寞 对于点 x 的出度，其影响范围不仅在于这一层的边对于答案的贡献，还有之后所有边对于答案的贡献——先要走到一条指定的边才能走这条边的终点所连的边，所以要用累加的结果除以出度 代码 #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;algorithm&amp;gt; using namespace std; const int MaxN = 100005; struct Edge{ int nextEdge, destinationVertex, edgeValue; }edge[MaxN * 2]; int n, m, tot, head[MaxN], outdu[MaxN]; double f[MaxN]; bool vis[MaxN]; inline void AddEdge(int u,int v,int w){ tot&#43;&#43;; edge[tot].'>
+<meta property='og:url' content='https://example.org/post/%E7%BB%BF%E8%B1%86%E8%9B%99%E7%9A%84%E5%BD%92%E5%AE%BF/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-05-24T23:41:22&#43;08:00'/><meta property='article:modified_time' content='2020-05-24T23:41:22&#43;08:00'/>
+<meta name="twitter:title" content="P4316 绿豆蛙的归宿">
+<meta name="twitter:description" content="题目简述 给定一个有向无环图，求起点到终点的路径长度期望（从某一点走向各子节点的概率均等）。
+思路 对于一个点，如果它的出度为 $K$，那么走向每一点的概率就是 $\frac{1}{k}$。每一个点，$K$ 是不尽相同的，所以我们难以直接线性地计算路径的期望。我们可以采用树形 DP 的思路，以起点作为祖先，用路径中靠近终点的点不断往上更新。
+用f[i]表示 i 号节点到终点的路径长度期望——终点没有出度，到自身的路径长度期望为 0，可以很容易得到f[n] = 0。顺应这这个思路，将f[n]作为初始状态，由起点作为 DFS 入口，搜到终点后更新状态。对于点 x 的每一条出边 i，连接子节点为 y 有 f[x] &#43;= (f[y] &#43; edge[i].edgeValue) / outdu[x];
+值得注意的两点：
+对于点 x 的每一个字节点 y，都要先递归 DFS 再累加答案——答案是在递归中「归」的不分累加的，不往下搜就累加了个寂寞 对于点 x 的出度，其影响范围不仅在于这一层的边对于答案的贡献，还有之后所有边对于答案的贡献——先要走到一条指定的边才能走这条边的终点所连的边，所以要用累加的结果除以出度 代码 #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;algorithm&amp;gt; using namespace std; const int MaxN = 100005; struct Edge{ int nextEdge, destinationVertex, edgeValue; }edge[MaxN * 2]; int n, m, tot, head[MaxN], outdu[MaxN]; double f[MaxN]; bool vis[MaxN]; inline void AddEdge(int u,int v,int w){ tot&#43;&#43;; edge[tot].">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E7%BB%BF%E8%B1%86%E8%9B%99%E7%9A%84%E5%BD%92%E5%AE%BF/">P4316 绿豆蛙的归宿</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 24, 2020</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="题目httpswwwluogucomcnproblemp4316简述"><a class="link" href="https://www.luogu.com.cn/problem/P4316"  target="_blank" rel="noopener"
+    >题目</a>简述</h3>
+<p>给定一个有向无环图，求起点到终点的路径长度期望（从某一点走向各子节点的概率均等）。</p>
+<h3 id="思路">思路</h3>
+<p>对于一个点，如果它的出度为 $K$，那么走向每一点的概率就是 $\frac{1}{k}$。每一个点，$K$ 是不尽相同的，所以我们难以直接线性地计算路径的期望。我们可以采用树形 DP 的思路，以起点作为祖先，用路径中靠近终点的点不断往上更新。</p>
+<p>用<code>f[i]</code>表示 i 号节点到终点的路径长度期望——终点没有出度，到自身的路径长度期望为 0，可以很容易得到<code>f[n] = 0</code>。顺应这这个思路，将<code>f[n]</code>作为初始状态，由起点作为 DFS 入口，搜到终点后更新状态。对于点 x 的每一条出边 i，连接子节点为 y 有 <code>f[x] += (f[y] + edge[i].edgeValue) / outdu[x];</code></p>
+<p>值得注意的两点：</p>
+<ul>
+<li>对于点 x 的每一个字节点 y，都要先递归 DFS 再累加答案——答案是在递归中「归」的不分累加的，不往下搜就累加了个寂寞</li>
+<li>对于点 x 的出度，其影响范围不仅在于这一层的边对于答案的贡献，还有之后所有边对于答案的贡献——先要走到一条指定的边才能走这条边的终点所连的边，所以要用累加的结果除以出度</li>
+</ul>
+<h3 id="代码">代码</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MaxN <span style="color:#f92672">=</span> <span style="color:#ae81ff">100005</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Edge</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> nextEdge, destinationVertex, edgeValue;
+</span></span><span style="display:flex;"><span>}edge[MaxN <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n, m, tot, head[MaxN], outdu[MaxN];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> f[MaxN];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> vis[MaxN];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">AddEdge</span>(<span style="color:#66d9ef">int</span> u,<span style="color:#66d9ef">int</span> v,<span style="color:#66d9ef">int</span> w){
+</span></span><span style="display:flex;"><span>	tot<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	edge[tot].nextEdge <span style="color:#f92672">=</span> head[u];
+</span></span><span style="display:flex;"><span>	edge[tot].destinationVertex <span style="color:#f92672">=</span> v;
+</span></span><span style="display:flex;"><span>	edge[tot].edgeValue <span style="color:#f92672">=</span> w;
+</span></span><span style="display:flex;"><span>	outdu[u]<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>	head[u] <span style="color:#f92672">=</span> tot;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">DFS</span>(<span style="color:#66d9ef">int</span> x){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(x <span style="color:#f92672">==</span> n){f[x] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#66d9ef">return</span>;}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(vis[x]) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>	vis[x] <span style="color:#f92672">=</span> true;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> head[x]; i; i <span style="color:#f92672">=</span> edge[i].nextEdge){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> edge[i].destinationVertex;
+</span></span><span style="display:flex;"><span>		DFS(y);
+</span></span><span style="display:flex;"><span>		f[x] <span style="color:#f92672">+=</span> (<span style="color:#66d9ef">double</span>)((f[y] <span style="color:#f92672">+</span> edge[i].edgeValue) <span style="color:#f92672">/</span> outdu[x]);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>	scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>m);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> m; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> u, v, w;
+</span></span><span style="display:flex;"><span>		scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>u,<span style="color:#f92672">&amp;</span>v,<span style="color:#f92672">&amp;</span>w);
+</span></span><span style="display:flex;"><span>		AddEdge(u,v,w);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	DFS(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;%.2lf</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,f[<span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

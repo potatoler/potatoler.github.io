@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='题目： 给一个由学生组成的 $n*n$ 的方阵，求在一个角可以看到的学生人数。
+思路： 我们将左下角的位置标为 $(0,0)$，向右为 x 正方向，向上为 y 正方向。
+规律的寻找和证明 围绕着角的三个点，即 $(1,0)$, $(1,1)$, $(0,1)$ 显然都可以被看到，而对于其他的点来说，某个点可以被看到当且仅当 x y 互质。
+我们可以做以下证明：取某一个位置并与原点连线，形成的直线是 $y=kx$。如果这个点 x y 不互质，则可以同时除以它们的最大公约数 p，得到 $\frac{x}{p}=k\frac{y}{p}$——显然$(\frac{y}{p},\frac{x}{p})$ 也在直线 $y=kx$ 上而且距离原点更近。这样就导致在看到 $(x,y)$ 之前先看到了 $(\frac{y}{p},\frac{x}{p})$，这样 $(x,y)$ 就看不到了。
+题目的转换 因为方阵关于对角线对称，其左上和右下可以看到的点数是相同的，所以只需要求其中的一侧，最后再乘以二就可以了。我们现在来看对角线左上的点：根据之前所得到的性质，我们要找出所有 x y 互质的点的个数。对角线左上的点都有 $x&amp;lt;y$，那么对于每一行就是要求比 y 小而且与 y 互质的点的个数——是不是听着耳熟？这不是就是欧拉函数 $\varphi(y)$? 于是我们就将原题变成一个计算题：$Answer=3&#43;2*\Sigma^{n}_{i=2}\varphi(i)$
+欧拉函数的计算 计算欧拉函数，我们需要使用它的两条性质：
+$p$ 为素数，若 $p\mid n$ 且 $p^2\mid n$，则有 $\varphi(n)=\varphi(n/p)*p$ $p$ 为素数，若 $p\mid n$ 但 $p^2\nmid n$，则有 $\varphi(n)=\varphi(n/p)*(p-1)$ 我们可以利用线性筛法每个合数 $n$ 只被其最小素因子 $p$ 筛一次的特点（不会线性筛法?），将原公式变为 $\varphi(n*p)=\varphi(n)p$ 和 $\varphi(np)=\varphi(n)*p$。至此，我们有了求欧拉函数的方法，这道题也就迎刃而解了。'>
+<title>P2158 仪仗队</title>
+
+<link rel='canonical' href='https://example.org/post/%E4%BB%AA%E4%BB%97%E9%98%9F/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='P2158 仪仗队'>
+<meta property='og:description' content='题目： 给一个由学生组成的 $n*n$ 的方阵，求在一个角可以看到的学生人数。
+思路： 我们将左下角的位置标为 $(0,0)$，向右为 x 正方向，向上为 y 正方向。
+规律的寻找和证明 围绕着角的三个点，即 $(1,0)$, $(1,1)$, $(0,1)$ 显然都可以被看到，而对于其他的点来说，某个点可以被看到当且仅当 x y 互质。
+我们可以做以下证明：取某一个位置并与原点连线，形成的直线是 $y=kx$。如果这个点 x y 不互质，则可以同时除以它们的最大公约数 p，得到 $\frac{x}{p}=k\frac{y}{p}$——显然$(\frac{y}{p},\frac{x}{p})$ 也在直线 $y=kx$ 上而且距离原点更近。这样就导致在看到 $(x,y)$ 之前先看到了 $(\frac{y}{p},\frac{x}{p})$，这样 $(x,y)$ 就看不到了。
+题目的转换 因为方阵关于对角线对称，其左上和右下可以看到的点数是相同的，所以只需要求其中的一侧，最后再乘以二就可以了。我们现在来看对角线左上的点：根据之前所得到的性质，我们要找出所有 x y 互质的点的个数。对角线左上的点都有 $x&amp;lt;y$，那么对于每一行就是要求比 y 小而且与 y 互质的点的个数——是不是听着耳熟？这不是就是欧拉函数 $\varphi(y)$? 于是我们就将原题变成一个计算题：$Answer=3&#43;2*\Sigma^{n}_{i=2}\varphi(i)$
+欧拉函数的计算 计算欧拉函数，我们需要使用它的两条性质：
+$p$ 为素数，若 $p\mid n$ 且 $p^2\mid n$，则有 $\varphi(n)=\varphi(n/p)*p$ $p$ 为素数，若 $p\mid n$ 但 $p^2\nmid n$，则有 $\varphi(n)=\varphi(n/p)*(p-1)$ 我们可以利用线性筛法每个合数 $n$ 只被其最小素因子 $p$ 筛一次的特点（不会线性筛法?），将原公式变为 $\varphi(n*p)=\varphi(n)p$ 和 $\varphi(np)=\varphi(n)*p$。至此，我们有了求欧拉函数的方法，这道题也就迎刃而解了。'>
+<meta property='og:url' content='https://example.org/post/%E4%BB%AA%E4%BB%97%E9%98%9F/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-03-15T23:51:47&#43;08:00'/><meta property='article:modified_time' content='2023-03-15T23:51:47&#43;08:00'/>
+<meta name="twitter:title" content="P2158 仪仗队">
+<meta name="twitter:description" content="题目： 给一个由学生组成的 $n*n$ 的方阵，求在一个角可以看到的学生人数。
+思路： 我们将左下角的位置标为 $(0,0)$，向右为 x 正方向，向上为 y 正方向。
+规律的寻找和证明 围绕着角的三个点，即 $(1,0)$, $(1,1)$, $(0,1)$ 显然都可以被看到，而对于其他的点来说，某个点可以被看到当且仅当 x y 互质。
+我们可以做以下证明：取某一个位置并与原点连线，形成的直线是 $y=kx$。如果这个点 x y 不互质，则可以同时除以它们的最大公约数 p，得到 $\frac{x}{p}=k\frac{y}{p}$——显然$(\frac{y}{p},\frac{x}{p})$ 也在直线 $y=kx$ 上而且距离原点更近。这样就导致在看到 $(x,y)$ 之前先看到了 $(\frac{y}{p},\frac{x}{p})$，这样 $(x,y)$ 就看不到了。
+题目的转换 因为方阵关于对角线对称，其左上和右下可以看到的点数是相同的，所以只需要求其中的一侧，最后再乘以二就可以了。我们现在来看对角线左上的点：根据之前所得到的性质，我们要找出所有 x y 互质的点的个数。对角线左上的点都有 $x&amp;lt;y$，那么对于每一行就是要求比 y 小而且与 y 互质的点的个数——是不是听着耳熟？这不是就是欧拉函数 $\varphi(y)$? 于是我们就将原题变成一个计算题：$Answer=3&#43;2*\Sigma^{n}_{i=2}\varphi(i)$
+欧拉函数的计算 计算欧拉函数，我们需要使用它的两条性质：
+$p$ 为素数，若 $p\mid n$ 且 $p^2\mid n$，则有 $\varphi(n)=\varphi(n/p)*p$ $p$ 为素数，若 $p\mid n$ 但 $p^2\nmid n$，则有 $\varphi(n)=\varphi(n/p)*(p-1)$ 我们可以利用线性筛法每个合数 $n$ 只被其最小素因子 $p$ 筛一次的特点（不会线性筛法?），将原公式变为 $\varphi(n*p)=\varphi(n)p$ 和 $\varphi(np)=\varphi(n)*p$。至此，我们有了求欧拉函数的方法，这道题也就迎刃而解了。">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E4%BB%AA%E4%BB%97%E9%98%9F/">P2158 仪仗队</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 15, 2023</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h3 id="题目httpswwwluogucomcnproblemp2158"><a class="link" href="https://www.luogu.com.cn/problem/P2158"  target="_blank" rel="noopener"
+    >题目</a>：</h3>
+<p>给一个由学生组成的 $n*n$ 的方阵，求在一个角可以看到的学生人数。</p>
+<h3 id="思路">思路：</h3>
+<p>我们将左下角的位置标为 $(0,0)$，向右为 x 正方向，向上为 y 正方向。</p>
+<p><img src="https://i.loli.net/2020/05/20/MxPslHJovVTyOIB.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="img"
+	
+	
+></p>
+<h5 id="规律的寻找和证明">规律的寻找和证明</h5>
+<p>围绕着角的三个点，即 $(1,0)$, $(1,1)$, $(0,1)$ 显然都可以被看到，而对于其他的点来说，某个点可以被看到当且仅当 x y 互质。</p>
+<p>我们可以做以下证明：取某一个位置并与原点连线，形成的直线是 $y=kx$。如果这个点  x y 不互质，则可以同时除以它们的最大公约数 p，得到 $\frac{x}{p}=k\frac{y}{p}$——显然$(\frac{y}{p},\frac{x}{p})$ 也在直线 $y=kx$ 上而且距离原点更近。这样就导致在看到 $(x,y)$ 之前先看到了 $(\frac{y}{p},\frac{x}{p})$，这样 $(x,y)$ 就看不到了。</p>
+<h5 id="题目的转换">题目的转换</h5>
+<p>因为方阵关于对角线对称，其左上和右下可以看到的点数是相同的，所以只需要求其中的一侧，最后再乘以二就可以了。我们现在来看对角线左上的点：根据之前所得到的性质，我们要找出所有 x y 互质的点的个数。对角线左上的点都有 $x&lt;y$，那么对于每一行就是要求比 y 小而且与 y 互质的点的个数——是不是听着耳熟？这不是就是欧拉函数 $\varphi(y)$? 于是我们就将原题变成一个计算题：$Answer=3+2*\Sigma^{n}_{i=2}\varphi(i)$</p>
+<h5 id="欧拉函数的计算">欧拉函数的计算</h5>
+<p>计算欧拉函数，我们需要使用它的两条性质：</p>
+<ul>
+<li>$p$ 为素数，若 $p\mid n$ 且 $p^2\mid n$，则有 $\varphi(n)=\varphi(n/p)*p$</li>
+<li>$p$ 为素数，若 $p\mid n$ 但 $p^2\nmid n$，则有 $\varphi(n)=\varphi(n/p)*(p-1)$</li>
+</ul>
+<p>我们可以利用线性筛法每个合数 $n$ 只被其最小素因子 $p$ 筛一次的特点（<a class="link" href="https://potatoler.github.io/post/su-shu-shai-fa/"  target="_blank" rel="noopener"
+    >不会线性筛法?</a>），将原公式变为 $\varphi(n*p)=\varphi(n)<em>p$ 和 $\varphi(n</em>p)=\varphi(n)*p$。至此，我们有了求欧拉函数的方法，这道题也就迎刃而解了。</p>
+<h3 id="代码">代码：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MaxN <span style="color:#f92672">=</span> <span style="color:#ae81ff">40000</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n, answer;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> phi[MaxN], minimizedPrimeFactor[MaxN], primeNumber[MaxN], primeCount;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Eular</span>(<span style="color:#66d9ef">int</span> n){
+</span></span><span style="display:flex;"><span>	memset(minimizedPrimeFactor,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(minimizedPrimeFactor));
+</span></span><span style="display:flex;"><span>	primeCount <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(minimizedPrimeFactor[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>			minimizedPrimeFactor[i] <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>			primeNumber[<span style="color:#f92672">++</span>primeCount] <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>			phi[i] <span style="color:#f92672">=</span> i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> primeCount; j<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span>(primeNumber[j] <span style="color:#f92672">&gt;</span> minimizedPrimeFactor[i] <span style="color:#f92672">||</span> primeNumber[j] <span style="color:#f92672">&gt;</span> n<span style="color:#f92672">/</span>i) <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>			minimizedPrimeFactor[i <span style="color:#f92672">*</span> primeNumber[j]] <span style="color:#f92672">=</span> primeNumber[j];
+</span></span><span style="display:flex;"><span>			phi[i <span style="color:#f92672">*</span> primeNumber[j]] <span style="color:#f92672">=</span> phi[i] <span style="color:#f92672">*</span> (i <span style="color:#f92672">%</span> primeNumber[j]<span style="color:#f92672">?</span> primeNumber[j] <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> primeNumber[j]); 
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//注意这里三目运算结果的顺序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>	scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(n <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>){
+</span></span><span style="display:flex;"><span>		printf(<span style="color:#e6db74">&#34;0&#34;</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	Eular(n);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&lt;</span> n; i<span style="color:#f92672">++</span>) answer<span style="color:#f92672">+=</span>phi[i];
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,answer<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>为什么只需要<code>i % primeNumber[j]</code>？ 因为 i 是合数，已经有一个因子是 <code>primeNumber[j]</code>了。</p>
+<p>值得注意的是三目运算时两个结果的顺序：取模运算结果为 0 是整除，对应第一条性质；结果为 1 是不整除，对应第二条性质（我才不会说第一遍写错而且看了好久也没看出来QWQ）。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='「数論~ 数論~ 数論~ 数論~ 数論大家族」
+关于本题 这是一道数论大杂烩模法题，题目叙述及其冗长，真正有用的其实就只有两句话。题目压缩后可以表述为求
+$\LARGE g^{\Sigma_{k|n}C^{\frac{n}{k}}_{n}}\bmod 999911659$
+解答本题你需要至少会使用以下结论和定理：
+欧拉定理推论 中国剩余定理 Lucas定理 本题中用到的部分还会在下文讲述。
+本题中用到的结论与定理 欧拉定理推论 欧拉定理内容为：若正整数 $a,n$ 互质，则有 $a^{\varphi(n)}\equiv 1(\bmod p)$，其中 $\varphi(n)$ 为欧拉函数
+我们在这道题中使用的是欧拉定理的推论：若正整数 $a,n$ 互质，则对于任意正整数 $b$ 有 $a^{b}\equiv a^{b\bmod\varphi(n)}(\bmod n)$.
+可以简单地证明：设 $b=q*\varphi(n)&#43;r,(0\le r\le \varphi(n))$，即 $r=b \bmod \varphi(n)$。于是有：
+$\large a^{b} \equiv a^{q*\varphi(n)&#43;r} \equiv (a^{\varphi(n)})^{q}a^{r} \equiv 1^qa^r \equiv a^r \equiv a^{b \bmod \varphi(n)}(\bmod n)$
+其中第三步使用了欧拉定理。
+中国剩余定理 设 $m_1,m_2,&amp;hellip;,m_n$ 是两两互素的整数，$m=\Pi^{n}{i=1}m_i$，$M_i=\frac{m}{m_i}$，$t_i$ 是线性同余方程 $M_it_i \equiv 1(\bmod m_i)$ 的一个解。对于任意的 $n$ 个整数 $a_1,a_2,&amp;hellip;,a_n$，方程组 $$ \begin{cases} x \equiv a_1(\bmod m_1)\ x \equiv a_2(\bmod m_2)\ &amp;hellip;\ x \equiv a_n(\bmod m_n)\ \end{cases} $$ 有整数解，为 $\large x=\Sigma^n{i=1}a_iM_it_i$.'>
+<title>P2420 古代猪文</title>
+
+<link rel='canonical' href='https://example.org/post/%E5%8F%A4%E4%BB%A3%E7%8C%AA%E6%96%87/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='P2420 古代猪文'>
+<meta property='og:description' content='「数論~ 数論~ 数論~ 数論~ 数論大家族」
+关于本题 这是一道数论大杂烩模法题，题目叙述及其冗长，真正有用的其实就只有两句话。题目压缩后可以表述为求
+$\LARGE g^{\Sigma_{k|n}C^{\frac{n}{k}}_{n}}\bmod 999911659$
+解答本题你需要至少会使用以下结论和定理：
+欧拉定理推论 中国剩余定理 Lucas定理 本题中用到的部分还会在下文讲述。
+本题中用到的结论与定理 欧拉定理推论 欧拉定理内容为：若正整数 $a,n$ 互质，则有 $a^{\varphi(n)}\equiv 1(\bmod p)$，其中 $\varphi(n)$ 为欧拉函数
+我们在这道题中使用的是欧拉定理的推论：若正整数 $a,n$ 互质，则对于任意正整数 $b$ 有 $a^{b}\equiv a^{b\bmod\varphi(n)}(\bmod n)$.
+可以简单地证明：设 $b=q*\varphi(n)&#43;r,(0\le r\le \varphi(n))$，即 $r=b \bmod \varphi(n)$。于是有：
+$\large a^{b} \equiv a^{q*\varphi(n)&#43;r} \equiv (a^{\varphi(n)})^{q}a^{r} \equiv 1^qa^r \equiv a^r \equiv a^{b \bmod \varphi(n)}(\bmod n)$
+其中第三步使用了欧拉定理。
+中国剩余定理 设 $m_1,m_2,&amp;hellip;,m_n$ 是两两互素的整数，$m=\Pi^{n}{i=1}m_i$，$M_i=\frac{m}{m_i}$，$t_i$ 是线性同余方程 $M_it_i \equiv 1(\bmod m_i)$ 的一个解。对于任意的 $n$ 个整数 $a_1,a_2,&amp;hellip;,a_n$，方程组 $$ \begin{cases} x \equiv a_1(\bmod m_1)\ x \equiv a_2(\bmod m_2)\ &amp;hellip;\ x \equiv a_n(\bmod m_n)\ \end{cases} $$ 有整数解，为 $\large x=\Sigma^n{i=1}a_iM_it_i$.'>
+<meta property='og:url' content='https://example.org/post/%E5%8F%A4%E4%BB%A3%E7%8C%AA%E6%96%87/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-02-10T23:47:54&#43;08:00'/><meta property='article:modified_time' content='2023-02-10T23:47:54&#43;08:00'/>
+<meta name="twitter:title" content="P2420 古代猪文">
+<meta name="twitter:description" content="「数論~ 数論~ 数論~ 数論~ 数論大家族」
+关于本题 这是一道数论大杂烩模法题，题目叙述及其冗长，真正有用的其实就只有两句话。题目压缩后可以表述为求
+$\LARGE g^{\Sigma_{k|n}C^{\frac{n}{k}}_{n}}\bmod 999911659$
+解答本题你需要至少会使用以下结论和定理：
+欧拉定理推论 中国剩余定理 Lucas定理 本题中用到的部分还会在下文讲述。
+本题中用到的结论与定理 欧拉定理推论 欧拉定理内容为：若正整数 $a,n$ 互质，则有 $a^{\varphi(n)}\equiv 1(\bmod p)$，其中 $\varphi(n)$ 为欧拉函数
+我们在这道题中使用的是欧拉定理的推论：若正整数 $a,n$ 互质，则对于任意正整数 $b$ 有 $a^{b}\equiv a^{b\bmod\varphi(n)}(\bmod n)$.
+可以简单地证明：设 $b=q*\varphi(n)&#43;r,(0\le r\le \varphi(n))$，即 $r=b \bmod \varphi(n)$。于是有：
+$\large a^{b} \equiv a^{q*\varphi(n)&#43;r} \equiv (a^{\varphi(n)})^{q}a^{r} \equiv 1^qa^r \equiv a^r \equiv a^{b \bmod \varphi(n)}(\bmod n)$
+其中第三步使用了欧拉定理。
+中国剩余定理 设 $m_1,m_2,&amp;hellip;,m_n$ 是两两互素的整数，$m=\Pi^{n}{i=1}m_i$，$M_i=\frac{m}{m_i}$，$t_i$ 是线性同余方程 $M_it_i \equiv 1(\bmod m_i)$ 的一个解。对于任意的 $n$ 个整数 $a_1,a_2,&amp;hellip;,a_n$，方程组 $$ \begin{cases} x \equiv a_1(\bmod m_1)\ x \equiv a_2(\bmod m_2)\ &amp;hellip;\ x \equiv a_n(\bmod m_n)\ \end{cases} $$ 有整数解，为 $\large x=\Sigma^n{i=1}a_iM_it_i$.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E5%8F%A4%E4%BB%A3%E7%8C%AA%E6%96%87/">P2420 古代猪文</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 10, 2023</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>「数論~ 数論~ 数論~ 数論~ 数論大家族」</p>
+<h3 id="关于本题httpswwwluogucomcnproblemp2480">关于<a class="link" href="https://www.luogu.com.cn/problem/P2480"  target="_blank" rel="noopener"
+    >本题</a></h3>
+<p>这是一道数论大杂烩模法题，题目叙述及其冗长，真正有用的其实就只有两句话。题目压缩后可以表述为求</p>
+<p>$\LARGE g^{\Sigma_{k|n}C^{\frac{n}{k}}_{n}}\bmod 999911659$</p>
+<p>解答本题你需要至少会使用以下结论和定理：</p>
+<ul>
+<li><a class="link" href="https://oi-wiki.org/math/fermat/"  target="_blank" rel="noopener"
+    >欧拉定理推论</a></li>
+<li><a class="link" href="https://oi-wiki.org/math/crt/"  target="_blank" rel="noopener"
+    >中国剩余定理</a></li>
+<li><a class="link" href="https://oi-wiki.org/math/lucas/"  target="_blank" rel="noopener"
+    >Lucas定理</a></li>
+</ul>
+<p>本题中用到的部分还会在下文讲述。</p>
+<h3 id="本题中用到的结论与定理">本题中用到的结论与定理</h3>
+<h4 id="欧拉定理推论">欧拉定理推论</h4>
+<p>欧拉定理内容为：若正整数 $a,n$ 互质，则有 $a^{\varphi(n)}\equiv 1(\bmod  p)$，其中 $\varphi(n)$ 为欧拉函数</p>
+<p>我们在这道题中使用的是欧拉定理的推论：若正整数 $a,n$ 互质，则对于任意正整数 $b$ 有 $a^{b}\equiv a^{b\bmod\varphi(n)}(\bmod n)$.</p>
+<p>可以简单地证明：设 $b=q*\varphi(n)+r,(0\le r\le \varphi(n))$，即 $r=b \bmod \varphi(n)$。于是有：</p>
+<p>$\large a^{b} \equiv a^{q*\varphi(n)+r} \equiv (a^{\varphi(n)})^{q}<em>a^{r} \equiv 1^q</em>a^r \equiv a^r \equiv a^{b \bmod \varphi(n)}(\bmod n)$</p>
+<p>其中第三步使用了欧拉定理。</p>
+<h4 id="中国剩余定理">中国剩余定理</h4>
+<p>设 $m_1,m_2,&hellip;,m_n$ 是两两互素的整数，$m=\Pi^{n}<em>{i=1}m_i$，$M_i=\frac{m}{m_i}$，$t_i$ 是线性同余方程 $M_it_i \equiv 1(\bmod m_i)$ 的一个解。对于任意的 $n$ 个整数 $a_1,a_2,&hellip;,a_n$，方程组
+$$
+\begin{cases}
+x \equiv a_1(\bmod m_1)\
+x \equiv a_2(\bmod m_2)\
+&hellip;\
+x \equiv a_n(\bmod m_n)\
+\end{cases}
+$$
+有整数解，为 $\large x=\Sigma^n</em>{i=1}a_iM_it_i$.</p>
+<p>由于鄙人太菜，无法证明，所以请各位大神出门左转 <a class="link" href="https://oi-wiki.org/math/crt/"  target="_blank" rel="noopener"
+    >OI Wiki</a> $Q w Q$</p>
+<h4 id="lucas-定理">Lucas 定理</h4>
+<p>若 $p$ 是素数，则对于任意整数 $1 \le m \le n$，有 $\large C^m_n \equiv C^{m \bmod p}<em>{n \bmod p}*C^{m/p}</em>{n/p}(\bmod p)$</p>
+<p>原理是把 $n$ 和 $m$ 表示成 $p$ 进制数，对 $p$ 进制下每一位分别计算组合数，最后再乘起来。由于鄙人太菜，无法证明，所以请各位大神出门右转 <a class="link" href="https://oi-wiki.org/math/lucas/"  target="_blank" rel="noopener"
+    >OI Wiki</a> $Q w Q$</p>
+<h3 id="思路">思路</h3>
+<p>因为有 $k |n$，所以在求和时 $\frac{k}{n}$ 和 $k$ 都会被算到，原式中的 $C^{\frac{k}{n}}_{n}$ 可以变为 $C^k_n$，<del>虽然并没有使式子变简单但是看起来更舒服</del>。</p>
+<p>根据欧拉定理的推论有 $\large g^{\Sigma_{k|n}C^{k}<em>{n}}\equiv  g^{\Sigma</em>{k|n}C^{k}<em>{n}\bmod999911658}(\bmod 999911659)$，快速地写一个简单小程序，就可以判断出模数 999911659 是一个素数，所以右边的 $\varphi(999911659)=999911658$，于是，本题的关键在于 $ \Sigma</em>{k|n}C^{k}_{n}\bmod999911658$ 的计算。</p>
+<p>聪敏的你一定会想到使用 Lucas 定理进行组合数取模计算，但是 Lucas 定理要求模数是一个小素数，显然我们现在的模数 999911658 并不是一个小素数——它甚至不是一个素数！还有一个 exLucas 定理仿佛可以使用，但是比较难，又会引入更多的结论和定理了。</p>
+<p>若有正整数 $a,b$ 满足 $a \bmod b =r$ 且 $b=m<em>n$，那么一定有 $a \bmod m=a \bmod n=r$。这是显然的——根据题意,设 $a=q</em>b+r$，于是 $a=q<em>m</em>n+r$。根据这条结论，我们可以将模数 999911658 分解素因子，并使用中国剩余定理列出同余方程组。通过简单的函数可以分解模数为 $999911658=2<em>3</em>4679*35617$，于是有方程组：
+$$
+\begin{cases}
+x \equiv \Sigma_{k|n}C^{k}<em>{n}(\bmod 2)\
+x \equiv \Sigma</em>{k|n}C^{k}<em>{n}(\bmod 3)\
+x \equiv \Sigma</em>{k|n}C^{k}<em>{n}(\bmod 4679)\
+x \equiv \Sigma</em>{k|n}C^{k}<em>{n}(\bmod 35617)\
+\end{cases}
+$$
+如果可以解出 $x$，便有 $x=\Sigma</em>{k|n}C^{k}_{n}\bmod999911658$。对于其中的每一个线性同余方程，模数都变成了一个较小的素数，我们可以利用 Lucas 定理对组合数取模。由于题目中 $n$ 的范围比较大，所以我们可以预处理每个数的阶乘以及阶乘的逆元，于是就可以更快的求组合数了。</p>
+<h3 id="代码">代码</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ll;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> MaxN<span style="color:#f92672">=</span><span style="color:#ae81ff">500005</span>, Mod<span style="color:#f92672">=</span><span style="color:#ae81ff">999911659</span>;
+</span></span><span style="display:flex;"><span>ll n, g, k[MaxN];
+</span></span><span style="display:flex;"><span>ll factorial_of[MaxN], inverseofFctorial_of[MaxN];
+</span></span><span style="display:flex;"><span>ll singleLeft[<span style="color:#ae81ff">5</span>], primeFactor[<span style="color:#ae81ff">5</span>], primeCount, factorCount, finalPowerTimes;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> ll <span style="color:#a6e22e">QuickPower</span>(ll baseNumber,ll powerTimes,ll mod){
+</span></span><span style="display:flex;"><span>	ll answer <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span>(powerTimes){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(powerTimes <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>) answer <span style="color:#f92672">=</span> answer <span style="color:#f92672">*</span> baseNumber <span style="color:#f92672">%</span> mod;
+</span></span><span style="display:flex;"><span>		baseNumber <span style="color:#f92672">=</span> baseNumber <span style="color:#f92672">*</span> baseNumber <span style="color:#f92672">%</span> mod;
+</span></span><span style="display:flex;"><span>		powerTimes <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> answer <span style="color:#f92672">%</span> mod;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Init</span>(ll mod){
+</span></span><span style="display:flex;"><span>	factorial_of[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;</span>mod;i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		factorial_of[i] <span style="color:#f92672">=</span> factorial_of[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> i <span style="color:#f92672">%</span> mod;
+</span></span><span style="display:flex;"><span>	inverseofFctorial_of[mod] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	inverseofFctorial_of[mod <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> QuickPower(factorial_of[mod<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], mod <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>, mod);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>mod<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>;i<span style="color:#f92672">&gt;=</span><span style="color:#ae81ff">0</span>;i<span style="color:#f92672">--</span>)
+</span></span><span style="display:flex;"><span>		inverseofFctorial_of[i] <span style="color:#f92672">=</span> inverseofFctorial_of[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> (i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> mod;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> ll <span style="color:#a6e22e">C</span>(ll x,ll y,ll mod){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(y <span style="color:#f92672">&gt;</span> x) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> factorial_of[x] <span style="color:#f92672">*</span> inverseofFctorial_of[y] <span style="color:#f92672">%</span> mod <span style="color:#f92672">*</span> inverseofFctorial_of[x<span style="color:#f92672">-</span>y] <span style="color:#f92672">%</span> mod;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> ll <span style="color:#a6e22e">Lucas</span>(ll x,ll y,ll mod){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(y <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> Lucas(x <span style="color:#f92672">/</span> mod, y <span style="color:#f92672">/</span> mod, mod) <span style="color:#f92672">*</span> C(x <span style="color:#f92672">%</span> mod, y <span style="color:#f92672">%</span> mod, mod) <span style="color:#f92672">%</span> mod;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> ll <span style="color:#a6e22e">SingleLineCalculation</span>(<span style="color:#66d9ef">int</span> x){
+</span></span><span style="display:flex;"><span>	Init(primeFactor[x]);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>factorCount;i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		singleLeft[x] <span style="color:#f92672">=</span> (singleLeft[x] <span style="color:#f92672">+</span> Lucas(n, k[i], primeFactor[x])) <span style="color:#f92672">%</span> primeFactor[x];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> ll <span style="color:#a6e22e">CRT</span>(){
+</span></span><span style="display:flex;"><span>	ll answer <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, mod <span style="color:#f92672">=</span> Mod<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>primeCount;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		ll M <span style="color:#f92672">=</span> mod <span style="color:#f92672">/</span> primeFactor[i], t <span style="color:#f92672">=</span> QuickPower(M, primeFactor[i]<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, primeFactor[i]);
+</span></span><span style="display:flex;"><span>		answer <span style="color:#f92672">=</span> (answer <span style="color:#f92672">+</span> (singleLeft[i] <span style="color:#f92672">%</span> mod) <span style="color:#f92672">*</span> (t <span style="color:#f92672">%</span> mod) <span style="color:#f92672">*</span> (M <span style="color:#f92672">%</span> mod)) <span style="color:#f92672">%</span> mod;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> (answer <span style="color:#f92672">+</span> mod) <span style="color:#f92672">%</span> mod;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">GetPrimeFactor</span>(ll originalNumber){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;i<span style="color:#f92672">*</span>i<span style="color:#f92672">&lt;=</span>Mod<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(originalNumber <span style="color:#f92672">%</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>			primeFactor[<span style="color:#f92672">++</span>primeCount] <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">while</span>(originalNumber <span style="color:#f92672">%</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) originalNumber <span style="color:#f92672">/=</span> i;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(originalNumber <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>) primeFactor[<span style="color:#f92672">++</span>primeCount] <span style="color:#f92672">=</span> originalNumber;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">GetK</span>(){
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">*</span>i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(n <span style="color:#f92672">%</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>			k[<span style="color:#f92672">++</span>factorCount] <span style="color:#f92672">=</span> i;
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span>(i <span style="color:#f92672">*</span> i <span style="color:#f92672">!=</span> n) k[<span style="color:#f92672">++</span>factorCount] <span style="color:#f92672">=</span> n <span style="color:#f92672">/</span> i;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>	scanf(<span style="color:#e6db74">&#34;%lld%lld&#34;</span>, <span style="color:#f92672">&amp;</span>n, <span style="color:#f92672">&amp;</span>g);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(g <span style="color:#f92672">%</span> Mod <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>		printf(<span style="color:#e6db74">&#34;0&#34;</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	}<span style="color:#75715e">//remember to add a special judge, or you will lose 5 pts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	GetPrimeFactor(Mod <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>	GetK();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>primeCount;i<span style="color:#f92672">++</span>) SingleLineCalculation(i);
+</span></span><span style="display:flex;"><span>	finalPowerTimes <span style="color:#f92672">=</span> CRT();
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;%lld&#34;</span>, QuickPower(g, finalPowerTimes, Mod));
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

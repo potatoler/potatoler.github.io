@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Task2004.3 P5543 The Great Revegetation
+题目描述： 一场漫长的干旱使农场主约翰的N牧场没有草, 然而, 随着雨季的到来, 是时候“重新种植”了。在农夫约翰的小屋里, 他有两个桶, 分别有一种草籽。他想在他的每一个牧场种草, 在每一个牧场中只能种一种草。 作为一名奶农, 农场主约翰想确保他能满足他的M头奶牛的特殊饮食需求。他每头奶牛都有两个自己最喜欢的牧场。一些奶牛只吃一种草, 因此约翰希望确保在这些奶牛最喜欢的两个牧场里种植同一种的草; 剩下的奶牛则吃不同种类的草。对于那些奶牛，约翰当然想确保它们最喜欢的两块牧场里有不同的草。 请帮助农场主约翰确定他在他的N块牧场上有多少种种植草的不同方式。
+思路： 与关押罪犯有很多相似之处，实用并查集补集的思路，将两个牧场种相同草的关系当作「友好」，将两个牧场种不同草的关系当作「敌对」，但值得注意的一点是并非所有的牧场一定为任意一只奶牛所喜爱，所以我们还需要额外的一个并查集来维护被提到的牧场的连通性。
+如果产生冲突，那么最终方案数必定为0；若没有冲突，就在第三个并查集中判断连通块，连通块数为为cnt，则$ans=2^{cnt}$;
+代码： #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;algorithm&amp;gt; using namespace std; int n,m,a,b,ans; char op; int fa[100005],gr[200005]; int find(int x){ if(fa[x]==x) return x; else return fa[x]=find(fa[x]); } int com(int x){ if(gr[x]==x) return x; else return gr[x]=com(gr[x]); } int main(){ scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;n,&amp;amp;m); ans=n; for(int i=1;i&amp;lt;=n;i&#43;&#43;){ gr[i]=i; gr[i&#43;n]=i&#43;n; fa[i]=i; } for(int i=1;i&amp;lt;=m;i&#43;&#43;){ cin&amp;gt;&amp;gt;op&amp;gt;&amp;gt;a&amp;gt;&amp;gt;b; // op=getchar(); // getchar(); // scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;a,&amp;amp;b); //乖乖用cin（笑） if(op==&amp;#39;S&amp;#39;){ gr[com(a)]=com(b); gr[com(a&#43;n)]=com(b&#43;n); } else{ if(com(a)==com(b)){ ans=0; break; } gr[com(a&#43;n)]=com(b); gr[com(a)]=com(b&#43;n); } if(find(a)!'>
+<title>Task200204.3 P5543 The Great Revegetate</title>
+
+<link rel='canonical' href='https://example.org/post/revegetate/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='Task200204.3 P5543 The Great Revegetate'>
+<meta property='og:description' content='Task2004.3 P5543 The Great Revegetation
+题目描述： 一场漫长的干旱使农场主约翰的N牧场没有草, 然而, 随着雨季的到来, 是时候“重新种植”了。在农夫约翰的小屋里, 他有两个桶, 分别有一种草籽。他想在他的每一个牧场种草, 在每一个牧场中只能种一种草。 作为一名奶农, 农场主约翰想确保他能满足他的M头奶牛的特殊饮食需求。他每头奶牛都有两个自己最喜欢的牧场。一些奶牛只吃一种草, 因此约翰希望确保在这些奶牛最喜欢的两个牧场里种植同一种的草; 剩下的奶牛则吃不同种类的草。对于那些奶牛，约翰当然想确保它们最喜欢的两块牧场里有不同的草。 请帮助农场主约翰确定他在他的N块牧场上有多少种种植草的不同方式。
+思路： 与关押罪犯有很多相似之处，实用并查集补集的思路，将两个牧场种相同草的关系当作「友好」，将两个牧场种不同草的关系当作「敌对」，但值得注意的一点是并非所有的牧场一定为任意一只奶牛所喜爱，所以我们还需要额外的一个并查集来维护被提到的牧场的连通性。
+如果产生冲突，那么最终方案数必定为0；若没有冲突，就在第三个并查集中判断连通块，连通块数为为cnt，则$ans=2^{cnt}$;
+代码： #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;algorithm&amp;gt; using namespace std; int n,m,a,b,ans; char op; int fa[100005],gr[200005]; int find(int x){ if(fa[x]==x) return x; else return fa[x]=find(fa[x]); } int com(int x){ if(gr[x]==x) return x; else return gr[x]=com(gr[x]); } int main(){ scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;n,&amp;amp;m); ans=n; for(int i=1;i&amp;lt;=n;i&#43;&#43;){ gr[i]=i; gr[i&#43;n]=i&#43;n; fa[i]=i; } for(int i=1;i&amp;lt;=m;i&#43;&#43;){ cin&amp;gt;&amp;gt;op&amp;gt;&amp;gt;a&amp;gt;&amp;gt;b; // op=getchar(); // getchar(); // scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;a,&amp;amp;b); //乖乖用cin（笑） if(op==&amp;#39;S&amp;#39;){ gr[com(a)]=com(b); gr[com(a&#43;n)]=com(b&#43;n); } else{ if(com(a)==com(b)){ ans=0; break; } gr[com(a&#43;n)]=com(b); gr[com(a)]=com(b&#43;n); } if(find(a)!'>
+<meta property='og:url' content='https://example.org/post/revegetate/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2020-02-04T23:25:36&#43;08:00'/><meta property='article:modified_time' content='2020-02-04T23:25:36&#43;08:00'/>
+<meta name="twitter:title" content="Task200204.3 P5543 The Great Revegetate">
+<meta name="twitter:description" content="Task2004.3 P5543 The Great Revegetation
+题目描述： 一场漫长的干旱使农场主约翰的N牧场没有草, 然而, 随着雨季的到来, 是时候“重新种植”了。在农夫约翰的小屋里, 他有两个桶, 分别有一种草籽。他想在他的每一个牧场种草, 在每一个牧场中只能种一种草。 作为一名奶农, 农场主约翰想确保他能满足他的M头奶牛的特殊饮食需求。他每头奶牛都有两个自己最喜欢的牧场。一些奶牛只吃一种草, 因此约翰希望确保在这些奶牛最喜欢的两个牧场里种植同一种的草; 剩下的奶牛则吃不同种类的草。对于那些奶牛，约翰当然想确保它们最喜欢的两块牧场里有不同的草。 请帮助农场主约翰确定他在他的N块牧场上有多少种种植草的不同方式。
+思路： 与关押罪犯有很多相似之处，实用并查集补集的思路，将两个牧场种相同草的关系当作「友好」，将两个牧场种不同草的关系当作「敌对」，但值得注意的一点是并非所有的牧场一定为任意一只奶牛所喜爱，所以我们还需要额外的一个并查集来维护被提到的牧场的连通性。
+如果产生冲突，那么最终方案数必定为0；若没有冲突，就在第三个并查集中判断连通块，连通块数为为cnt，则$ans=2^{cnt}$;
+代码： #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;algorithm&amp;gt; using namespace std; int n,m,a,b,ans; char op; int fa[100005],gr[200005]; int find(int x){ if(fa[x]==x) return x; else return fa[x]=find(fa[x]); } int com(int x){ if(gr[x]==x) return x; else return gr[x]=com(gr[x]); } int main(){ scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;n,&amp;amp;m); ans=n; for(int i=1;i&amp;lt;=n;i&#43;&#43;){ gr[i]=i; gr[i&#43;n]=i&#43;n; fa[i]=i; } for(int i=1;i&amp;lt;=m;i&#43;&#43;){ cin&amp;gt;&amp;gt;op&amp;gt;&amp;gt;a&amp;gt;&amp;gt;b; // op=getchar(); // getchar(); // scanf(&amp;#34;%d%d&amp;#34;,&amp;amp;a,&amp;amp;b); //乖乖用cin（笑） if(op==&amp;#39;S&amp;#39;){ gr[com(a)]=com(b); gr[com(a&#43;n)]=com(b&#43;n); } else{ if(com(a)==com(b)){ ans=0; break; } gr[com(a&#43;n)]=com(b); gr[com(a)]=com(b&#43;n); } if(find(a)!">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/revegetate/">Task200204.3 P5543 The Great Revegetate</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 04, 2020</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><a class="link" href="https://www.luogu.com.cn/problem/P5543"  target="_blank" rel="noopener"
+    >Task2004.3 P5543 The Great Revegetation</a></p>
+<h3 id="题目描述">题目描述：</h3>
+<p>一场漫长的干旱使农场主约翰的N牧场没有草, 然而, 随着雨季的到来, 是时候“重新种植”了。在农夫约翰的小屋里, 他有两个桶, 分别有一种草籽。他想在他的每一个牧场种草, 在每一个牧场中只能种一种草。 作为一名奶农, 农场主约翰想确保他能满足他的M头奶牛的特殊饮食需求。他每头奶牛都有两个自己最喜欢的牧场。一些奶牛只吃一种草, 因此约翰希望确保在这些奶牛最喜欢的两个牧场里种植同一种的草; 剩下的奶牛则吃不同种类的草。对于那些奶牛，约翰当然想确保它们最喜欢的两块牧场里有不同的草。 请帮助农场主约翰确定他在他的N块牧场上有多少种种植草的不同方式。</p>
+<h3 id="思路">思路：</h3>
+<p>与关押罪犯有很多相似之处，实用并查集补集的思路，将两个牧场种相同草的关系当作「友好」，将两个牧场种不同草的关系当作「敌对」，但值得注意的一点是并非所有的牧场一定为任意一只奶牛所喜爱，所以我们还需要额外的一个并查集来维护被提到的牧场的连通性。</p>
+<p>如果产生冲突，那么最终方案数必定为0；若没有冲突，就在第三个并查集中判断连通块，连通块数为为cnt，则$ans=2^{cnt}$;</p>
+<h3 id="代码">代码：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;cmath&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span><span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n,m,a,b,ans;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> op;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> fa[<span style="color:#ae81ff">100005</span>],gr[<span style="color:#ae81ff">200005</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">find</span>(<span style="color:#66d9ef">int</span> x){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(fa[x]<span style="color:#f92672">==</span>x) <span style="color:#66d9ef">return</span> x;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> fa[x]<span style="color:#f92672">=</span>find(fa[x]);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">com</span>(<span style="color:#66d9ef">int</span> x){
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(gr[x]<span style="color:#f92672">==</span>x) <span style="color:#66d9ef">return</span> x;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">return</span> gr[x]<span style="color:#f92672">=</span>com(gr[x]);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>    scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>n,<span style="color:#f92672">&amp;</span>m);
+</span></span><span style="display:flex;"><span>    ans<span style="color:#f92672">=</span>n;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>n;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        gr[i]<span style="color:#f92672">=</span>i;
+</span></span><span style="display:flex;"><span>        gr[i<span style="color:#f92672">+</span>n]<span style="color:#f92672">=</span>i<span style="color:#f92672">+</span>n;
+</span></span><span style="display:flex;"><span>        fa[i]<span style="color:#f92672">=</span>i;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>m;i<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>        cin<span style="color:#f92672">&gt;&gt;</span>op<span style="color:#f92672">&gt;&gt;</span>a<span style="color:#f92672">&gt;&gt;</span>b;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// op=getchar();
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// getchar();
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// scanf(&#34;%d%d&#34;,&amp;a,&amp;b);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#75715e">//乖乖用cin（笑）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span>(op<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;S&#39;</span>){
+</span></span><span style="display:flex;"><span>            gr[com(a)]<span style="color:#f92672">=</span>com(b);
+</span></span><span style="display:flex;"><span>            gr[com(a<span style="color:#f92672">+</span>n)]<span style="color:#f92672">=</span>com(b<span style="color:#f92672">+</span>n);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(com(a)<span style="color:#f92672">==</span>com(b)){
+</span></span><span style="display:flex;"><span>                ans<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            gr[com(a<span style="color:#f92672">+</span>n)]<span style="color:#f92672">=</span>com(b);
+</span></span><span style="display:flex;"><span>            gr[com(a)]<span style="color:#f92672">=</span>com(b<span style="color:#f92672">+</span>n);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(find(a)<span style="color:#f92672">!=</span>find(b)){
+</span></span><span style="display:flex;"><span>            fa[find(a)]<span style="color:#f92672">=</span>find(b);
+</span></span><span style="display:flex;"><span>            ans<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(ans<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>        printf(<span style="color:#e6db74">&#34;%d&#34;</span>,ans);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;1&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;i<span style="color:#f92672">&lt;=</span>ans;i<span style="color:#f92672">++</span>) printf(<span style="color:#e6db74">&#34;0&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
