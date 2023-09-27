@@ -13,7 +13,7 @@
 
 <link rel='canonical' href='https://example.org/post/%E7%BB%BF%E8%B1%86%E8%9B%99%E7%9A%84%E5%BD%92%E5%AE%BF/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='P4316 绿豆蛙的归宿'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='P4316 绿豆蛙的归宿'>
 <meta property='og:description' content='题目简述 给定一个有向无环图，求起点到终点的路径长度期望（从某一点走向各子节点的概率均等）。
 思路 对于一个点，如果它的出度为 $K$，那么走向每一点的概率就是 $\frac{1}{k}$。每一个点，$K$ 是不尽相同的，所以我们难以直接线性地计算路径的期望。我们可以采用树形 DP 的思路，以起点作为祖先，用路径中靠近终点的点不断往上更新。
 用f[i]表示 i 号节点到终点的路径长度期望——终点没有出度，到自身的路径长度期望为 0，可以很容易得到f[n] = 0。顺应这这个思路，将f[n]作为初始状态，由起点作为 DFS 入口，搜到终点后更新状态。对于点 x 的每一条出边 i，连接子节点为 y 有 f[x] &#43;= (f[y] &#43; edge[i].edgeValue) / outdu[x];

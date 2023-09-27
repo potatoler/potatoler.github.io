@@ -12,7 +12,7 @@
 
 <link rel='canonical' href='https://example.org/post/%E6%A0%91%E5%AD%A6%E6%9D%82%E8%B0%881%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='树学杂谈1: 树的直径'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='树学杂谈1: 树的直径'>
 <meta property='og:description' content='关于树的直径 连接树上相距最远的两点的路径被称作这棵树的最长链。树的直径指这条最长链或者它的长度。
 树的直径的求法 一般来将我们可以使用两种方法求数的直径，它们的时间复杂度都是 $O(n)$。
 两次搜索 我们可以通过两次 DFS 或两次 BFS 来求树的直径，其原理非常简单：从任意一个节点 $start$ 出发进行第一次搜索，找到距离起点最远的点（记为 $deepest$），再从 $deepest$ 出发进行第二次搜索，找到距离它最远的点（记为 $ending$）。$deepest$ 和 $ending$ 之间的路径便是这棵树的直径，在这个过程中 $deepest$ 一定是直径的一端，否则第一次搜索的结果一定不是 $deepest$，因为直径的两个端点中一定有一个比 $deepest$ 离 $start$ 远。

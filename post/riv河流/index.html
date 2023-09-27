@@ -12,7 +12,7 @@ f[x][father][subk][0] = min(f[x][father][subk][0], f[thisSon][father][l][0] &#43
 
 <link rel='canonical' href='https://example.org/post/riv%E6%B2%B3%E6%B5%81/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='P3354 Riv河流'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='P3354 Riv河流'>
 <meta property='og:description' content='题目简述 一个颗以 0 号节点为根的树，每个点产一些木头，0 号节点有一个伐木场，还需要在 $k$ 个结点修建伐木场。对于每一个点，它的花费是它木头产量乘它到 0 号节点的路径中离它最近的伐木场的距离。最小化总花费。
 思路 首先考虑设 $f_{i,j}$ 表示以 $i$ 为根的子树中建了 $j$ 个伐木场，子树中的最小花费。但是有一个明显的问题：如果 $i$ 没有建伐木场，对于子树中的一些节点，我们就不知道它们的木头运到了哪里。所以不这道题中不仅要考虑子树的范围，还需要用离根节点最近的伐木场距离来限制状态。每个节点的木头只能向跟的方向运，所以即使离根节点最近的伐木场不同，对这颗子树的花费产生贡献的点是相同的。
 设 $f_{x,i,j}$ 表示以 $x$ 为根的子树中建了 $j$ 个伐木场，$x$ 没有建伐木场，距离 $x$ 最近的伐木场在 $i$； $g_{x,i,j}$ 表示以 $x$ 为根的子树中建了 $j$ 个伐木场，$x$ 建了伐木场，距离 $x$ 最近的伐木场在 $i$ —— 当然也可以用 $f_{x,i,j,\ 0/1}$ 表示这两种状态。下面用 0 表示没有建，1 表示建了。因为 DFS 回溯时更新完的状态不会再被改变，只会被使用，于是我们可以将 0 和 1 记录的答案汇总到一起（下面的部分都是汇总到 0），于是不难得到转移方程。这个点的所有更新结束后再汇总信息。

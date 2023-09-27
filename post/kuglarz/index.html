@@ -15,7 +15,7 @@ Code 注意造出来的图比较稠密，请使用 Prim 算法（不过好像原
 
 <link rel='canonical' href='https://example.org/post/kuglarz/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='P5994 Kuglarz'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='P5994 Kuglarz'>
 <meta property='og:description' content='题目描述 $n$ 个杯子，一些杯子里有小球。可以花费 $c_{i,j}$ 的代价询问从 $i$ 到 $j$ 号杯子中有球的杯子数量的奇偶性，求要知道每个杯子中是否有小球的最小代价。
 思路 很有趣的一道题，一开始以为是区间 DP，但是原题 $2×10^9$ 的数据范围 $O(n^3)$ 复杂度直接去世。
 要想知道 $pos$ 位置有没有小球，我们只需要知道任意的 $[a,pos]$ 和 $[a,pos&#43;1]$ 的奇偶性就可以了（显然），进一步来说，我们只需要知道所有的 $[0,i]$ 的奇偶性就可以知道每个位置是否有小球了。

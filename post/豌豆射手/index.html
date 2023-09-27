@@ -18,7 +18,7 @@ Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&am
 
 <link rel='canonical' href='https://example.org/post/%E8%B1%8C%E8%B1%86%E5%B0%84%E6%89%8B/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='豌豆射手'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='豌豆射手'>
 <meta property='og:description' content='题目简述 $d$ 个格子排成一行，现在要在格子里放 $n$ 个点。对于第 $i$ 个点有一个值 $r_{i}$，使这个点左右两边 $r_{i}$ 的范围内都不能放点（这个点所在的格子也算在内）。$n≤40,\ d≤10^{5},\ 1≤r_{i}≤40,\ \sum_{i=1}^{n}r_{i}≤d$
 思路 考虑一个不是很难想的暴力：暴搜从左往右点的顺序，顺序确定以后可以先把点排布得尽量紧密，然后将空出来的位置插到点的中间。由于点之间有距离的限制，所以对于现在已经确定的这个排列可以很简单地求出将点排布得尽量紧密之后所占的格子数就是 $len=\sum_{i=1}^{n-1}\max(r_{i},r_{i&#43;1})$。剩下的格子插到点中间的方案数可以用组合数求出：$C_{d-len&#43;n}^{n}$。
 不难发现，当排列顺序相同时答案是唯一确定的，而排列顺序不同时 $len$ 的值会发生改变，答案变得不同了。着眼于点排布的结构，可以设出设这样的状态：$f_{i,j,k}$ 表示放了 $i$ 个点，它们分成了 $j$ 块，所占的位置共有 $k$ 格的方案数。

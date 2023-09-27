@@ -13,7 +13,7 @@ Code 可以从第一排直接开始修，也可以从每次没有修过最后一
 
 <link rel='canonical' href='https://example.org/post/legend/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='S2OJ#28 Legend hs_black - Rebuilding'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='S2OJ#28 Legend hs_black - Rebuilding'>
 <meta property='og:description' content='题目简述 $n$ 排电脑，每排坏了 $a_i$ 台，$m$ 个人修电脑。一开始所有人在第 0 排（从第 1 排开始才有电脑），每一时刻每个人可以前往下一排，或者修自己所在一排的一台坏电脑。问修完电脑的最少时间。$n,m≤10^5,\ a_i≤10^9$
 思路 考虑怎么安排修电脑最高效：一个人尽可能只修一排的电脑，除非他修完这排电脑之后还有剩余的时间。可以想到一个人最大化地利用时间就需要走的更少，所以如果多份工作每个人完成一点的话所有人都要奔波于各排电脑之间，有很多人多走了。
 基于上面的分配方法，对于给定的时间，将每个人的时间单独考虑，让所有人一个一个完成自己的工作。计算最终能否修完全部的电脑。只需要二分这个时间然后用这种方法判定就可以了。

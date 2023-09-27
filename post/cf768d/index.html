@@ -13,7 +13,7 @@ Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&am
 
 <link rel='canonical' href='https://example.org/post/cf768d/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='CF768D Jon and Orbs'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='CF768D Jon and Orbs'>
 <meta property='og:description' content='题目简述 有 $k$ 种物品，每次可以取一个物品但是不知道取的是哪种。求把所有种类物品都取遍的概率不小于 $\frac{p}{2000}$ 的最小天数。
 思路 方程还是比较好推的，设 $f_{i,j}$ 表示第 $i$ 天时取了 $j$ 种物品的概率，对于第 $i$ 天当天有没有取一种新的物品分类讨论有 $\large f_{i,j}=f_{i-1,j-1}·\frac{k-j&#43;1}{k}&#43;f_{i-1,j}·\frac{j}{k}$；显然第一维可以压掉，要注意倒序。
 但是有个问题在于状态里面设了天数但是题中没有给出具体的天数限制 —— 我一开始压掉天数，转移一次判断一次但是 TLE 了。

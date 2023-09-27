@@ -15,7 +15,7 @@ Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&am
 
 <link rel='canonical' href='https://example.org/post/cf875f/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='CF875F Royal Questions'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='CF875F Royal Questions'>
 <meta property='og:description' content='题目简述 $n$ 个王子 $m$ 个公主，每个公主有两个备选的王子，有 $w_i$ 的嫁妆。怎样结婚可以获得最多的嫁妆（王子和公主一对一，公主只能和被选的王子结婚，可以有剩男剩女）。$2≤n≤200000,\ 1≤m≤200000,\ 1≤w_i≤10000$
 思路 将王子看作点，公主看作边，嫁妆看作边权，选了一条边就是选了一个公主，考虑怎样的选边方案是合法的：
 考虑树的情况，可以选择 $k$ 条边连接 $k&#43;1$ 个点，因为选的点是什么不重要，所以相当于是求一颗最大生成树。但是这样一来会放弃一个点（王子），所以在树中再加一条边是可行的，这时候环上的王子和公主可以结婚，把环看作根，剩下的部分每个公主就与其到达的儿子节点结婚。

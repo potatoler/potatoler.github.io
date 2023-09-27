@@ -13,7 +13,7 @@ $\small O(n&#43;m)$ 在上面的差分优化上进一步思考：对于每个位
 
 <link rel='canonical' href='https://example.org/post/%E6%93%8D%E4%BD%9C/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='LOJ 6500 操作'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='LOJ 6500 操作'>
 <meta property='og:description' content='题目描述 给一个长度为 $n$ 的 01 序列，一个整数 $k$，并进行 $m$ 次询问。每次询问给出一个区间，可以进行若干次操作：每次选择这个区间的长度为 $k$ 的子区间，将子区间的每一位取反 —— 至少需要几次操作才能将这个区间内的所有元素变成 $0$？
 思路 $\small O(nmk)$ 不妨从最简单的暴力开始想起：从左往右数的第一个 $1$（不管是原来就有的还是新产生的）一定是一个要反转的子区间的左端点 —— 这是因为如果将它忽略，以它右边的数为左端点的反转子区间再也无法改变这个 $1$。于是对于每次操作，我们可以从左往右枚举，遇到一个 $1$ 就以它为左端点暴力做一次取反。
 $\small O(nm)$ 当我们求出区间的差分序列，一次子区间的取反其实就是在差分序列上对要取反子区间的左右端点处进行了取反。最后只需要让差分序列全是 $0$ 就可以了。对于以 $i$ 位置为左端点的，长度为 $k$ 的子区间，改变的其实就是差分序列上 $i$ 位置和 $i&#43;k$ 位置的 $1$。从左往右扫一遍，遇到一个 $1$ 就做一次这样的操作。

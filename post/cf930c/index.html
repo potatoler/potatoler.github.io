@@ -13,7 +13,7 @@ Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&am
 
 <link rel='canonical' href='https://example.org/post/cf930c/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='CF930C Teodor is not a liar'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='CF930C Teodor is not a liar'>
 <meta property='og:description' content='题目简述 $n$ 条线段，断点都是正整数且都属于区间 $[1,m]$，Teodor 发现没有一个正整数点在所有的线段上。Sasha 可以向 Teodor 询问若干个整点（但 Sasha 不知道有多少条线段），对于每次询问的点 $x$，Teodor 会回答 $cnt_{x}$ 表示 $x$ 在多少条线段上。求一个最大的集合 $S$ 满足询问 $∀x∈S$ 的 $cnt_x$ 后仍然不能保证没有一个整点满足在所有线段上。只需要输出 $S$ 的大小。
 思路 题目中的集合是询问了任意集合内的整点都不能保证这个条件，我们可以反着想 —— 怎样判断「没有一个正整数点在所有的线段上」。
 考虑这个问题，可以发现当存在一组整点 $x&amp;lt;y&amp;lt;z$ 满足 $cnt_y&amp;lt;cnt_x$ 且 $cnt_y&amp;lt;cnt_z$ 的时候就可以确定没有一个正整数点在所有的线段上：因为线段是连续的，所以当满足条件时只有可能是中间的点的 $cnt$ 比两边的点大，否则一定有一条线段，覆盖了左边的点和中间的点儿没有右边的点，可以考虑三条线段 $l_1[x,y),\ l_2[x,z],\ l_3(y,z]$。

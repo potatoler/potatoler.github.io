@@ -14,7 +14,7 @@
 
 <link rel='canonical' href='https://example.org/post/cf526f/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='CF526F Pudding Monsters'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='CF526F Pudding Monsters'>
 <meta property='og:description' content='题目简述： 一个 $n \times n$ 的棋盘上面有 $n$ 个棋子，每行每列恰好有一个棋子，给定棋子的位置，求有多少个 $k \times k$ 的子棋盘上恰好有 $k$ 个棋子。$n ≤ 3 \times 10^{5}$。
 思路： 限制是解决题目的突破口，「每行每列恰好有一个棋子」就是这道题中很好的限制。由于这个限制的存在，我们可以构造一个数列 $|a_{n}|$，对于每一个点 $(x,y)$ 命 $a_{x}=y$。这样就将原题中二维空间的问题转化成了一维空间中的问题：「 $|a_{n}|$ 中有多少个区间中的数字是连续的」或者说「 $|a_{n}|$ 中有多少个区间，满足 $max-min = r-l$ 」。
 记一个区间的中点为 $mid$，我们可以将一个区间的答案分成三部分：$mid$ 左边，$mid$ 右边，和跨越 $mid$。前两个是区间从中间劈开所产生的子问题，可以递归解决，我们着重考虑一下第三部分。

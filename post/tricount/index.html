@@ -15,7 +15,7 @@ Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&am
 
 <link rel='canonical' href='https://example.org/post/tricount/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='P3166 数三角形'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='P3166 数三角形'>
 <meta property='og:description' content='题目简述 给定一个 $N\times M$ 的网格，请计算三点都在格点上的三角形共有多少个。注意三角形的三点不能共线。
 思路 直接求三角形的个数比较困难。我们知道在网格中随便选三个不共线的格点就可以构成一个三角形，所以总选法减去三点共线的方案数就是三角形的个数。
 横纵向三点共线的方案很好统计：对于题目中 $N$ 行 $M$ 列的网格，每行有 $M&#43;1$ 个点，三点共线的方案数就是 $C^3_n$，因为有 $N$ 行所以横向三点共线总方案数一共是 $N \times C^3_n$；纵向可以使用相同的方法算出。

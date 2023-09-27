@@ -12,7 +12,7 @@ Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&am
 
 <link rel='canonical' href='https://example.org/post/cf213c/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='CF213C Relay Race'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='CF213C Relay Race'>
 <meta property='og:description' content='题目简述 输入一个 $n*n$ 的矩形，每个 $a_{i,j}$ 是这个位置的价值。现在要从左上角走到右下角再返回，每个价值只被计算一次，求最大价值和。
 思路 从左上角走到右下角再返回可以看作是两个人分别在左上角和右下角同时走，这样我们可以设 $f_{i,j,x,y}$ 表示第一个人在 $(i,j)$，第二个人在 $(x,y)$ 时最大价值和。
 但是这样是开不下的既然两个人同时走可以设 $f_{i,j,k}$ 表示每人都走了 $i$ 步，第一个人在 $j$ 行，第二个人在 $k$ 行的最大价值和。两个人的坐标分别都可以算出来，这样就减少了一维，接下来就是简单的转移了。

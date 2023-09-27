@@ -13,7 +13,7 @@ bool isPrime[maxn]; int primeNumber[maxn],primeCount; void primeEratosthenes(int
 
 <link rel='canonical' href='https://example.org/post/%E7%AD%9B%E6%B3%95/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='筛法'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='筛法'>
 <meta property='og:description' content='素数是一类很奇妙的数字，不仅本身具有“只有1和本身两个因数”的性质，而且在很多著名的函数和算法中都有它的参与。所以从给定的一堆数中快速筛选出素数是一个很常见的需求——各种各样的素数筛法应运而生。
 朴素筛法 法如其名，就是一种利用素数基本性质的筛法：对于每一个数，枚举1到$\sqrt n$ 的数判断是可以被n整除——其实就是对每一个数进行了一次素数判断，显然不怎么高效。
 Eratosthenes 筛法（埃氏筛） Eratosthenes 筛法即埃氏筛，运用了“以小标大”的思想：对于一个素数 x，它的倍数 ax 一定是一个合数。所以对于一个素数，我们就需要把它在给定范围内的倍数全标记为合数——当枚举到一个已经被标记为合数的数时就可以直接跳过，避免冗余的判断，运行一次 Eratosthenes 筛法，没有被标记的数就是素数了。

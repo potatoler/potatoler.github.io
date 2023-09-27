@@ -11,7 +11,7 @@ Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&am
 
 <link rel='canonical' href='https://example.org/post/cf353d/'>
 
-<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='CF353D Queue'>
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='CF353D Queue'>
 <meta property='og:description' content='题目简述 给定一个长度不超过 $10^6$ 的，由 M 和 F 组成的字符串。每秒可以做若干次这样的操作：选择一个 F，如果它的前面是 M 那么交换这两个字符（每一个 F 每一秒只能被操作一次）。多少秒后所有的 F 都在最前面？
 思路 因为每一个 F 每一秒只能被操作一次，对于一个 F， 要到最前面需要它前面的 M 的个数秒。因为每秒钟可以进行的操作次数没有限制所以不同的 F 操作可以叠加：考虑一个 F，如果它之前是一个 F，那么它只需要上一个 F的时间加一（因为每次上一个 F 交换来的 M 它都可以操作）。每次拿当前 M个数和上一个F的答案去最小值即可。
 Code #include&amp;lt;iostream&amp;gt; #include&amp;lt;cstdio&amp;gt; #include&amp;lt;cstdlib&amp;gt; #include&amp;lt;cmath&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;climits&amp;gt; #define int long long using namespace std; const int MaxN = 1000006; char str[MaxN]; signed main(){ scanf(&amp;#34;%s&amp;#34;, str&#43;1); int len = strlen(str&#43;1); int ans = 0, danshi = 0; for(int i=1; i&amp;lt;=len; i&#43;&#43;){ switch(str[i]){ case &amp;#39;M&amp;#39;:{ danshi&#43;&#43;; break; } case &amp;#39;F&amp;#39;:{ if(danshi &amp;gt; 0) ans = max(ans&#43;1, danshi); break; } } } printf(&amp;#34;%lld&amp;#34;, ans); return 0; } '>
