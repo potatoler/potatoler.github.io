@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='系统结构	本文描述的边缘计算系统包括边缘服务器、一个网关设备、多个接入点以及多个智能体。接入点与网关设备之间有线连接，与智能体之间无线连接，接入点的数量决定了无线子信道的数量。一个接入点可以服务多个智能体而一个智能体同时只能接入一个接入点。
+所有智能体以采样周期为时间单位统一行动，智能设备可以提供观察信息即参数，而计算一个智能设备的操作不仅需要自身提供的参数，还可能需要其他智能体提供的参数。
+上传参数至边缘云的时间	计算在边缘服务器进行时，接入点 $i$ 下各智能体参数上传时间相加（共用同一子信道）所有智能体总上传时间取各接入点上传时间 $\max$（多个平行的子信道）。网关与接入点有线连接，且与边缘服务器共址部署，这之间的传输非常快，因此忽略了参数由接入点传入边缘云计算单元的时间。
+从边缘云下载计算结果的过程与上传过程类似，同样是同一接入点求和，各接入点取 $\max$。
+边缘云的计算	计算的输入是参数，输出是控制智能体行动的指令。文章假设计算量与参数数据量大小成正比。计算过程中将边缘服务器的计算资源看作一个整体，拥有算力 $F$。计算时间为总计算量除以边缘云算力。
+智能体的计算	智能体计算前需要从边缘云获得所有所需参数。文中将智能体$(i,j)$计算得到实时操作距边缘云获得全部参数数据的时间表示为 $$ \tau_{i,j,t}^\mathrm{AD&#43;C}=\sum_{k=1}^{j}\tau_{i,k,t}^\mathrm{AD}&#43;\frac{B_{i,j,t}}{f_{i,j}} $$ 其中 $\tau_{i,k,t}^\mathrm{AD}$ 表示接入点 $i$ 向智能体$(i,k)$ 转发所需参数所需参数的时间，$B_{i,j,t}$ 表示计算量，$f_{i,j}$ 表示算力。从式$(1)$可见智能体$(i,j)$ 的计算是在接入点 $i$ 转发完所有参数数据之后才开始的。
+实际上智能体$(i,j)$ 的计算只需要在其接收完所有所需参数之后就可以开始了，但是不能确定这个智能体所需要的参数什么时候可以被全部接受，因为接入点 $i$ 转发参数的顺序是未知的。或许可以根据各智能体本地计算时间的不同使接入点先为计算时间长的智能体转发数据？但是这样的话则需要先计算智能体本地计算的时间并排序，这个过程产生的时间开销是否会对总时间有较大影响？或许这样做反而不如文中所述的方法。
+从边缘云获得全部参数数据至所有智能体全部计算得到实时操作的时间为所有 $\tau_{i,j,t}^\mathrm{AD&#43;C}$ 取 $\max$，因为每个智能体都等待其接入点转发完所有参数之后才开始计算，它们的计算都是并行的。
+智能体与边缘云协同计算	在一个采样周期 $t$ 中，策略 $\mathcal{X_{t}}={x_{i,j,t}|\forall i\in\mathcal M \ and \ (i,j)\in\mathcal N_i}$ 将智能体分为选择本地计算的集合及选择由边缘云计算的集合 $\mathcal{A_{t}^\mathrm{A}}={(i,j)|x_{i,j,t}=0,\forall i\in\mathcal M \ and \ (i,j)\in\mathcal N_i}$ 和 $\mathcal{A_{t}^\mathrm{E}}={(i,j)|x_{i,j,t}=1,\forall i\in\mathcal M \ and \ (i,j)\in\mathcal N_i}$​。
+整个协同计算及传输过程为：
+所有智能体通过其连接的接入点上传参数 边缘云开始为 $\mathcal{A_{t}^\mathrm{A}}$ 中的智能体转发参数，并同时开始为 $\mathcal{A_{t}^\mathrm{E}}$ 中的智能体计算实时操作（数据转发和操作计算由边缘云的不同部分执行，故可以同时进行） 转发实时操作给 $\mathcal{A_{t}^\mathrm{E}}$ 中的智能体，这部分数据排在 $\mathcal{A_{t}^\mathrm{A}}$ 中智能体所需的参数数据之后 $\mathcal{A_{t}^\mathrm{A}}$ 中的智能体根据获得的参数计算实时操作 边缘云要借助接入点为 $\mathcal{A_{t}^\mathrm{E}}$ 中的智能体转发实时操作，具体地，接入点 $i$ 开始发送实时操作距边缘云接收到全部参数数据的时间为 $$ \tau_{i,t}^\mathrm{SI}(\mathcal{X_t})=\max{[1-\prod_{(i,j)\in\mathcal{N_i}}(1-x_{i,j,t})]\tau_{t}^\mathrm{EC}(\mathcal{X_t}),\sum_{(i,j)\in\mathcal{N_i}}\tau_{i,j,t}^\mathrm{DD}(x_{i,j,t})} $$ 其中 $\tau_{t}^\mathrm{EC}$ 为边缘云计算 $\mathcal{A_{t}^\mathrm{E}}$ 中智能体的实时操作的时间，$\tau_{i,j,t}^\mathrm{DD}$ 为接入点 $i$ 向智能体 $(i,j) \in \mathcal{A_t^\mathrm{A}}$ 发送参数的时间。因此接入点 $i$ 开始发送实时操作的时间与接入点 $i$ 为旗下智能体发送完参数的时间以及边缘云计算完所有实时操作的时间有关，具体取决于较晚的那项。值得注意的是从 $[1-\prod_{(i,j)\in\mathcal{N_i}}(1-x_{i,j,t})]$ 可以看出只要接入点 $i$ 旗下有任意一个智能体需要借助边缘云计算实时操作，就需要考虑边缘云计算完所有智能体的实时操作的时间（因为边缘云什么时候能够计算完接入点 $i$ 旗下所有智能体的实时操作的时间是不确定的）而只有旗下所有智能体都不需要借助边缘云计算的时候才能不考虑边缘云计算的时间。'>
+<title>读《多智能体协作场景下基于强化学习值分解的计算卸载策略》</title>
+
+<link rel='canonical' href='https://example.org/post/poart1/'>
+
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='读《多智能体协作场景下基于强化学习值分解的计算卸载策略》'>
+<meta property='og:description' content='系统结构	本文描述的边缘计算系统包括边缘服务器、一个网关设备、多个接入点以及多个智能体。接入点与网关设备之间有线连接，与智能体之间无线连接，接入点的数量决定了无线子信道的数量。一个接入点可以服务多个智能体而一个智能体同时只能接入一个接入点。
+所有智能体以采样周期为时间单位统一行动，智能设备可以提供观察信息即参数，而计算一个智能设备的操作不仅需要自身提供的参数，还可能需要其他智能体提供的参数。
+上传参数至边缘云的时间	计算在边缘服务器进行时，接入点 $i$ 下各智能体参数上传时间相加（共用同一子信道）所有智能体总上传时间取各接入点上传时间 $\max$（多个平行的子信道）。网关与接入点有线连接，且与边缘服务器共址部署，这之间的传输非常快，因此忽略了参数由接入点传入边缘云计算单元的时间。
+从边缘云下载计算结果的过程与上传过程类似，同样是同一接入点求和，各接入点取 $\max$。
+边缘云的计算	计算的输入是参数，输出是控制智能体行动的指令。文章假设计算量与参数数据量大小成正比。计算过程中将边缘服务器的计算资源看作一个整体，拥有算力 $F$。计算时间为总计算量除以边缘云算力。
+智能体的计算	智能体计算前需要从边缘云获得所有所需参数。文中将智能体$(i,j)$计算得到实时操作距边缘云获得全部参数数据的时间表示为 $$ \tau_{i,j,t}^\mathrm{AD&#43;C}=\sum_{k=1}^{j}\tau_{i,k,t}^\mathrm{AD}&#43;\frac{B_{i,j,t}}{f_{i,j}} $$ 其中 $\tau_{i,k,t}^\mathrm{AD}$ 表示接入点 $i$ 向智能体$(i,k)$ 转发所需参数所需参数的时间，$B_{i,j,t}$ 表示计算量，$f_{i,j}$ 表示算力。从式$(1)$可见智能体$(i,j)$ 的计算是在接入点 $i$ 转发完所有参数数据之后才开始的。
+实际上智能体$(i,j)$ 的计算只需要在其接收完所有所需参数之后就可以开始了，但是不能确定这个智能体所需要的参数什么时候可以被全部接受，因为接入点 $i$ 转发参数的顺序是未知的。或许可以根据各智能体本地计算时间的不同使接入点先为计算时间长的智能体转发数据？但是这样的话则需要先计算智能体本地计算的时间并排序，这个过程产生的时间开销是否会对总时间有较大影响？或许这样做反而不如文中所述的方法。
+从边缘云获得全部参数数据至所有智能体全部计算得到实时操作的时间为所有 $\tau_{i,j,t}^\mathrm{AD&#43;C}$ 取 $\max$，因为每个智能体都等待其接入点转发完所有参数之后才开始计算，它们的计算都是并行的。
+智能体与边缘云协同计算	在一个采样周期 $t$ 中，策略 $\mathcal{X_{t}}={x_{i,j,t}|\forall i\in\mathcal M \ and \ (i,j)\in\mathcal N_i}$ 将智能体分为选择本地计算的集合及选择由边缘云计算的集合 $\mathcal{A_{t}^\mathrm{A}}={(i,j)|x_{i,j,t}=0,\forall i\in\mathcal M \ and \ (i,j)\in\mathcal N_i}$ 和 $\mathcal{A_{t}^\mathrm{E}}={(i,j)|x_{i,j,t}=1,\forall i\in\mathcal M \ and \ (i,j)\in\mathcal N_i}$​。
+整个协同计算及传输过程为：
+所有智能体通过其连接的接入点上传参数 边缘云开始为 $\mathcal{A_{t}^\mathrm{A}}$ 中的智能体转发参数，并同时开始为 $\mathcal{A_{t}^\mathrm{E}}$ 中的智能体计算实时操作（数据转发和操作计算由边缘云的不同部分执行，故可以同时进行） 转发实时操作给 $\mathcal{A_{t}^\mathrm{E}}$ 中的智能体，这部分数据排在 $\mathcal{A_{t}^\mathrm{A}}$ 中智能体所需的参数数据之后 $\mathcal{A_{t}^\mathrm{A}}$ 中的智能体根据获得的参数计算实时操作 边缘云要借助接入点为 $\mathcal{A_{t}^\mathrm{E}}$ 中的智能体转发实时操作，具体地，接入点 $i$ 开始发送实时操作距边缘云接收到全部参数数据的时间为 $$ \tau_{i,t}^\mathrm{SI}(\mathcal{X_t})=\max{[1-\prod_{(i,j)\in\mathcal{N_i}}(1-x_{i,j,t})]\tau_{t}^\mathrm{EC}(\mathcal{X_t}),\sum_{(i,j)\in\mathcal{N_i}}\tau_{i,j,t}^\mathrm{DD}(x_{i,j,t})} $$ 其中 $\tau_{t}^\mathrm{EC}$ 为边缘云计算 $\mathcal{A_{t}^\mathrm{E}}$ 中智能体的实时操作的时间，$\tau_{i,j,t}^\mathrm{DD}$ 为接入点 $i$ 向智能体 $(i,j) \in \mathcal{A_t^\mathrm{A}}$ 发送参数的时间。因此接入点 $i$ 开始发送实时操作的时间与接入点 $i$ 为旗下智能体发送完参数的时间以及边缘云计算完所有实时操作的时间有关，具体取决于较晚的那项。值得注意的是从 $[1-\prod_{(i,j)\in\mathcal{N_i}}(1-x_{i,j,t})]$ 可以看出只要接入点 $i$ 旗下有任意一个智能体需要借助边缘云计算实时操作，就需要考虑边缘云计算完所有智能体的实时操作的时间（因为边缘云什么时候能够计算完接入点 $i$ 旗下所有智能体的实时操作的时间是不确定的）而只有旗下所有智能体都不需要借助边缘云计算的时候才能不考虑边缘云计算的时间。'>
+<meta property='og:url' content='https://example.org/post/poart1/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-02-21T03:12:17&#43;08:00'/><meta property='article:modified_time' content='2024-02-21T03:12:17&#43;08:00'/>
+<meta name="twitter:title" content="读《多智能体协作场景下基于强化学习值分解的计算卸载策略》">
+<meta name="twitter:description" content="系统结构	本文描述的边缘计算系统包括边缘服务器、一个网关设备、多个接入点以及多个智能体。接入点与网关设备之间有线连接，与智能体之间无线连接，接入点的数量决定了无线子信道的数量。一个接入点可以服务多个智能体而一个智能体同时只能接入一个接入点。
+所有智能体以采样周期为时间单位统一行动，智能设备可以提供观察信息即参数，而计算一个智能设备的操作不仅需要自身提供的参数，还可能需要其他智能体提供的参数。
+上传参数至边缘云的时间	计算在边缘服务器进行时，接入点 $i$ 下各智能体参数上传时间相加（共用同一子信道）所有智能体总上传时间取各接入点上传时间 $\max$（多个平行的子信道）。网关与接入点有线连接，且与边缘服务器共址部署，这之间的传输非常快，因此忽略了参数由接入点传入边缘云计算单元的时间。
+从边缘云下载计算结果的过程与上传过程类似，同样是同一接入点求和，各接入点取 $\max$。
+边缘云的计算	计算的输入是参数，输出是控制智能体行动的指令。文章假设计算量与参数数据量大小成正比。计算过程中将边缘服务器的计算资源看作一个整体，拥有算力 $F$。计算时间为总计算量除以边缘云算力。
+智能体的计算	智能体计算前需要从边缘云获得所有所需参数。文中将智能体$(i,j)$计算得到实时操作距边缘云获得全部参数数据的时间表示为 $$ \tau_{i,j,t}^\mathrm{AD&#43;C}=\sum_{k=1}^{j}\tau_{i,k,t}^\mathrm{AD}&#43;\frac{B_{i,j,t}}{f_{i,j}} $$ 其中 $\tau_{i,k,t}^\mathrm{AD}$ 表示接入点 $i$ 向智能体$(i,k)$ 转发所需参数所需参数的时间，$B_{i,j,t}$ 表示计算量，$f_{i,j}$ 表示算力。从式$(1)$可见智能体$(i,j)$ 的计算是在接入点 $i$ 转发完所有参数数据之后才开始的。
+实际上智能体$(i,j)$ 的计算只需要在其接收完所有所需参数之后就可以开始了，但是不能确定这个智能体所需要的参数什么时候可以被全部接受，因为接入点 $i$ 转发参数的顺序是未知的。或许可以根据各智能体本地计算时间的不同使接入点先为计算时间长的智能体转发数据？但是这样的话则需要先计算智能体本地计算的时间并排序，这个过程产生的时间开销是否会对总时间有较大影响？或许这样做反而不如文中所述的方法。
+从边缘云获得全部参数数据至所有智能体全部计算得到实时操作的时间为所有 $\tau_{i,j,t}^\mathrm{AD&#43;C}$ 取 $\max$，因为每个智能体都等待其接入点转发完所有参数之后才开始计算，它们的计算都是并行的。
+智能体与边缘云协同计算	在一个采样周期 $t$ 中，策略 $\mathcal{X_{t}}={x_{i,j,t}|\forall i\in\mathcal M \ and \ (i,j)\in\mathcal N_i}$ 将智能体分为选择本地计算的集合及选择由边缘云计算的集合 $\mathcal{A_{t}^\mathrm{A}}={(i,j)|x_{i,j,t}=0,\forall i\in\mathcal M \ and \ (i,j)\in\mathcal N_i}$ 和 $\mathcal{A_{t}^\mathrm{E}}={(i,j)|x_{i,j,t}=1,\forall i\in\mathcal M \ and \ (i,j)\in\mathcal N_i}$​。
+整个协同计算及传输过程为：
+所有智能体通过其连接的接入点上传参数 边缘云开始为 $\mathcal{A_{t}^\mathrm{A}}$ 中的智能体转发参数，并同时开始为 $\mathcal{A_{t}^\mathrm{E}}$ 中的智能体计算实时操作（数据转发和操作计算由边缘云的不同部分执行，故可以同时进行） 转发实时操作给 $\mathcal{A_{t}^\mathrm{E}}$ 中的智能体，这部分数据排在 $\mathcal{A_{t}^\mathrm{A}}$ 中智能体所需的参数数据之后 $\mathcal{A_{t}^\mathrm{A}}$ 中的智能体根据获得的参数计算实时操作 边缘云要借助接入点为 $\mathcal{A_{t}^\mathrm{E}}$ 中的智能体转发实时操作，具体地，接入点 $i$ 开始发送实时操作距边缘云接收到全部参数数据的时间为 $$ \tau_{i,t}^\mathrm{SI}(\mathcal{X_t})=\max{[1-\prod_{(i,j)\in\mathcal{N_i}}(1-x_{i,j,t})]\tau_{t}^\mathrm{EC}(\mathcal{X_t}),\sum_{(i,j)\in\mathcal{N_i}}\tau_{i,j,t}^\mathrm{DD}(x_{i,j,t})} $$ 其中 $\tau_{t}^\mathrm{EC}$ 为边缘云计算 $\mathcal{A_{t}^\mathrm{E}}$ 中智能体的实时操作的时间，$\tau_{i,j,t}^\mathrm{DD}$ 为接入点 $i$ 向智能体 $(i,j) \in \mathcal{A_t^\mathrm{A}}$ 发送参数的时间。因此接入点 $i$ 开始发送实时操作的时间与接入点 $i$ 为旗下智能体发送完参数的时间以及边缘云计算完所有实时操作的时间有关，具体取决于较晚的那项。值得注意的是从 $[1-\prod_{(i,j)\in\mathcal{N_i}}(1-x_{i,j,t})]$ 可以看出只要接入点 $i$ 旗下有任意一个智能体需要借助边缘云计算实时操作，就需要考虑边缘云计算完所有智能体的实时操作的时间（因为边缘云什么时候能够计算完接入点 $i$ 旗下所有智能体的实时操作的时间是不确定的）而只有旗下所有智能体都不需要借助边缘云计算的时候才能不考虑边缘云计算的时间。">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/poart1/">读《多智能体协作场景下基于强化学习值分解的计算卸载策略》</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 21, 2024</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><strong>系统结构</strong>	本文描述的边缘计算系统包括边缘服务器、一个网关设备、多个接入点以及多个智能体。接入点与网关设备之间有线连接，与智能体之间无线连接，接入点的数量决定了无线子信道的数量。一个接入点可以服务多个智能体而一个智能体同时只能接入一个接入点。</p>
+<p>所有智能体以采样周期为时间单位统一行动，智能设备可以提供观察信息即参数，而计算一个智能设备的操作不仅需要自身提供的参数，还可能需要其他智能体提供的参数。</p>
+<p><strong>上传参数至边缘云的时间</strong>	计算在边缘服务器进行时，接入点 $i$ 下各智能体参数上传时间相加（共用同一子信道）所有智能体总上传时间取各接入点上传时间 $\max$（多个平行的子信道）。网关与接入点有线连接，且与边缘服务器共址部署，这之间的传输非常快，因此忽略了参数由接入点传入边缘云计算单元的时间。</p>
+<p>从边缘云下载计算结果的过程与上传过程类似，同样是同一接入点求和，各接入点取 $\max$。</p>
+<p><strong>边缘云的计算</strong>	计算的输入是参数，输出是控制智能体行动的指令。文章假设计算量与参数数据量大小成正比。计算过程中将边缘服务器的计算资源看作一个整体，拥有算力 $F$。计算时间为总计算量除以边缘云算力。</p>
+<p><strong>智能体的计算</strong>	智能体计算前需要从边缘云获得所有所需参数。文中将智能体$(i,j)$计算得到实时操作距边缘云获得全部参数数据的时间表示为
+$$
+\tau_{i,j,t}^\mathrm{AD+C}=\sum_{k=1}^{j}\tau_{i,k,t}^\mathrm{AD}+\frac{B_{i,j,t}}{f_{i,j}}
+$$
+其中 $\tau_{i,k,t}^\mathrm{AD}$ 表示接入点 $i$ 向智能体$(i,k)$ 转发所需参数所需参数的时间，$B_{i,j,t}$ 表示计算量，$f_{i,j}$ 表示算力。从式$(1)$可见智能体$(i,j)$ 的计算是在接入点 $i$ 转发完所有参数数据之后才开始的。</p>
+<blockquote>
+<p>实际上智能体$(i,j)$ 的计算只需要在其接收完所有所需参数之后就可以开始了，但是不能确定这个智能体所需要的参数什么时候可以被全部接受，因为接入点 $i$ 转发参数的顺序是未知的。或许可以根据各智能体本地计算时间的不同使接入点先为计算时间长的智能体转发数据？但是这样的话则需要先计算智能体本地计算的时间并排序，这个过程产生的时间开销是否会对总时间有较大影响？或许这样做反而不如文中所述的方法。</p>
+</blockquote>
+<p>从边缘云获得全部参数数据至所有智能体全部计算得到实时操作的时间为所有 $\tau_{i,j,t}^\mathrm{AD+C}$ 取 $\max$，因为每个智能体都等待其接入点转发完所有参数之后才开始计算，它们的计算都是并行的。</p>
+<p><strong>智能体与边缘云协同计算</strong>	在一个采样周期 $t$ 中，策略 $\mathcal{X_{t}}={x_{i,j,t}|\forall i\in\mathcal M \ and \ (i,j)\in\mathcal N_i}$ 将智能体分为选择本地计算的集合及选择由边缘云计算的集合 $\mathcal{A_{t}^\mathrm{A}}={(i,j)|x_{i,j,t}=0,\forall i\in\mathcal M \ and \ (i,j)\in\mathcal N_i}$ 和 $\mathcal{A_{t}^\mathrm{E}}={(i,j)|x_{i,j,t}=1,\forall i\in\mathcal M \ and \ (i,j)\in\mathcal N_i}$​。</p>
+<p>整个协同计算及传输过程为：</p>
+<ol>
+<li>所有智能体通过其连接的接入点上传参数</li>
+<li>边缘云开始为 $\mathcal{A_{t}^\mathrm{A}}$ 中的智能体转发参数，并同时开始为 $\mathcal{A_{t}^\mathrm{E}}$ 中的智能体计算实时操作（数据转发和操作计算由边缘云的不同部分执行，故可以同时进行）</li>
+<li>转发实时操作给 $\mathcal{A_{t}^\mathrm{E}}$ 中的智能体，这部分数据排在 $\mathcal{A_{t}^\mathrm{A}}$ 中智能体所需的参数数据之后</li>
+<li>$\mathcal{A_{t}^\mathrm{A}}$ 中的智能体根据获得的参数计算实时操作</li>
+</ol>
+<p>边缘云要借助接入点为 $\mathcal{A_{t}^\mathrm{E}}$ 中的智能体转发实时操作，具体地，接入点 $i$ 开始发送实时操作距边缘云接收到全部参数数据的时间为
+$$
+\tau_{i,t}^\mathrm{SI}(\mathcal{X_t})=\max{[1-\prod_{(i,j)\in\mathcal{N_i}}(1-x_{i,j,t})]\tau_{t}^\mathrm{EC}(\mathcal{X_t}),\sum_{(i,j)\in\mathcal{N_i}}\tau_{i,j,t}^\mathrm{DD}(x_{i,j,t})}
+$$
+其中 $\tau_{t}^\mathrm{EC}$ 为边缘云计算 $\mathcal{A_{t}^\mathrm{E}}$ 中智能体的实时操作的时间，$\tau_{i,j,t}^\mathrm{DD}$ 为接入点 $i$ 向智能体 $(i,j) \in \mathcal{A_t^\mathrm{A}}$ 发送参数的时间。因此接入点 $i$ 开始发送实时操作的时间与接入点 $i$ 为旗下智能体发送完参数的时间以及边缘云计算完所有实时操作的时间有关，具体取决于较晚的那项。值得注意的是从 $[1-\prod_{(i,j)\in\mathcal{N_i}}(1-x_{i,j,t})]$ 可以看出只要接入点 $i$ 旗下有任意一个智能体需要借助边缘云计算实时操作，就需要考虑边缘云计算完所有智能体的实时操作的时间（因为边缘云什么时候能够计算完接入点 $i$ 旗下所有智能体的实时操作的时间是不确定的）而只有旗下所有智能体都不需要借助边缘云计算的时候才能不考虑边缘云计算的时间。</p>
+<blockquote>
+<p>我对这里接入点 $i$ 开始发送实时操作的时间与上面智能体$(i,j)$ 开始计算实时操作的时间存在相似的疑问。$\max$ 中的前一项是否应为“边缘云计算完接入点$i$ 旗下智能体的实时操作的时间”而非“边缘云计算完所有智能体的实时操作的时间”？</p>
+<p>当各接入点旗下的智能体计算策略比较平均或各接入点旗下智能体计算策略不平均但每个接入点需要传输的实时操作总数据量都较小（具体来讲是实时操作传输时间远小于边缘云的实时操作计算时间）时，文中的安排方式对总时间影响不大</p>
+<p>当各接入点旗下的智能体计算策略不平均且个别接入点需要下传大量实时操作数据时，考虑这样的情况：部分接入点需要下传大量数据，其他接入点只需要下传少量数据，边缘云总计算量仍然很大，计算需要较长时间。所有接入点都要等待边缘云完成所有计算后才能开始传输自己旗下智能体的实时动作，需要下传大量数据的接入点会大幅延长总时间，而接入点在等待边缘云计算时不能进行下传，浪费了大量时间。</p>
+<p>智能体实时操作的数据量与计算量成正比，后者与所需参数量成正比，因此在边缘云计算之前就能够计算出各个智能体实时操作的数据量相对大小，进一步得出每个接入点需要下传的数据量的相对大小。根据接入点下传的数据量的相对大小进行排序，优先计算下传数据较多的接入点旗下的智能体的实时操作，可以使这些接入点提前开始下传数据，最终节省时间。考虑到边缘云拥有较强算力，排序增加的时间或将小于节省的时间。</p>
+</blockquote>
+<p><strong>成本函数的设计</strong>	系统成本函数综合考虑时延和能耗，并将全部由边缘云计算所对应的时延和能耗作为基准作无量纲化处理。系统成本函数表示为
+$$
+C_t(\mathcal{X_t})=\beta\frac{\tau_t(\mathcal{X_t})}{\tau_t^\mathrm{E}}+(1-\beta)\frac{E_t(\mathcal{X_t})}{E_t^\mathrm{E}}
+$$
+通过调整 $\beta$ 的取值可以对系统对时延和能耗的敏感程度进行调整。</p>
+<blockquote>
+<p>联合计算的时延 $\tau_t(\mathcal{X_t})$ 大于边缘云计算的时延 $\tau_t^\mathrm{E}$​</p>
+<p>联合计算的能耗 $E_t(\mathcal{X_t})$ 小于边缘云计算的能耗 $E_t^\mathrm{E}$</p>
+<p>这样在不带 $\beta$ 的情况下时延项大于 1 而能耗项小于 1，调整 $\beta$ 时两项在成本函数中的比例同时变化。这样的处理是否合适？</p>
+<p>是否应该将边缘云计算的时延改为全部本地计算的时延 $\tau_t^\mathrm{A}$ 或将边缘云计算的能耗改为全部本地计算的能耗 $E_t^\mathrm{A}$</p>
+</blockquote>
+<p><strong>多智能体联合学习框架</strong>	文章采用了值函数分解的方式对单智能体学习的算法进行扩展。</p>
+<p>全局回报函数是每个智能体的局部回报函数之和，即 $r(s,a)=\sum_k^n\ r_k(o^k,a^k)$，其中 $(o^k,a^k)$ 分别是智能体$k$ 的$(观察,动作)$ ，进一步得到
+$$
+\begin{align}
+Q^\pi(s,a)
+&amp;=\mathbb E[\sum_{t=1}^\infin\gamma^{t-1}r(s_t,a_t)|s_1=s,a_1=a;\pi]\
+&amp;=\sum_k^n{\mathbb E[\sum_{t=1}^\infin\gamma^{t-1}r_k(o^k_t,a^k_t)|s_1=s,a_1=a;\pi]}\
+&amp;=\sum_k^n{\overline Q_k^\pi(s,a)}
+\end{align}
+$$
+分解后的 $Q$ 函数依旧基于全局环境信息，本文系统中边缘节点将集中收集所有连接智能体的状态信息进而得到全局环境信息。由此对于部分策略价值函数的累加可以得到整体策略价值函数。</p>
+<blockquote>
+<p>这是否就是解释了为什么可以将 $(s_t,a_t)$ 拆成 $(o^k_t,a^k_t)$ 之后最终的每个 $\overline Q^\pi_k$ 还是基于$(s,a)$ ：因为系统环境就是所有智能体观察的总和，系统动作就是所有智能体动作的总和</p>
+</blockquote>
+<p>对联合集中式学习和独立并行学习进行折中，将整体策略价值函数拆分为多个局部智能体策略价值函数之和，即
+$$
+Q((s,(a^1,a^2,&hellip;,a^d)))\approx\sum_{i=1}^d\widetilde{Q}<em>i(s,a^i)
+$$
+相应地将式$(3)$拆为
+$$
+C_t(\mathcal{X_t})
+=\beta\frac{\tau_t(\mathcal{X_t})}{\tau_t^\mathrm{E}}+(1-\beta)\frac{E_t(\mathcal{X_t})}{E_t^\mathrm{E}}
+\approx\sum</em>{i=1}^M\sum_{j=1}^{N_\max}\beta\frac{\tau_{i,j,t}(x_{i,j,t})}{\tau_t^\mathrm{E}}+(1-\beta)\frac{E_{i,j,t}(x_{i,j,t})}{E_t^\mathrm{E}}
+$$</p>
+<blockquote>
+<p>前面提到时间 $\tau$ 中包含大量等待的时间，这是否会影响到这种拆分方式方式的可靠性？</p>
+</blockquote>
+<p>使用式$(8)$作为奖励函数代替系统代价函数进行训练。</p>
+<p>文章中还提到两个优化</p>
+<ol>
+<li>各智能体策略价值评估函数中采用同构的神经网络，并允许所有智能体共享单个策略评估参数，使策略可以同时接收所有智能体的经验提升</li>
+<li>1 的方法会产生智能体不变性，故在输入中引入智能体当前状态信息作为额外索引信息增强智能体价值函数的差异性</li>
+</ol>
+<p><strong>多智能体联合学习算法</strong>	智能体$(i,j)$在第 $t$个采样周期的状态为 $s_{i,j,t}=(\boldsymbol B^t_{M\times{N_\max}},\boldsymbol D^t_{M\times{N_\max}},\boldsymbol D^{BD-t}<em>{M\times{N</em>\max}},\boldsymbol D^{R-t}<em>{M\times{N</em>\max}},\boldsymbol h^t_{M\times{N_\max}},\boldsymbol O^t_{i,j})$</p>
+<p>其中各成员分别为</p>
+<ul>
+<li>$\boldsymbol B^t_{M\times{N_\max}}$ 全部智能体在第 $t$ 个采样周期的实时操作计算量集合</li>
+<li>$\boldsymbol D^t_{M\times{N_\max}}$ 全部智能体在第 $t$ 个采样周期的参数数据量集合</li>
+<li>$\boldsymbol D^{BD-t}<em>{M\times{N</em>\max}}$ 全部智能体在第 $t$ 个采样周期的实时操作所基于的参数数据量集合</li>
+<li>$\boldsymbol D^{R-t}<em>{M\times{N</em>\max}}$ 全部智能体在第 $t$ 个采样周期的实时操作的操作指令数据量集合</li>
+<li>$\boldsymbol h^t_{M\times{N_\max}}$ 全部智能体在第 $t$ 个采样周期内与其所连接的接入点之间的信道增益集合</li>
+<li>$\boldsymbol O^t_{i,j}$ 智能体$(i,j)$在第 $t$ 个采样周期的自身状态信息</li>
+</ul>
+<blockquote>
+<p>其中 $\boldsymbol O^t_{i,j}=[B_{i,j,t},D_{i,j,t},D^{\mathrm{BD}}<em>{i,j,t},D^{\mathrm{R}}</em>{i,j,t},h_{i,j,t}]$，除此以外其他成员均为二维矩阵，$\boldsymbol O^t_{i,j}$ 即为优化 2 中引入的智能体当前状态信息</p>
+</blockquote>
+<p>系统在第 $t$ 个采样周期的策略动作为 $a_t$，智能体在第 $t$ 个采样周期内状态为 $s_{i,j,t}$，采取策略动作 $a_{i,j,t}$，得到系统回报值 $r_{i,j,t}$，当系统进入第 $t+1$ 个采样周期时状态为 $s_{i,j,t+1}$。其中系统回报为系统成本的负值，系统策略与系统策略动作等效转换，于是
+$$
+r_{i,j,t}=-C_{i,j,t}(x_{i,j,t})=-C_{i,j,t}(a_{i,j,t})
+$$</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/tomorrow-night.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='文章：Dynamic Task Allocation for Robotic Edge System Resilience Using Deep Reinforcement Learning
+系统恢复建模	文中所述的系统主要由多个传感器，多个机器人，一个边缘服务器，一个云数据中心组成。传感器的数据传输范围有限，只能经机器人将数据发送给数据中心。当某个机器人出现故障时，其他机器人通过改变自身位置，故障机器人，从而保证数据传输。
+文章的目标是最大化系统的恢复时延率（time ratio of system recovery）和恢复完整度（success ratio）
+机器人的故障产生了任务集合 $T$。任务 $t\in T$ 的恢复时延率 $\chi_t$ 是时限 $\delta_t$ 和总完成时间 $\tau_t$ 的比值，总完成时间包括机器人移动位置花费的时间及传输、运算时间。系统的恢复时延率 $\chi$ 是所有任务恢复时延率的均值。
+如果一个任务的总完成时间小于任务的时限，那么视为一个成功恢复的任务。系统的恢复完整度 $\sigma$ 是成功恢复的任务在待处理任务中的占比。 $$ \begin{align} &amp;amp;\chi t=\frac{\delta_t}{\tau_t} \ &amp;amp;\tau_t=\tau{tr}^m&#43;\tau_{tr}^u&#43;\tau_{tr}^p&#43;\tau_{tr}^f \ &amp;amp;\chi=\frac{1}{|T|}\sum_{\forall t \in T}\chi_t \ &amp;amp;\sigma=\frac{|T^*|}{|T|} \end{align} $$ 机器人只有在自身剩余能量大于执行任务的总能量时才能执行任务。其中执行任务的总给能量包括机器人移动的能量及传输，计算消耗的能量。
+任务分配决策
+边缘服务器观察 $\tau$ 时刻的状态 $$ s_\tau={L(\tau),\zeta(\tau),\delta(\tau),L&amp;rsquo;(\tau),\psi(\tau),C(\tau),\phi(\tau),v(\tau)} $$ 其中的各子项
+$L(\tau)$ 故障产生的各任务的位置 $\zeta(\tau)$ 各任务的输入数据量 $\delta(\tau)$ 各任务的时限 $L&amp;rsquo;(\tau)$ 各可以执行任务的机器人的位置 $\psi(\tau)$ 各机器人的最大可覆盖半径 $C(\tau)$ 各机器人的运算能力 $\phi(\tau)$ 各机器人的可用能量 $v(\tau)$ 各机器人的速度 边缘服务器将为所有机器人决策动作 $$ a(\tau)={\mu(\tau),\nu(\tau)} $$ 其中'>
+<title>关于《Dynamic Task Allocation for Robotic Edge System Resilience Using Deep Reinforcement Learning》</title>
+
+<link rel='canonical' href='https://example.org/post/%E5%85%B3%E4%BA%8Edynamic-task-allocation-for-robotic-edge-system-resilience-using-deep-reinforcement-learning/'>
+
+<link rel="stylesheet" href="/scss/style.min.192478712cc95d07749a1a7ba40a60e54586192467be1db381a44db72486c759.css"><meta property='og:title' content='关于《Dynamic Task Allocation for Robotic Edge System Resilience Using Deep Reinforcement Learning》'>
+<meta property='og:description' content='文章：Dynamic Task Allocation for Robotic Edge System Resilience Using Deep Reinforcement Learning
+系统恢复建模	文中所述的系统主要由多个传感器，多个机器人，一个边缘服务器，一个云数据中心组成。传感器的数据传输范围有限，只能经机器人将数据发送给数据中心。当某个机器人出现故障时，其他机器人通过改变自身位置，故障机器人，从而保证数据传输。
+文章的目标是最大化系统的恢复时延率（time ratio of system recovery）和恢复完整度（success ratio）
+机器人的故障产生了任务集合 $T$。任务 $t\in T$ 的恢复时延率 $\chi_t$ 是时限 $\delta_t$ 和总完成时间 $\tau_t$ 的比值，总完成时间包括机器人移动位置花费的时间及传输、运算时间。系统的恢复时延率 $\chi$ 是所有任务恢复时延率的均值。
+如果一个任务的总完成时间小于任务的时限，那么视为一个成功恢复的任务。系统的恢复完整度 $\sigma$ 是成功恢复的任务在待处理任务中的占比。 $$ \begin{align} &amp;amp;\chi t=\frac{\delta_t}{\tau_t} \ &amp;amp;\tau_t=\tau{tr}^m&#43;\tau_{tr}^u&#43;\tau_{tr}^p&#43;\tau_{tr}^f \ &amp;amp;\chi=\frac{1}{|T|}\sum_{\forall t \in T}\chi_t \ &amp;amp;\sigma=\frac{|T^*|}{|T|} \end{align} $$ 机器人只有在自身剩余能量大于执行任务的总能量时才能执行任务。其中执行任务的总给能量包括机器人移动的能量及传输，计算消耗的能量。
+任务分配决策
+边缘服务器观察 $\tau$ 时刻的状态 $$ s_\tau={L(\tau),\zeta(\tau),\delta(\tau),L&amp;rsquo;(\tau),\psi(\tau),C(\tau),\phi(\tau),v(\tau)} $$ 其中的各子项
+$L(\tau)$ 故障产生的各任务的位置 $\zeta(\tau)$ 各任务的输入数据量 $\delta(\tau)$ 各任务的时限 $L&amp;rsquo;(\tau)$ 各可以执行任务的机器人的位置 $\psi(\tau)$ 各机器人的最大可覆盖半径 $C(\tau)$ 各机器人的运算能力 $\phi(\tau)$ 各机器人的可用能量 $v(\tau)$ 各机器人的速度 边缘服务器将为所有机器人决策动作 $$ a(\tau)={\mu(\tau),\nu(\tau)} $$ 其中'>
+<meta property='og:url' content='https://example.org/post/%E5%85%B3%E4%BA%8Edynamic-task-allocation-for-robotic-edge-system-resilience-using-deep-reinforcement-learning/'>
+<meta property='og:site_name' content='potatoler space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-02-20T03:28:39&#43;08:00'/><meta property='article:modified_time' content='2024-02-20T03:28:39&#43;08:00'/>
+<meta name="twitter:title" content="关于《Dynamic Task Allocation for Robotic Edge System Resilience Using Deep Reinforcement Learning》">
+<meta name="twitter:description" content="文章：Dynamic Task Allocation for Robotic Edge System Resilience Using Deep Reinforcement Learning
+系统恢复建模	文中所述的系统主要由多个传感器，多个机器人，一个边缘服务器，一个云数据中心组成。传感器的数据传输范围有限，只能经机器人将数据发送给数据中心。当某个机器人出现故障时，其他机器人通过改变自身位置，故障机器人，从而保证数据传输。
+文章的目标是最大化系统的恢复时延率（time ratio of system recovery）和恢复完整度（success ratio）
+机器人的故障产生了任务集合 $T$。任务 $t\in T$ 的恢复时延率 $\chi_t$ 是时限 $\delta_t$ 和总完成时间 $\tau_t$ 的比值，总完成时间包括机器人移动位置花费的时间及传输、运算时间。系统的恢复时延率 $\chi$ 是所有任务恢复时延率的均值。
+如果一个任务的总完成时间小于任务的时限，那么视为一个成功恢复的任务。系统的恢复完整度 $\sigma$ 是成功恢复的任务在待处理任务中的占比。 $$ \begin{align} &amp;amp;\chi t=\frac{\delta_t}{\tau_t} \ &amp;amp;\tau_t=\tau{tr}^m&#43;\tau_{tr}^u&#43;\tau_{tr}^p&#43;\tau_{tr}^f \ &amp;amp;\chi=\frac{1}{|T|}\sum_{\forall t \in T}\chi_t \ &amp;amp;\sigma=\frac{|T^*|}{|T|} \end{align} $$ 机器人只有在自身剩余能量大于执行任务的总能量时才能执行任务。其中执行任务的总给能量包括机器人移动的能量及传输，计算消耗的能量。
+任务分配决策
+边缘服务器观察 $\tau$ 时刻的状态 $$ s_\tau={L(\tau),\zeta(\tau),\delta(\tau),L&amp;rsquo;(\tau),\psi(\tau),C(\tau),\phi(\tau),v(\tau)} $$ 其中的各子项
+$L(\tau)$ 故障产生的各任务的位置 $\zeta(\tau)$ 各任务的输入数据量 $\delta(\tau)$ 各任务的时限 $L&amp;rsquo;(\tau)$ 各可以执行任务的机器人的位置 $\psi(\tau)$ 各机器人的最大可覆盖半径 $C(\tau)$ 各机器人的运算能力 $\phi(\tau)$ 各机器人的可用能量 $v(\tau)$ 各机器人的速度 边缘服务器将为所有机器人决策动作 $$ a(\tau)={\mu(\tau),\nu(\tau)} $$ 其中">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column compact"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/potatoler_hu51fd2c08f158774490a916d7d65d3cb0_53818_300x0_resize_q75_box.jpeg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">potatoler space</a></h1>
+            <h2 class="site-description">蕴藏着想成为真物的意志，伪物比真物更真实</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E5%85%B3%E4%BA%8Edynamic-task-allocation-for-robotic-edge-system-resilience-using-deep-reinforcement-learning/">关于《Dynamic Task Allocation for Robotic Edge System Resilience Using Deep Reinforcement Learning》</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 20, 2024</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>文章：<a class="link" href="https://ieeexplore.ieee.org/document/10320435/references#references"  target="_blank" rel="noopener"
+    >Dynamic Task Allocation for Robotic Edge System Resilience Using Deep Reinforcement Learning</a></p>
+<p><strong>系统恢复建模</strong>	文中所述的系统主要由多个传感器，多个机器人，一个边缘服务器，一个云数据中心组成。传感器的数据传输范围有限，只能经机器人将数据发送给数据中心。当某个机器人出现故障时，其他机器人通过改变自身位置，故障机器人，从而保证数据传输。</p>
+<p>文章的目标是最大化系统的恢复时延率（time ratio of system recovery）和恢复完整度（success ratio）</p>
+<p>机器人的故障产生了任务集合 $T$。任务 $t\in T$ 的恢复时延率 $\chi_t$ 是时限 $\delta_t$ 和总完成时间 $\tau_t$ 的比值，总完成时间包括机器人移动位置花费的时间及传输、运算时间。系统的恢复时延率 $\chi$ 是所有任务恢复时延率的均值。</p>
+<p>如果一个任务的总完成时间小于任务的时限，那么视为一个成功恢复的任务。系统的恢复完整度 $\sigma$ 是成功恢复的任务在待处理任务中的占比。
+$$
+\begin{align}
+&amp;\chi <em>t=\frac{\delta_t}{\tau_t} \
+&amp;\tau_t=\tau</em>{tr}^m+\tau_{tr}^u+\tau_{tr}^p+\tau_{tr}^f \
+&amp;\chi=\frac{1}{|T|}\sum_{\forall t \in T}\chi_t \
+&amp;\sigma=\frac{|T^*|}{|T|}
+\end{align}
+$$
+机器人只有在自身剩余能量大于执行任务的总能量时才能执行任务。其中执行任务的总给能量包括机器人移动的能量及传输，计算消耗的能量。</p>
+<p><strong>任务分配决策</strong></p>
+<p>边缘服务器观察 $\tau$ 时刻的状态
+$$
+s_\tau={L(\tau),\zeta(\tau),\delta(\tau),L&rsquo;(\tau),\psi(\tau),C(\tau),\phi(\tau),v(\tau)}
+$$
+其中的各子项</p>
+<ul>
+<li>$L(\tau)$ 故障产生的各任务的位置</li>
+<li>$\zeta(\tau)$ 各任务的输入数据量</li>
+<li>$\delta(\tau)$ 各任务的时限</li>
+<li>$L&rsquo;(\tau)$ 各可以执行任务的机器人的位置</li>
+<li>$\psi(\tau)$ 各机器人的最大可覆盖半径</li>
+<li>$C(\tau)$ 各机器人的运算能力</li>
+<li>$\phi(\tau)$ 各机器人的可用能量</li>
+<li>$v(\tau)$ 各机器人的速度</li>
+</ul>
+<p>边缘服务器将为所有机器人决策动作
+$$
+a(\tau)={\mu(\tau),\nu(\tau)}
+$$
+其中</p>
+<ul>
+<li>$\mu(\tau)$ 各机器人需要移动至的位置</li>
+<li>$\nu(\tau)$ 各任务分配给哪个机器人</li>
+</ul>
+<p>每一步决策后边缘服务器（智能体）将获得奖励
+$$
+\rho_\tau(s_\tau,a_\tau)=w_1\times\chi=w_2\times\sigma
+$$
+其中 $w_1$、$w_2$ 是恢复时延率和恢复完整度在奖励中的权值，和为 1</p>
+<p><strong>DQN训练</strong>	多个 DQN 组成评估网络 $N^E=N_1^E,N_2^E,&hellip;,N_n^E$，具有训练权值 $w^E=w_1^E,w_2^E,&hellip;w_n^E$，所有训练权值被初始化为相同值。每个 DQN 的训练目标都是能够取得最大的回报，但基于遇到过的状态训练出的 DQN 不能保证在未知状态下作出最优行动。因此文章考虑对每个模型的 Q 值进行模型不确定性统计。一开始 DQN 的每个 Q 值输出都是相同的，随着 DQN 在训练过程中预测逐渐准确，Q 值也变得更加多样化。即一个 DQN 的 Q 值标准差越大，则该 DQN 在多个 DQN 中的预测或探索准确度就越高。</p>
+<p>在训练的每一步 $\tau$ 中，状态 $s_\tau$ 被输入进所有 DQN，每个 DQN 返回一个动作 $a_\tau^{N_i^E}$。我们将选择具有最大 Q 值标准差的 DQN 生成的动作。并从选定的 DQN 中生成的多个结果中选择能获得最大值奖励的动作。
+$$
+\begin{align}
+&amp;a_\tau^{N_i^E}=\arg\max_{j\in|m|}Q(s_\tau,a_\tau^{N_i^E})\
+&amp;\sigma(Q(s_\tau,a_\tau^{N_i^E})<em>j)=\sqrt{\frac{1}{m}\sum</em>{j=1}^m(Q^{N_i^E}-\bar Q)^2}\
+&amp;\bar Q=\frac{1}{m}\sum_{j=1}^mQ(s_\tau,a_\tau^{N_i^E})_j
+\end{align}
+$$
+目标网络最初使用随机权重 $w^T$ 训练 $Y$ 步，之后每 $Y$ 步后更新权重为评估网络的权重 $w_i{^*}^E$ 取决于提供最大回报的 DQN。</p>
+<p><img src="https://s2.loli.net/2024/02/21/wGmvAcXlgWo9JLy.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="截屏2024-02-20 10.57.03"
+	
+	
+></p>
+<blockquote>
+<p>选择动作的算法图片演示与文章描述和伪代码不一致？</p>
+<p>文章描述与伪代码是先从所有评估网络中选择 Q 值标准差最大的 DQN，然后从选定的 DQN 中选择使 Q 最大的动作；图片的描述似乎是所有 DQN 先选出一个动作，再对比所有 DQN 选出的动作，选出使 Q 值最大的动作</p>
+<p>但是文章中列出的式$(8)$似乎又与图片中没有直接展示的所有 DQN 先选出动作的过程一致，不同的是，伪代码中左侧为 $a^{N^E}$</p>
+</blockquote>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 potatoler space
+    </section>
+    
+    <section class="powerby">
+        
+            Sorry potatoler, but I cannot recognize you. <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
