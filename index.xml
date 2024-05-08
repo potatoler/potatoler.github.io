@@ -6,7 +6,91 @@
         <description>Recent content on potatoler space</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 20 Feb 2024 03:28:39 +0800</lastBuildDate><atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 08 May 2024 10:31:48 +0800</lastBuildDate><atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>浅谈Swift可选类型——茴字的四种写法</title>
+        <link>https://example.org/post/%E6%B5%85%E8%B0%88swift%E5%8F%AF%E9%80%89%E7%B1%BB%E5%9E%8B/</link>
+        <pubDate>Wed, 08 May 2024 10:31:48 +0800</pubDate>
+        
+        <guid>https://example.org/post/%E6%B5%85%E8%B0%88swift%E5%8F%AF%E9%80%89%E7%B1%BB%E5%9E%8B/</guid>
+        <description>&lt;h3 id=&#34;可选类型&#34;&gt;可选类型&lt;/h3&gt;
+&lt;p&gt;Swift &lt;a class=&#34;link&#34; href=&#34;https://docs.swift.org/swift-book/documentation/the-swift-programming-language/thebasics/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;文档&lt;/a&gt;将可选类型描述为：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用 &lt;em&gt;可选类型（optionals）&lt;/em&gt; 来处理值可能缺失的情况。可选类型表示两种可能： 或者有值，你可以解析可选类型访问这个值，或者根本没有值。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;每种类型都有对应的可选类型，即使是自定义类型也如此。可选类型为每种类型提供了一个可以为空的选项，在 Swift 中空值为 &lt;code&gt;nil&lt;/code&gt;。不同语言对于空值的处理不同，Python 中空值 &lt;code&gt;None&lt;/code&gt; 被定义为一种类型，其动态类型的特性使得当一个对象被赋值为空时，解释器推定其类型为空类型。C 中有 &lt;code&gt;void*&lt;/code&gt; 类型的 &lt;code&gt;NULL&lt;/code&gt; 空指针。&lt;/p&gt;
+&lt;p&gt;Swift 中的 &lt;code&gt;nil&lt;/code&gt; 是什么类型呢？答案是没有类型，其仅用来表示值的缺失。或者说其可以是任意可选类型。有趣的是，你不能在可选类型之间转换：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; voidInt: Int? = &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; voidFloat: Float? = Float?(voidInt)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// error: cannot convert value of type &amp;#39;Int?&amp;#39; to expected argument type &amp;#39;Float&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果强制解析呢？&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; voidInt: Int? = &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; voidFloat: Float? = Float?(voidInt!)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// error: cannot convert value of type &amp;#39;Int&amp;#39; to expected argument type &amp;#39;Float&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以看到 &lt;code&gt;voidInt&lt;/code&gt; 已经被强制解析为 &lt;code&gt;Int&lt;/code&gt; 类型，但是仍然不能正确构造。这是因为可选类型只接受字面量构造。实际上应该先构造非可选类型，再赋给可选类型变量，因为非可选类型可以看作是可选类型的字集。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; voidInt: Int? = &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; voidFloat: Float? = Float(voidInt!)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// crash when running&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这时强制解析显然也是可以的，因为强制解析后变量被推定为非可选类型（从上一段代码的错误提示中也可见一斑），对于编译器来说这只是一个普通的类型转换。但是程序运行时会崩溃，因为强制解析了 &lt;code&gt;nil&lt;/code&gt; 。不建议对可选类型做强制解析，除非你很确信它不会为空（既然这样为什么还要用可选类型呢？）。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; voidInt: Int? = &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; voidFloat: Float? = Float(voidInt ?? &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 0.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用空值结合（空合）处理可选类型可能为空的情况。在上面的代码中，&lt;code&gt;voidFloat&lt;/code&gt; 最终值为0.0&lt;/p&gt;
+&lt;h3 id=&#34;用可选类型进行错误处理&#34;&gt;用可选类型进行错误处理&lt;/h3&gt;
+&lt;p&gt;下面的函数从数组中随机选取一个数：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;random&lt;/span&gt;(array: [Int]) -&amp;gt; Int {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; array.randomElement()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;乍一眼看上去没有任何问题，但是我们不能保证 &lt;code&gt;array&lt;/code&gt; 总存在。我们使用可选类型 &lt;code&gt;[Int]?&lt;/code&gt; ，以防 &lt;code&gt;array&lt;/code&gt; 值为 &lt;code&gt;nil&lt;/code&gt; 导致崩溃。使用可选链处理 &lt;code&gt;array&lt;/code&gt; 潜在的空值，只有当 &lt;code&gt;array&lt;/code&gt; 存在时才从中随机取一个数。并用空合运算提供一个默认值，在 1 到 100 中选一个整数。&lt;/p&gt;
+&lt;p&gt;如果 &lt;code&gt;array&lt;/code&gt; 存在但是为空呢？取随机仍然会失败。事实上内置的 &lt;code&gt;randomElement()&lt;/code&gt; 方法返回的就是一个可选类型 &lt;code&gt;Self?&lt;/code&gt;，以应对这种情况。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;selfishRandom&lt;/span&gt;(array: [Int]?) -&amp;gt; Int {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; array?.randomElement() ?? Int.random(&lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;1.&lt;/span&gt;..&lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// change result without authorization&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(selfishRandom(array: &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;假如你调用 &lt;code&gt;selfishRandom()&lt;/code&gt; 并不小心传入一个空值或空数组（注意两者的区别，虽然两种情况函数的处理是相同的），你仍然会得到一个随机结果，这就仿佛函数“擅自”处理了这两种情况，令人困扰。反观 &lt;code&gt;randomElement()&lt;/code&gt; 返回可选类型的设计是可取的，其返回一个可选类型，让我们可以自定义默认值。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;optionalRandom&lt;/span&gt;(array: [Int]?) -&amp;gt; Int? {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; array?.randomElement()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// provide result that can be another type&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(optionalRandom(array: &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;) ?? Int.random(&lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;1.&lt;/span&gt;..&lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;).description)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;现在 &lt;code&gt;optionalRandom()&lt;/code&gt; 返回可选类型，让我们可以自主处理返回值为空的情况。例如上面的代码在将随机结果打印出来的时候才提供了默认值。&lt;/p&gt;
+&lt;p&gt;注意到计算属性 &lt;code&gt;description&lt;/code&gt; 了吗？实际上它是 &lt;code&gt;String&lt;/code&gt; 类型，之所以用 &lt;code&gt;String&lt;/code&gt; 提供默认值是因为 &lt;code&gt;print()&lt;/code&gt; 接受 &lt;code&gt;Any&lt;/code&gt; 类型，事实上你不能将 &lt;code&gt;print()&lt;/code&gt; 内的内容赋给一个变量（除非声明为 &lt;code&gt;Any&lt;/code&gt;），因为 Swift 不能推断这个变量的类型，不能既要又要。&lt;/p&gt;
+&lt;p&gt;可选链和空值结合用十分简洁且直观的方法处理了所有可能出现的空值。但是不觉得过于简单粗暴了吗？在这两种情况中 &lt;code&gt;array&lt;/code&gt; 为空值和为空的两种错误被混为一谈了，明明强调要注意两者的区别，却为了简洁直观放弃了具体问题具体分析的机会，只能说是简单直率了。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;RandError&lt;/span&gt;: Error {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; noArray, emptyArray
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;failableRandom&lt;/span&gt;(array: [Int]?) &lt;span style=&#34;color:#66d9ef&#34;&gt;throws&lt;/span&gt; -&amp;gt; Int {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;guard&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; array = array &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; RandError.noArray
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;guard&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; result = array.randomElement() &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;throw&lt;/span&gt; RandError.emptyArray
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; result
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用可选绑定分别检查过程中的每一步，并可以抛出不同的错误，此时函数成为一个 throwing 函数。&lt;code&gt;guard let ... else&lt;/code&gt; 和 &lt;code&gt;if let&lt;/code&gt; 和写法都是可行的，不同之处是前者在解析为空时执行括号内代码，后者在解析有值时执行括号内代码。解析为空才发生错误，所以使用前者能够更专注于不发生错误的情况而将错误看作一个小插曲，毕竟在实际使用中非错误的函数本身执行的主要内容占绝大部分，我们不希望将大段内容缩进在括号里，而如果函数本身的主要任务就是错误处理，使用后者似乎会更合适。两种写法反映出心态上的微妙区别。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// handel errors&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; result = &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt; failableRandom(array: &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(result)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt; RandError.noArray {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;At least give me an array!&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} &lt;span style=&#34;color:#66d9ef&#34;&gt;catch&lt;/span&gt; RandError.emptyArray {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;As empty as my heart...&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// don&amp;#39;t care what error&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; result = &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;? failableRandom(array: &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(result)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;FailableRandom failed.&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可以对每种错误分别处理，当然也可以不区分错误类型，但至少这样的写法为我们提供了区分错误的机会。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>关于《Dynamic Task Allocation for Robotic Edge System Resilience Using Deep Reinforcement Learning》</title>
         <link>https://example.org/post/%E5%85%B3%E4%BA%8Edynamic-task-allocation-for-robotic-edge-system-resilience-using-deep-reinforcement-learning/</link>
         <pubDate>Tue, 20 Feb 2024 03:28:39 +0800</pubDate>
